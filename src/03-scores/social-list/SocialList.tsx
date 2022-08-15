@@ -1,4 +1,3 @@
-import React from 'react'
 import { Anchor } from '@symbols/anchors/Anchor'
 
 export const SocialList = () => {

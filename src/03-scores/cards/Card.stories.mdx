@@ -1,5 +1,6 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs'
 
+import { OrchestraProvider } from '@symbols/providers/OrchestraProvider'
 import { Card } from './Card'
 import { Picture } from '@symbols/images'
 
@@ -13,27 +14,8 @@ import { Picture } from '@symbols/images'
 <Canvas>
   <Story
     name="Default">
-    <Card>
-      <Picture
-        src="https://via.placeholder.com/300"
-        alt="placeholder image"
-      />
-      <div className="card__infos">
-        <p className="card__title">
-          Title
-        </p>
-        <p className="card__type">type</p>
-        <p className="card__description">description</p>
-      </div>
-    </Card>
-  </Story>
-  <Story
-    name="Linkable">
-    <Card>
-      <a className="card__link"
-      href="https://example.com"
-      title="go to link"
-      target="_blank">
+    <OrchestraProvider themeName="dark">
+      <Card>
         <Picture
           src="https://via.placeholder.com/300"
           alt="placeholder image"
@@ -45,7 +27,65 @@ import { Picture } from '@symbols/images'
           <p className="card__type">type</p>
           <p className="card__description">description</p>
         </div>
-      </a>
-    </Card>
+      </Card>
+    </OrchestraProvider>
+    <OrchestraProvider themeName="light">
+      <Card>
+        <Picture
+          src="https://via.placeholder.com/300"
+          alt="placeholder image"
+        />
+        <div className="card__infos">
+          <p className="card__title">
+            Title
+          </p>
+          <p className="card__type">type</p>
+          <p className="card__description">description</p>
+        </div>
+      </Card>
+    </OrchestraProvider>
+  </Story>
+  <Story
+    name="Linkable">
+    <OrchestraProvider themeName="dark">
+      <Card>
+        <a className="card__link"
+        href="https://example.com"
+        title="go to link"
+        target="_blank">
+          <Picture
+            src="https://via.placeholder.com/300"
+            alt="placeholder image"
+          />
+          <div className="card__infos">
+            <p className="card__title">
+              Title
+            </p>
+            <p className="card__type">type</p>
+            <p className="card__description">description</p>
+          </div>
+        </a>
+      </Card>
+    </OrchestraProvider>
+    <OrchestraProvider themeName="light">
+      <Card>
+        <a className="card__link"
+        href="https://example.com"
+        title="go to link"
+        target="_blank">
+          <Picture
+            src="https://via.placeholder.com/300"
+            alt="placeholder image"
+          />
+          <div className="card__infos">
+            <p className="card__title">
+              Title
+            </p>
+            <p className="card__type">type</p>
+            <p className="card__description">description</p>
+          </div>
+        </a>
+      </Card>
+    </OrchestraProvider>
   </Story>
 </Canvas>

@@ -1,0 +1,42 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+
+import { Box } from './Box'
+
+<Meta title="Symbols/Box" component={Box} />
+
+# Box
+
+<Canvas>
+  <Story name="Default">
+    <Box>
+      <div
+        style={{backgroundColor: '#264B68', color: '#FFFFFF', height: 50}}
+        aria-hidden="true"
+      >
+        Item 1
+      </div>
+      <div
+        style={{backgroundColor: '#264B68', color: '#FFFFFF', height: 50}}aria-hidden="true"
+      >
+        Item 2
+      </div>
+    </Box>
+  </Story>
+  <Story name="Align Items Center">
+    <Box
+      alignItems="center"
+      backgroundColor={}
+      color="white"
+    >
+        Item
+    </Box>
+  </Story>
+  <Story name="With renderAs">
+    <Box
+      renderAs="span"
+      backgroundColor="black"
+    >
+        Item
+    </Box>
+  </Story>
+</Canvas>

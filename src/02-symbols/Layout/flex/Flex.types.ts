@@ -38,6 +38,5 @@ export interface FlexOptions {
 }
 
 export type FlexProps = FlexOptions & {
-  renderAs?: ElementType
   children: ReactNode
 }

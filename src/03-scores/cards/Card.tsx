@@ -1,5 +1,20 @@
 import { CardProps } from './Card.types'
-import './_card.scss'
+import styled from '@emotion/styled'
+
+const CardStyled = styled.article`
+    color: ${props => props.theme.textColor};
+    background-color: ${props => props.theme.cardBgColor};
+    position: relative;
+    overflow: hidden;
+    border-radius: $radius-4;
+    min-height: 100px;
+    box-shadow: $depth-1;
+`
+
+const LinkStyled = styled.a`
+  color: ${props => props.theme.textColor};
+  text-decoration: none;
+`
 
 export const Card = ({
   type, children, ...restProps
@@ -8,19 +23,20 @@ export const Card = ({
   const Content = (): JSX.Element => {
     if (type === 'linkable') {
       return (
-        <a
-          className="card__link"
+        <LinkStyled
           {...restProps}
         >
-          {children}
-        </a>
+          <CardStyled>
+            {children}
+          </CardStyled>
+        </LinkStyled>
       )
     }
 
     return <>{children}</>
   }
 
-  return <article className="card">
+  return <CardStyled>
     <Content />
-  </article>
+  </CardStyled>
 }
