@@ -1,0 +1,28 @@
+@import '../../01-instruments/colors';
+@import '../../01-instruments/fonts';
+@import '../../01-instruments/functions';
+
+.svg__icon {
+    width: 100%;
+    height: 100%;
+
+    &--c-black {
+        fill: $black-0;
+    }
+
+    &--c-white {
+        fill: $white-0;
+    }
+
+    &--c-grey {
+        fill: $grey-60;
+    }
+
+    &--c-blue {
+        fill: $blue-30;
+    }
+
+    &--c-orange {
+        fill: $blue-30;
+    }
+}

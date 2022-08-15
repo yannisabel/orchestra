@@ -1,0 +1,26 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+
+import { Switch } from './Switch'
+
+<Meta
+  title="Symbols/Switch"
+  component={Switch}
+  argsType={{
+    label: 'label',
+    optionTrue: 'true',
+    optionFalse: 'false',
+    ariaChecked: true,
+    onAction: () => {alert('Switched')}
+  }}
+/>
+
+export const Template = (args) => <Switch {...args} />
+
+# Switch
+
+<Canvas>
+  <Story
+    name="Default">
+    {Template.bind({})}
+  </Story>
+</Canvas>

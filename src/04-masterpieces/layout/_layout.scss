@@ -1,0 +1,61 @@
+@import '../../01-instruments/animations';
+@import '../../01-instruments/fonts';
+@import '../../01-instruments/spaces';
+@import '../../01-instruments/colors';
+@import '../../01-instruments/breakpoints';
+@import '../../01-instruments/grid';
+@import '../../01-instruments/shadows';
+
+.sub-heading {
+    padding-bottom:$space-4+$space-3;
+    text-align: center;
+}
+
+#app {
+    & > div.wrap {
+        max-width: 1140px;
+        margin: 0 auto;
+    }
+
+    .work {
+        .grid-4 {
+            & > figure {
+                max-width: 208px;
+            }
+        }
+    }
+}
+
+.profile-picture-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+#noscript {
+    text-align: center;
+}
+
+.wrap {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding:$space-4+$space-3 $space-3;
+
+    @include breakPoint('large') {
+        padding: $space-5+$space-1 0 $space-3+$space-2;
+    }
+}
+
+.work-grid {
+    @include grid($gridTemplateColumns: 100%, $gridGap: $space-3);
+    @include breakPoint('small') {
+        @include grid($gridTemplateColumns: repeat(2, minmax(360px, 1fr)), $gridGap: $space-3);
+    }
+}

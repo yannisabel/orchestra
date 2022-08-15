@@ -1,0 +1,66 @@
+@import '../../01-instruments/fonts';
+@import '../../01-instruments/colors';
+@import '../../01-instruments/spaces';
+@import '../../01-instruments/radius';
+@import '../../01-instruments/functions';
+@import '../../01-instruments/shadows';
+
+code:not([class]) {
+  border-radius: $radius-1;
+  padding: 0 $space-1;
+  background-color: $blue-0;
+  color: $blue-30;
+  @include selectStyleByTheme('background-color', 'codeBgColor');
+  @include selectStyleByTheme('color', 'codeColor');
+}
+
+pre {
+  border: 1px solid $black-V0--T10;
+  padding: $space-3;
+  background-color: $blue-100;
+  white-space: pre;
+  word-spacing: normal;
+  word-wrap: normal;
+  word-break: normal;
+  color: colorOnBackground($blue-100);
+
+  code {
+      background: none;
+  }
+}
+
+pre[class*="language-"] {
+  background-color: transparent;
+  margin: 0 !important;
+  padding: $space-3+$space-2 $space-3 $space-3;
+  overflow: auto;
+  min-width: 100%;
+  border-radius: $radius-3;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  text-align: left;
+  line-height: $space-3+$space-2;
+  white-space: pre;
+  word-spacing: normal;
+  word-wrap: normal;
+  word-break: normal;
+  tab-size: 4;
+  hyphens: none;
+  background: none;
+  color: $blue-100;
+  box-shadow: unset;
+}
+
+.remark-code-title + pre[class*="language-"] {
+  border-top-left-radius: 0;
+}
+
+.remark-code-title {
+  display: inline-flex;
+  border-top-left-radius: $radius-2;
+  border-top-right-radius: $radius-2;
+  padding: $space-2;
+  background-color: $blue-30;
+  font-size: $fs-1;
+  color: $white-0;
+}

@@ -1,0 +1,99 @@
+@import '../../01-instruments/functions';
+@import '../../01-instruments/breakpoints';
+@import '../../01-instruments/fonts';
+@import '../../01-instruments/radius';
+@import '../../01-instruments/colors';
+
+.switch {
+
+  &__label {
+    height: 0;
+    width: 0;
+    opacity: 0;
+  }
+
+  &__button {
+    position: relative;
+    display: block;
+    width: 60px;
+    height: 36px;
+    margin: 0;
+    overflow: hidden;
+    border: none;
+    border-radius: $radius-2;
+    padding: 0;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+
+    span {
+      pointer-events: none;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin .3s ease-in-out;
+
+    .option {
+      display: inline-block;
+      width: 50%;
+      height: 36px;
+      padding: 0;
+      line-height: 35px;
+      font-size: 12px;
+      text-transform: uppercase;
+
+      &--true {
+        padding-left: 6px;
+        background-color: $blue-50;
+        text-align: left;
+        color: colorOnBackground($blue-50);
+      }
+
+      &--false {
+        padding-right: 6px;
+        background-color: $blue-20;
+        text-align: right;
+        color: colorOnBackground($blue-20);
+      }
+    }
+  }
+
+  &__switcher {
+    position: absolute;
+    top: 3px;
+    right: 44px;
+    bottom: 0;
+    display: block;
+    width: 12px;
+    height: 30px;
+    margin: 0;
+    border-radius: $radius-2;
+    background: $white-0;
+    transition: all .3s ease-in-out;
+  }
+}
+
+[role="switch"][aria-checked="true"] {
+  .switch {
+    &__inner {
+      margin-left: 0;
+    }
+
+    &__switcher {
+      right: 3px;
+    }
+  }
+}
+
+.navbar-right+.switch__container {
+  display: none;
+  justify-content: space-between;
+
+  @include breakPoint('small') {
+    display: flex;
+  }
+}

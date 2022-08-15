@@ -1,0 +1,40 @@
+@import '../../01-instruments/fonts';
+@import '../../01-instruments/colors';
+@import '../../01-instruments/spaces';
+@import '../../01-instruments/functions';
+@import '../../01-instruments/breakpoints';
+@import '../../01-instruments/grid';
+@import '../../01-instruments/animations';
+@import '../../03-scores/social-list/social-list';
+
+.footer {
+    height: auto;
+    margin-top: 20px;
+    padding: $space-3 $gap;
+    background: $blue-100;
+    color: colorOnBackground($blue-100);
+    transition: all $cubicBezier-2;
+
+    &__container {
+        text-align: center;
+        @include breakPoint(small) {
+            padding-top: $space-3;
+        }
+
+        ul {
+            margin-top: $space-3;
+            padding-left: 0;
+            list-style-type: none;
+
+            li {
+                display: inline-block;
+                margin: 0;
+                padding: 0 $space-1;
+            }
+        }
+    }
+
+    &__link {
+        @include selectStyleByTheme('color', 'footerLinkColor');
+    }
+}

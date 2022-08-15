@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@instruments/*": [
+        "./01-instruments/*"
+      ],
+      "@symbols/*": [
+        "./02-symbols/*"
+      ],
+      "@scores/*": [
+        "./03-scores/*"
+      ],
+      "@masterpieces/*": [
+        "./04-masterpieces/*"
+      ],
+    },
+  }
+}

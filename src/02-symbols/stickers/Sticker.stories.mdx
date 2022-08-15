@@ -1,0 +1,56 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+
+import { Sticker } from './Sticker'
+
+<Meta
+  title="Symbols/Sticker"
+  component={Sticker}
+  argsType={{
+    model: {
+      defaultValue: 'default',
+      table: {
+        defaultValue: 'mini',
+      },
+    },
+    type: {
+      table: {
+        disable: true,
+      }
+    },
+  }}
+/>
+
+export const Template = (args) => <Sticker {...args} />
+
+# Sticker
+
+<Canvas>
+  <Story
+    name="Icon"
+    args={{
+      type: 'icon',
+      icon: 'image'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Image"
+    args={{
+      type: 'image',
+      image: 'https://via.placeholder.com/150',
+      alt: 'placeholder image',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Text"
+    args={{
+      type: 'text',
+      text: 'text placeholder',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

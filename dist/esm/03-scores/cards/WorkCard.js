@@ -1,0 +1,5 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import Link from 'next/link';
+import { Picture } from '@symbols/images/Picture';
+export const WorkCard = ({ src, title, path, description, type, text, wip, }) => (_jsx("article", Object.assign({ className: "card" }, { children: _jsx(Link, Object.assign({ href: path }, { children: _jsxs("a", Object.assign({ className: "card__link", title: `go to ${title} project` }, { children: [_jsx(Picture, { src: src, alt: title, layout: "responsive", height: 373, width: 756, objectFit: "cover" }), _jsxs("div", Object.assign({ className: "card__infos" }, { children: [_jsxs("p", Object.assign({ className: "card__title" }, { children: [title, " ", wip ? _jsx("span", Object.assign({ className: "status--pending" }, { children: text })) : ''] })), _jsx("p", Object.assign({ className: "card__type" }, { children: type })), _jsx("p", Object.assign({ className: "card__description" }, { children: description }))] }))] })) })) })));
+//# sourceMappingURL=WorkCard.js.map

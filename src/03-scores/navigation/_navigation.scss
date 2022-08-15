@@ -1,0 +1,281 @@
+@import '../../01-instruments/fonts';
+@import '../../01-instruments/colors';
+@import '../../01-instruments/spaces';
+@import '../../01-instruments/radius';
+@import '../../01-instruments/grid';
+@import '../../01-instruments/shadows';
+@import '../../01-instruments/animations';
+@import '../../01-instruments/breakpoints';
+
+.navbar {
+    position: relative;
+    width: 100%;
+    min-height: 42px;
+    background: $blue-30;
+    color: $white-0;
+    z-index: 20;
+
+    &.fixed {
+        position: fixed;
+        box-shadow: $depth-2;
+    }
+
+    a {
+        margin: 0;
+        font-weight: $fw-regular;
+    }
+
+    .navbar-brand {
+        color: $white-0;
+    }
+
+    .container {
+        @include grid($gridTemplateColumns: 80% auto, $alignItems: center);
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 $space-3;
+
+        .navbar-header {
+            @include grid($gridAutoFlow: column, $gridGap: $space-2, $alignItems: center, $justifyContent: left);
+            padding: $space-2 $space-2 $space-2 0;
+
+            img {
+                width: 25px;
+                height: 25px;
+            }
+        }
+
+        .navbar-right {
+            display: none;
+        }
+
+        h1 {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            color: $white-0;
+            font-size: $fs-2;
+
+            .button {
+                min-height: unset;
+                margin: 0;
+            }
+        }
+
+        .navbar-right {
+            margin: 0;
+            list-style: none;
+
+            a {
+                display: block;
+                min-width: 88px;
+                min-height: 36px;
+                padding: 0 $space-2;
+                margin: $space-2 0 $space-2;
+                border-radius: $radius-1;
+                box-sizing: border-box;
+                color: $grey-0;
+                line-height: 36px;
+                white-space: nowrap;
+                font-size: $fs-2;
+                text-align: center;
+                text-transform: uppercase;
+                text-decoration: none;
+                cursor: pointer;
+                overflow: hidden;
+                transition: background-color $cubicBezier-04;
+
+                &:hover, &:focus, &.active {
+                    background: $grey-V0--T2;
+                    color: $white-0;
+                }
+    
+                svg {
+                    position: relative;
+                    vertical-align: middle;
+                    bottom: 2px;
+                    width: 24px;
+                    height: 24px;
+                    margin-right: 6px;
+                    fill: $white-V0--T75;
+                }
+            }
+        }
+    }
+}
+
+.toggle-btn-container {
+    position: fixed;
+    z-index: 200;
+    top: 16px;
+    right: 16px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    &:hover {
+        opacity: .7;
+    }
+
+    &.active {
+        .top {
+            transform: translateY(11px);
+            transform: translateX(0);
+            transform: rotate(45deg);
+        }
+
+        .middle {
+            opacity: 0;
+        }
+
+        .bottom {
+            transform: translateY(-11px);
+            transform: translateX(0);
+            transform: rotate(-45deg);
+        }
+    }
+
+    span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        border: none;
+        background: $grey-0;
+        transition: all .35s ease;
+
+        &:nth-of-type(2) {
+            top: 11px;
+        }
+
+        &:nth-of-type(3) {
+            top: 22px;
+        }
+    }
+
+    &.active {
+        .top {
+            top: 11px;
+        }
+
+        .bottom {
+            top: 11px;
+        }
+    }
+}
+
+.language-label {
+    display: none;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    background: $blue-30;
+    z-index: 100;
+    opacity: 0;
+    transition: all .35s;
+
+    &.open {
+        visibility: visible;
+        height: 100%;
+        opacity: .9;
+        transition: all .35s;
+
+    }
+
+    h1 {
+        visibility: hidden;
+    }
+
+    nav {
+        position: relative;
+        top: 25%;
+        height: auto;
+        text-align: center;
+        transform: translateY(-50%);
+    }
+
+    ul {
+        position: relative;
+        display: inline-block;
+        height: 100%;
+        margin: 0 auto;
+        padding: 0;
+        list-style: none;
+
+        li {
+            position: relative;
+
+            &.center {
+                display: flex;
+                justify-content: center;
+            }
+
+            a {
+                position: relative;
+                display: block;
+                overflow: hidden;
+                text-decoration: none;
+                font-size: $fs-3;
+                color: $white-V0--T75;
+
+                &:hover, &:focus, &.active {
+                    background: $grey-V0--T2;
+                    color: $white-0;
+                }
+
+                svg {
+                    position: relative;
+                    bottom: 5px;
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 6px;
+                    fill: $white-V0--T75;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+}
+
+@include breakPoint('small') {
+    .navbar {
+        .container {
+            @include grid($gridTemplateColumns: 20% 72% auto);
+            .navbar-header {
+
+                h1 {
+                    display: inline-block;
+                    margin: 0;
+                    padding: 0;
+                    color: $white-0;
+                    font-size: $fs-2;
+                }
+            }
+            .navbar-right {
+                @include grid($gridAutoFlow: column, $gridColumnGap: $space-2, $alignItems: center, $justifyContent: end);
+            }
+        }
+    }
+
+    .toggle-btn-container {
+        display: none;
+    }
+}
+
+@include breakPoint('large') {
+    .navbar {
+        .container {
+            padding: 0;
+        }
+    }
+}

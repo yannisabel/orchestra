@@ -1,0 +1,65 @@
+@import '../../01-instruments/colors';
+@import '../../01-instruments/shadows';
+@import '../../01-instruments/spaces';
+@import '../../01-instruments/fonts';
+@import '../../01-instruments/breakpoints';
+
+
+.status-message {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 20px;
+  align-items: center;
+  padding: $space-3;
+  font-size: $fs-1;
+  font-weight: $fw-bold;
+  color: $white-0;
+
+  font-size: $fs-1;
+
+  @include breakPoint('small') {
+      font-size: $fs-2;
+  }
+}
+
+.notification {
+  padding: 0;
+  
+  &-c--blue {
+    background: $blue-30;
+
+    .svg__icon {
+        fill: $blue-30;
+    }
+  }
+
+  &-c--orange {
+    background: $orange-10;
+
+    .svg__icon {
+        fill: $orange-10;
+    }
+  }
+}
+
+#failureMessage {
+  padding: 0;
+  background: $orange-10;
+
+  .failure-icon {
+      svg {
+          fill: $orange-10;
+      }
+  }
+}
+
+#successMessage {
+  padding: 0;
+  background: $blue-30;
+
+  .success-icon {
+      svg {
+          fill: $blue-30;
+      }
+  }
+}
