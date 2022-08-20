@@ -2,6 +2,8 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs'
 
 import { Flex } from './Flex'
 
+import { Box } from '@symbols/Box'
+
 <Meta title="Symbols/Flex" component={Flex} />
 
 # Flex
@@ -9,34 +11,40 @@ import { Flex } from './Flex'
 <Canvas>
   <Story name="Default">
     <Flex>
-      <div
-        style={{backgroundColor: '#264B68', color: '#FFFFFF', height: 50}}
-        aria-hidden="true"
+      <Box
+        backgroundColor="blue-30"
+        alignItems="center"
+        color="white-0"
       >
         Item 1
-      </div>
-      <div
-        style={{backgroundColor: '#264B68', color: '#FFFFFF', height: 50}}aria-hidden="true"
+      </Box>
+      <Box
+        backgroundColor="blue-30"
+        alignItems="center"
+        color="white-0"
       >
         Item 2
-      </div>
+      </Box>
     </Flex>
   </Story>
   <Story name="Align Items Center">
     <Flex
       alignItems="center"
     >
-      <div
-        style={{backgroundColor: '#264B68', color: '#FFFFFF', height: 50}}
-        aria-hidden="true"
+      <Box
+        backgroundColor="blue-30"
+        alignItems="center"
+        color="white-0"
       >
         Item 1
-      </div>
-      <div
-        style={{backgroundColor: '#264B68', color: '#FFFFFF', height: 50}}aria-hidden="true"
+      </Box>
+      <Box
+        backgroundColor="blue-30"
+        alignItems="center"
+        color="white-0"
       >
         Item 2
-      </div>
+      </Box>
     </Flex>
   </Story>
 </Canvas>

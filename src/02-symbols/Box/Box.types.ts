@@ -1,11 +1,12 @@
-import { ColorType } from "@instruments/colors"
-import { CSSProperties, ElementType, ReactNode } from "react"
+import { ColorToken } from "@instruments/colors"
+import { CSSProperties, ReactNode } from "react"
 
 export type BoxOptions = CSSProperties & {
-  backgroundColor?: ColorType
+  backgroundColor?: ColorToken
+  color?: ColorToken
+  translate?: any 
 }
 
 export type BoxProps = BoxOptions & {
-  renderAs?: ElementType
   children: ReactNode
 }

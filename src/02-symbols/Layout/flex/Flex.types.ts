@@ -1,6 +1,7 @@
-import { ElementType, ReactNode } from "react"
+import { ReactNode } from "react"
 
-export interface FlexOptions {
+export interface FlexProps {
+  display?: 'flex' | 'inline-flex'
   /**
    * `alignItems` style prop
    */
@@ -35,8 +36,6 @@ export interface FlexOptions {
    * flexShrink` style prop
    */
   flexShrink?: number
-}
 
-export type FlexProps = FlexOptions & {
   children: ReactNode
-}
+} 

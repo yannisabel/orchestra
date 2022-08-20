@@ -1,6 +1,7 @@
+import { BoxProps } from "@symbols/Box/Box.types"
 import { ReactNode } from "react"
 
-interface LinkableCardProps {
+interface LinkableCardProps extends BoxProps {
   type: 'linkable'
   href: string
   target: string
@@ -8,7 +9,7 @@ interface LinkableCardProps {
   children: ReactNode
 }
 
-interface CardDefaultProps {
+interface CardDefaultProps extends BoxProps {
   type: 'default'
   children: ReactNode
 }

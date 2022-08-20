@@ -8,33 +8,21 @@ import { Box } from './Box'
 
 <Canvas>
   <Story name="Default">
-    <Box>
-      <div
-        style={{backgroundColor: '#264B68', color: '#FFFFFF', height: 50}}
-        aria-hidden="true"
-      >
-        Item 1
-      </div>
-      <div
-        style={{backgroundColor: '#264B68', color: '#FFFFFF', height: 50}}aria-hidden="true"
-      >
-        Item 2
-      </div>
-    </Box>
+    <Box backgroundColor="blue-30" />
   </Story>
   <Story name="Align Items Center">
     <Box
+      backgroundColor="blue-30"
       alignItems="center"
-      backgroundColor={}
-      color="white"
+      color="white-0"
     >
         Item
     </Box>
   </Story>
   <Story name="With renderAs">
     <Box
-      renderAs="span"
-      backgroundColor="black"
+      as="span"
+      backgroundColor="blue-30"
     >
         Item
     </Box>
