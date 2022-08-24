@@ -36,30 +36,6 @@
     width: 200%;
     margin-left: -100%;
     transition: margin .3s ease-in-out;
-
-    .option {
-      display: inline-block;
-      width: 50%;
-      height: 36px;
-      padding: 0;
-      line-height: 35px;
-      font-size: 12px;
-      text-transform: uppercase;
-
-      &--true {
-        padding-left: 6px;
-        background-color: $blue-50;
-        text-align: left;
-        color: colorOnBackground($blue-50);
-      }
-
-      &--false {
-        padding-right: 6px;
-        background-color: $blue-20;
-        text-align: right;
-        color: colorOnBackground($blue-20);
-      }
-    }
   }
 
   &__switcher {
@@ -86,6 +62,30 @@
     &__switcher {
       right: 3px;
     }
+  }
+}
+
+.option {
+  display: inline-block;
+  width: 50%;
+  height: 36px;
+  padding: 0;
+  line-height: 35px;
+  font-size: 12px;
+  text-transform: uppercase;
+
+  &--true {
+    padding-left: 6px;
+    background-color: $blue-50;
+    text-align: left;
+    color: colorOnBackground($blue-50);
+  }
+
+  &--false {
+    padding-right: 6px;
+    background-color: $blue-20;
+    text-align: right;
+    color: colorOnBackground($blue-20);
   }
 }
 

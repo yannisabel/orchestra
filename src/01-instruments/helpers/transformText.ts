@@ -18,3 +18,7 @@ export function DeleteUnderscoreAndDashes(str) {
 export function ToCamelCase(str) {
   return DeleteUnderscoreAndDashes(Capitalize(str))
 }
+
+export function CamelCaseToKebabCase(str) {
+  return str.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()
+}

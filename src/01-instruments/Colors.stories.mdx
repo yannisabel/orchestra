@@ -1,10 +1,8 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs'
 
-import {Box} from '../02-symbols/Box'
+import { Box } from '@symbols/layout'
 
 import {allColors} from './colors'
-
-import { ColorList } from './colors'
 
 <Meta title="Instruments/Colors" />
 
@@ -13,15 +11,14 @@ import { ColorList } from './colors'
 <Canvas>
   <Story name="Default">
     {Object.entries(allColors).map(([colorName, value]) => {
-    console.log(colorName, allColors)
     return (
       <Box backgroundColor={colorName} key={`${colorName}`}>
-        <p>
+        <Box as="p" color={colorName === 'black-0' ? 'white-0' : 'grey-100'}>
           colorName: {colorName}
-        </p>
-        <p>
+        </Box>
+        <Box as="p">
           value: {value}
-        </p>
+        </Box>
       </Box>
     )
   })}

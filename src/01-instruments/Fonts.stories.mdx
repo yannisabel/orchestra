@@ -1,0 +1,54 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+
+import { Box } from '@symbols/layout'
+
+import {fontFamilies, fontSizes, fontWeights} from './fonts'
+
+<Meta title="Instruments/Fonts" />
+
+# Button
+
+<Canvas>
+  <Story name="Font Family">
+    {Object.entries(fontFamilies).map(([fontName, value]) => {
+    return (
+      <Box backgroundColor={fontName} key={`${fontName}`}>
+        <Box as="p" fontFamily={fontFamily}>
+          fontName: {fontName}
+        </Box>
+        <Box as="p" fontFamily={fontFamily}>
+          value: {value}
+        </Box>
+      </Box>
+    )
+  })}
+  </Story>
+  <Story name="Font Size">
+    {Object.entries(fontSizes).map(([fontSize, value]) => {
+    return (
+      <Box backgroundColor={fontSize} key={`${fontSize}`}>
+        <Box as="p" fontSize={fontSize}>
+          fontSize: {fontSize}
+        </Box>
+        <Box as="p" fontSize={fontSize}>
+          value: {value}
+        </Box>
+      </Box>
+    )
+  })}
+  </Story>
+  <Story name="Font Weight">
+    {Object.entries(fontWeights).map(([fontWeight, value]) => {
+    return (
+      <Box backgroundColor={fontWeight} key={`${fontWeight}`}>
+        <Box as="p" fontWeight={fontWeight}>
+          fontWeight: {fontWeight}
+        </Box>
+        <Box as="p" fontWeight={fontWeight}>
+          value: {value}
+        </Box>
+      </Box>
+    )
+  })}
+  </Story>
+</Canvas>

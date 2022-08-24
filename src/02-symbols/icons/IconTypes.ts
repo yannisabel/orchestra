@@ -31,5 +31,5 @@ export type IconTypes = typeof allIcons[number]
 
 export interface IconProps {
   name: IconTypes
-  color?: 'black' | 'white' | 'grey' | 'blue' | 'orange'
+  color?: 'black-0' | 'white-0' | 'grey-100' | 'blue-30' | 'orange-10'
 }

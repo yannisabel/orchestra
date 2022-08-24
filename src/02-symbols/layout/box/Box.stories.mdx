@@ -1,40 +1,28 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs'
 
-import { Flex } from './Flex'
+import { Box } from './Box'
 
-import { Box } from '@symbols/Box'
+<Meta title="Symbols/Layout/Box" component={Box} />
 
-<Meta title="Symbols/Flex" component={Flex} />
-
-# Flex
+# Box
 
 <Canvas>
   <Story name="Default">
-    <Flex>
-      <Box
-        backgroundColor="blue-30"
-        alignItems="center"
-        color="white-0"
-      >
-        Item 1
-      </Box>
-      <Box
-        backgroundColor="blue-30"
-        alignItems="center"
-        color="white-0"
-      >
-        Item 2
-      </Box>
-    </Flex>
+    <Box backgroundColor="blue-30" />
   </Story>
   <Story name="Align Items Center">
-    <Flex
+    <Box
+      display="flex"
+      backgroundColor="blue-100"
       alignItems="center"
+      border="1px solid #000"
+      height={200}
     >
       <Box
         backgroundColor="blue-30"
         alignItems="center"
         color="white-0"
+        height={100}
       >
         Item 1
       </Box>
@@ -42,9 +30,18 @@ import { Box } from '@symbols/Box'
         backgroundColor="blue-30"
         alignItems="center"
         color="white-0"
+        height={100}
       >
         Item 2
       </Box>
-    </Flex>
+    </Box>
+  </Story>
+  <Story name="With as">
+    <Box
+      as="span"
+      backgroundColor="blue-30"
+    >
+        Item
+    </Box>
   </Story>
 </Canvas>

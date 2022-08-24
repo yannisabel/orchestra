@@ -1,17 +1,24 @@
-import { BoxProps } from "@symbols/Box/Box.types"
+import { BoxProps } from "@symbols/layout/box/Box.types"
 import { ReactNode } from "react"
 
-interface LinkableCardProps extends BoxProps {
+interface LinkableCardProps {
   type: 'linkable'
   href: string
   target: string
   title: string
-  children: ReactNode
 }
 
-interface CardDefaultProps extends BoxProps {
+interface CardDefaultProps {
   type: 'default'
+  href: never
+  target: never
+  title: never
+}
+
+interface CardCommonProps extends BoxProps {
   children: ReactNode
 }
 
-export type CardProps = LinkableCardProps | CardDefaultProps
+type IntrinsicCardProps = LinkableCardProps | CardDefaultProps
+
+export type CardProps = CardCommonProps & IntrinsicCardProps

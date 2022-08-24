@@ -14,6 +14,7 @@ export const Template = (args) => <Button {...args} />
     args={{
       text: 'Button',
       model: 'default',
+      onClick: () => console.log('coucou')
     }}
   >
     {Template.bind({})}
