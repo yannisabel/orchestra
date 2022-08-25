@@ -1,8 +1,10 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs'
 
 import { OrchestraProvider } from '@symbols/providers/OrchestraProvider'
+import { Box } from '@symbols/layout/box'
 import { Card } from './Card'
 import { Picture } from '@symbols/images'
+import { Text } from '@symbols/text'
 
 <Meta
   title="Scores/Card"
@@ -11,44 +13,53 @@ import { Picture } from '@symbols/images'
 
 # Card
 
+## Default
+
 <Canvas>
   <Story
     name="Default">
     <OrchestraProvider themeName="dark">
-      <Card>
+      <Card margin="space-3">
         <Picture
           src="https://via.placeholder.com/300"
           alt="placeholder image"
         />
-        <div className="card__infos">
-          <p className="card__title">
+        <Box padding="space-3">
+          <Text>
             Title
-          </p>
-          <p className="card__type">type</p>
-          <p className="card__description">description</p>
-        </div>
+          </Text>
+          <Text>type</Text>
+          <Text>description</Text>
+        </Box>
       </Card>
     </OrchestraProvider>
     <OrchestraProvider themeName="light">
-      <Card>
+      <Card margin="space-3">
         <Picture
           src="https://via.placeholder.com/300"
           alt="placeholder image"
         />
-        <div className="card__infos">
-          <p className="card__title">
+        <Box padding="space-3">
+          <Text>
             Title
-          </p>
-          <p className="card__type">type</p>
-          <p className="card__description">description</p>
-        </div>
+          </Text>
+          <Text>type</Text>
+          <Text>description</Text>
+        </Box>
       </Card>
     </OrchestraProvider>
   </Story>
+</Canvas>
+
+<ArgsTable of={Card} />
+
+## Linkable
+
+<Canvas>
   <Story
     name="Linkable">
     <OrchestraProvider themeName="dark">
-      <Card>
+      <Card margin="space-3">
         <a className="card__link"
         href="https://example.com"
         title="go to link"
@@ -57,18 +68,18 @@ import { Picture } from '@symbols/images'
             src="https://via.placeholder.com/300"
             alt="placeholder image"
           />
-          <div className="card__infos">
-            <p className="card__title">
+          <Box padding="space-3">
+            <Text>
               Title
-            </p>
-            <p className="card__type">type</p>
-            <p className="card__description">description</p>
-          </div>
+            </Text>
+            <Text>type</Text>
+            <Text>description</Text>
+          </Box>
         </a>
       </Card>
     </OrchestraProvider>
     <OrchestraProvider themeName="light">
-      <Card>
+      <Card margin="space-3">
         <a className="card__link"
         href="https://example.com"
         title="go to link"
@@ -77,13 +88,13 @@ import { Picture } from '@symbols/images'
             src="https://via.placeholder.com/300"
             alt="placeholder image"
           />
-          <div className="card__infos">
-            <p className="card__title">
+          <Box padding="space-3">
+            <Text>
               Title
-            </p>
-            <p className="card__type">type</p>
-            <p className="card__description">description</p>
-          </div>
+            </Text>
+            <Text>type</Text>
+            <Text>description</Text>
+          </Box>
         </a>
       </Card>
     </OrchestraProvider>

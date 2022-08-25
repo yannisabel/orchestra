@@ -1,5 +1,6 @@
 import { allColors } from '@instruments/colors'
-import type { IconProps } from './IconTypes'
+import { Box } from '@symbols/layout/box'
+import type { IconProps } from './Icon.types'
 
 const Image = ({ color }: Omit<IconProps, 'name'>) => (
   <svg
@@ -461,60 +462,60 @@ const Construction = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-export const Icon = ({ name, color }: IconProps) => {
+export const Icon = ({ name, color, size }: IconProps) => {
   switch (name) {
     case 'image':
-      return <Image color={color} />
+      return <Box width={size} height={size}><Image color={color} /> </Box>
     case 'mail':
-      return <Mail color={color} />
+      return <Box width={size} height={size}><Mail color={color} /> </Box>
     case 'art':
-      return <Art color={color} />
+      return <Box width={size} height={size}><Art color={color} /> </Box>
     case 'power':
-      return <Power color={color} />
+      return <Box width={size} height={size}><Power color={color} /> </Box>
     case 'pen':
-      return <Pen color={color} />
+      return <Box width={size} height={size}><Pen color={color} /> </Box>
     case 'video':
-      return <Video color={color} />
+      return <Box width={size} height={size}><Video color={color} /> </Box>
     case 'note':
-      return <Note color={color} />
+      return <Box width={size} height={size}><Note color={color} /> </Box>
     case 'people':
-      return <People color={color} />
+      return <Box width={size} height={size}><People color={color} /> </Box>
     case 'user':
-      return <User color={color} />
+      return <Box width={size} height={size}><User color={color} /> </Box>
     case 'problem':
-      return <Problem color={color} />
+      return <Box width={size} height={size}><Problem color={color} /> </Box>
     case 'check':
-      return <Check color={color} />
+      return <Box width={size} height={size}><Check color={color} /> </Box>
     case 'twitter':
-      return <Twitter color={color} />
+      return <Box width={size} height={size}><Twitter color={color} /> </Box>
     case 'facebook':
-      return <Facebook color={color} />
+      return <Box width={size} height={size}><Facebook color={color} /> </Box>
     case 'pinterest':
-      return <Pinterest color={color} />
+      return <Box width={size} height={size}><Pinterest color={color} /> </Box>
     case 'linkedin':
-      return <Linkedin color={color} />
+      return <Box width={size} height={size}><Linkedin color={color} /> </Box>
     case 'behance':
-      return <Behance color={color} />
+      return <Box width={size} height={size}><Behance color={color} /> </Box>
     case 'codepen':
-      return <Codepen color={color} />
+      return <Box width={size} height={size}><Codepen color={color} /> </Box>
     case 'github':
-      return <Github color={color} />
+      return <Box width={size} height={size}><Github color={color} /> </Box>
     case 'medium':
-      return <Medium color={color} />
+      return <Box width={size} height={size}><Medium color={color} /> </Box>
     case 'date':
-      return <Date color={color} />
+      return <Box width={size} height={size}><Date color={color} /> </Box>
     case 'question':
-      return <Question color={color} />
+      return <Box width={size} height={size}><Question color={color} /> </Box>
     case 'label':
-      return <Label color={color} />
+      return <Box width={size} height={size}><Label color={color} /> </Box>
     case 'tools':
-      return <Tools color={color} />
+      return <Box width={size} height={size}><Tools color={color} /> </Box>
     case 'linkIcon':
-      return <LinkIcon color={color} />
+      return <Box width={size} height={size}><LinkIcon color={color} /> </Box>
     case 'cookie':
-      return <Cookie color={color} />
+      return <Box width={size} height={size}><Cookie color={color} /> </Box>
     case 'construction':
-      return <Construction color={color} />
+      return <Box width={size} height={size}><Construction color={color} /> </Box>
     default:
       return null
   }

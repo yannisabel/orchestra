@@ -3,31 +3,38 @@ import styled from '@emotion/styled'
 import { radius } from '@instruments/radius'
 import { Box } from '@symbols/layout/box'
 import { shadows } from '@instruments/shadows'
+import { allColors } from '@instruments/colors'
 
 export const Card = ({
   type, children, ...restProps
 }: CardProps) => {
 
   const CardElement = styled(Box)`
-    color: ${props => props.theme.textColor};
-    background-color: ${props => props.theme.cardBgColor};
+    color: ${props => allColors[`${props.theme.textColor}`]};
+    background-color: ${props => allColors[`${props.theme.cardBgColor}`]}
     position: relative;
     overflow: hidden;
     border-radius: ${restProps.borderRadius || radius['radius-4']};
-    min-height: 100px;
     box-shadow: ${restProps.boxShadow || shadows['depth-1']};
+
+    & p {
+      color: ${props => props.theme.textColor};
+    }
   `
 
   const LinkElement = styled(Box)`
-    color: ${props => props.theme.textColor};
-    background-color: ${props => props.theme.cardBgColor};
+  color: ${props => allColors[`${props.theme.textColor}`]};
+  background-color: ${props => allColors[`${props.theme.cardBgColor}`]}
     position: relative;
     overflow: hidden;
-    min-height: 100px;
     text-decoration: none;
     border-radius: ${restProps.borderRadius || radius['radius-4']};
-    min-height: 100px;
     box-shadow: ${restProps.boxShadow || shadows['depth-1']};
+
+    & p {
+      color: ${props => allColors[`${props.theme.textColor}`]};
+      text-decoration: none;
+    }
   `
 
   const Content = (): JSX.Element => {

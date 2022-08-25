@@ -2,23 +2,25 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs'
 
 import { Box } from '@symbols/layout'
 
-import {allColors} from './colors'
+import { Text } from '@symbols/text'
+
+import {allColors} from '.'
 
 <Meta title="Instruments/Colors" />
 
-# Button
+# Colors
 
 <Canvas>
   <Story name="Default">
     {Object.entries(allColors).map(([colorName, value]) => {
     return (
       <Box backgroundColor={colorName} key={`${colorName}`}>
-        <Box as="p" color={colorName === 'black-0' ? 'white-0' : 'grey-100'}>
+        <Text color={colorName === 'black-0' ? 'white-0' : 'grey-100'}>
           colorName: {colorName}
-        </Box>
-        <Box as="p">
+        </Text>
+        <Text color={colorName === 'black-0' ? 'white-0' : 'grey-100'}>
           value: {value}
-        </Box>
+        </Text>
       </Box>
     )
   })}

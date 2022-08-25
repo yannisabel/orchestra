@@ -1,4 +1,4 @@
-import { IconTypes } from "@symbols/icons/IconTypes"
+import { IconTypes } from "@symbols/icons/Icon.types"
 import { BoxProps } from "@symbols/layout"
 import { MouseEventHandler, ReactEventHandler, TouchEventHandler } from "react"
 

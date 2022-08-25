@@ -1,15 +1,26 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs'
 
 import { Box } from './Box'
+import { Text } from '../../text'
 
 <Meta title="Symbols/Layout/Box" component={Box} />
 
 # Box
 
+## Default
+
 <Canvas>
   <Story name="Default">
-    <Box backgroundColor="blue-30" />
+    <Box backgroundColor="blue-30" width={100} height={100} />
   </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={Box} />
+
+## Align Items Center
+<Canvas>
   <Story name="Align Items Center">
     <Box
       display="flex"
@@ -21,27 +32,36 @@ import { Box } from './Box'
       <Box
         backgroundColor="blue-30"
         alignItems="center"
+        justifyContent="center"
         color="white-0"
         height={100}
       >
-        Item 1
+        <Text color="white-0">Item 1</Text>
       </Box>
       <Box
         backgroundColor="blue-30"
         alignItems="center"
+        justifyContent="center"
         color="white-0"
         height={100}
       >
-        Item 2
+        <Text color="white-0">Item 2</Text>
       </Box>
     </Box>
   </Story>
-  <Story name="With as">
+</Canvas>
+
+## With renderAs
+
+<Canvas>
+  <Story name="With renderAs">
     <Box
-      as="span"
+      renderAs="header"
+      alignItems="center"
+      justifyContent="center"
       backgroundColor="blue-30"
     >
-        Item
+       <Text color="white-0">Item</Text>
     </Box>
   </Story>
 </Canvas>

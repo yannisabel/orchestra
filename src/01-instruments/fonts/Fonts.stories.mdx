@@ -2,51 +2,64 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs'
 
 import { Box } from '@symbols/layout'
 
-import {fontFamilies, fontSizes, fontWeights} from './fonts'
+import { Text } from '@symbols/text'
+
+import {fontFamilies, fontSizes, fontWeights} from '.'
 
 <Meta title="Instruments/Fonts" />
 
-# Button
+# Fonts
 
+## Font Family
 <Canvas>
   <Story name="Font Family">
     {Object.entries(fontFamilies).map(([fontName, value]) => {
     return (
-      <Box backgroundColor={fontName} key={`${fontName}`}>
-        <Box as="p" fontFamily={fontFamily}>
+      <Box key={`${fontName}`}>
+        <Text fontFamily={fontName}>
           fontName: {fontName}
-        </Box>
-        <Box as="p" fontFamily={fontFamily}>
+        </Text>
+        <Text fontFamily={fontName}>
           value: {value}
-        </Box>
+        </Text>
       </Box>
     )
   })}
   </Story>
+</Canvas>
+
+## Font Size
+
+<Canvas>
   <Story name="Font Size">
     {Object.entries(fontSizes).map(([fontSize, value]) => {
     return (
-      <Box backgroundColor={fontSize} key={`${fontSize}`}>
-        <Box as="p" fontSize={fontSize}>
+      <Box key={`${fontSize}`}>
+        <Text fontSize={fontSize}>
           fontSize: {fontSize}
-        </Box>
-        <Box as="p" fontSize={fontSize}>
+        </Text>
+        <Text fontSize={fontSize}>
           value: {value}
-        </Box>
+        </Text>
       </Box>
     )
   })}
   </Story>
+</Canvas>
+
+## Font Weight
+
+<Canvas>
   <Story name="Font Weight">
     {Object.entries(fontWeights).map(([fontWeight, value]) => {
     return (
-      <Box backgroundColor={fontWeight} key={`${fontWeight}`}>
-        <Box as="p" fontWeight={fontWeight}>
+      <Box key={`${fontWeight}`}>
+        <Text fontWeight={fontWeight}>
           fontWeight: {fontWeight}
-        </Box>
-        <Box as="p" fontWeight={fontWeight}>
+        </Text>
+        <Text fontWeight={fontWeight}>
           value: {value}
-        </Box>
+        </Text>
       </Box>
     )
   })}
