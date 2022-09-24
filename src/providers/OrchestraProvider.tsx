@@ -99,7 +99,7 @@ export const OrchestraProvider = ({ children, themeName }: OrchestraProviderProp
   const { currentTheme } = useOrchestraTheme()
   const theme: Theme = { color: palette[themeName || currentTheme] }
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme[themeName]}>
       <Global styles={resetStyles} />
       {children}
     </ThemeProvider>
