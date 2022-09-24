@@ -17,10 +17,6 @@ module.exports = {
   webpackFinal: async (config, { configType }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@instruments': path.resolve(__dirname, "../src/01-instruments"),
-      '@symbols': path.resolve(__dirname, "../src/02-symbols"),
-      '@scores': path.resolve(__dirname, "../src/03-scores"),
-      '@masterpieces': path.resolve(__dirname, "../src/04-masterpieces"),
     };
 
     config.module.rules.push({
