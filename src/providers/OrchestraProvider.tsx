@@ -1,8 +1,7 @@
 import { ThemeProvider, Global, css } from '@emotion/react'
 import { OrchestraProviderProps } from './OrchestraProvider.types'
-import { palette } from '../colors'
 import { useOrchestraTheme } from './hooks/useOrchestraTheme'
-import { Theme } from 'theme/theme.types'
+import { colorDarkTheme, colorLightTheme } from '../colors'
 
 const resetStyles = css`
 html, body, div, span, applet, object, iframe,
@@ -96,10 +95,13 @@ table {
 `
 
 export const OrchestraProvider = ({ children, themeName }: OrchestraProviderProps) => {
-  const { currentTheme } = useOrchestraTheme()
-  const theme: Theme = { color: palette[themeName || currentTheme] }
+  const { isDark } = useOrchestraTheme()
+
+  const themeLight: App.Theme = { colors: colorLightTheme }
+  const themeDark: App.Theme = { colors: colorDarkTheme }
+
   return (
-    <ThemeProvider theme={theme[themeName]}>
+    <ThemeProvider theme={isDark && themeName !== 'light' ? themeDark : themeLight}>
       <Global styles={resetStyles} />
       {children}
     </ThemeProvider>

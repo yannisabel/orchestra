@@ -1,6 +1,7 @@
 import { Canvas, Meta, Story, ArgsTable  } from '@storybook/addon-docs'
 
 import { Text } from './Text'
+import { OrchestraProvider } from '../providers'
 
 <Meta title="Symbols/Text" component={Text} />
 
@@ -10,7 +11,9 @@ import { Text } from './Text'
 
 <Canvas>
   <Story name="Default">
-    <Text>Text</Text>
+    <OrchestraProvider>
+      <Text>Text</Text>
+    </OrchestraProvider>
   </Story>
 </Canvas>
 
@@ -20,10 +23,12 @@ import { Text } from './Text'
 
 <Canvas>
   <Story name="With renderAs">
-    <Text
-      renderAs="span"
-    >
-      Text
-    </Text>
+    <OrchestraProvider>
+      <Text
+        renderAs="span"
+      >
+        Text
+      </Text>
+    </OrchestraProvider>
   </Story>
 </Canvas>

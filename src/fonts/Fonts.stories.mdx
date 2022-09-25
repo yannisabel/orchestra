@@ -1,7 +1,7 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs'
 
 import { Box } from '../layout'
-
+import { OrchestraProvider } from '../providers'
 import { Text } from '../text'
 
 import {fontFamilies, fontSizes, fontWeights} from '.'
@@ -13,18 +13,20 @@ import {fontFamilies, fontSizes, fontWeights} from '.'
 ## Font Family
 <Canvas>
   <Story name="Font Family">
-    {Object.entries(fontFamilies).map(([fontName, value]) => {
-    return (
-      <Box key={`${fontName}`}>
-        <Text fontFamily={fontName}>
-          fontName: {fontName}
-        </Text>
-        <Text fontFamily={fontName}>
-          value: {value}
-        </Text>
-      </Box>
-    )
-  })}
+    <OrchestraProvider>
+      {Object.entries(fontFamilies).map(([fontName, value]) => {
+        return (
+          <Box key={`${fontName}`}>
+            <Text fontFamily={fontName}>
+              fontName: {fontName}
+            </Text>
+            <Text fontFamily={fontName}>
+              value: {value}
+            </Text>
+          </Box>
+        )
+      })}
+    </OrchestraProvider>
   </Story>
 </Canvas>
 
@@ -32,18 +34,20 @@ import {fontFamilies, fontSizes, fontWeights} from '.'
 
 <Canvas>
   <Story name="Font Size">
-    {Object.entries(fontSizes).map(([fontSize, value]) => {
-    return (
-      <Box key={`${fontSize}`}>
-        <Text fontSize={fontSize}>
-          fontSize: {fontSize}
-        </Text>
-        <Text fontSize={fontSize}>
-          value: {value}
-        </Text>
-      </Box>
-    )
-  })}
+    <OrchestraProvider>
+      {Object.entries(fontSizes).map(([fontSize, value]) => {
+        return (
+          <Box key={`${fontSize}`}>
+            <Text fontSize={fontSize}>
+              fontSize: {fontSize}
+            </Text>
+            <Text fontSize={fontSize}>
+              value: {value}
+            </Text>
+          </Box>
+        )
+      })}
+    </OrchestraProvider>
   </Story>
 </Canvas>
 
@@ -51,17 +55,19 @@ import {fontFamilies, fontSizes, fontWeights} from '.'
 
 <Canvas>
   <Story name="Font Weight">
-    {Object.entries(fontWeights).map(([fontWeight, value]) => {
-    return (
-      <Box key={`${fontWeight}`}>
-        <Text fontWeight={fontWeight}>
-          fontWeight: {fontWeight}
-        </Text>
-        <Text fontWeight={fontWeight}>
-          value: {value}
-        </Text>
-      </Box>
-    )
-  })}
+    <OrchestraProvider>
+      {Object.entries(fontWeights).map(([fontWeight, value]) => {
+        return (
+          <Box key={`${fontWeight}`}>
+            <Text fontWeight={fontWeight}>
+              fontWeight: {fontWeight}
+            </Text>
+            <Text fontWeight={fontWeight}>
+              value: {value}
+            </Text>
+          </Box>
+        )
+      })}
+    </OrchestraProvider>
   </Story>
 </Canvas>

@@ -19,7 +19,7 @@ export const Text = ({ children, renderAs, ...restProps }: TextProps) => {
       font-family: ${restProps.fontFamily ? fontFamilies[`${restProps.fontFamily}`] : fontFamilies['mulish']};
       font-size: ${fontSizes[`${restProps.fontSize}`]};
       font-weight: ${fontWeights[`${restProps.fontWeight}`]};
-      color: ${restProps.color ? allColors[`${restProps.color}`] : allColors['grey-100']};
+      color: ${props => restProps.color ? allColors[`${restProps.color}`] : allColors[`${props.theme.colors.textColor}`]};
   `
 
 

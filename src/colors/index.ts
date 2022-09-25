@@ -1,3 +1,3 @@
-export { allColors, blackPalette, whitePalette, greyPalette, bluePalette, orangePalette, light, dark, palette } from './Colors'
+export { allColors, blackPalette, whitePalette, greyPalette, bluePalette, orangePalette, colorDarkTheme, colorLightTheme } from './Colors'
 
 export type { Colors, ColorToken } from './Colors.types'

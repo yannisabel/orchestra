@@ -47,7 +47,7 @@ export const orangePalette = {
 
 export const allColors = {...blackPalette, ...whitePalette, ...greyPalette, ...bluePalette, ...orangePalette}
 
-export const light = {
+export const colorLightTheme = {
   primaryBgColor: 'white-10',
   textColor: 'grey-100',
   titleColor: 'blue-30',
@@ -63,7 +63,7 @@ export const light = {
   footerLinkColor: 'white-0',
 }
 
-export const dark = {
+export const colorDarkTheme = {
   primaryBgColor: 'blue-100',
   textColor: 'white-10',
   titleColor: 'blue-10',
@@ -77,9 +77,4 @@ export const dark = {
   codeColor: 'white-0',
   dividerColor: 'blue-40',
   footerLinkColor: 'white-0',
-}
-
-export const palette = {
-    dark: dark,
-    light: light,
 }

@@ -1,4 +1,6 @@
-# Orchestra Design System UI library
+# Orchestra Kit
+
+Orchestra kit is a library of components that follows Orchestra Design Systems principles to help building web interfaces with React.
 
 ## Install
 

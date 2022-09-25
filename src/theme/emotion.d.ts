@@ -1,7 +1,5 @@
-import '@emotion/react'
-
-declare module '@emotion/react' {
-  export interface Theme {
+declare module App {
+  type ThemeColor = {
     primaryBgColor: string,
     textColor: string,
     titleColor: string,
@@ -16,4 +14,14 @@ declare module '@emotion/react' {
     dividerColor: string,
     footerLinkColor: string,
   }
+
+  type Theme = { colors: ThemeColor };
+}
+
+declare module "@emotion/styled" {
+  import { CreateStyled } from "@emotion/styled/types/index";
+
+  export * from "@emotion/styled/types/index";
+  const customStyled: CreateStyled<App.Theme>;
+  export default customStyled;
 }

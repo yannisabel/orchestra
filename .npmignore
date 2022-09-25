@@ -1,0 +1,13 @@
+scripts/
+src/
+.storybook/
+.vscode/
+.eslintignore
+.eslintrc.js
+.gitignore
+.npmignore
+.prettierignore
+.prettierrc
+rollup.config.js
+tsconfig.json
+tsconfig.paths.json

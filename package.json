@@ -1,15 +1,16 @@
 {
-  "name": "orchestra-design-system",
+  "name": "orchestra-kit",
   "version": "1.0.0",
-  "description": "",
+  "description": "Orchestra kit is a library of components that follows Orchestra Design Systems principles to help building web interfaces with React.",
   "main": "dist/cjs/index.js",
   "module": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "build": "npm run rollup",
+    "build": "npm run rollup && npm run post:build",
+    "post:build": "node ./scripts/postBuild.js",
     "rollup": "rm -rf dist && rollup -c",
     "storybook": "start-storybook -p 6006 --no-manager-cache",
-    "build:storybook": "build-storybook"
+    "storybook:build": "build-storybook"
   },
   "author": "Yann Isabel",
   "license": "ISC",
