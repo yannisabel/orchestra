@@ -7,6 +7,7 @@ export const Box = ({ children, renderAs, ...restProps }: BoxProps) => {
 
   const BoxElement = styled.div`
       display: ${restProps.display ? restProps.display : 'flex'};
+      flex-direction: ${restProps.flexDirection ? restProps.flexDirection : 'row'};
       align-items: ${restProps.alignItems};
       justify-content: ${restProps.justifyContent};
       margin: ${spaces[`${restProps.margin}`]};
@@ -28,7 +29,6 @@ export const Box = ({ children, renderAs, ...restProps }: BoxProps) => {
       translate: ${restProps.translate};
       height: ${typeof restProps.height === 'number' ? `${restProps.height}px` : restProps.height};
       width: ${typeof restProps.width === 'number' ? `${restProps.width}px` : restProps.width};
-      margin-left: ${restProps.marginLeft};
       transition: ${restProps.transition};
   `
 

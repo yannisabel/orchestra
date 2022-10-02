@@ -27,5 +27,5 @@ export interface BoxProps extends CSSProperties {
   fontFamily?: FontFamilyToken
   translate?: any
   renderAs?: ElementType<any>
-  children: ReactNode
+  children?: ReactNode
 }

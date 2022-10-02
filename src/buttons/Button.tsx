@@ -37,8 +37,8 @@ export const Button = ({
     border-radius: ${model === 'round' ? radius['radius-round'] : radius['radius-1']};
     outline: none;
     padding: ${model === 'round' ? spaces['space-3'] : spaces['space-2']};
-    width: ${model === 'round' ? '60px' : 'unset'};
-    width: ${model === 'round' ? '60px' : 'unset'};
+    width: ${model === 'round' ? '60px' : typeof restProps.width === 'number' ? `${restProps.width}px` : restProps.width};
+    height: ${model === 'round' ? '60px' : typeof restProps.height === 'number' ? `${restProps.height}px` : restProps.height};
     text-decoration: none;
     text-transform: uppercase;
     font-family: ${fontFamilies['mulish']};

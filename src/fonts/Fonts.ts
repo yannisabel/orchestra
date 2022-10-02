@@ -1,5 +1,5 @@
 export const fontFamilies = {
-  'fontDefault': 'Roboto, Arial, Helvetica, Verdana, sans-serif',
+  'roboto': 'Roboto, Arial, Helvetica, Verdana, sans-serif',
   'openSans': 'Open Sans, sans-serif',
   'mulish': 'Mulish, Arial, Helvetica, Verdana, sans-serif',
 }

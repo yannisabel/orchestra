@@ -1,5 +1,3 @@
-import styled, { CreateStyled } from "@emotion/styled";
-
 type ThemeColor = {
   primaryBgColor: string,
   textColor: string,
@@ -9,7 +7,7 @@ type ThemeColor = {
   cardBgColor: string,
   cardTitleColor: string,
   discreetColor: string,
-  whiteStickerColor: string,
+  stickerBgColor: string,
   codeBgColor: string,
   codeColor: string,
   dividerColor: string,

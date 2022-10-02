@@ -13,20 +13,18 @@ import {fontFamilies, fontSizes, fontWeights} from '.'
 ## Font Family
 <Canvas>
   <Story name="Font Family">
-    <OrchestraProvider>
-      {Object.entries(fontFamilies).map(([fontName, value]) => {
-        return (
-          <Box key={`${fontName}`}>
-            <Text fontFamily={fontName}>
-              fontName: {fontName}
-            </Text>
-            <Text fontFamily={fontName}>
-              value: {value}
-            </Text>
-          </Box>
-        )
-      })}
-    </OrchestraProvider>
+    {Object.entries(fontFamilies).map(([fontName, value]) => {
+      return (
+        <Box key={`${fontName}`}>
+          <Text fontFamily={fontName}>
+            fontName: {fontName}
+          </Text>
+          <Text fontFamily={fontName}>
+            value: {value}
+          </Text>
+        </Box>
+      )
+    })}
   </Story>
 </Canvas>
 
@@ -34,20 +32,32 @@ import {fontFamilies, fontSizes, fontWeights} from '.'
 
 <Canvas>
   <Story name="Font Size">
-    <OrchestraProvider>
-      {Object.entries(fontSizes).map(([fontSize, value]) => {
-        return (
-          <Box key={`${fontSize}`}>
-            <Text fontSize={fontSize}>
-              fontSize: {fontSize}
-            </Text>
-            <Text fontSize={fontSize}>
-              value: {value}
-            </Text>
+    {Object.entries(fontFamilies).map(([fontName, value]) => {
+      return (
+        <Box key={`${fontName}`}>
+          <Text fontFamily={fontName}>
+            fontName: {fontName}
+          </Text>
+          <Text fontFamily={fontName}>
+            value: {value}
+          </Text>
+          <Box>
+            {Object.entries(fontSizes).map(([fontSize, value]) => {
+              return (
+                <Box key={`${fontSize}`} flexDirection="row">
+                  <Text fontFamily={fontName} fontSize={fontSize}>
+                    fontSize: {fontSize}
+                  </Text>
+                  <Text fontFamily={fontName} fontSize={fontSize}>
+                    value: {value}
+                  </Text>
+                </Box>
+              )
+            })}
           </Box>
-        )
-      })}
-    </OrchestraProvider>
+        </Box>
+      )
+    })}
   </Story>
 </Canvas>
 
@@ -55,19 +65,31 @@ import {fontFamilies, fontSizes, fontWeights} from '.'
 
 <Canvas>
   <Story name="Font Weight">
-    <OrchestraProvider>
-      {Object.entries(fontWeights).map(([fontWeight, value]) => {
-        return (
-          <Box key={`${fontWeight}`}>
-            <Text fontWeight={fontWeight}>
-              fontWeight: {fontWeight}
-            </Text>
-            <Text fontWeight={fontWeight}>
-              value: {value}
-            </Text>
+    {Object.entries(fontFamilies).map(([fontName, value]) => {
+      return (
+        <Box key={`${fontName}`}>
+          <Text fontFamily={fontName}>
+            fontName: {fontName}
+          </Text>
+          <Text fontFamily={fontName}>
+            value: {value}
+          </Text>
+          <Box>
+            {Object.entries(fontWeights).map(([fontWeight, value]) => {
+              return (
+                <Box key={`${fontWeight}`} flexDirection="row">
+                  <Text fontFamily={fontName} fontWeight={fontWeight}>
+                    fontWeight: {fontWeight}
+                  </Text>
+                  <Text fontFamily={fontName} fontWeight={fontWeight}>
+                    value: {value}
+                  </Text>
+                </Box>
+              )
+            })}
           </Box>
-        )
-      })}
-    </OrchestraProvider>
+        </Box>
+      )
+    })}
   </Story>
 </Canvas>

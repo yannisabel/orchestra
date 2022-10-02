@@ -7,6 +7,8 @@ export const useOrchestraTheme = () => {
   const [currentTheme, setCurrentTheme] = useState(isDark ? 'dark' : 'light')
 
   const toggleTheme = () => {
+    console.log('currentTheme', currentTheme)
+    console.log('localStorage.getItem("theme")', localStorage.getItem('theme'))
     if (currentTheme !== 'dark') {
 			localStorage.setItem('theme', 'dark');
 			setCurrentTheme('dark')

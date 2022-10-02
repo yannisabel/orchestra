@@ -36,7 +36,6 @@
     "noEmit": true,
     "noImplicitAny": false
   },
-  "extends": "./tsconfig.paths.json",
   "include": [
     "src/**/*"
   ],

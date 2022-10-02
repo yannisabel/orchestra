@@ -16,53 +16,20 @@ import { Text } from '../text'
 ## Default
 
 <Canvas>
-  <Story
-    name="Default">
-    <OrchestraProvider>
-      <Card margin="space-3">
-        <Picture
-          src="https://via.placeholder.com/300"
-          alt="placeholder image"
-        />
-        <Box padding="space-3">
-          <Text>
-            Title
-          </Text>
-          <Text>type</Text>
-          <Text>description</Text>
-        </Box>
-      </Card>
-    </OrchestraProvider>
-    <OrchestraProvider themeName="dark">
-      <Card margin="space-3">
-        <Picture
-          src="https://via.placeholder.com/300"
-          alt="placeholder image"
-        />
-        <Box padding="space-3">
-          <Text>
-            Title
-          </Text>
-          <Text>type</Text>
-          <Text>description</Text>
-        </Box>
-      </Card>
-    </OrchestraProvider>
-    <OrchestraProvider themeName="light">
-      <Card margin="space-3">
-        <Picture
-          src="https://via.placeholder.com/300"
-          alt="placeholder image"
-        />
-        <Box padding="space-3">
-          <Text>
-            Title
-          </Text>
-          <Text>type</Text>
-          <Text>description</Text>
-        </Box>
-      </Card>
-    </OrchestraProvider>
+  <Story name="Default">
+    <Card margin="space-3">
+      <Picture
+        src="https://via.placeholder.com/300"
+        alt="placeholder image"
+      />
+      <Box padding="space-3">
+        <Text>
+          Title
+        </Text>
+        <Text>type</Text>
+        <Text>description</Text>
+      </Box>
+    </Card>
   </Story>
 </Canvas>
 
@@ -71,7 +38,6 @@ import { Text } from '../text'
 <Canvas>
   <Story
     name="Linkable">
-    <OrchestraProvider themeName="dark">
       <Card margin="space-3">
         <a className="card__link"
         href="https://example.com"
@@ -90,27 +56,6 @@ import { Text } from '../text'
           </Box>
         </a>
       </Card>
-    </OrchestraProvider>
-    <OrchestraProvider themeName="light">
-      <Card margin="space-3">
-        <a className="card__link"
-        href="https://example.com"
-        title="go to link"
-        target="_blank">
-          <Picture
-            src="https://via.placeholder.com/300"
-            alt="placeholder image"
-          />
-          <Box padding="space-3">
-            <Text>
-              Title
-            </Text>
-            <Text>type</Text>
-            <Text>description</Text>
-          </Box>
-        </a>
-      </Card>
-    </OrchestraProvider>
   </Story>
 </Canvas>
 

@@ -17,7 +17,7 @@ export const Card = ({
     box-shadow: ${restProps.boxShadow || shadows['depth-1']};
 
     & p {
-      color: ${props => props.theme.colors.textColor};
+      color: ${props => allColors[`${props.theme.colors.textColor}`]};
     }
   `
 

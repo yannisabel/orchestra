@@ -1,7 +1,6 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs'
 
 import { Box } from '../layout'
-import { OrchestraProvider } from '../providers'
 import { Text } from '../text'
 
 import {allColors} from '.'
@@ -12,19 +11,17 @@ import {allColors} from '.'
 
 <Canvas>
   <Story name="Default">
-    <OrchestraProvider>
-      {Object.entries(allColors).map(([colorName, value]) => {
-        return (
-          <Box backgroundColor={colorName} key={`${colorName}`}>
-            <Text color={colorName.startsWith('black-') || colorName.startsWith('blue-') ? 'white-0' : 'grey-100'}>
-              colorName: {colorName}
-            </Text>
-            <Text color={colorName === 'black-0' ? 'white-0' : 'grey-100'}>
-              value: {value}
-            </Text>
-          </Box>
-        )
-      })}
-    </OrchestraProvider>
+    {Object.entries(allColors).map(([colorName, value]) => {
+      return (
+        <Box backgroundColor={colorName} key={`${colorName}`}>
+          <Text color={colorName.startsWith('black-') || !colorName.startsWith('white-') || colorName.startsWith('grey-') ? 'white-0' : 'grey-100'}>
+            colorName: {colorName}
+          </Text>
+          <Text color={colorName.startsWith('black-') || !colorName.startsWith('white-') || colorName.startsWith('grey-') ? 'white-0' : 'grey-100'}>
+            value: {value}
+          </Text>
+        </Box>
+      )
+    })}
   </Story>
 </Canvas>

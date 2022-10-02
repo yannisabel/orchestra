@@ -1,6 +1,6 @@
 interface StickerCommonProps {
   model?: 'default' | 'mini'
-  color?: 'white' | 'blue' | 'orange' | 'blue-grey' | 'none'
+  color?: 'white-0' | 'blue-30' | 'orange-10' | 'blue-40'
   className?: string
 }
 

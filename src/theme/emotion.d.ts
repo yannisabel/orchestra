@@ -8,7 +8,7 @@ declare module App {
     cardBgColor: string,
     cardTitleColor: string,
     discreetColor: string,
-    whiteStickerColor: string,
+    stickerBgColor: string,
     codeBgColor: string,
     codeColor: string,
     dividerColor: string,
