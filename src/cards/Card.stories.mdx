@@ -5,6 +5,7 @@ import { Box } from '../layout/box'
 import { Card } from './Card'
 import { Picture } from '../images'
 import { Text } from '../text'
+import { Anchor } from '../anchors'
 
 <Meta
   title="Scores/Card"
@@ -23,9 +24,7 @@ import { Text } from '../text'
         alt="placeholder image"
       />
       <Box padding="space-3">
-        <Text>
-          Title
-        </Text>
+        <Text>Title</Text>
         <Text>type</Text>
         <Text>description</Text>
       </Box>
@@ -38,23 +37,25 @@ import { Text } from '../text'
 <Canvas>
   <Story
     name="Linkable">
-      <Card margin="space-3">
-        <a className="card__link"
-        href="https://example.com"
-        title="go to link"
-        target="_blank">
+      <Card margin="space-3" type="linkable">
+        <Anchor 
+          href="https://example.com"
+          title="go to link"
+          target="_blank"
+          renderAs={
+            <a/>
+          }
+        >
           <Picture
             src="https://via.placeholder.com/300"
             alt="placeholder image"
           />
           <Box padding="space-3">
-            <Text>
-              Title
-            </Text>
+            <Text>Title</Text>
             <Text>type</Text>
             <Text>description</Text>
           </Box>
-        </a>
+        </Anchor>
       </Card>
   </Story>
 </Canvas>

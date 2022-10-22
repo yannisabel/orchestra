@@ -1,6 +1,6 @@
 import { BoxProps } from './Box.types'
 import styled from '@emotion/styled'
-import { allColors } from '../../colors'
+import { colors } from '../../colors'
 import { spaces } from '../../spaces'
 
 export const Box = ({ children, renderAs, ...restProps }: BoxProps) => {
@@ -9,13 +9,15 @@ export const Box = ({ children, renderAs, ...restProps }: BoxProps) => {
       display: ${restProps.display ? restProps.display : 'flex'};
       flex-direction: ${restProps.flexDirection ? restProps.flexDirection : 'row'};
       align-items: ${restProps.alignItems};
+      align-self: ${restProps.alignSelf};
       justify-content: ${restProps.justifyContent};
+      justify-self: ${restProps.justifySelf};
       margin: ${spaces[`${restProps.margin}`]};
       margin-left: ${spaces[`${restProps.marginLeft}`]};
       margin-top: ${spaces[`${restProps.marginTop}`]};
       margin-right: ${spaces[`${restProps.marginRight}`]};
       margin-bottom: ${spaces[`${restProps.marginBottom}`]};
-      background-color: ${allColors[`${restProps.backgroundColor}` || 'black-0']};
+      background-color: ${colors[`${restProps.backgroundColor}` || 'black-0']};
       position: ${restProps.position};
       overflow: ${restProps.overflow};
       border-radius: ${restProps.borderRadius};

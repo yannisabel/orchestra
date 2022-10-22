@@ -4,7 +4,7 @@ import { Icon } from '../icons'
 
 import { ButtonProps } from './Button.types'
 import styled from '@emotion/styled'
-import { allColors } from '../colors'
+import { colors } from '../colors'
 import { spaces } from '../spaces'
 import { shadows } from '../shadows'
 import { radius } from '../radius'
@@ -14,7 +14,7 @@ import { fontFamilies, fontSizes, fontWeights } from '../fonts'
 export const Button = ({
   model = 'default',
   state = 'base',
-  backgroundColor = 'white-10',
+  backgroundColor = state === 'ghost' ? 'transparent' : 'white-10',
   type = 'button',
   text,
   icon,
@@ -25,20 +25,25 @@ export const Button = ({
   ...restProps
 }: ButtonProps) => {
   const [isDown, setIsDown] = useState(false)
+  const isRound = model === 'round'
+  const roundButtonSize = '60px'
+  const buttonWidth = typeof restProps.width === 'number' ? `${restProps.width}px` : restProps.width
+  const buttonHeight = typeof restProps.height === 'number' ? `${restProps.height}px` : restProps.height
 
   const raisedShadowDefault = isDown ? shadows['depth-2'] : shadows['depth-5']
 
   const commonStyles = `
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     min-height: 36px;
     margin: ${spaces['space-3']};
     border: none;
-    border-radius: ${model === 'round' ? radius['radius-round'] : radius['radius-1']};
+    border-radius: ${isRound ? radius['radius-round'] : radius['radius-1']};
     outline: none;
-    padding: ${model === 'round' ? spaces['space-3'] : spaces['space-2']};
-    width: ${model === 'round' ? '60px' : typeof restProps.width === 'number' ? `${restProps.width}px` : restProps.width};
-    height: ${model === 'round' ? '60px' : typeof restProps.height === 'number' ? `${restProps.height}px` : restProps.height};
+    padding: ${isRound ? spaces['space-3'] : spaces['space-2']};
+    width: ${isRound ? roundButtonSize : buttonWidth};
+    height: ${isRound ? roundButtonSize : buttonHeight};
     text-decoration: none;
     text-transform: uppercase;
     font-family: ${fontFamilies['mulish']};
@@ -48,38 +53,49 @@ export const Button = ({
     transition: all ${transitions['cubicBezier-04']};
   `
 
-  const ButtonBlueElement = styled.button`
+  const ButtonGhostElement = styled.button`
     ${commonStyles}
-    background-color: ${allColors['blue-30']};
-    color: ${allColors['white-0']};
+    background-color: transparent;
+    color: ${colors['white-0']};
 
     &:hover,
     &:focus {
-      background-color: ${allColors['blue-20']};
+      background-color: ${colors['grey-V0--T2']};
+    }
+  `
+
+  const ButtonBlueElement = styled.button`
+    ${commonStyles}
+    background-color: ${colors['blue-30']};
+    color: ${colors['white-0']};
+
+    &:hover,
+    &:focus {
+      background-color: ${colors['blue-20']};
     }
   `
 
   const ButtonOrangeElement = styled.button`
     ${commonStyles}
-    background-color: ${allColors['orange-10']};
-    color: ${allColors['white-0']};
+    background-color: ${colors['orange-10']};
+    color: ${colors['white-0']};
     font-size: ${fontSizes['fs-2']};
     font-weight: ${fontWeights['fw-bold']};
 
     &:hover,
     &:focus {
-      background-color: ${allColors['orange-0']};
+      background-color: ${colors['orange-0']};
     }
   `
 
   const ButtonWhiteElement = styled.button`
     ${commonStyles}
-    background-color: ${allColors['white-10']};
-    color: ${allColors['grey-100']};
+    background-color: ${colors['white-10']};
+    color: ${colors['grey-100']};
 
     &:hover,
     &:focus {
-      background-color: ${allColors['white-0']};
+      background-color: ${colors['white-0']};
     }
   `
 
@@ -104,7 +120,7 @@ export const Button = ({
       case 'white-10':
         return <ButtonWhiteElement {...restProps}>{children}</ButtonWhiteElement>
       default:
-        return null
+        return <ButtonGhostElement {...restProps}>{children}</ButtonGhostElement>
     }
   }
 

@@ -6,7 +6,7 @@ import { StickerProps } from './Sticker.types'
 import { radius } from '../radius'
 import { shadows } from '../shadows'
 import styled from '@emotion/styled'
-import { allColors } from '../colors'
+import { colors } from '../colors'
 import { fontFamilies, fontSizes } from '../fonts'
 
 export const Sticker = ({
@@ -33,7 +33,7 @@ export const Sticker = ({
     height: ${model === 'default' ? '100px' : '45px'};
     border-radius: ${radius['radius-round']};
     box-shadow: ${shadows['depth-1']};
-    background-color: ${props => color ? allColors[`${color}`] : allColors[`${props.theme.colors.stickerBgColor}`]};
+    background-color: ${props => color ? colors[`${color}`] : colors[`${props.theme.colors.stickerBgColor}`]};
     font-family: ${fontFamilies['mulish']};
     font-size: ${fontSizes['fs-1']};
     text-align: center;
@@ -45,7 +45,7 @@ export const Sticker = ({
     }
 
     & svg {
-      fill: ${props => color ? allColors[contentColor()] : allColors[`${props.theme.colors.textColor}`]};
+      fill: ${props => color ? colors[contentColor()] : colors[`${props.theme.colors.textColor}`]};
       width: ${model === 'default' ? '100%' : '30px'};
       height: ${model === 'default' ? '100%' : '30px'};
     }
@@ -54,7 +54,7 @@ export const Sticker = ({
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
-      color: ${props => color ? allColors[contentColor()] : allColors[`${props.theme.colors.textColor}`]}
+      color: ${props => color ? colors[contentColor()] : colors[`${props.theme.colors.textColor}`]}
     }
   `
 

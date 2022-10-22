@@ -2,7 +2,6 @@ import { useOrchestraTheme } from '../src/providers/hooks/useOrchestraTheme'
 import { OrchestraProvider } from '../src/providers/OrchestraProvider'
 import { Box } from '../src/layout/box'
 import { Button } from '../src/buttons'
-import { Text } from '../src/text'
 
 const StoryContainer = ({children}) => {
   const { toggleTheme, isDark, currentTheme } = useOrchestraTheme()
@@ -19,6 +18,7 @@ const StoryContainer = ({children}) => {
 }
 
 export const parameters = {
+  layout: 'fullscreen',
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
     matchers: {

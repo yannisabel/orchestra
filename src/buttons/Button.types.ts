@@ -1,12 +1,13 @@
-import { IconTypes } from 'icons/Icon.types'
-import { BoxProps } from 'layout'
+import { IconTypes } from '../icons/Icon.types'
+import { BoxProps } from '../layout'
 import { MouseEventHandler, ReactEventHandler, ReactNode, TouchEventHandler } from 'react'
 
 export interface ButtonProps extends Omit<BoxProps, 'children'> {
   children?: ReactNode
   model?: 'default' | 'round'
-  state?: 'base' | 'raised' | 'less' | 'ghost'
-  backgroundColor?: 'blue-10' | 'blue-30' | 'orange-0' | 'orange-10' | 'white-10' | 'white-0'
+  state?: 'base' | 'raised' | 'ghost'
+  backgroundColor?: 'blue-30' | 'orange-10' | 'white-10' | 'transparent'
+  color?: 'white-0' | 'grey-100'
   type?: 'button' | 'submit' | 'reset'
   text?: string
   icon?: IconTypes

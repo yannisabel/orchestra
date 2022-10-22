@@ -1,26 +1,33 @@
 import { BadgeProps } from './Badge.types'
 import { Sticker } from '../stickers'
+import { Text } from '../text'
+import styled from '@emotion/styled'
+import { Box } from '../layout/box'
 
 export const Badge = ({
   image,
   alt,
   legend,
   color = 'white',
-  imgHasBackgroundColor = false,
 }: BadgeProps) => {
+
+  const BadgeElement = styled(Box)`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: top;
+    width: 100px;
+  `
+
   return (
-    <div className="badge">
+    <BadgeElement>
       <Sticker
         type="image"
         image={image}
         alt={alt}
         color={color}
-        imgHasBackgroundColor={imgHasBackgroundColor}
       />
-      <p
-        className="badge__legend"
-        dangerouslySetInnerHTML={{ __html: legend }}
-      />
-    </div>
+      <Text textAlign="center">{legend}</Text>
+    </BadgeElement>
   )
 }

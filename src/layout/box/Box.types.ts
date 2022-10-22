@@ -6,7 +6,7 @@ import { SpaceToken } from '../../spaces'
 import { CSSProperties, ElementType, ReactNode } from 'react'
 
 export interface BoxProps extends CSSProperties {
-  backgroundColor?: ColorToken
+  backgroundColor?: ColorToken | 'transparent'
   color?: ColorToken
   margin?: SpaceToken | string
   marginLeft?: SpaceToken | string

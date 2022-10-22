@@ -45,7 +45,7 @@ export const orangePalette = {
   'orange-10': 'hsla(26, 100%, 46%, 1)',
 }
 
-export const allColors = {...blackPalette, ...whitePalette, ...greyPalette, ...bluePalette, ...orangePalette}
+export const colors = {...blackPalette, ...whitePalette, ...greyPalette, ...bluePalette, ...orangePalette}
 
 export const colorLightTheme = {
   primaryBgColor: 'white-10',

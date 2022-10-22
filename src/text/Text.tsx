@@ -1,6 +1,6 @@
 import { TextProps } from './Text.types'
 import styled from '@emotion/styled'
-import { allColors } from '../colors'
+import { colors } from '../colors'
 import { fontFamilies, fontSizes, fontWeights } from '../fonts'
 
 export const Text = ({ children, renderAs, ...restProps }: TextProps) => {
@@ -9,7 +9,7 @@ export const Text = ({ children, renderAs, ...restProps }: TextProps) => {
       display: ${restProps.display ? restProps.display : 'inline'};
       align-items: ${restProps.alignItems};
       justify-content: ${restProps.justifyContent};
-      background-color: ${allColors[`${restProps.backgroundColor}`]};
+      background-color: ${colors[`${restProps.backgroundColor}`]};
       position: ${restProps.position};
       translate: ${restProps.translate};
       height: ${typeof restProps.height === 'number' ? `${restProps.height}px` : restProps.height};
@@ -19,7 +19,7 @@ export const Text = ({ children, renderAs, ...restProps }: TextProps) => {
       font-family: ${restProps.fontFamily ? fontFamilies[`${restProps.fontFamily}`] : fontFamilies['mulish']};
       font-size: ${restProps.fontSize ? fontSizes[`${restProps.fontSize}`] : fontSizes['fs-2']};
       font-weight: ${restProps.fontWeight ? fontWeights[`${restProps.fontWeight}`] : fontWeights['fw-regular']};
-      color: ${props => restProps.color ? allColors[`${restProps.color}`] : allColors[`${props.theme.colors.textColor}`]};
+      color: ${props => restProps.color ? colors[`${restProps.color}`] : colors[`${props.theme.colors.textColor}`]};
   `
 
 

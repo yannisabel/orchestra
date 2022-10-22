@@ -1,10 +1,12 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs'
 
 import { Button } from './Button'
+import { Box } from '../layout/box'
 
 <Meta title="Symbols/Button" component={Button} />
 
 export const Template = (args) => <Button {...args} />
+export const TemplateWithBackground = (args) => <Box backgroundColor="blue-30" display="inline-flex"><Button {...args} /></Box>
 
 # Button
 
@@ -27,6 +29,51 @@ export const Template = (args) => <Button {...args} />
     }}
   >
     {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story
+    name="Ghost default"
+    args={{
+      text: 'Button',
+      model: 'default',
+      state: 'ghost',
+      onClick: () => console.log('coucou')
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Ghost Round"
+    args={{
+      model: 'round',
+      state: 'ghost',
+      icon: 'image',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Ghost default on background"
+    args={{
+      text: 'Button',
+      model: 'default',
+      state: 'ghost',
+      onClick: () => console.log('coucou')
+    }}
+  >
+    {TemplateWithBackground.bind({})}
+  </Story>
+  <Story
+    name="Ghost Round on background"
+    args={{
+      model: 'round',
+      state: 'ghost',
+      icon: 'image',
+    }}
+  >
+    {TemplateWithBackground.bind({})}
   </Story>
 </Canvas>
 
