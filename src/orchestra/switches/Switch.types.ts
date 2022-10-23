@@ -3,5 +3,6 @@ export interface SwitchProps {
   optionTrue: string
   optionFalse: string
   ariaChecked: boolean
+  className?: string
   onAction: () => void
 }

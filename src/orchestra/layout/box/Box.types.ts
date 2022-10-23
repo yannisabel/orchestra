@@ -28,4 +28,5 @@ export interface BoxProps extends CSSProperties {
   translate?: any
   renderAs?: ElementType<any>
   children?: ReactNode
+  className?: string
 }

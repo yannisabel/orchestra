@@ -1,6 +1,0 @@
-export * from './animations'
-export * from './colors'
-export * from './fonts'
-export * from './radius'
-export * from './shadows'
-export * from './spaces'

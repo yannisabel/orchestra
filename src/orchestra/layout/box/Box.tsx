@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { colors } from '../../colors'
 import { spaces } from '../../spaces'
 
-export const Box = ({ children, renderAs, ...restProps }: BoxProps) => {
+export const Box = ({ children, renderAs, className, ...restProps }: BoxProps) => {
 
   const BoxElement = styled.div`
       display: ${restProps.display ? restProps.display : 'flex'};
@@ -36,7 +36,7 @@ export const Box = ({ children, renderAs, ...restProps }: BoxProps) => {
 
 
   return (
-    <BoxElement as={renderAs} {...restProps} >
+    <BoxElement className={className} as={renderAs} {...restProps} >
       {children}
     </BoxElement >
   )

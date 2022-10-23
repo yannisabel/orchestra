@@ -135,6 +135,7 @@ export const Button = ({
       onTouchEnd={pressOrRelease}
       tabIndex={tabIndex}
       onClick={onClick}
+      className="button"
     >
       {icon && <Icon name={icon} color={iconColor} />}
       {text}

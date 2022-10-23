@@ -13,7 +13,7 @@ export const ButtonWithCaption = ({
   return (
     <div className="button-caption">
       <Anchor
-        linkto={linkto}
+        href={linkto}
         model={model}
         state={state}
         color={color}

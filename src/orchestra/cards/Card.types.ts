@@ -16,6 +16,7 @@ interface CardDefaultProps {
 }
 
 interface CardCommonProps extends BoxProps {
+  className?: string
   children: ReactNode
 }
 

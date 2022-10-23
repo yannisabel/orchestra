@@ -25,5 +25,5 @@ export const Card = ({
     }
   `
 
-  return <CardElement {...restProps} renderAs={'article'}>{children}</CardElement>
+  return <CardElement {...restProps} className="card" renderAs={'article'}>{children}</CardElement>
 }

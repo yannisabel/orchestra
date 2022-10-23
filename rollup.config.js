@@ -35,9 +35,9 @@ const subfolderPlugins = (folderName) => [
     },
   }),
 ];
-const folderBuilds = getFolders('./src').map((folder) => {
+const folderBuilds = getFolders('./src/orchestra').map((folder) => {
   return {
-    input: `src/${folder}/index.ts`,
+    input: `src/orchestra/${folder}/index.ts`,
     output: {
       file: `dist/${folder}/index.js`,
       sourcemap: true,
@@ -51,7 +51,7 @@ const folderBuilds = getFolders('./src').map((folder) => {
 
 export default [
   {
-    input: ['src/index.ts'],
+    input: ['src/orchestra/index.ts'],
     output: [
       {
         file: packageJson.module,
@@ -65,7 +65,7 @@ export default [
   },
   ...folderBuilds,
   {
-    input: ['src/index.ts'],
+    input: ['src/orchestra/index.ts'],
     output: [
       {
         file: packageJson.main,
