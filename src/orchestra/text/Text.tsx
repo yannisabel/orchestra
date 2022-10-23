@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { colors } from '../colors'
 import { fontFamilies, fontSizes, fontWeights } from '../fonts'
 
-export const Text = ({ children, renderAs, ...restProps }: TextProps) => {
+export const Text = ({ children, ...restProps }: TextProps) => {
 
   const TextElement = styled.p`
       display: ${restProps.display ? restProps.display : 'inline'};
@@ -24,7 +24,7 @@ export const Text = ({ children, renderAs, ...restProps }: TextProps) => {
 
 
   return (
-    <TextElement as={renderAs} {...restProps}>
+    <TextElement {...restProps}>
       {children}
     </TextElement >
   )

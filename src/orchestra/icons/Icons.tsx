@@ -1,5 +1,5 @@
 import { colors } from '../colors'
-import { Box } from '../layout'
+import { Box } from '../box'
 import type { IconProps } from './Icon.types'
 
 const Image = ({ color }: Omit<IconProps, 'name'>) => (

@@ -1,6 +1,6 @@
 import { useOrchestraTheme } from '../src/providers/hooks/useOrchestraTheme'
 import { OrchestraProvider } from '../src/providers/OrchestraProvider'
-import { Box } from '../src/layout/box'
+import { Box } from '../src/orchestra/box'
 import { Button } from '../src/buttons'
 
 const StoryContainer = ({children}) => {

@@ -1,7 +1,7 @@
 import { BoxProps } from './Box.types'
 import styled from '@emotion/styled'
-import { colors } from '../../colors'
-import { spaces } from '../../spaces'
+import { colors } from '../colors'
+import { spaces } from '../spaces'
 
 export const Box = ({ children, renderAs, className, ...restProps }: BoxProps) => {
 

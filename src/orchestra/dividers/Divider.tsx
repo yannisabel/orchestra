@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { Box } from "../layout/box"
+import { Box } from "../box"
 import { colors } from "../colors"
 import { spaces } from "../spaces"
 import { DividerProps } from "./Divider.types"

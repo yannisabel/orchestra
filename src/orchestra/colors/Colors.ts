@@ -65,7 +65,7 @@ export const colorLightTheme = {
 
 export const colorDarkTheme = {
   primaryBgColor: 'blue-100',
-  textColor: 'white-10',
+  textColor: 'white-0',
   titleColor: 'blue-10',
   linkColor: 'blue-10',
   accentColor: 'blue-10',

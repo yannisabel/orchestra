@@ -1,6 +1,6 @@
 import { CardProps } from './Card.types'
 import { radius } from '../radius'
-import { Box } from '../layout'
+import { Box } from '../box'
 import { shadows } from '../shadows'
 import { colors } from '../colors'
 import styled from '@emotion/styled'

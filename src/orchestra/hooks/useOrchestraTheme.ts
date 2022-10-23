@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 export const useOrchestraTheme = () => {
   const [isDark, setIsDark] = useState(
-    window.matchMedia("(prefers-color-scheme: dark)").matches
+    typeof window !== 'undefined' ? window.matchMedia("(prefers-color-scheme: dark)").matches : false
   )
   const [currentTheme, setCurrentTheme] = useState(isDark ? 'dark' : 'light')
 

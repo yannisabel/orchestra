@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { colors } from '../colors'
-import { Box } from '../layout'
+import { Box } from '../box'
 import { radius } from '../radius'
 import { SwitchProps } from './Switch.types'
 

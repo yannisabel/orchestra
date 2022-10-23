@@ -1,8 +1,8 @@
-import { ColorToken } from '../../colors'
-import { FontFamilyToken } from '../../fonts'
-import { RadiusToken } from '../../radius'
-import { ShadowToken } from '../../shadows'
-import { SpaceToken } from '../../spaces'
+import { ColorToken } from '../colors'
+import { FontFamilyToken } from '../fonts'
+import { RadiusToken } from '../radius'
+import { ShadowToken } from '../shadows'
+import { SpaceToken } from '../spaces'
 import { CSSProperties, ElementType, ReactNode } from 'react'
 
 export interface BoxProps extends CSSProperties {

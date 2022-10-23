@@ -2,7 +2,7 @@ import { BadgeProps } from './Badge.types'
 import { Sticker } from '../stickers'
 import { Text } from '../text'
 import styled from '@emotion/styled'
-import { Box } from '../layout/box'
+import { Box } from '../box'
 
 export const Badge = ({
   image,

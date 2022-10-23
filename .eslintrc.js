@@ -6,7 +6,7 @@ module.exports = {
     node: true,
   },
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
@@ -15,7 +15,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx', 'mdx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
     react: {
@@ -28,7 +28,10 @@ module.exports = {
     {
       files: ['**/*.ts?(x)'],
       parser: '@typescript-eslint/parser',
-      extends: ['plugin:@typescript-eslint/eslint-recommended'],
+      extends: [
+        // @note: following line disables recommended eslint rules already checked by TS:
+        'plugin:@typescript-eslint/eslint-recommended',
+      ],
       plugins: ['@typescript-eslint'],
       rules: {
         'no-array-constructor': 'off',

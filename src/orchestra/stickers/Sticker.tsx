@@ -1,6 +1,6 @@
 import { Picture } from '../images'
 import { Icon } from '../icons'
-import { Box } from '../layout/box'
+import { Box } from '../box'
 
 import { StickerProps } from './Sticker.types'
 import { radius } from '../radius'
