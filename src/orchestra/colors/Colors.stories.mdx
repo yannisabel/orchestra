@@ -3,7 +3,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs'
 import { Box } from '../box'
 import { Text } from '../text'
 
-import {colors} from '.'
+import { colors } from '.'
 
 <Meta title="Instruments/Colors" />
 
@@ -11,17 +11,22 @@ import {colors} from '.'
 
 <Canvas>
   <Story name="Default">
-    {Object.entries(colors).map(([colorName, value]) => {
-      return (
-        <Box backgroundColor={colorName} key={`${colorName}`}>
-          <Text color={colorName.startsWith('black-') || !colorName.startsWith('white-') || colorName.startsWith('grey-') ? 'white-0' : 'grey-100'}>
-            colorName: {colorName}
-          </Text>
-          <Text color={colorName.startsWith('black-') || !colorName.startsWith('white-') || colorName.startsWith('grey-') ? 'white-0' : 'grey-100'}>
-            value: {value}
-          </Text>
-        </Box>
-      )
-    })}
+    <Box flexDirection="column">
+      {Object.entries(colors).map(([colorName, value]) => {
+        return (
+          <Box alignItems="center" width={300} marginTop="space-2">
+            <Box backgroundColor={colorName} key={`${colorName}`} height={50} width={50} marginRight="space-4" />
+            <Box flexDirection="column">
+              <Text>
+                colorName: {colorName}
+              </Text>
+              <Text>
+                value: {value}
+              </Text>
+            </Box>
+          </Box>
+        )
+      })}
+    </Box>
   </Story>
 </Canvas>
