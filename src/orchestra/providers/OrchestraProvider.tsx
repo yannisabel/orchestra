@@ -1,7 +1,7 @@
 import { ThemeProvider, Global, css } from '@emotion/react'
 import { OrchestraProviderProps } from './OrchestraProvider.types'
 import { useOrchestraTheme } from '../hooks/useOrchestraTheme'
-import { colorDarkTheme, colorLightTheme } from '../colors'
+import { colorDarkTheme, colorLightTheme } from '../Tokens/Colors'
 
 const resetStyles = css`
 html, body, div, span, applet, object, iframe,

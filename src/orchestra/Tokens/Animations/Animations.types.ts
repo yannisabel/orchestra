@@ -1,4 +1,4 @@
-import { transitions } from './animations'
+import { transitions } from './Animations'
 
 export type TransitionToken = keyof typeof transitions
 

@@ -1,7 +1,7 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs'
 
 import { Anchor } from './Anchor'
-import { Box } from '../box'
+import { Box } from '../Box'
 
 <Meta title="Symbols/Anchor" component={Anchor} />
 
@@ -37,11 +37,24 @@ export const TemplateWithBackground = (args) => <Box backgroundColor="blue-30" d
     {Template.bind({})}
   </Story>
   <Story
+    name="WithColor"
+    args={{
+      text: 'Anchor',
+      model: 'default',
+      backgroundColor: 'blue-30',
+      state: 'default',
+      href: 'https://example.com',
+      title: 'go to example website'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
     name="Round"
     args={{
       model: 'round',
       icon: 'image',
-      backgroundColor: 'transparent',
+      backgroundColor: 'blue-30',
       href: 'https://example.com',
       title: 'go to example website'
     }}

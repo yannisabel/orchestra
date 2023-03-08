@@ -1,5 +1,5 @@
-import type { IconTypes } from '../icons/Icon.types'
-import { BoxProps } from '../box'
+import type { IconTypes } from '../Icons/Icon.types'
+import { BoxProps } from '../Box'
 import { MouseEventHandler, ReactEventHandler, ReactNode, TouchEventHandler } from 'react'
 
 export interface AnchorProps extends Omit<BoxProps, 'children'> {

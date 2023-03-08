@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
-import { Box } from "../box"
-import { colors } from "../colors"
-import { spaces } from "../spaces"
+import { Box } from "../Box"
+import { colors } from "../Tokens/Colors"
+import { spaces } from "../Tokens/Spaces"
 import { DividerProps } from "./Divider.types"
 
 export const Divider = ({ ...restProps }: DividerProps) => {

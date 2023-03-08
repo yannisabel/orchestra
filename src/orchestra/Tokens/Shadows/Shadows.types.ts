@@ -1,4 +1,4 @@
-import { shadows } from './shadows'
+import { shadows } from './Shadows'
 
 export type ShadowToken = keyof typeof shadows
 

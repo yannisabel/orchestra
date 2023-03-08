@@ -1,4 +1,4 @@
-import { radius } from "./radius"
+import { radius } from "./Radius"
 
 export type RadiusToken = keyof typeof radius
 

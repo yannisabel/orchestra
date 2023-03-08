@@ -1,4 +1,4 @@
-import { spaces } from "./spaces"
+import { spaces } from "./Spaces"
 
 export type SpaceToken = keyof typeof spaces
 

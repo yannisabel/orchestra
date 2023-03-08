@@ -1,7 +1,7 @@
 import { useOrchestraTheme } from '../src/orchestra/hooks/useOrchestraTheme'
 import { OrchestraProvider } from '../src/orchestra/providers/OrchestraProvider'
-import { Box } from '../src/orchestra/box'
-import { Button } from '../src/orchestra/buttons'
+import { Box } from '../src/orchestra/Box'
+import { Button } from '../src/orchestra/Buttons'
 
 const StoryContainer = ({children}) => {
   const { toggleTheme, isDark, currentTheme } = useOrchestraTheme()

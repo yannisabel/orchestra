@@ -1,13 +1,13 @@
-import { Picture } from '../images'
-import { Icon } from '../icons'
-import { Box } from '../box'
+import { Picture } from '../Images'
+import { Icon } from '../Icons'
+import { Box } from '../Box'
 
 import { StickerProps } from './Sticker.types'
-import { radius } from '../radius'
-import { shadows } from '../shadows'
+import { radius } from '../Tokens/Radius'
+import { shadows } from '../Tokens/Shadows'
 import styled from '@emotion/styled'
-import { colors } from '../colors'
-import { fontFamilies, fontSizes } from '../fonts'
+import { colors } from '../Tokens/Colors'
+import { fontFamilies, fontSizes } from '../Tokens/fonts'
 
 export const Sticker = ({
   model = 'default',

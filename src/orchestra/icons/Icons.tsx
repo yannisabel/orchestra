@@ -1,16 +1,14 @@
-import { colors } from '../colors'
-import { Box } from '../box'
+import { Box } from '../Box'
 import type { IconProps } from './Icon.types'
 
-const Image = ({ color }: Omit<IconProps, 'name'>) => (
+const Image = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Image icon</title>
     <g>
@@ -19,15 +17,14 @@ const Image = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Mail = ({ color }: Omit<IconProps, 'name'>) => (
+const Mail = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Mail icon</title>
     <g>
@@ -36,15 +33,14 @@ const Mail = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Art = ({ color }: Omit<IconProps, 'name'>) => (
+const Art = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Art icon</title>
     <g>
@@ -54,15 +50,14 @@ const Art = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Power = ({ color }: Omit<IconProps, 'name'>) => (
+const Power = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Power icon</title>
     <g>
@@ -72,15 +67,14 @@ const Power = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Pen = ({ color }: Omit<IconProps, 'name'>) => (
+const Pen = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Pen icon</title>
     <g>
@@ -90,15 +84,14 @@ const Pen = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Video = ({ color }: Omit<IconProps, 'name'>) => (
+const Video = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Video icon</title>
     <g>
@@ -108,15 +101,14 @@ const Video = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Note = ({ color }: Omit<IconProps, 'name'>) => (
+const Note = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Note icon</title>
     <g>
@@ -127,15 +119,14 @@ const Note = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const People = ({ color }: Omit<IconProps, 'name'>) => (
+const People = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>People icon</title>
     <g>
@@ -146,15 +137,14 @@ const People = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const User = ({ color }: Omit<IconProps, 'name'>) => (
+const User = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>User icon</title>
     <g>
@@ -163,15 +153,14 @@ const User = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Problem = ({ color }: Omit<IconProps, 'name'>) => (
+const Problem = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Problem icon</title>
     <path d="M0 0h24v24H0z" fill="none" />
@@ -179,15 +168,14 @@ const Problem = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Check = ({ color }: Omit<IconProps, 'name'>) => (
+const Check = () => (
   <svg
     width="100%"
     height="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Check icon</title>
     <path d="M0 0h24v24H0z" fill="none" />
@@ -195,30 +183,28 @@ const Check = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Twitter = ({ color }: Omit<IconProps, 'name'>) => (
+const Twitter = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Twitter logo</title>
     <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
   </svg>
 )
 
-const Facebook = ({ color }: Omit<IconProps, 'name'>) => (
+const Facebook = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Facebook logo</title>
     <g>
@@ -227,15 +213,14 @@ const Facebook = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Pinterest = ({ color }: Omit<IconProps, 'name'>) => (
+const Pinterest = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Pinterest logo</title>
     <g>
@@ -248,15 +233,14 @@ const Pinterest = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Linkedin = ({ color }: Omit<IconProps, 'name'>) => (
+const Linkedin = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Linkedin logo</title>
     <g>
@@ -265,15 +249,14 @@ const Linkedin = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Behance = ({ color }: Omit<IconProps, 'name'>) => (
+const Behance = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Behance logo</title>
     <g>
@@ -282,30 +265,28 @@ const Behance = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Codepen = ({ color }: Omit<IconProps, 'name'>) => (
+const Codepen = () => (
   <svg
     height="30"
     width="30"
     viewBox="0 0 30 30"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Codepen logo</title>
     <path d="M29.98 10.205l-.023-.107-.02-.063-.034-.094c-.01-.02-.02-.04-.028-.062-.014-.03-.028-.058-.045-.086a.732.732 0 0 0-.036-.06c-.018-.026-.035-.053-.055-.078a.772.772 0 0 0-.045-.056 2.123 2.123 0 0 0-.064-.07c-.016-.017-.032-.034-.05-.05a1.487 1.487 0 0 0-.073-.062c-.02-.015-.038-.03-.06-.044a.313.313 0 0 1-.02-.017L15.715.215a1.29 1.29 0 0 0-1.43 0L.575 9.356l-.022.018-.06.044c-.023.02-.048.04-.072.062l-.05.048c-.022.023-.044.046-.064.07-.015.02-.03.036-.044.056-.02.026-.037.052-.055.078l-.037.06c-.016.028-.03.057-.044.086l-.03.063a1.753 1.753 0 0 0-.052.158c-.01.035-.016.07-.022.107-.003.02-.008.037-.01.056-.008.056-.012.113-.012.17v9.14c0 .058.004.113.01.17l.012.055c.006.036.013.072.022.108l.02.063c.01.03.02.063.033.095l.03.063c.013.03.027.058.043.087.01.02.024.04.037.06.018.026.035.052.055.078.014.02.03.037.044.055a1.437 1.437 0 0 0 .188.182l.06.045.02.016 13.71 9.14c.218.142.467.214.716.214s.5-.072.715-.217l13.71-9.14c.01-.006.016-.012.022-.017a1.31 1.31 0 0 0 .132-.107l.05-.05a1.062 1.062 0 0 0 .108-.126c.02-.026.037-.052.055-.08a.933.933 0 0 0 .036-.058l.044-.087c.01-.022.02-.042.028-.063.013-.03.023-.063.033-.095.007-.02.015-.04.02-.063.01-.037.017-.073.023-.11.003-.018.008-.035.01-.055.008-.052.012-.108.012-.165v-9.14a1.19 1.19 0 0 0-.012-.17c-.002-.018-.007-.036-.01-.055zM15 18.05L10.44 15 15 11.95 19.56 15 15 18.05zm-1.29-8.34l-5.588 3.74L3.61 10.43l10.1-6.734V9.71zM5.804 15l-3.225 2.157v-4.314L5.803 15zm2.32 1.55l5.588 3.74V26.3l-10.1-6.734 4.512-3.017zm8.166 3.74l5.588-3.74 4.512 3.02-10.1 6.732V20.29zM24.195 15l3.226-2.157v4.314L24.196 15zm-2.318-1.55l-5.59-3.74V3.698L26.39 10.43l-4.512 3.02z" />
   </svg>
 )
 
-const Github = ({ color }: Omit<IconProps, 'name'>) => (
+const Github = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Github logo</title>
     <g>
@@ -314,15 +295,14 @@ const Github = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Medium = ({ color }: Omit<IconProps, 'name'>) => (
+const Medium = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="100%"
     height="100%"
     viewBox="53.5 280.5 24 24"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Medium logo</title>
     <g>
@@ -331,15 +311,14 @@ const Medium = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Date = ({ color }: Omit<IconProps, 'name'>) => (
+const Date = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Date icon</title>
     <g>
@@ -349,15 +328,14 @@ const Date = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Question = ({ color }: Omit<IconProps, 'name'>) => (
+const Question = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Question mark icon</title>
     <g>
@@ -367,15 +345,14 @@ const Question = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Label = ({ color }: Omit<IconProps, 'name'>) => (
+const Label = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Label icon</title>
     <g>
@@ -385,15 +362,14 @@ const Label = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Tools = ({ color }: Omit<IconProps, 'name'>) => (
+const Tools = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Tools icon</title>
     <g>
@@ -403,15 +379,14 @@ const Tools = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const LinkIcon = ({ color }: Omit<IconProps, 'name'>) => (
+const LinkIcon = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Link icon</title>
     <g>
@@ -421,15 +396,14 @@ const LinkIcon = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Cookie = ({ color }: Omit<IconProps, 'name'>) => (
+const Cookie = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Cookie icon</title>
     <g>
@@ -438,15 +412,14 @@ const Cookie = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-const Construction = ({ color }: Omit<IconProps, 'name'>) => (
+const Construction = () => (
   <svg
     height="100%"
     width="100%"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
-    className={`svg__icon ${color ? `svg__icon--c-${color}` : undefined}`}
-    fill={color ? colors[color] : colors['grey-100']}
+    className="svg__icon"
   >
     <title>Construction icon</title>
     <g>
@@ -462,60 +435,60 @@ const Construction = ({ color }: Omit<IconProps, 'name'>) => (
   </svg>
 )
 
-export const Icon = ({ name, color, size }: IconProps) => {
+export const Icon = ({ name, fill, size }: IconProps) => {
   switch (name) {
     case 'image':
-      return <Box width={size} height={size}><Image color={color} /> </Box>
+      return <Box width={size} height={size}><Image /></Box>
     case 'mail':
-      return <Box width={size} height={size}><Mail color={color} /> </Box>
+      return <Box width={size} height={size}><Mail /></Box>
     case 'art':
-      return <Box width={size} height={size}><Art color={color} /> </Box>
+      return <Box width={size} height={size}><Art /></Box>
     case 'power':
-      return <Box width={size} height={size}><Power color={color} /> </Box>
+      return <Box width={size} height={size}><Power /></Box>
     case 'pen':
-      return <Box width={size} height={size}><Pen color={color} /> </Box>
+      return <Box width={size} height={size}><Pen /></Box>
     case 'video':
-      return <Box width={size} height={size}><Video color={color} /> </Box>
+      return <Box width={size} height={size}><Video /></Box>
     case 'note':
-      return <Box width={size} height={size}><Note color={color} /> </Box>
+      return <Box width={size} height={size}><Note /></Box>
     case 'people':
-      return <Box width={size} height={size}><People color={color} /> </Box>
+      return <Box width={size} height={size}><People /></Box>
     case 'user':
-      return <Box width={size} height={size}><User color={color} /> </Box>
+      return <Box width={size} height={size}><User /></Box>
     case 'problem':
-      return <Box width={size} height={size}><Problem color={color} /> </Box>
+      return <Box width={size} height={size}><Problem /></Box>
     case 'check':
-      return <Box width={size} height={size}><Check color={color} /> </Box>
+      return <Box width={size} height={size}><Check /></Box>
     case 'twitter':
-      return <Box width={size} height={size}><Twitter color={color} /> </Box>
+      return <Box width={size} height={size}><Twitter /></Box>
     case 'facebook':
-      return <Box width={size} height={size}><Facebook color={color} /> </Box>
+      return <Box width={size} height={size}><Facebook /></Box>
     case 'pinterest':
-      return <Box width={size} height={size}><Pinterest color={color} /> </Box>
+      return <Box width={size} height={size}><Pinterest /></Box>
     case 'linkedin':
-      return <Box width={size} height={size}><Linkedin color={color} /> </Box>
+      return <Box width={size} height={size}><Linkedin /></Box>
     case 'behance':
-      return <Box width={size} height={size}><Behance color={color} /> </Box>
+      return <Box width={size} height={size}><Behance /></Box>
     case 'codepen':
-      return <Box width={size} height={size}><Codepen color={color} /> </Box>
+      return <Box width={size} height={size}><Codepen /></Box>
     case 'github':
-      return <Box width={size} height={size}><Github color={color} /> </Box>
+      return <Box width={size} height={size}><Github /></Box>
     case 'medium':
-      return <Box width={size} height={size}><Medium color={color} /> </Box>
+      return <Box width={size} height={size}><Medium /></Box>
     case 'date':
-      return <Box width={size} height={size}><Date color={color} /> </Box>
+      return <Box width={size} height={size}><Date /></Box>
     case 'question':
-      return <Box width={size} height={size}><Question color={color} /> </Box>
+      return <Box width={size} height={size}><Question /></Box>
     case 'label':
-      return <Box width={size} height={size}><Label color={color} /> </Box>
+      return <Box width={size} height={size}><Label /></Box>
     case 'tools':
-      return <Box width={size} height={size}><Tools color={color} /> </Box>
+      return <Box width={size} height={size}><Tools /></Box>
     case 'linkIcon':
-      return <Box width={size} height={size}><LinkIcon color={color} /> </Box>
+      return <Box width={size} height={size}><LinkIcon /></Box>
     case 'cookie':
-      return <Box width={size} height={size}><Cookie color={color} /> </Box>
+      return <Box width={size} height={size}><Cookie /></Box>
     case 'construction':
-      return <Box width={size} height={size}><Construction color={color} /> </Box>
+      return <Box width={size} height={size}><Construction /></Box>
     default:
       return null
   }

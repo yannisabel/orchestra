@@ -1,7 +1,7 @@
 import { TextProps } from './Text.types'
 import styled from '@emotion/styled'
-import { colors } from '../colors'
-import { fontFamilies, fontSizes, fontWeights } from '../fonts'
+import { colors } from '../Tokens/Colors'
+import { fontFamilies, fontSizes, fontWeights } from '../Tokens/fonts'
 
 export const Text = ({ children, ...restProps }: TextProps) => {
 

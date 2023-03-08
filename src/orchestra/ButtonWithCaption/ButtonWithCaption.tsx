@@ -1,27 +1,29 @@
-import { Anchor } from '../anchors/Anchor'
+import { Anchor } from '../Anchors'
 import { ButtonWithCaptionProps } from './ButtonWithCaption.types'
+import { Box } from '../Box'
+import { Text } from '../Text'
 
 export const ButtonWithCaption = ({
-  linkto,
+  href,
   model = 'default',
   state = 'raised',
-  color = 'blue',
+  backgroundColor = 'blue-30',
   text,
   title,
   caption,
 }: ButtonWithCaptionProps) => {
   return (
-    <div className="button-caption">
+    <Box display="flex" flexDirection="column" alignItems="center">
       <Anchor
-        href={linkto}
+        href={href}
         model={model}
         state={state}
-        color={color}
+        backgroundColor={backgroundColor}
         text={text}
         title={title}
         isExternal
       />
-      <p>{caption}</p>
-    </div>
+      <Text fontSize="fs-1" fontWeight="fw-bold">{caption}</Text>
+    </Box>
   )
 }

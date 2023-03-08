@@ -1,4 +1,4 @@
-import { BoxProps } from '../box/Box.types'
+import { BoxProps } from '../Box/Box.types'
 import { ReactNode } from 'react'
 
 interface LinkableCardProps {

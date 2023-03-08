@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import { Icon } from '../icons'
+import { Icon } from '../Icons'
 import { AnchorProps } from './Anchor.types'
 import styled from '@emotion/styled'
-import { colors } from '../colors'
-import { spaces } from '../spaces'
-import { shadows } from '../shadows'
-import { radius } from '../radius'
-import { transitions } from '../animations'
-import { fontFamilies, fontSizes, fontWeights } from '../fonts'
+import { colors } from '../Tokens/Colors'
+import { spaces } from '../Tokens/Spaces'
+import { shadows } from '../Tokens/Shadows'
+import { radius } from '../Tokens/Radius'
+import { transitions } from '../Tokens/Animations'
+import { fontFamilies, fontSizes, fontWeights } from '../Tokens/fonts'
 
 export const Anchor = ({
   model = 'default',
@@ -15,7 +15,7 @@ export const Anchor = ({
   backgroundColor = state === 'ghost' ? 'transparent' : undefined,
   text,
   icon,
-  iconColor = backgroundColor === 'white-10' ? 'grey-100' : 'white-0',
+  iconColor,
   href,
   title,
   role,
@@ -65,11 +65,15 @@ export const Anchor = ({
     background-color: transparent;
     text-decoration: none;
     text-transform: uppercase;
-    color: ${colors['white-0']};
+    color:${props => restProps.color ? colors[`${restProps.color}`] : colors[`${props.theme.colors.textColor}`]};
 
     &:hover,
     &:focus {
       background-color: ${colors['grey-V0--T2']};
+    }
+
+    & svg {
+      fill: ${props => iconColor || colors[`${props.theme.colors.textColor}`]};
     }
   `
 
@@ -84,6 +88,10 @@ export const Anchor = ({
     &:hover,
     &:focus {
       background-color: ${colors['blue-20']};
+    }
+
+    & svg {
+      fill: ${colors['white-0']};
     }
   `
 
@@ -101,6 +109,10 @@ export const Anchor = ({
     &:focus {
       background-color: ${colors['orange-0']};
     }
+
+    & svg {
+      fill: ${colors['white-0']};
+    }
   `
 
   const AnchorWhiteElement = styled.a`
@@ -114,6 +126,10 @@ export const Anchor = ({
     &:hover,
     &:focus {
       background-color: ${colors['white-0']};
+    }
+
+    & svg {
+      fill: ${colors['grey-100']};
     }
   `
 
@@ -159,7 +175,7 @@ export const Anchor = ({
       }
       }
     >
-      {icon && <Icon name={icon} color={iconColor} />}
+      {icon && <Icon name={icon} />}
       {text}
       {restProps.children}
     </AnchorElement>

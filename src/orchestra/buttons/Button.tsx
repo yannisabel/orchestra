@@ -1,15 +1,15 @@
 import { useState } from 'react'
 
-import { Icon } from '../icons'
+import { Icon } from '../Icons'
 
 import { ButtonProps } from './Button.types'
 import styled from '@emotion/styled'
-import { colors } from '../colors'
-import { spaces } from '../spaces'
-import { shadows } from '../shadows'
-import { radius } from '../radius'
-import { transitions } from '../animations'
-import { fontFamilies, fontSizes, fontWeights } from '../fonts'
+import { colors } from '../Tokens/Colors'
+import { spaces } from '../Tokens/Spaces'
+import { shadows } from '../Tokens/Shadows'
+import { radius } from '../Tokens/Radius'
+import { transitions } from '../Tokens/Animations'
+import { fontFamilies, fontSizes, fontWeights } from '../Tokens/fonts'
 
 export const Button = ({
   model = 'default',
@@ -18,7 +18,7 @@ export const Button = ({
   type = 'button',
   text,
   icon,
-  iconColor = backgroundColor === 'white-10' ? 'grey-100' : 'white-0',
+  iconColor,
   role,
   tabIndex,
   onClick,
@@ -56,11 +56,15 @@ export const Button = ({
   const ButtonGhostElement = styled.button`
     ${commonStyles}
     background-color: transparent;
-    color: ${colors['white-0']};
+    color: ${props => restProps.color ? colors[`${restProps.color}`] : colors[`${props.theme.colors.textColor}`]};
 
     &:hover,
     &:focus {
       background-color: ${colors['grey-V0--T2']};
+    }
+
+    & svg {
+      fill: ${props => iconColor || colors[`${props.theme.colors.textColor}`]};
     }
   `
 
@@ -72,6 +76,10 @@ export const Button = ({
     &:hover,
     &:focus {
       background-color: ${colors['blue-20']};
+    }
+
+    & svg {
+      fill: ${colors['white-0']};
     }
   `
 
@@ -86,6 +94,10 @@ export const Button = ({
     &:focus {
       background-color: ${colors['orange-0']};
     }
+
+    & svg {
+      fill: ${colors['white-0']};
+    }
   `
 
   const ButtonWhiteElement = styled.button`
@@ -96,6 +108,10 @@ export const Button = ({
     &:hover,
     &:focus {
       background-color: ${colors['white-0']};
+    }
+
+    & svg {
+      fill: ${colors['grey-100']};
     }
   `
 
@@ -135,9 +151,8 @@ export const Button = ({
       onTouchEnd={pressOrRelease}
       tabIndex={tabIndex}
       onClick={onClick}
-      className="button"
     >
-      {icon && <Icon name={icon} color={iconColor} />}
+      {icon && <Icon name={icon} />}
       {text}
     </ButtonElement>
   )

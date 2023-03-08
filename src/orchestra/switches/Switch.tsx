@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
-import { colors } from '../colors'
-import { Box } from '../box'
-import { radius } from '../radius'
+import { colors } from '../Tokens/Colors'
+import { Box } from '../Box'
+import { radius } from '../Tokens/Radius'
 import { SwitchProps } from './Switch.types'
 
 export const Switch = ({ label, optionTrue, optionFalse, ariaChecked, onAction }: SwitchProps) => {

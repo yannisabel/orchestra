@@ -1,13 +1,13 @@
-import { BoxProps } from './Box.types'
+import type { BoxProps } from './Box.types'
 import styled from '@emotion/styled'
-import { colors } from '../colors'
-import { spaces } from '../spaces'
+import { colors } from '../Tokens/Colors'
+import { spaces } from '../Tokens/Spaces'
 
 export const Box = ({ children, renderAs, className, ...restProps }: BoxProps) => {
 
   const BoxElement = styled.div`
-      display: ${restProps.display ? restProps.display : 'flex'};
-      flex-direction: ${restProps.flexDirection ? restProps.flexDirection : 'row'};
+      display: ${restProps.display ? restProps.display : 'block'};
+      flex-direction: ${restProps.flexDirection};
       align-items: ${restProps.alignItems};
       align-self: ${restProps.alignSelf};
       justify-content: ${restProps.justifyContent};

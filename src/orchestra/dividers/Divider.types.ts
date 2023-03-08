@@ -1,3 +1,3 @@
-import { BoxProps } from '../box'
+import { BoxProps } from '../Box'
 
 export type DividerProps = BoxProps

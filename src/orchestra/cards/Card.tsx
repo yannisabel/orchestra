@@ -1,8 +1,8 @@
 import { CardProps } from './Card.types'
-import { radius } from '../radius'
-import { Box } from '../box'
-import { shadows } from '../shadows'
-import { colors } from '../colors'
+import { radius } from '../Tokens/Radius'
+import { Box } from '../Box'
+import { shadows } from '../Tokens/Shadows'
+import { colors } from '../Tokens/Colors'
 import styled from '@emotion/styled'
 
 export const Card = ({
