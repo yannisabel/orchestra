@@ -435,7 +435,7 @@ const Construction = () => (
   </svg>
 )
 
-export const Icon = ({ name, fill, size }: IconProps) => {
+export const Icon = ({ name, size }: IconProps) => {
   switch (name) {
     case 'image':
       return <Box width={size} height={size}><Image /></Box>

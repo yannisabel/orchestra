@@ -1,4 +1,4 @@
-import { FontFamilyToken, FontSizeToken, FontWeightToken } from '../Tokens/fonts'
+import { FontFamilyToken, FontSizeToken, FontWeightToken } from '../Tokens/Fonts'
 import { ReactNode } from 'react'
 import { BoxProps } from '../Box'
 

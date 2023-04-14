@@ -1,4 +1,6 @@
-interface StickerCommonProps {
+import { BoxProps } from "../Box"
+
+interface StickerCommonProps extends BoxProps {
   model?: 'default' | 'mini'
   color?: 'white-0' | 'blue-30' | 'orange-10' | 'blue-40'
   className?: string

@@ -1,0 +1,83 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs'
+
+import { Stack } from './Stack'
+import { Box } from '../Box'
+import { Text } from '../Text'
+
+<Meta title="Symbols/Stack" component={Stack} />
+
+# Stack
+
+## Horizontal
+
+<Canvas>
+  <Story name="Horizontal">
+    <Stack
+      backgroundColor="blue-100"
+      flexDirection="row"
+      spacing="space-4"
+      border="1px solid #000"
+      height={200}
+    >
+      <Box
+        backgroundColor="blue-30"
+        alignItems="center"
+        justifyContent="center"
+        color="white-0"
+        height={50}
+        width={50}
+      >
+        <Text color="white-0">Item 1</Text>
+      </Box>
+      <Box
+        backgroundColor="blue-30"
+        alignItems="center"
+        justifyContent="center"
+        color="white-0"
+        height={50}
+        width={50}
+      >
+        <Text color="white-0">Item 2</Text>
+      </Box>
+    </Stack>
+  </Story>
+</Canvas>
+
+## Vertical
+
+<Canvas>
+  <Story name="Vertical">
+    <Stack
+      backgroundColor="blue-100"
+      flexDirection="column"
+      spacing="space-4"
+      border="1px solid #000"
+      height={200}
+    >
+      <Box
+        backgroundColor="blue-30"
+        alignItems="center"
+        justifyContent="center"
+        color="white-0"
+        height={50}
+        width={50}
+      >
+        <Text color="white-0">Item 1</Text>
+      </Box>
+      <Box
+        backgroundColor="blue-30"
+        alignItems="center"
+        justifyContent="center"
+        color="white-0"
+        height={50}
+        width={50}
+      >
+        <Text color="white-0">Item 2</Text>
+      </Box>
+    </Stack>
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={Stack} />

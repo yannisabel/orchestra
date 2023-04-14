@@ -1,6 +1,7 @@
-import type { AnchorProps } from 'Anchors.types'
+import type { AnchorProps } from '../Anchors'
+import { BoxProps } from '../Box'
 
-export interface ButtonWithCaptionProps {
+export interface ButtonWithCaptionProps extends BoxProps {
   href: string
   model?: AnchorProps['model']
   state?: AnchorProps['state']

@@ -9,7 +9,7 @@ import { spaces } from '../Tokens/Spaces'
 import { shadows } from '../Tokens/Shadows'
 import { radius } from '../Tokens/Radius'
 import { transitions } from '../Tokens/Animations'
-import { fontFamilies, fontSizes, fontWeights } from '../Tokens/fonts'
+import { fontFamilies, fontSizes, fontWeights } from '../Tokens/Fonts'
 
 export const Button = ({
   model = 'default',

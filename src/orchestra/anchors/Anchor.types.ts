@@ -2,8 +2,7 @@ import type { IconTypes } from '../Icons/Icon.types'
 import { BoxProps } from '../Box'
 import { MouseEventHandler, ReactEventHandler, ReactNode, TouchEventHandler } from 'react'
 
-export interface AnchorProps extends Omit<BoxProps, 'children'> {
-  children?: ReactNode
+export interface AnchorProps extends BoxProps {
   model?: 'default' | 'round'
   state?: 'default' | 'base' | 'raised' | 'ghost'
   backgroundColor?: 'blue-30' | 'orange-10' | 'white-10' | 'transparent'

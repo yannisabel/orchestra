@@ -1,5 +1,5 @@
 import { ColorToken } from '../Tokens/Colors'
-import { FontFamilyToken } from '../Tokens/fonts'
+import { FontFamilyToken } from '../Tokens/Fonts'
 import { RadiusToken } from '../Tokens/Radius'
 import { ShadowToken } from '../Tokens/Shadows'
 import { SpaceToken } from '../Tokens/Spaces'
@@ -23,7 +23,7 @@ export interface BoxProps extends CSSProperties {
   paddingTop?: SpaceToken
   paddingRight?: SpaceToken
   paddingBottom?: SpaceToken
-  shadows?: ShadowToken
+  boxShadow?: ShadowToken
   fontFamily?: FontFamilyToken
   translate?: any
   renderAs?: ElementType<any>

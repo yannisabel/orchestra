@@ -1,18 +1,18 @@
 import { Picture } from '../Images'
 import { Icon } from '../Icons'
 import { Box } from '../Box'
-
 import { StickerProps } from './Sticker.types'
 import { radius } from '../Tokens/Radius'
 import { shadows } from '../Tokens/Shadows'
 import styled from '@emotion/styled'
 import { colors } from '../Tokens/Colors'
-import { fontFamilies, fontSizes } from '../Tokens/fonts'
+import { spaces } from '../Tokens/Spaces'
+import { fontFamilies, fontSizes } from '../Tokens/Fonts'
 
 export const Sticker = ({
   model = 'default',
   color,
-  ...props
+  ...restProps
 }: StickerProps) => {
 
   const contentColor = () => {
@@ -31,8 +31,18 @@ export const Sticker = ({
     overflow: hidden;
     width: ${model === 'default' ? '100px' : '45px'};
     height: ${model === 'default' ? '100px' : '45px'};
+    margin: ${spaces[`${restProps.margin}`]};
+    margin-left: ${spaces[`${restProps.marginLeft}`]};
+    margin-top: ${spaces[`${restProps.marginTop}`]};
+    margin-right: ${spaces[`${restProps.marginRight}`]};
+    margin-bottom: ${spaces[`${restProps.marginBottom}`]};
     border-radius: ${radius['radius-round']};
     box-shadow: ${shadows['depth-1']};
+    padding: ${spaces[`${restProps.padding}`]};
+    padding-left: ${spaces[`${restProps.paddingLeft}`]};
+    padding-top: ${spaces[`${restProps.paddingTop}`]};
+    padding-right: ${spaces[`${restProps.paddingRight}`]};
+    padding-bottom: ${spaces[`${restProps.paddingBottom}`]};
     background-color: ${props => color ? colors[`${color}`] : colors[`${props.theme.colors.stickerBgColor}`]};
     font-family: ${fontFamilies['mulish']};
     font-size: ${fontSizes['fs-1']};
@@ -59,13 +69,13 @@ export const Sticker = ({
   `
 
   const Content = () => {
-    if (props.type === 'image') {
+    if (restProps.type === 'image') {
       return (
         <div>
-          <div className={props.imgHasBackgroundColor ? 'has-background' : ''}>
+          <div className={restProps.imgHasBackgroundColor ? 'has-background' : ''}>
             <Picture
-              src={props.image}
-              alt={props.alt}
+              src={restProps.image}
+              alt={restProps.alt}
               width="100%"
             />
           </div>
@@ -73,15 +83,15 @@ export const Sticker = ({
       )
     }
 
-    if (props.type === 'icon') {
-      return <Icon name={props.icon} />
+    if (restProps.type === 'icon') {
+      return <Icon name={restProps.icon} />
     }
 
-    return <span>{props.text}</span>
+    return <span>{restProps.text}</span>
   }
 
   return (
-    <ContentElement {...props}>
+    <ContentElement {...restProps}>
       <Content />
     </ContentElement>
   )

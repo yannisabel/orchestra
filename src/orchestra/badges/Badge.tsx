@@ -8,7 +8,7 @@ export const Badge = ({
   image,
   alt,
   legend,
-  color = 'white',
+  color,
 }: BadgeProps) => {
 
   const BadgeElement = styled(Box)`
@@ -26,8 +26,9 @@ export const Badge = ({
         image={image}
         alt={alt}
         color={color}
+        marginBottom="space-2"
       />
-      <Text textAlign="center">{legend}</Text>
+      <Text textAlign="center" fontSize="fs-1">{legend}</Text>
     </BadgeElement>
   )
 }

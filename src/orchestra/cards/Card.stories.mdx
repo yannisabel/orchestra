@@ -18,12 +18,12 @@ import { Anchor } from '../Anchors'
 
 <Canvas>
   <Story name="Default">
-    <Card margin="space-3">
+    <Card display="flex" margin="space-3">
       <Picture
         src="https://via.placeholder.com/300"
         alt="placeholder image"
       />
-      <Box padding="space-3">
+      <Box display="flex" flexDirection="column" padding="space-3">
         <Text>Title</Text>
         <Text>type</Text>
         <Text>description</Text>
@@ -37,11 +37,12 @@ import { Anchor } from '../Anchors'
 <Canvas>
   <Story
     name="Linkable">
-      <Card margin="space-3" type="linkable">
+      <Card display="flex"  margin="space-3" type="linkable">
         <Anchor 
           href="https://example.com"
           title="go to link"
           target="_blank"
+          alignItems="flex-start"
           renderAs={
             <a/>
           }
@@ -50,7 +51,7 @@ import { Anchor } from '../Anchors'
             src="https://via.placeholder.com/300"
             alt="placeholder image"
           />
-          <Box padding="space-3">
+          <Box display="flex" flexDirection="column" padding="space-3">
             <Text>Title</Text>
             <Text>type</Text>
             <Text>description</Text>

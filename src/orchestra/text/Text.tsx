@@ -1,7 +1,8 @@
 import { TextProps } from './Text.types'
 import styled from '@emotion/styled'
 import { colors } from '../Tokens/Colors'
-import { fontFamilies, fontSizes, fontWeights } from '../Tokens/fonts'
+import { spaces } from '../Tokens/Spaces'
+import { fontFamilies, fontSizes, fontWeights } from '../Tokens/Fonts'
 
 export const Text = ({ children, ...restProps }: TextProps) => {
 
@@ -14,7 +15,18 @@ export const Text = ({ children, ...restProps }: TextProps) => {
       translate: ${restProps.translate};
       height: ${typeof restProps.height === 'number' ? `${restProps.height}px` : restProps.height};
       width: ${typeof restProps.width === 'number' ? `${restProps.width}px` : restProps.width};
-      margin-left: ${restProps.marginLeft};
+      margin: ${spaces[`${restProps.margin}`]};
+      margin-left: ${spaces[`${restProps.marginLeft}`]};
+      margin-top: ${spaces[`${restProps.marginTop}`]};
+      margin-right: ${spaces[`${restProps.marginRight}`]};
+      margin-bottom: ${spaces[`${restProps.marginBottom}`]};
+      background-color: ${colors[`${restProps.backgroundColor}` || 'black-0']};
+      overflow: ${restProps.overflow};
+      padding: ${spaces[`${restProps.padding}`]};
+      padding-left: ${spaces[`${restProps.paddingLeft}`]};
+      padding-top: ${spaces[`${restProps.paddingTop}`]};
+      padding-right: ${spaces[`${restProps.paddingRight}`]};
+      padding-bottom: ${spaces[`${restProps.paddingBottom}`]};
       transition: ${restProps.transition};
       font-family: ${restProps.fontFamily ? fontFamilies[`${restProps.fontFamily}`] : fontFamilies['mulish']};
       font-size: ${restProps.fontSize ? fontSizes[`${restProps.fontSize}`] : fontSizes['fs-2']};

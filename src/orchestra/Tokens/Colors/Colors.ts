@@ -72,7 +72,7 @@ export const colorDarkTheme = {
   cardBgColor: 'blue-50',
   cardTitleColor: 'white-10',
   discreetColor: 'grey-50',
-  stickerBgColor: 'blue-50',
+  stickerBgColor: 'blue-40',
   codeBgColor: 'blue-30',
   codeColor: 'white-0',
   dividerColor: 'blue-40',

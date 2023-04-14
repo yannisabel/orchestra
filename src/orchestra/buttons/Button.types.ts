@@ -1,16 +1,14 @@
-import { IconTypes } from '../Icons/Icon.types'
 import { BoxProps } from '../Box'
 import { MouseEventHandler, ReactEventHandler, ReactNode, TouchEventHandler } from 'react'
 
-export interface ButtonProps extends Omit<BoxProps, 'children'> {
-  children?: ReactNode
+export interface ButtonProps extends BoxProps {
   model?: 'default' | 'round'
   state?: 'base' | 'raised' | 'ghost'
   backgroundColor?: 'blue-30' | 'orange-10' | 'white-10' | 'transparent'
   color?: 'white-0' | 'grey-100'
   type?: 'button' | 'submit' | 'reset'
   text?: string
-  icon?: IconTypes
+  icon?: string
   iconColor?: 'white-0' | 'grey-100'
   role?: string
   tabIndex?: number

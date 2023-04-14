@@ -7,7 +7,7 @@ import { spaces } from '../Tokens/Spaces'
 import { shadows } from '../Tokens/Shadows'
 import { radius } from '../Tokens/Radius'
 import { transitions } from '../Tokens/Animations'
-import { fontFamilies, fontSizes, fontWeights } from '../Tokens/fonts'
+import { fontFamilies, fontSizes, fontWeights } from '../Tokens/Fonts'
 
 export const Anchor = ({
   model = 'default',
@@ -33,15 +33,15 @@ export const Anchor = ({
 
   const commonStyles = `
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    align-items: ${restProps.alignItems || 'center'};
+    justify-content: ${restProps.justifyContent || 'center'};
     margin: ${spaces['space-3']};
     border: none;
     border-radius: ${isRound ? radius['radius-round'] : radius['radius-1']};
     outline: none;
     padding: ${isRound ? spaces['space-3'] : spaces['space-2']};
-    width: ${isRound ? roundAnchorSize : anchorWidth};
     height: ${isRound ? roundAnchorSize : anchorHeight};
+    width: ${isRound ? roundAnchorSize : anchorWidth};
     font-family: ${fontFamilies['mulish']};
     font-size: ${fontSizes['fs-1']};
     cursor: pointer;
@@ -162,6 +162,7 @@ export const Anchor = ({
 
   return (
     <AnchorElement
+      {...restProps}
       renderAs={restProps.renderAs}
       href={href}
       onMouseDown={pressOrRelease}
