@@ -37,7 +37,7 @@
     "noImplicitAny": false
   },
   "include": [
-    "src/**/*"
+    "src/orchestra/**/*"
   ],
   "exclude": [
     "node_modules",

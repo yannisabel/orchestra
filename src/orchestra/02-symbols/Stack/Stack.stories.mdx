@@ -1,0 +1,63 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs'
+
+import { Stack } from './Stack'
+import { Box } from '../Box'
+import { Text } from '../Text'
+
+<Meta title="Symbols/Stack" component={Stack} />
+
+# Stack
+
+## Horizontal
+
+<Canvas>
+  <Story name="Horizontal">
+    <Stack className="stack--row">
+      <Box>
+        <Text>Item 1</Text>
+      </Box>
+      <Box>
+        <Text>Item 2</Text>
+      </Box>
+    </Stack>
+  </Story>
+  <Story name="Horizontal With Space">
+    <Stack className="stack--row row-space-3">
+      <Box>
+        <Text>Item 1</Text>
+      </Box>
+      <Box>
+        <Text>Item 2</Text>
+      </Box>
+    </Stack>
+  </Story>
+</Canvas>
+
+## Vertical
+
+<Canvas>
+  <Story name="Vertical">
+    <Stack className="stack--column">
+      <Box>
+        <Text>Item 1</Text>
+      </Box>
+      <Box>
+        <Text>Item 2</Text>
+      </Box>
+    </Stack>
+  </Story>
+  <Story name="Vertical With Space">
+    <Stack className="stack--column column-space-3">
+      <Box>
+        <Text>Item 1</Text>
+      </Box>
+      <Box>
+        <Text>Item 2</Text>
+      </Box>
+    </Stack>
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={Stack} />

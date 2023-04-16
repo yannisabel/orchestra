@@ -2,18 +2,19 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
-import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 const packageJson = require('./package.json');
 import { getFolders } from './scripts/buildUtils';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
 import scss from 'rollup-plugin-scss'
+import copy from "rollup-plugin-copy";
+
+const isDev = process.env.NODE_ENV === 'development'
 
 const plugins = [
   peerDepsExternal(),
-  resolve(),
-  replace({
-    __IS_DEV__: process.env.NODE_ENV === 'development',
+  resolve({
+    browser: true
   }),
   commonjs(),
   typescript({
@@ -21,14 +22,25 @@ const plugins = [
     useTsconfigDeclarationDir: true,
   }),
   terser(),
-  scss(),
+  scss({
+    insert: true,
+    failOnError: true,
+    use: ['sass'],
+  }),
+  copy({
+    targets: [
+      {
+        src: "src/orchestra/01-instruments",
+        dest: "dist",
+      }
+    ]
+  })
 ];
 const subfolderPlugins = (folderName) => [
   ...plugins,
   generatePackageJson({
     baseContents: {
       name: `${packageJson.name}/${folderName}`,
-      private: true,
       main: '../cjs/index.js',
       module: './index.js',
       types: './index.d.ts',
@@ -39,11 +51,13 @@ const folderBuilds = getFolders('./src/orchestra').map((folder) => {
   return {
     input: `src/orchestra/${folder}/index.ts`,
     output: {
-      file: `dist/${folder}/index.js`,
-      sourcemap: true,
+      dir: `dist/${folder}`,
+      sourcemap: isDev,
       exports: 'named',
       format: 'esm',
+      preserveModules: true,
     },
+
     plugins: subfolderPlugins(folder),
     external: ['react', 'react-dom'],
   };
@@ -54,26 +68,28 @@ export default [
     input: ['src/orchestra/index.ts'],
     output: [
       {
-        file: packageJson.module,
+        dir: "dist",
         format: 'esm',
-        sourcemap: true,
+        sourcemap: isDev,
         exports: 'named',
       },
     ],
+    preserveModules: true,
     plugins,
     external: ['react', 'react-dom'],
   },
   ...folderBuilds,
   {
-    input: ['src/orchestra/index.ts'],
+    input: ['src/orchestra/index.ts', 'src/orchestra/02-symbols/Anchors/index.ts', 'src/orchestra/02-symbols/Buttons/index.ts', 'src/orchestra/02-symbols/Titles/index.ts'],
     output: [
       {
-        file: packageJson.main,
+        dir: "dist",
         format: 'cjs',
-        sourcemap: true,
+        sourcemap: isDev,
         exports: 'named',
       },
     ],
+    preserveModules: true,
     plugins,
     external: ['react', 'react-dom'],
   },

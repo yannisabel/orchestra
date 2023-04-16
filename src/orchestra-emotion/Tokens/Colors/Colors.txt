@@ -1,0 +1,29 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+
+import { colors } from '.'
+
+<Meta title="Instruments/Colors" />
+
+# Colors
+
+<Canvas>
+  <Story name="Default">
+    <Box flexDirection="column">
+      {Object.entries(colors).map(([colorName, value]) => {
+        return (
+          <Box alignItems="center" width={300} marginTop="space-2">
+            <Box backgroundColor={colorName} key={`${colorName}`} height={50} width={50} marginRight="space-4" />
+            <Box flexDirection="column">
+              <Text>
+                colorName: {colorName}
+              </Text>
+              <Text>
+                value: {value}
+              </Text>
+            </Box>
+          </Box>
+        )
+      })}
+    </Box>
+  </Story>
+</Canvas>

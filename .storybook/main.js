@@ -12,6 +12,7 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
+    'storybook-addon-themes',
   ],
   "framework": "@storybook/react",
   webpackFinal: async (config, { configType }) => {

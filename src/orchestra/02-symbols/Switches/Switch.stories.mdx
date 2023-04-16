@@ -1,0 +1,21 @@
+import { useState } from 'react'
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+
+import { Switch } from './Switch'
+
+<Meta
+  title="Symbols/Switch"
+  component={Switch}
+/>
+
+# Switch
+
+<Canvas>
+  <Story
+    name="Default">
+    {() => {
+      const [value, setValue] = useState(false)
+      return <Switch label="Switch Label" onClick={() => setValue(!value)} checked={value} />
+    }}
+  </Story>
+</Canvas>

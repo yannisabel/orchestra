@@ -1,0 +1,110 @@
+// font family
+$roboto: Roboto, Arial, Helvetica, Verdana, sans-serif;
+$openSans: 'Open Sans', sans-serif;
+$mulish: 'Mulish', Arial, Helvetica, Verdana, sans-serif;
+
+// font sizes
+$fs-1: 12px;
+$fs-2: 16px;
+$fs-3: 20px;
+$fs-4: 24px;
+$fs-5: 28px;
+$fs-6: 32px;
+$fs-7: 36px;
+$fs-8: 40px;
+$fs-9: 44px;
+$fs-10: 48px;
+$fs-11: 52px;
+$fs-12: 56px;
+$fs-13: 60px;
+$fs-14: 64px;
+
+// font weight
+$fw-regular: 400;
+$fw-medium: 600;
+$fw-bold: 700;
+$fw-extraBold: 800;
+$fw-black: 900;
+
+// UTILITY CLASSES
+
+//// Font Family
+
+.ff-mulish {
+  font-family: $mulish;
+}
+
+.ff-openSans {
+  font-family: $openSans;
+}
+
+.ff-roboto {
+  font-family: $roboto;
+}
+
+//// Font Size
+
+.fs-1 {
+  font-size: $fs-1;
+}
+.fs-2 {
+  font-size: $fs-2;
+}
+.fs-3 {
+  font-size: $fs-3;
+}
+.fs-4 {
+  font-size: $fs-4;
+}
+.fs-5 {
+  font-size: $fs-5;
+}
+.fs-6 {
+  font-size: $fs-6;
+}
+.fs-7 {
+  font-size: $fs-7;
+}
+.fs-8 {
+  font-size: $fs-8;
+}
+.fs-9 {
+  font-size: $fs-9;
+}
+.fs-10 {
+  font-size: $fs-10;
+}
+.fs-11 {
+  font-size: $fs-11;
+}
+.fs-12 {
+  font-size: $fs-12;
+}
+.fs-13 {
+  font-size: $fs-13;
+}
+.fs-14 {
+  font-size: $fs-14;
+}
+
+//// Font Weight
+
+.fw-regular {
+  font-weight: $fw-regular;
+}
+
+.fw-medium {
+  font-weight: $fw-medium;
+}
+
+.fw-bold {
+  font-weight: $fw-bold;
+}
+
+.fw-extraBold {
+  font-weight: $fw-extraBold;
+}
+
+.fw-black {
+  font-weight: $fw-black;
+}

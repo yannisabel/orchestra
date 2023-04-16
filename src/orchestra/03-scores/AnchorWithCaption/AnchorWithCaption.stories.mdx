@@ -1,0 +1,27 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+
+import { AnchorWithCaption } from './AnchorWithCaption'
+
+<Meta title="Scores/AnchorWithCaption" component={AnchorWithCaption} />
+
+export const Template = (args) => <AnchorWithCaption {...args} />
+
+# AnchorWithCaption
+
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      text: 'AnchorWithCaption',
+      href: 'https://example.com',
+      caption: 'a caption text',
+      title: 'a beautiful title'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={AnchorWithCaption} />

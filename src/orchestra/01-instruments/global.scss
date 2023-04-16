@@ -1,0 +1,216 @@
+// Instruments
+// order is important to let some instruments to use the previous ones
+@import './functions';
+@import './mixins';
+@import './animations';
+@import './fonts';
+@import './spaces';
+@import './radius';
+@import './colors';
+@import './breakpoints';
+@import './grid';
+@import './flexbox';
+@import './shadows';
+// Symbols
+@import '../02-symbols/Anchors/anchor';
+@import '../02-symbols/Buttons/button';
+@import '../02-symbols/Dividers/divider';
+@import '../02-symbols/Icons/icons';
+@import '../02-symbols/Images/image';
+@import '../02-symbols/Stickers/sticker';
+@import '../02-symbols/Switches/switch';
+@import '../02-symbols/Titles/titles';
+// Scores
+@import '../03-scores/Badges/badge';
+@import '../03-scores/Cards/card';
+// Masterpieces
+@import '../04-masterpieces/layout/layout';
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  font-family: $openSans;
+  font-size: $fs-2;
+  font-weight: $fw-regular;
+  word-break: break-word;
+  @include selectStyleByTheme('background', 'primaryBgColor');
+  @include selectStyleByTheme('color', 'primaryColor');
+}
+
+a:not([class]) {
+  outline: none;
+  text-decoration: underline;
+  @include selectStyleByTheme('color', 'linkColor');
+
+  i {
+      font-family: $openSans;
+  }
+}
+
+ul {
+  margin-top: $space-3;
+  margin-bottom: $space-3;
+  margin-left: 14px;
+  list-style-position: outside;
+  line-height: $space-4;
+
+  a {
+      font-weight: $fw-medium;
+  }
+}
+
+%images {
+  max-width: 100%;
+  height: auto;
+}
+
+img {
+  @extend %images;
+}
+
+.image-container {
+  @include grid($gridTemplateRows: 50% auto);
+  position: relative;
+  width: 100%;
+
+  &__image {
+      z-index: 1;
+      min-width: 120px;
+      min-height: 120px;
+  }
+}
+
+figure p {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+figcaption, .legend {
+  margin-bottom: ($space-3+$space-2)+$space-3;
+  padding: $space-3;
+  text-align: center;
+}
+
+blockquote {
+  padding: $space-2 $space-3;
+  margin: 0 0 20px;
+  font-size: $fs-2;
+  border-left: 5px solid $grey-0;
+
+  footer {
+      text-align: right;
+  }
+}
+
+.float {
+  margin-top: $space-3;
+  margin-bottom: $space-3;
+
+  &.left {
+      float: left;
+      &--30 {
+          width: 100%;
+
+          @include breakPoint('small') {
+              width: 30%;
+              margin-right: $space-5;
+          }
+      }
+
+      &--50 {
+        width: 100%;
+
+        @include breakPoint('small') {
+            width: 50%;
+            margin-right: $space-5;
+        }
+      }
+  }
+
+  &.right {
+    float: right;
+    &--30 {
+      width: 100%;
+
+      @include breakPoint('small') {
+          width: 30%;
+          margin-left: $space-5;
+      }
+    }
+
+    &--50 {
+      width: 100%;
+
+      @include breakPoint('small') {
+          width: 50%;
+          margin-left: $space-5;
+      }
+    }
+  }
+
+  figcaption {
+      margin-bottom: $space-3;
+  }
+}
+
+.CookieConsent {
+  position: fixed;
+  @include grid($gridAutoFlow: row, $alignItems: center, $justifyContent: center);
+  overflow: hidden;
+  border-top-left-radius: $radius-4;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  box-shadow: $depth-2--reversed;
+
+  @include breakPoint('small') {
+      @include grid($gridAutoFlow: column, $alignItems: center);
+      width: unset;
+  }
+
+  #cookieMessage a {
+      color: $blue-10;
+  }
+
+  button {
+      margin-top: 0;
+      margin-left: $space-2;
+
+      @include breakPoint('small') {
+          margin-top: $space-2;
+          margin-bottom: $space-2;
+          margin-left: $space-2;
+      }
+  }
+}
+
+.banner {
+  font-size: $fs-1;
+  font-weight: $fw-regular;
+
+  &--blue {
+      background-color: $blue-30;
+  }
+}
+
+.status--pending {
+  border-radius: $radius-1;
+  padding: $space-1 $space-2;
+  background-color: $orange-10;
+  color: colorOnBackground($orange-10);
+  font-size: $fs-3;
+  font-weight: $fw-bold;
+  line-height: $space-3+$space-2;
+}
+
+.justifyself-end {
+  justify-self: end;
+}

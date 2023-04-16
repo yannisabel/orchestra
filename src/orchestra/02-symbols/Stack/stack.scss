@@ -1,0 +1,70 @@
+@import '../../01-instruments/';
+
+.stack {
+  &--column {
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    &.column-spaceless > * + * {
+      margin-top: 0
+    }
+
+    &.column-space-1  > * + * {
+      margin-top: $space-1
+    }
+    
+    &.column-space-2  > * + * {
+      margin-top: $space-2
+    }
+
+    &.column-space-3  > * + * {
+      margin-top: $space-3
+    }
+
+    &.column-space-4  > * + * {
+      margin-top: $space-4
+    }
+
+    &.column-space-5  > * + * {
+      margin-top: $space-5
+    }
+  }
+  &--row {
+    display: flex;
+    flex-direction: row;
+
+    & > * {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    &.row-spaceless > * + * {
+      margin-left: 0
+    }
+
+    &.row-space-1  > * + * {
+      margin-left: $space-1
+    }
+    
+    &.row-space-2  > * + * {
+      margin-left: $space-2
+    }
+
+    &.row-space-3  > * + * {
+      margin-left: $space-3
+    }
+
+    &.row-space-4  > * + * {
+      margin-left: $space-4
+    }
+
+    &.row-space-5  > * + * {
+      margin-left: $space-5
+    }
+  }
+}

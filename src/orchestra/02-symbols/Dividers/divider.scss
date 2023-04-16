@@ -1,0 +1,12 @@
+@import '../../01-instruments';
+
+.divider {
+  display: block;
+  margin: $space-3 0;
+  border: 0;
+  height: 1px;
+  @include selectStyleByTheme('background-color', 'dividerColor');
+  @include breakPoint('large') {
+      margin: $space-3+$space-2 0;
+  }
+}
