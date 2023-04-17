@@ -1,0 +1,101 @@
+@import '../instruments/';
+
+.sticker {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: $radius-round;
+  box-shadow: $depth-1;
+  text-align: center;
+
+  // model modifiers
+  &-m {
+    &--default {
+      width: 100px;
+      height: 100px;
+      padding: $space-3+$space-2;
+
+      & > * {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    &--mini {
+      width: 45px;
+      min-width: 0;
+      height: 45px;
+      text-align: center;
+
+      & > * {
+        width: 30px;
+        height: 30px;
+      }
+
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+
+  // color modifiers
+  &-c {
+    &--white {
+      background: $white-0;
+
+      svg {
+        fill: $black-V0--T50;
+      }
+    }
+
+    &--blue-grey {
+      background: $blue-40;
+      color: colorOnBackground($blue-50);
+
+      .has-background {
+        height: 100%;
+        border-radius: $radius-2;
+        background-color: $grey-50;
+      }
+
+      svg {
+        fill: $grey-50;
+      }
+    }
+
+    &--blue {
+      background: $blue-30;
+      color: colorOnBackground($blue-30);
+
+      svg {
+        fill: colorOnBackground($blue-30);
+      }
+    }
+
+    &--orange {
+      background: $orange-10;
+      color: colorOnBackground($orange-10);
+      font-weight: $fw-bold;
+
+      svg {
+        fill: colorOnBackground($orange-10);
+      }
+    }
+  }
+
+  & > * {
+    position: relative;
+    max-width: 50px;
+    max-height: 50px;
+  }
+  
+  & span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: colorOnBackground($white-0);
+  }
+}

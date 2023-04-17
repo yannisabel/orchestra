@@ -1,7 +1,7 @@
 import { DecoratorFn } from '@storybook/react'
 import React from 'react'
-import { Title } from '../src/orchestra/02-symbols/Titles'
-import '../src/orchestra/01-instruments/reset.scss'
+import { Title } from '../src/Titles'
+import '../src/instruments/reset.scss'
 
 export const withTheme: DecoratorFn = (StoryFn) => {
 
