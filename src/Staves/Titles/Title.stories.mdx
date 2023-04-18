@@ -1,0 +1,43 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+
+import { Box } from '../Box'
+import { Title } from './Title'
+
+<Meta title="Staves/Title" component={Title} />
+
+# Title
+
+## Default
+
+<Canvas>
+    <Story
+      name="Default"
+    >
+        { 
+          ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].map(function(title, i){
+            return (
+              <Title key={title} type={title}>An {title} title</Title>
+            )
+          })
+        }
+    </Story>
+</Canvas>
+
+## Specific classes
+
+<Canvas>
+    <Story
+      name="title-section class"
+    >
+      <Title type="h1" className="title-section">An h1 title with a title-section class</Title>
+    </Story>
+    <Story
+      name="subtitle class"
+    >
+      <Title type="h2" className="subtitle">An h2 title with a subtitle class</Title>
+    </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={Title} />

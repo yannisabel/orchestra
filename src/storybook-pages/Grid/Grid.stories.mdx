@@ -1,0 +1,70 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import { Box } from '../../Staves/Box'
+// import { Text } from '../../Staves/Text'
+// import '../../Notions/grid.scss'
+
+<Meta title="Notations/Grid" />
+
+# Grid
+
+<Canvas>
+  <Story name="Default">
+    <Box className="grid-col-12 grid-gap--space-1">
+      <Box style={{backgroundColor: '#264b68', height: '20px'}} />
+    </Box>
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Grid ">
+    <Box className="grid-col-12">
+      <Box style={{backgroundColor: '#264b68', height: '20px'}} />
+    </Box>
+    <Box className="grid-col-12">
+      <Box className="grid-col--2of12" style={{backgroundColor: '#264b68', height: '20px'}} />
+    </Box>
+    <Box className="grid-col-12">
+      <Box className="grid-col--3of12" style={{backgroundColor: '#264b68', height: '20px'}} />
+    </Box>
+    <Box className="grid-col-12">
+      <Box className="grid-col--4of12" style={{backgroundColor: '#264b68', height: '20px'}} />
+    </Box>
+    <Box className="grid-col-12">
+      <Box className="grid-col--5of12" style={{backgroundColor: '#264b68', height: '20px'}} />
+    </Box>
+    <Box className="grid-col-12">
+      <Box className="grid-col--6of12" style={{backgroundColor: '#264b68', height: '20px'}} />
+    </Box>
+    <Box className="grid-col-12">
+      <Box className="grid-col--7of12" style={{backgroundColor: '#264b68', height: '20px'}} />
+    </Box>
+    <Box className="grid-col-12">
+      <Box className="grid-col--8of12" style={{backgroundColor: '#264b68', height: '20px'}} />
+    </Box>
+    <Box className="grid-col-12">
+      <Box className="grid-col--9of12" style={{backgroundColor: '#264b68', height: '20px'}} />
+    </Box>
+    <Box className="grid-col-12">
+      <Box className="grid-col--10of12" style={{backgroundColor: '#264b68', height: '20px'}} />
+    </Box>
+    <Box className="grid-col-12">
+      <Box className="grid-col--11of12" style={{backgroundColor: '#264b68', height: '20px'}} />
+    </Box>
+    <Box className="grid-col-12">
+      <Box className="grid-col--12of12" style={{backgroundColor: '#264b68', height: '20px'}} />
+    </Box>
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="moving element on the grid">
+    <>
+      <Box className="grid-col-12 grid-gap--space-1">
+        <Box style={{backgroundColor: '#264b68', height: '20px'}} />
+      </Box>
+      <Box className="grid-col-12 grid-gap--space-1">
+        <Box className={`grid-item--onCol2of12`} style={{backgroundColor: '#264b68', height: '20px'}} />
+      </Box>
+    </>
+  </Story>
+</Canvas>

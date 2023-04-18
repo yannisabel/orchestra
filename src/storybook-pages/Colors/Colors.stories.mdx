@@ -1,0 +1,32 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import { Card } from '../../Staves/Cards'
+import { Box } from '../../Staves/Box'
+import { Text } from '../../Staves/Text'
+
+import { colors } from '.'
+
+<Meta title="Notations/Colors" />
+
+# Colors
+
+<Canvas>
+  <Story name="Default">
+    <Box className="flex-direction--column">
+      {Object.entries(colors).map(([colorName, value]) => {
+        return (
+          <Card key={`${colorName}`} className="flex align-items--center">
+            <Box style={{backgroundColor: value, width: '50px', height: '50px'}} />
+            <Box className="flex-direction--column">
+              <Text className="ff-openSans">
+                colorName: {colorName}
+              </Text>
+              <Text className="ff-openSans">
+                value: {value}
+              </Text>
+            </Box>
+          </Card>
+        )
+      })}
+    </Box>
+  </Story>
+</Canvas>

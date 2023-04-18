@@ -1,0 +1,137 @@
+@import './spaces';
+@import './breakpoints';
+
+//___________________GRID_______________
+$gap: $space-3;
+$number-of-columns: 12;
+$number-of-spaces: 10;
+
+@mixin grid($display: grid, $gridAutoFlow: null, $gridTemplateColumns: null, $gridTemplateRows: null, $gridTemplateAreas: null, $gridRowGap: null, $gridColumnGap: null, $gridGap: null, $alignItems: null, $justifyContent: null) {
+    display: $display;
+    grid-auto-flow: $gridAutoFlow;
+    grid-template-columns: $gridTemplateColumns;
+    grid-template-rows: $gridTemplateRows;
+    grid-template-areas: $gridTemplateAreas;
+    grid-row-gap: $gridRowGap;
+    grid-column-gap: $gridColumnGap;
+    grid-gap: $gridGap;
+    align-items: $alignItems;
+    justify-content: $justifyContent;
+}
+
+// @for $i from 1 through $number-of-columns {
+//     @if $i == 1 {
+//         .grid-col-1 {
+//             @include grid($gridTemplateColumns: 100%)
+//         }
+//     }
+//     @else {
+//         .grid-col-#{$i} {
+//             @include grid($gridTemplateColumns: 100%, $gridGap: $gap)
+//         }
+//         .grid-col-#{$i}--gutless {
+//             @include grid($gridTemplateColumns: 100%)
+//         }
+//         @include breakPoint('small') {
+//             .grid-col-#{$i} {
+//                 @include grid($gridTemplateColumns: repeat(auto-fit, minmax(400px, 1fr)), $gridGap: $gap)
+//             }
+//             .grid-col-#{$i}--gutless {
+//                 @include grid($gridTemplateColumns: repeat(auto-fit, minmax(400px, 1fr)))
+//             }
+//         }
+//     }
+// }
+
+@for $i from 1 through $number-of-columns {
+    @if $i == 1 {
+        .grid-col-1--offset {
+            @include grid($gridTemplateColumns: 100%)
+        }
+    }
+    @else {
+        .grid-col-#{$i}--offset {
+            @include grid($gridTemplateColumns: repeat($i, 1fr), $gridGap: $gap)
+        }
+        .grid-col-#{$i}--gutless-offset {
+            @include grid($gridTemplateColumns: repeat($i, 1fr))
+        }
+    }
+}
+
+.grid-col-#{$number-of-columns} {
+  @include grid($gridTemplateColumns: repeat($number-of-columns, [col-start] 1fr))
+}
+
+@for $spanNumber from 2 through $number-of-columns {
+  .grid-col--#{$spanNumber}of#{$number-of-columns} {
+    grid-column: col-start / span $spanNumber;
+  }
+
+  .grid-item--onCol#{$spanNumber}of#{$number-of-columns} {
+    grid-column: col-start #{$spanNumber} / span 1;
+  }
+}
+
+.grid-gap--space-1 {
+  grid-gap: $space-1;
+}
+
+.grid-gap--space-2 {
+  grid-gap: $space-2;
+}
+
+.grid-gap--space-3 {
+  grid-gap: $space-3;
+}
+
+.grid-gap--space-4 {
+  grid-gap: $space-4;
+}
+
+.grid-gap--space-5 {
+  grid-gap: $space-5;
+}
+
+.grid-gap--space-6 {
+  grid-gap: $space-6;
+}
+
+.grid-gap--space-7 {
+  grid-gap: $space-7;
+}
+
+.grid-gap--space-8 {
+  grid-gap: $space-8;
+}
+
+.grid-gap--space-9 {
+  grid-gap: $space-9;
+}
+
+.grid-gap--space-10 {
+  grid-gap: $space-10;
+}
+
+.grid-col-80 {
+    @include grid($gridTemplateColumns: 100%, $gridColumnGap: $space-4, $alignItems: center);
+    &.interest__container > *:nth-child(2) {
+        display: none;
+    }
+    @include breakPoint('small') {
+        @include grid($gridTemplateColumns: 80% auto, $gridColumnGap: $space-4, $alignItems: top);
+        & > *:nth-child(2) {
+            justify-self: end;
+        }
+
+        &.interest__container > *:nth-child(2) {
+            display: inline-block;
+        }
+    }
+}
+
+.grid-col-30 {
+    @include breakPoint('small') {
+        @include grid($gridTemplateColumns: 30% auto, $gridColumnGap: $space-4, $alignItems: center);
+    }
+}

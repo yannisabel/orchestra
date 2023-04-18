@@ -1,7 +1,7 @@
 import { DecoratorFn } from '@storybook/react'
 import React from 'react'
-import { Title } from '../src/Titles'
-import '../src/instruments/reset.scss'
+import { Title } from '../src/Staves/Titles'
+import '../src/Notations/reset.scss'
 
 export const withTheme: DecoratorFn = (StoryFn) => {
 
@@ -32,7 +32,7 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ['Overview', ['Introduction', 'Getting Started', 'Principles'], 'Instruments', 'Symbols', 'Scores', 'Masterpieces'],
+      order: ['Overview', ['Introduction', 'Getting Started', 'Principles'], 'Notations', 'Staves'],
     },
   },
 }

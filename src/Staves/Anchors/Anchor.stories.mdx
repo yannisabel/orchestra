@@ -1,0 +1,103 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+
+import { Anchor } from './Anchor'
+
+<Meta title="Staves/Anchor" component={Anchor} />
+
+export const Template = (args) => <Anchor {...args} />
+export const TemplateWithBackground = (args) => <Anchor {...args} />
+
+# Anchor
+
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      children: 'Anchor',
+      model: 'default',
+      href: 'https://example.com',
+      title: 'go to example website',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="isExternal"
+    args={{
+      isExternal: true,
+      children: 'Anchor',
+      model: 'default',
+      state: 'default',
+      href: 'https://example.com',
+      title: 'go to example website'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="WithColor"
+    args={{
+      children: 'Anchor',
+      model: 'button',
+      color: 'blue',
+      state: 'default',
+      href: 'https://example.com',
+      title: 'go to example website'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Round"
+    args={{
+      model: 'round',
+      icon: 'image',
+      backgroundColor: 'blue-30',
+      href: 'https://example.com',
+      title: 'go to example website'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Ghost default"
+    args={{
+      children: 'Anchor',
+      model: 'button',
+      state: 'ghost',
+      href: 'https://example.com',
+      title: 'go to example website'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Ghost Round"
+    args={{
+      model: 'round',
+      state: 'ghost',
+      icon: 'image',
+      href: 'https://example.com',
+      title: 'go to example website'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Raised"
+    args={{
+      model: 'button',
+      state: 'raised',
+      color: 'blue',
+      href: 'https://example.com',
+      title: 'go to example website',
+      children: 'Anchor'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={Anchor} />

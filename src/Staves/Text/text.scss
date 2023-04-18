@@ -1,0 +1,46 @@
+@import '../../Notations/mixins';
+@import '../../Notations/colors';
+@import '../../Notations/fonts';
+@import '../../Notations/spaces';
+
+%text {
+  font-family: $openSans;
+  font-size: $fs-2;
+  letter-spacing: 0.03em;
+  line-height: $space-5;
+  @include selectStyleByTheme('color', 'textColor');
+}
+
+address, abbr, b, bdi, bdo, cite, dfn, em, figcaption, i , kbd, mark, p, q, s, samp, small, span, strong, sub, sup, time, u, var, wbr {
+  @extend %text;
+}
+
+p {
+
+  .underline, u {
+      text-decoration: underline;
+  }
+
+  a {
+      font-weight: $fw-medium;
+  }
+}
+
+b, strong {
+  font-weight: $fw-bold;
+}
+
+i, em {
+  font-style: italic;
+  font-weight: $fw-regular;
+}
+
+.ellipsis {
+  overflow: hidden;
+
+  & > * {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}

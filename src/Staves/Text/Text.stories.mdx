@@ -1,0 +1,65 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs'
+import { Text } from './Text'
+import { Box } from '../Box'
+
+<Meta title="Staves/Text" component={Text} />
+
+# Text
+
+## Default
+
+<Canvas>
+  <Story
+    name="Default"
+  >
+    <Text>Default Text</Text>
+  </Story>
+</Canvas>
+
+## RenderAs
+
+<Canvas>
+  <Story
+    name="RenderAs"
+  >
+    <Text>Text <Text as="strong">Strong</Text></Text>
+  </Story>
+</Canvas>
+
+## On Multiple lines
+
+## On Multiple lines
+
+<Canvas>
+  <Story
+    name="On Multiple lines"
+  >
+    <Text>Default Text</Text>
+    <Text>Default Text</Text>
+    <Text>Default Text</Text>
+  </Story>
+</Canvas>
+
+## Paragraph flow
+
+<Canvas>
+  <Story
+    name="Paragraph flow"
+  >
+    <Box className="paragraph-flow">
+      <Text>
+        If it were, you could call ME Ernest Hemingway. Okay, take it easy Rick. T-that's dark. Why'd you even rope me into this?! And that's why I always say 'Shumshumschilpiddydah!'
+      </Text>
+      <Text>
+        God-damn! Oh, wow. That's an intense line of questioning, Snuffles The trick to cereal is keeping 70% of it above the milk. Hi! I'm Mr Meeseeks! Look at me! 
+      </Text>
+      <Text>
+        Your special time is your power. It makes you strong like a boob. I couldn't hear you over my own screaming. We've talked about this! Oh, I'm sorry Morty, are you the scientist or are you the kid who wanted to get laid? 5 more minute of this and I'm going to get mad!
+      </Text>
+    </Box>
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={Text} />

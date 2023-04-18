@@ -6,6 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 const packageJson = require('./package.json');
 import { getFolders } from './scripts/buildUtils';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
+import copy from 'rollup-plugin-copy'
 import scss from 'rollup-plugin-scss'
 
 const plugins = [
@@ -22,6 +23,11 @@ const plugins = [
     failOnError: true,
     runtime: require("sass"),
   }),
+  copy({
+    targets: [
+      { src: 'src/Notations', dest: 'dist' }
+    ]
+  })
 ];
 const subfolderPlugins = (folderName) => [
   ...plugins,
@@ -29,17 +35,17 @@ const subfolderPlugins = (folderName) => [
     baseContents: {
       name: `${packageJson.name}/${folderName}`,
       private: true,
-      main: '../cjs/index.js',
+      main: '../../cjs/index.js',
       module: './index.js',
       types: './index.d.ts',
     },
   }),
 ];
-const folderBuilds = getFolders('./src').map((folder) => {
+const folderBuilds = getFolders('./src/Staves').map((folder) => {
   return {
-    input: `src/${folder}/index.ts`,
+    input: `src/Staves/${folder}/index.ts`,
     output: {
-      file: `dist/${folder}/index.js`,
+      file: `dist/Staves/${folder}/index.js`,
       sourcemap: true,
       exports: 'named',
       format: 'esm',
@@ -51,7 +57,7 @@ const folderBuilds = getFolders('./src').map((folder) => {
 
 export default [
   {
-    input: ['src/index.ts'],
+    input: ['src/Staves/index.ts'],
     output: [
       {
         file: packageJson.module,
@@ -65,7 +71,7 @@ export default [
   },
   ...folderBuilds,
   {
-    input: ['src/index.ts'],
+    input: ['src/Staves/index.ts'],
     output: [
       {
         file: packageJson.main,
