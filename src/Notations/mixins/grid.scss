@@ -1,0 +1,12 @@
+@mixin grid($display: grid, $gridAutoFlow: null, $gridTemplateColumns: null, $gridTemplateRows: null, $gridTemplateAreas: null, $gridRowGap: null, $gridColumnGap: null, $gridGap: null, $alignItems: null, $justifyContent: null) {
+  display: $display;
+  grid-auto-flow: $gridAutoFlow;
+  grid-template-columns: $gridTemplateColumns;
+  grid-template-rows: $gridTemplateRows;
+  grid-template-areas: $gridTemplateAreas;
+  grid-row-gap: $gridRowGap;
+  grid-column-gap: $gridColumnGap;
+  grid-gap: $gridGap;
+  align-items: $alignItems;
+  justify-content: $justifyContent;
+}

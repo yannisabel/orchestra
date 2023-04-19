@@ -1,6 +1,5 @@
 import type { BoxProps } from './Box.types'
-import '../../Notations/flexbox.scss'
-import '../../Notations/grid.scss'
+import './box.scss'
 import React from 'react';
 
 export const Box = <T extends React.ElementType = "div">({

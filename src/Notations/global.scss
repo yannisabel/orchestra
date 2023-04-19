@@ -1,28 +1,31 @@
 // order is important to let some files to use the previous ones
 // Notations
+@import './mixins';
+@import './utility-classes/';
 @import './animations';
 @import './breakpoints';
 @import './colors';
 @import './flexbox';
 @import './fonts';
-@import './functions';
+@import './functions/';
 @import './grid';
-@import './layout';
-@import './mixins';
 @import './shadows';
 @import './spaces';
 @import './radius';
 // Staves
-@import '../Staves/Anchors/anchor.scss';
-@import '../Staves/Buttons/button.scss';
-@import '../Staves/Dividers/divider.scss';
-@import '../Staves/Icons/icon.scss';
-@import '../Staves/Images/image.scss';
-@import '../Staves/Stickers/sticker.scss';
-@import '../Staves/Switches/switch.scss';
-@import '../Staves/Titles/title.scss';
-@import '../Staves/Badges/badge.scss';
-@import '../Staves/Cards/card.scss';
+@import '../Staves/Anchor/anchor';
+@import '../Staves/Badge/badge';
+@import '../Staves/Box/box';
+@import '../Staves/Button/button';
+@import '../Staves/Card/card';
+@import '../Staves/Divider/divider';
+@import '../Staves/Icon/icon';
+@import '../Staves/Picture/picture';
+@import '../Staves/Stack/stack';
+@import '../Staves/Sticker/sticker';
+@import '../Staves/Switch/switch';
+@import '../Staves/Text/text';
+@import '../Staves/Title/title';
 
 *,
 *::after,
@@ -35,18 +38,14 @@
 body {
   overflow-x: hidden;
   overflow-y: scroll;
-  font-family: $openSans;
-  font-size: $fs-2;
-  font-weight: $fw-regular;
-  word-break: break-word;
-  @include selectStyleByTheme('background', 'primaryBgColor');
-  @include selectStyleByTheme('color', 'primaryColor');
+  @include selectColorByTheme('background', 'primaryBgColor');
+  @include selectColorByTheme('color', 'primaryColor');
 }
 
 a:not([class]) {
   outline: none;
   text-decoration: underline;
-  @include selectStyleByTheme('color', 'linkColor');
+  @include selectColorByTheme('color', 'linkColor');
 
   i {
       font-family: $openSans;
@@ -62,27 +61,6 @@ ul {
 
   a {
       font-weight: $fw-medium;
-  }
-}
-
-%images {
-  max-width: 100%;
-  height: auto;
-}
-
-img {
-  @extend %images;
-}
-
-.image-container {
-  @include grid($gridTemplateRows: 50% auto);
-  position: relative;
-  width: 100%;
-
-  &__image {
-      z-index: 1;
-      min-width: 120px;
-      min-height: 120px;
   }
 }
 

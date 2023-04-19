@@ -8,6 +8,8 @@ import { getFolders } from './scripts/buildUtils';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
 import copy from 'rollup-plugin-copy'
 import scss from 'rollup-plugin-scss'
+import postcss from 'postcss'
+import autoprefixer from 'autoprefixer'
 
 const plugins = [
   peerDepsExternal(),
@@ -19,7 +21,7 @@ const plugins = [
   }),
   terser(),
   scss({
-    insert: true,
+    processor: () => postcss([autoprefixer()]),
     failOnError: true,
     runtime: require("sass"),
   }),

@@ -4,6 +4,8 @@ import { Box } from '../Box'
 
 <Meta title="Staves/Text" component={Text} />
 
+<Box className="paragraph-flow">
+
 # Text
 
 ## Default
@@ -16,37 +18,52 @@ import { Box } from '../Box'
   </Story>
 </Canvas>
 
-## RenderAs
+## Render As
 
 <Canvas>
   <Story
-    name="RenderAs"
+    name="Render As"
   >
     <Text>Text <Text as="strong">Strong</Text></Text>
   </Story>
 </Canvas>
 
-## On Multiple lines
-
-## On Multiple lines
+## Line height
 
 <Canvas>
   <Story
-    name="On Multiple lines"
+    name="Line Height"
   >
-    <Text>Default Text</Text>
-    <Text>Default Text</Text>
-    <Text>Default Text</Text>
+    <Box className="lh-space-5">
+      <Text>
+        If it were, you could call ME Ernest Hemingway. Okay, take it easy Rick. T-that's dark. Why'd you even rope me into this?! And that's why I always say 'Shumshumschilpiddydah!'
+      </Text>
+    </Box>
+  </Story>
+</Canvas>
+
+## Multiple paragraphs
+
+<Canvas>
+  <Story
+    name="Multiple paragraphs"
+  >
+      <Text>Default Text</Text>
+      <Text>Default Text</Text>
+      <Text>Default Text</Text>
   </Story>
 </Canvas>
 
 ## Paragraph flow
 
+`paragraph-flow--#{space-notation}` class utility will add `margin-top` to all children paragraphs except the first one and will take care automatically of the line-height as spacing is intrinsically realted.
+Note that `paragraph-flow` is only available from `space-3` to `space-6` to keep lisibility of the text.
+
 <Canvas>
   <Story
     name="Paragraph flow"
   >
-    <Box className="paragraph-flow">
+    <Box className="paragraph-flow--space-5">
       <Text>
         If it were, you could call ME Ernest Hemingway. Okay, take it easy Rick. T-that's dark. Why'd you even rope me into this?! And that's why I always say 'Shumshumschilpiddydah!'
       </Text>
@@ -57,9 +74,12 @@ import { Box } from '../Box'
         Your special time is your power. It makes you strong like a boob. I couldn't hear you over my own screaming. We've talked about this! Oh, I'm sorry Morty, are you the scientist or are you the kid who wanted to get laid? 5 more minute of this and I'm going to get mad!
       </Text>
     </Box>
+    <Text>paragraph-flow--space-6</Text>
   </Story>
 </Canvas>
 
 ## Props
 
 <ArgsTable of={Text} />
+
+</Box>

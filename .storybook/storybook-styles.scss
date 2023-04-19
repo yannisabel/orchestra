@@ -1,0 +1,10 @@
+@import '../src/Notations/';
+@import '../src/Notations/utility-classes/';
+
+body {
+  font-family: $openSans;
+}
+
+#docs-root .sbdocs {
+  @extend .paragraph-flow--space-5;
+}

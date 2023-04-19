@@ -11,16 +11,17 @@ import { Text } from '../Text'
 
 <Canvas>
   <Story name="Default">
-    <Box><Text>Default box</Text></Box>
+    <Box className="bg--blue-30 padding--space-3"><Text>Default box</Text></Box>
   </Story>
 </Canvas>
 
-## With renderAs
+## render As
 
 <Canvas>
-  <Story name="With renderAs">
+  <Story name="render As">
     <Box
       as="header"
+      className="bg--blue-30 padding--space-3"
     >
       <Text>Box as header</Text>
     </Box>

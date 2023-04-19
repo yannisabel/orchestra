@@ -4,7 +4,7 @@ import { create } from '@storybook/theming'
 const theme = create({
   base: 'dark',
 
-  colorSecondary: 'hsla(206, 46%, 28%, 1)',
+  colorSecondary: '#264B68',
 
   appBg: '#212228',
   appContentBg: '#212228',

@@ -22,8 +22,8 @@ export const whitePalette = {
 }
 
 export const greyPalette = {
-  'grey-0': `hsla(${commonColors.grey}, 1)`,
-  'grey-10': 'hsla(0, 0%, 82%, 1)',
+  'grey-0': 'hsla(0, 0%, 82%, 1)',
+  'grey-10': `hsla(${commonColors.grey}, 1)`,
   'grey-50': 'hsla(0, 0%, 57%, 1)',
   'grey-60': 'hsla(0, 0%, 49%, 1)',
   'grey-100': 'hsla(0, 0%, 20%, 1)',

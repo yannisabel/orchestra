@@ -5,9 +5,9 @@ import React from 'react';
 
 
 export const Text = ({
-  as,
+  as = 'p',
+  align,
   ...props
 }: TextProps)  => {
-  const renderAs = as || 'p';
-  return <Box as={renderAs} {...props} />;
+  return <Box as={as} className={`text-align--${align} ${props.className || ''}`} {...props} />;
 }

@@ -1,0 +1,11 @@
+@import '../colors.scss';
+
+// Choose the best contrast color on the background
+@function colorOnBackground($color) {
+  @if (lightness( $color ) > 55) {
+      @return $grey-100;
+  }
+  @else {
+      @return $white-0;
+  }
+}

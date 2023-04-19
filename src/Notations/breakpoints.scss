@@ -6,22 +6,3 @@ $break-small: 'min-width:767px';
 $break-medium: 'min-width:1140px';
 // large screen
 $break-large: 'min-width:1600px';
-
-//_________________BREAKPOINT MIXINS________________
-@mixin breakPoint($breakpoint) {
-    @if $breakpoint == 'small' {
-        @media (#{$break-small}) {
-            @content;
-        }
-    }
-    @else if $breakpoint == 'medium' {
-        @media (#{$break-medium}) {
-            @content;
-        }
-    }
-    @else if $breakpoint == 'large' {
-        @media (#{$break-large}) {
-            @content;
-        }
-    }
-}
