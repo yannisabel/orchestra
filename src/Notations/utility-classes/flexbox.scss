@@ -70,7 +70,7 @@
 .flex-shrink--0 { flex-shrink: 0; }
 .flex-shrink--1 { flex-shrink: 1; }
 
-@include breakPoint('medium') {
+@include breakpoint('medium') {
   .medium_flex { display: flex; }
   .medium_inline-flex { display: inline-flex; }
 
@@ -141,7 +141,7 @@
   .medium_flex-shrink--1 { flex-shrink: 1; }
 }
 
-@include breakPoint('large') {
+@include breakpoint('large') {
   .large_flex { display: flex; }
   .large_inline-flex { display: inline-flex; }
 
@@ -212,7 +212,7 @@
   .large_flex-shrink--1 { flex-shrink: 1; }
 }
 
-@include breakPoint('extra-large') {
+@include breakpoint('extra-large') {
   .extra-large_flex { display: flex; }
   .extra-large_inline-flex { display: inline-flex; }
 

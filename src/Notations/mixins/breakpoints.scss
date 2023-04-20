@@ -1,7 +1,7 @@
 @import '../breakpoints';
 
 //_________________BREAKPOINT MIXINS________________
-@mixin breakPoint($breakpoint) {
+@mixin breakpoint($breakpoint) {
   @if $breakpoint == 'medium' {
     @media (#{$break-medium}) {
         @content;

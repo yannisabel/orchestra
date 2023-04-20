@@ -6,14 +6,14 @@
 
 @include generateSpaceClasses($spacesTypes, $spacesDirections, $spaces);
 
-@include breakPoint('medium') {
+@include breakpoint('medium') {
   @include generateSpaceClasses($spacesTypes, $spacesDirections, $spaces, $breakpoint: 'medium');
 }
 
-@include breakPoint('large') {
+@include breakpoint('large') {
   @include generateSpaceClasses($spacesTypes, $spacesDirections, $spaces, $breakpoint: 'large');
 }
 
-@include breakPoint('extra-large') {
+@include breakpoint('extra-large') {
   @include generateSpaceClasses($spacesTypes, $spacesDirections, $spaces, $breakpoint: 'extra-large');
 }

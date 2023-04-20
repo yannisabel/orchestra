@@ -25,7 +25,7 @@
 
 @include generateAlignJustifyClasses();
 
-@include breakPoint('medium') {
+@include breakpoint('medium') {
   .medium_display--none {              display: none; }
   .medium_display--inline {              display: inline; }
   .medium_display--block {              display: block; }
@@ -41,7 +41,7 @@
   @include generateAlignJustifyClasses($breakpoint: 'medium')
 }
 
-@include breakPoint('large') {
+@include breakpoint('large') {
   .large_display--none {              display: none; }
   .large_display--inline {              display: inline; }
   .large_display--block {              display: block; }
@@ -57,7 +57,7 @@
   @include generateAlignJustifyClasses($breakpoint: 'large')
 }
 
-@include breakPoint('extra-large') {
+@include breakpoint('extra-large') {
 
   .extra-large_display--none {              display: none; }
   .extra-large_display--inline {              display: inline; }

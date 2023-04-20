@@ -1,48 +1,40 @@
-export const commonColors = {
-  'black': '0, 0%, 0%',
-  'white': '0, 0%, 100%',
-  'grey': '0, 0%, 80%',
-  'blue': '206, 46%, 28%',
-  'orange': '26, 100%, 56%',
-}
-
 export const blackPalette = {
-  'black-0': `hsla(${commonColors.black}, 1)`,
-  'black-V0--T10': 'hsla(0, 0%, 0%, 0.1)',
-  'black-V0--T25': 'hsla(0, 0%, 0%, 0.25)',
-  'black-V0--T50': 'hsla(0, 0%, 0%, 0.5)',
-  'black-V0--T75': 'hsla(0, 0%, 0%, 0.75)',
-  'black-V0--T90': 'hsla(0, 0%, 0%, 0.9)',
+  'black-0': 'rgba(0, 0, 0, 1)',
+  'black-V0--T10': 'rgba(0, 0, 0, 0.1)',
+  'black-V0--T25': 'rgba(0, 0, 0, 0.25)',
+  'black-V0--T50': 'rgba(0, 0, 0, 0.5)',
+  'black-V0--T75': 'rgba(0, 0, 0, 0.75)',
+  'black-V0--T90': 'rgba(0, 0, 0, 0.9)',
 }
 
 export const whitePalette = {
-  'white-0': `hsla(${commonColors.white}, 1)`,
-  'white-10': 'hsla(0,0%,95%,1)',
-  'white-V0--T75': `hsla(${commonColors.white}, 0.75)`,
+  'white-0': 'rgba(255, 255, 255, 1)',
+  'white-10': 'rgba(241, 241, 241, 1)',
+  'white-V0--T75': 'rgba(255, 255, 255, 0.75)',
 }
 
 export const greyPalette = {
-  'grey-0': 'hsla(0, 0%, 82%, 1)',
-  'grey-10': `hsla(${commonColors.grey}, 1)`,
-  'grey-50': 'hsla(0, 0%, 57%, 1)',
-  'grey-60': 'hsla(0, 0%, 49%, 1)',
-  'grey-100': 'hsla(0, 0%, 20%, 1)',
-  'grey-V0--T2': `hsla(${commonColors.white}, 0.2)`,
+  'grey-0': 'rgba(209, 209, 209, 1)',
+  'grey-10': 'rgba(204, 204, 204, 1)',
+  'grey-50': 'rgba(145, 145, 145, 1)',
+  'grey-60': 'rgba(124, 124, 124, 1)',
+  'grey-100': 'rgba(51, 51, 51, 1)',
+  'grey-V0--T2': 'rgba(209, 209, 209, .2)',
 }
 
 export const bluePalette = {
-  'blue-0': 'hsla(206, 45%, 88%, 1)',
-  'blue-10': 'hsla(206, 100%, 71%, 1)',
-  'blue-20': 'hsla(206, 47%, 43%, 1)',
-  'blue-30': 'hsla(206, 46%, 28%, 1)',
-  'blue-40': 'hsla(226, 14%, 29%, 1)',
-  'blue-50': 'hsla(235, 12%, 18%, 1)',
-  'blue-100': 'hsla(231, 10%, 14%, 1)',
+  'blue-0': 'rgba(210, 226, 238, 1)',
+  'blue-10': 'rgba(107, 190, 255, 1)',
+  'blue-20': 'rgba(58, 115, 160, 1)',
+  'blue-30': 'rgba(38, 75, 104), 1)',
+  'blue-40': 'rgba(64, 69, 85, 1)',
+  'blue-50': 'rgba(40, 41, 51, 1)',
+  'blue-100': 'rgba(33, 34, 40, 1)',
 }
 
 export const orangePalette = {
-  'orange-0': `hsla(${commonColors.orange}, 1)`,
-  'orange-10': 'hsla(26, 100%, 46%, 1)',
+  'orange-0': 'rgba(255, 129, 31, 1)',
+  'orange-10': 'rgba(235, 103, 1)',
 }
 
 export const colors = {...blackPalette, ...whitePalette, ...greyPalette, ...bluePalette, ...orangePalette}

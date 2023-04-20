@@ -72,7 +72,7 @@ h6 {
   padding-bottom: $space-2;
   font-size: $fs-6;
   text-align: left;
-  @include breakPoint(small) {
+  @include breakpoint(small) {
       padding-bottom: $space-3+$space-2;
       font-size: $fs-7;
   }

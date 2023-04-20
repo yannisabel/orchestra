@@ -95,7 +95,7 @@ blockquote {
       &--30 {
           width: 100%;
 
-          @include breakPoint('medium') {
+          @include breakpoint('medium') {
               width: 30%;
               margin-right: $space-5;
           }
@@ -104,7 +104,7 @@ blockquote {
       &--50 {
         width: 100%;
 
-        @include breakPoint('medium') {
+        @include breakpoint('medium') {
             width: 50%;
             margin-right: $space-5;
         }
@@ -116,7 +116,7 @@ blockquote {
     &--30 {
       width: 100%;
 
-      @include breakPoint('medium') {
+      @include breakpoint('medium') {
           width: 30%;
           margin-left: $space-5;
       }
@@ -125,7 +125,7 @@ blockquote {
     &--50 {
       width: 100%;
 
-      @include breakPoint('medium') {
+      @include breakpoint('medium') {
           width: 50%;
           margin-left: $space-5;
       }
@@ -147,7 +147,7 @@ blockquote {
   right: 0;
   box-shadow: $depth-2--reversed;
 
-  @include breakPoint('medium') {
+  @include breakpoint('medium') {
       @include grid($gridAutoFlow: column, $alignItems: center);
       width: unset;
   }
@@ -160,7 +160,7 @@ blockquote {
       margin-top: 0;
       margin-left: $space-2;
 
-      @include breakPoint('medium') {
+      @include breakpoint('medium') {
           margin-top: $space-2;
           margin-bottom: $space-2;
           margin-left: $space-2;

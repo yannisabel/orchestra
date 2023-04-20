@@ -4,14 +4,14 @@
 
 @include generateRadiusClasses($radiuses, $radiusesDirections);
 
-@include breakPoint('medium') {
+@include breakpoint('medium') {
   @include generateRadiusClasses($radiuses, $radiusesDirections, $breakpoint: 'medium');
 }
 
-@include breakPoint('large') {
+@include breakpoint('large') {
   @include generateRadiusClasses($radiuses, $radiusesDirections, $breakpoint: 'large');
 }
 
-@include breakPoint('extra-large') {
+@include breakpoint('extra-large') {
   @include generateRadiusClasses($radiuses, $radiusesDirections, $breakpoint: 'extra-large');
 }

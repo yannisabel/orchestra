@@ -122,7 +122,7 @@
   line-height: $space-10;
 }
 
-@include breakPoint('medium') {
+@include breakpoint('medium') {
   //// Font Family
 
   .medium_ff-mulish {
@@ -242,7 +242,7 @@
   }
 }
 
-@include breakPoint('large') {
+@include breakpoint('large') {
   //// Font Family
 
   .large_ff-mulish {
@@ -362,7 +362,7 @@
   }
 }
 
-@include breakPoint('extra-large') {
+@include breakpoint('extra-large') {
   //// Font Family
 
   .extra-large_ff-mulish {

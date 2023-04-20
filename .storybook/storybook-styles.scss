@@ -14,17 +14,17 @@ body {
 @include generateGridRowsClasses(12);
 @include generateGridGapClasses($gapTypes, $spaces);
 
-@include breakPoint('medium') {
+@include breakpoint('medium') {
   @include generateGridColumnsClasses(12, $breakpoint: 'medium');
   @include generateGridGapClasses($gapTypes, $spaces, $breakpoint: 'medium');
 }
 
-@include breakPoint('large') {
+@include breakpoint('large') {
   @include generateGridColumnsClasses(12, $breakpoint: 'large');
   @include generateGridGapClasses($gapTypes, $spaces, $breakpoint: 'large');
 }
 
-@include breakPoint('extra-large') {
+@include breakpoint('extra-large') {
   @include generateGridColumnsClasses(12, $breakpoint: 'extra-large');
   @include generateGridGapClasses($gapTypes, $spaces, $breakpoint: 'extra-large');
 }
