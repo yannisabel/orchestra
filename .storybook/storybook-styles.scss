@@ -1,5 +1,6 @@
 @import '../src/Notations/';
 @import '../src/Notations/utility-classes/';
+@import '../src/Notations/mixins/';
 
 body {
   font-family: $openSans;
@@ -7,4 +8,23 @@ body {
 
 #docs-root .sbdocs {
   @extend .paragraph-flow--space-5;
+}
+
+@include generateGridColumnsClasses(12);
+@include generateGridRowsClasses(12);
+@include generateGridGapClasses($gapTypes, $spaces);
+
+@include breakPoint('medium') {
+  @include generateGridColumnsClasses(12, $breakpoint: 'medium');
+  @include generateGridGapClasses($gapTypes, $spaces, $breakpoint: 'medium');
+}
+
+@include breakPoint('large') {
+  @include generateGridColumnsClasses(12, $breakpoint: 'large');
+  @include generateGridGapClasses($gapTypes, $spaces, $breakpoint: 'large');
+}
+
+@include breakPoint('extra-large') {
+  @include generateGridColumnsClasses(12, $breakpoint: 'extra-large');
+  @include generateGridGapClasses($gapTypes, $spaces, $breakpoint: 'extra-large');
 }

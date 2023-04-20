@@ -31,3 +31,30 @@ $blue-100: #212228;
 // Orange panel
 $orange-0: #FF811F;
 $orange-10: #EB6700;
+
+$colors: (
+  'black-0': $black-0,
+  'black-V0--T10': $black-V0--T10,
+  'black-V0--T25': $black-V0--T25,
+  'black-V0--T50': $black-V0--T50,
+  'black-V0--T75': $black-V0--T75,
+  'black-V0--T90': $black-V0--T90,
+  'white-0': $white-0,
+  'white-10': $white-10,
+  'white-V0--T75': $white-V0--T75,
+  'grey-0': $grey-0,
+  'grey-10': $grey-10,
+  'grey-50': $grey-50,
+  'grey-60':$grey-60,
+  'grey-100': $grey-100,
+  'grey-V0--T2': $grey-V0--T2,
+  'blue-0': $blue-0,
+  'blue-10': $blue-10,
+  'blue-20': $blue-20,
+  'blue-30': $blue-30,
+  'blue-40': $blue-40,
+  'blue-50': $blue-50,
+  'blue-100': $blue-100,
+  'orange-0': $orange-0,
+  'orange-10': $orange-10,
+);

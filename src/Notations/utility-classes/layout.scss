@@ -1,143 +1,80 @@
 @import './spaces';
+@import '../mixins/breakpoints';
+@import '../mixins/layout';
 
 /**
 * Layout specific styles
+* Position and display classes + classes common to grid and flexbox.
 **/
 
-.align-items {
-  &--baseline {
-    align-items: baseline;
-  }
+.display--block {               display: block; }
+.display--flex {                display: flex; }
+.display--grid {                display: grid; }
+.display--inline {              display: inline; }
+.display--inline-block {        display: inline-block; }
+.display--inline-flex {         display: inline-flex; }
+.display--inline-grid {         display: inline-grid; }
+.display--inline-table {        display: inline-table; }
+.display--none {                display: none; }
+.display--table {               display: table; }
+.display--table-cell {          display: table-cell; }
+.display--table-row {           display: table-row; }
+.display--table-row-group {     display: table-row-group; }
+.display--table-column {        display: table-column; }
+.display--table-column-group {  display: table-column-group; }
 
-  &--center {
-    align-items: center;
-  }
+@include generateAlignJustifyClasses();
 
-  &--start {
-    align-items: flex-start;
-  }
+@include breakPoint('medium') {
+  .medium_display--none {              display: none; }
+  .medium_display--inline {              display: inline; }
+  .medium_display--block {              display: block; }
+  .medium_display--inline-block {             display: inline-block; }
+  .medium_display--inline-table {             display: inline-table; }
+  .medium_display--table {              display: table; }
+  .medium_display--table-cell {             display: table-cell; }
+  .medium_display--table-row {          display: table-row; }
+  .medium_display--table-row-group {    display: table-row-group; }
+  .medium_display--table-column {       display: table-column; }
+  .medium_display--table-column-group { display: table-column-group; }
 
-  &--end {
-    align-items: flex-start;
-  }
-
-  &--stretch {
-    align-items: stretch;
-  }
+  @include generateAlignJustifyClasses($breakpoint: 'medium')
 }
 
-.align-content {
-  &--baseline {
-    align-content: baseline;
-  }
+@include breakPoint('large') {
+  .large_display--none {              display: none; }
+  .large_display--inline {              display: inline; }
+  .large_display--block {              display: block; }
+  .large_display--inline-block {             display: inline-block; }
+  .large_display--inline-table {             display: inline-table; }
+  .large_display--table {              display: table; }
+  .large_display--table-cell {             display: table-cell; }
+  .large_display--table-row {          display: table-row; }
+  .large_display--table-row-group {    display: table-row-group; }
+  .large_display--table-column {       display: table-column; }
+  .large_display--table-column-group { display: table-column-group; }
 
-  &--center {
-    align-content: center;
-  }
-
-  &--start {
-    align-content: flex-start;
-  }
-
-  &--end {
-    align-content: flex-start;
-  }
-
-  &--stretch {
-    align-content: stretch;
-  }
+  @include generateAlignJustifyClasses($breakpoint: 'large')
 }
 
-.align-self {
-  &--baseline {
-    align-self: baseline;
-  }
+@include breakPoint('extra-large') {
 
-  &--center {
-    align-self: center;
-  }
+  .extra-large_display--none {              display: none; }
+  .extra-large_display--inline {              display: inline; }
+  .extra-large_display--block {              display: block; }
+  .extra-large_display--inline-block {             display: inline-block; }
+  .extra-large_display--inline-table {             display: inline-table; }
+  .extra-large_display--table {              display: table; }
+  .extra-large_display--table-cell {             display: table-cell; }
+  .extra-large_display--table-row {          display: table-row; }
+  .extra-large_display--table-row-group {    display: table-row-group; }
+  .extra-large_display--table-column {       display: table-column; }
+  .extra-large_display--table-column-group { display: table-column-group; }
 
-  &--start {
-    align-self: flex-start;
-  }
-
-  &--end {
-    align-self: flex-start;
-  }
-
-  &--stretch {
-    align-self: stretch;
-  }
+  @include generateAlignJustifyClasses($breakpoint: 'extra-large')
 }
 
-.justify-content {
-  &--baseline {
-    justify-content: baseline;
-  }
-
-  &--center {
-    justify-content: center;
-  }
-
-  &--start {
-    justify-content: flex-start;
-  }
-
-  &--end {
-    justify-content: flex-start;
-  }
-
-  &--stretch {
-    justify-content: stretch;
-  }
-
-  &--space-around {
-    justify-content: space-around;
-  }
-
-  &--space-between {
-    justify-content: space-between;
-  }
-
-  &--space-evenly {
-    justify-content: space-evenly;
-  }
-}
-
-.justify-self {
-  &--baseline {
-    justify-self: baseline;
-  }
-
-  &--center {
-    justify-self: center;
-  }
-
-  &--start {
-    justify-self: flex-start;
-  }
-
-  &--end {
-    justify-self: flex-start;
-  }
-
-  &--stretch {
-    justify-self: stretch;
-  }
-
-  &--space-around {
-    justify-self: space-around;
-  }
-
-  &--space-between {
-    justify-self: space-between;
-  }
-
-  &--space-evenly {
-    justify-self: space-evenly;
-  }
-}
-
+// paragraph-flow classes start at `space-3` to avoid text overlapping and end at `space-6` to avoid unreadability with to much space.
 .paragraph-flow--space-3 {
   line-height: $space-4;
 

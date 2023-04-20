@@ -10,3 +10,51 @@
   align-items: $alignItems;
   justify-content: $justifyContent;
 }
+
+@mixin generateGridColumnsClasses($numberOfColumns, $breakpoint: 'none') {
+  $breakpointName: if($breakpoint != 'none', '#{$breakpoint}_', '');
+
+  .#{$breakpointName}grid-col-#{$numberOfColumns} {
+    grid-template-columns: repeat(#{$numberOfColumns}, minmax(0, 1fr));
+  }
+
+  @for $columnNumber from 1 through $numberOfColumns {
+    .#{$breakpointName}grid-item--startCol#{$columnNumber}of#{$numberOfColumns} {
+      grid-column-start: #{$columnNumber};
+    }
+  
+    .#{$breakpointName}grid-item--spanCol#{$columnNumber}of#{$numberOfColumns} {
+      grid-column-end: span $columnNumber;
+    }
+  }
+}
+
+@mixin generateGridRowsClasses($numberOfRows, $breakpoint: 'none') {
+  $breakpointName: if($breakpoint != 'none', '#{$breakpoint}_', '');
+
+  .#{$breakpointName}grid-row-#{$numberOfRows} {
+    grid-template-rows: repeat(#{$numberOfRows}, minmax(0, 1fr));
+  }
+
+  @for $rowNumber from 1 through $numberOfRows {
+    .#{$breakpointName}grid-item--startRow#{$rowNumber}of#{$numberOfRows} {
+      grid-row-start: #{$rowNumber};
+    }
+  
+    .#{$breakpointName}grid-item--spanRow#{$rowNumber}of#{$numberOfRows} {
+      grid-row-end: span $rowNumber;
+    }
+  }
+}
+
+@mixin generateGridGapClasses($gapTypes, $spaces, $breakpoint: 'none') {
+  $breakpointName: if($breakpoint != 'none', '#{$breakpoint}_', '');
+
+  @each $gapType in $gapTypes {
+    @each $spaceKey, $spaceValue in $spaces {
+      .#{$breakpointName}grid-#{$gapType}--#{$spaceKey} {
+        grid-#{$gapType}: $spaceValue;
+      }
+    }
+  }
+}

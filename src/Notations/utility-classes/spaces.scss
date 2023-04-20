@@ -1,17 +1,19 @@
-@import '../spaces.scss';
+@import '../spaces';
+@import '../mixins/spaces';
+@import '../mixins/breakpoints';
 
-.padding--space-2 {
-  padding: $space-2;
+// utility classes for Margin and Padding
+
+@include generateSpaceClasses($spacesTypes, $spacesDirections, $spaces);
+
+@include breakPoint('medium') {
+  @include generateSpaceClasses($spacesTypes, $spacesDirections, $spaces, $breakpoint: 'medium');
 }
 
-.padding--space-3 {
-  padding: $space-3;
+@include breakPoint('large') {
+  @include generateSpaceClasses($spacesTypes, $spacesDirections, $spaces, $breakpoint: 'large');
 }
 
-.margin-top--space-4 {
-  margin-top: $space-4;
-}
-
-.margin-bottom--space-5 {
-  margin-bottom: $space-5;
+@include breakPoint('extra-large') {
+  @include generateSpaceClasses($spacesTypes, $spacesDirections, $spaces, $breakpoint: 'extra-large');
 }

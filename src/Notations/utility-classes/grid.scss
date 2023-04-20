@@ -1,57 +1,8 @@
-@import '../spaces.scss';
-@import '../grid';
-@import '../mixins/grid';
+// to generate grid-template-columns classes
+// use: generateGridColumnsClasses($numberOfColumns, $breakpoint);
 
-.grid-col-#{$number-of-columns} {
-  @include grid($gridTemplateColumns: repeat($number-of-columns, [col-start] 1fr))
-}
+// to generate grid-template-rows classes
+// use: generateGridRowsClasses($numberOfRows, $breakpoint)
 
-@for $spanNumber from 2 through $number-of-columns {
-  .grid-item--onCol#{$spanNumber}of#{$number-of-columns} {
-    grid-column-start: col-start #{$spanNumber};
-  }
-
-  .grid-item--span#{$spanNumber}of#{$number-of-columns} {
-    grid-column-end: span $spanNumber;
-  }
-}
-
-.grid-gap--space-1 {
-  grid-gap: $space-1;
-}
-
-.grid-gap--space-2 {
-  grid-gap: $space-2;
-}
-
-.grid-gap--space-3 {
-  grid-gap: $space-3;
-}
-
-.grid-gap--space-4 {
-  grid-gap: $space-4;
-}
-
-.grid-gap--space-5 {
-  grid-gap: $space-5;
-}
-
-.grid-gap--space-6 {
-  grid-gap: $space-6;
-}
-
-.grid-gap--space-7 {
-  grid-gap: $space-7;
-}
-
-.grid-gap--space-8 {
-  grid-gap: $space-8;
-}
-
-.grid-gap--space-9 {
-  grid-gap: $space-9;
-}
-
-.grid-gap--space-10 {
-  grid-gap: $space-10;
-}
+// to generate grid-gap classes
+// use: generateGridGapClasses($gapTypes, $spaces, $breakpoint)

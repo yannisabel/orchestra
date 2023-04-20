@@ -1,16 +1,101 @@
 @import '../colors';
-@import '../functions';
+@import '../functions/colors';
+@import '../mixins/breakpoints.scss';
 
-.bg--blue-30 {
-  background-color: $blue-30;
-  & > p {
-    color: colorOnBackground($blue-30);
+.bg-color {
+  @each $color, $value in $colors {
+    &--#{$color} {
+      background-color: $value;
+      & > a, abbr, acronym, address, b, big, caption, center,
+      cite, code, del, dfn, dd, dl, dt, em, figcaption,
+      i, img, ins, kbd, li, label, legend, mark,
+      p, q, s, samp, small, strike, strong, sub, summary,
+      sup,  time, tt, var, u {
+        color: colorOnBackground($value);
+      }
+    }
   }
 }
 
-.bg--grey-0 {
-  background-color: $grey-0;
-  & > p {
-    color: colorOnBackground($grey-0);
+.color {
+  @each $color, $value in $colors {
+    &--#{$color} {
+      color: $value;
+    }
+  }
+}
+
+@include breakPoint('medium') {
+  .medium_bg {
+    @each $color, $value in $colors {
+      &--#{$color} {
+        background-color: $value;
+        & > a, abbr, acronym, address, b, big, caption, center,
+        cite, code, del, dfn, dd, dl, dt, em, figcaption,
+        i, img, ins, kbd, li, label, legend, mark,
+        p, q, s, samp, small, strike, strong, sub, summary,
+        sup,  time, tt, var, u {
+          color: colorOnBackground($value);
+        }
+      }
+    }
+  }
+  
+  .medium_color {
+    @each $color, $value in $colors {
+      &--#{$color} {
+        color: $value;
+      }
+    }
+  }
+}
+
+@include breakPoint('large') {
+  .large_bg {
+    @each $color, $value in $colors {
+      &--#{$color} {
+        background-color: $value;
+        & > a, abbr, acronym, address, b, big, caption, center,
+        cite, code, del, dfn, dd, dl, dt, em, figcaption,
+        i, img, ins, kbd, li, label, legend, mark,
+        p, q, s, samp, small, strike, strong, sub, summary,
+        sup,  time, tt, var, u {
+          color: colorOnBackground($value);
+        }
+      }
+    }
+  }
+  
+  .large_color {
+    @each $color, $value in $colors {
+      &--#{$color} {
+        color: $value;
+      }
+    }
+  }
+}
+
+@include breakPoint('extra-large') {
+  .extra-large_bg {
+    @each $color, $value in $colors {
+      &--#{$color} {
+        background-color: $value;
+        & > a, abbr, acronym, address, b, big, caption, center,
+        cite, code, del, dfn, dd, dl, dt, em, figcaption,
+        i, img, ins, kbd, li, label, legend, mark,
+        p, q, s, samp, small, strike, strong, sub, summary,
+        sup,  time, tt, var, u {
+          color: colorOnBackground($value);
+        }
+      }
+    }
+  }
+  
+  .extra-large_color {
+    @each $color, $value in $colors {
+      &--#{$color} {
+        color: $value;
+      }
+    }
   }
 }

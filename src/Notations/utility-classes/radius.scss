@@ -1,25 +1,17 @@
-@import '../radius.scss';
+@import '../radius';
+@import '../mixins/radius';
+@import '../mixins/breakpoints';
 
-.radius-1 {
-  border-radius: $radius-1;
+@include generateRadiusClasses($radiuses, $radiusesDirections);
+
+@include breakPoint('medium') {
+  @include generateRadiusClasses($radiuses, $radiusesDirections, $breakpoint: 'medium');
 }
 
-.radius-2 {
-  border-radius: $radius-2;
+@include breakPoint('large') {
+  @include generateRadiusClasses($radiuses, $radiusesDirections, $breakpoint: 'large');
 }
 
-.radius-3 {
-  border-radius: $radius-3;
-}
-
-.radius-4 {
-  border-radius: $radius-4;
-}
-
-.radius-5 {
-  border-radius: $radius-5;
-}
-
-.radius-round {
-  border-radius: $radius-round;
+@include breakPoint('extra-large') {
+  @include generateRadiusClasses($radiuses, $radiusesDirections, $breakpoint: 'extra-large');
 }

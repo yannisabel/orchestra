@@ -10,7 +10,7 @@
   border: 0;
   height: 1px;
   @include selectColorByTheme('background-color', 'dividerColor');
-  @include breakPoint('large') {
+  @include breakPoint('extra-large') {
       margin: $space-3 + $space-2 0;
   }
 }

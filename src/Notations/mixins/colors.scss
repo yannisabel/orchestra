@@ -1,4 +1,4 @@
-@import '../color-palette.scss';
+@import '../color-palette';
 
 @mixin selectColorByTheme($key, $color) {
   @each $theme-name, $theme-color in $themes {
