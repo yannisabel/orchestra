@@ -1,0 +1,73 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs'
+
+import { Stack } from './Stack'
+import { Box } from '../Box'
+import { Text } from '../Text'
+
+<Meta title="Staves/Stack" component={Stack} />
+
+# Stack
+
+## Horizontal
+
+<Canvas>
+  <Story name="Horizontal">
+    <Stack direction="row">
+      <Box className="bg-color--blue-30 padding--space-3">
+        <Text>Item 1</Text>
+      </Box>
+      <Box className="bg-color--blue-30 padding--space-3">
+        <Text>Item 2</Text>
+      </Box>
+    </Stack>
+  </Story>
+</Canvas>
+
+## Horizontal With Space
+
+<Canvas>
+  <Story name="Horizontal With Space">
+    <Stack direction="row" spacing="space-3">
+      <Box className="bg-color--blue-30 padding--space-3">
+        <Text>Item 1</Text>
+      </Box>
+      <Box className="bg-color--blue-30 padding--space-3">
+        <Text>Item 2</Text>
+      </Box>
+    </Stack>
+  </Story>
+</Canvas>
+
+## Vertical
+
+<Canvas>
+  <Story name="Vertical">
+    <Stack direction="column">
+      <Box className="bg-color--blue-30 padding--space-3">
+        <Text>Item 1</Text>
+      </Box>
+      <Box className="bg-color--blue-30 padding--space-3">
+        <Text>Item 2</Text>
+      </Box>
+    </Stack>
+  </Story>
+</Canvas>
+
+## Vertical With Space
+
+<Canvas>
+  <Story name="Vertical With Space">
+    <Stack direction="column" spacing="space-3">
+      <Box className="bg-color--blue-30 padding--space-3">
+        <Text>Item 1</Text>
+      </Box>
+      <Box className="bg-color--blue-30 padding--space-3">
+        <Text>Item 2</Text>
+      </Box>
+    </Stack>
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={Stack} />

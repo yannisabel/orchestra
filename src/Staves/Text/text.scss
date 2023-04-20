@@ -1,0 +1,88 @@
+@import '../../Notations/mixins/colors';
+@import '../../Notations/colors';
+@import '../../Notations/fonts';
+@import '../../Notations/radius';
+@import '../../Notations/spaces';
+
+%text {
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: 0.03em;
+  line-height: inherit;
+  @include selectColorByTheme('color', 'textColor');
+}
+
+address, abbr, b, bdi, bdo, cite, dfn, em, figcaption, i , kbd, mark, p, q, s, samp, small, span, strong, sub, sup, time, u, var, wbr {
+  @extend %text;
+}
+
+p {
+
+  .underline, u {
+      text-decoration: underline;
+  }
+
+  a {
+      font-weight: $fw-medium;
+  }
+}
+
+b, strong {
+  font-weight: $fw-bold;
+}
+
+i, em {
+  font-style: italic;
+  font-weight: $fw-regular;
+}
+
+.ellipsis {
+  overflow: hidden;
+
+  & > * {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+code:not([class]) {
+  border-radius: $radius-1;
+  // notation exception to avoid code component to add more space to lines.
+  padding:  $space-1/2 $space-1;
+  background-color: $blue-0;
+  color: $blue-30;
+  text-transform: none;
+  @include selectColorByTheme('background-color', 'codeBgColor');
+  @include selectColorByTheme('color', 'codeColor');
+}
+
+.text-align {
+  &--center {
+    text-align: center;
+  }
+
+  &--end {
+    text-align: end;
+  }
+
+  &--justify {
+    text-align: justify;
+  }
+
+  &--left {
+    text-align: left;
+  }
+
+  &--right {
+    text-align: right;
+  }
+
+  &--start {
+    text-align: start;
+  }
+
+  &--inherit {
+    text-align: inherit;
+  }
+}

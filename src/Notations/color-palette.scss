@@ -1,0 +1,36 @@
+@import './colors';
+
+$themes: (
+    light: (
+        primaryBgColor: $white-10,
+        textColor: $grey-100,
+        titleColor: $blue-30,
+        linkColor: $blue-30,
+        ghostButtonHover: $black-V0--T10,
+        accentColor: $blue-20,
+        cardBgColor: $white-0,
+        cardTitleColor: $blue-20,
+        discreetColor: $grey-60,
+        stickerColor: $grey-0,
+        codeBgColor: $blue-0,
+        codeColor: $blue-30,
+        dividerColor: $grey-0,
+        footerLinkColor: $white-0,
+    ),
+    dark: (
+        primaryBgColor: $blue-100,
+        textColor: $white-10,
+        titleColor: $blue-20,
+        linkColor: $blue-10,
+        ghostButtonHover: $grey-V0--T2,
+        accentColor: $blue-20,
+        cardBgColor: $blue-50,
+        cardTitleColor: $white-10,
+        discreetColor: $grey-50,
+        stickerColor: $blue-30,
+        codeBgColor: $blue-30,
+        codeColor: $white-0,
+        dividerColor: $blue-40,
+        footerLinkColor: $white-0,
+    )
+)

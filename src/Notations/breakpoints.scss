@@ -1,0 +1,11 @@
+//_____________________ BREAKPOINTS_______________________
+
+// Breakpoints follow mobile the first principle so there are no `max-width` property.
+// Small is the default styles without media-queries
+
+// After Small screen
+$break-medium: 'min-width:767px';
+// After Medium screen
+$break-large: 'min-width:1140px';
+// After Large screen
+$break-extra-large: 'min-width:1600px';

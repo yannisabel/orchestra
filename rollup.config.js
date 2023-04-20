@@ -2,26 +2,34 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
-import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 const packageJson = require('./package.json');
 import { getFolders } from './scripts/buildUtils';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
+import copy from 'rollup-plugin-copy'
 import scss from 'rollup-plugin-scss'
+import postcss from 'postcss'
+import autoprefixer from 'autoprefixer'
 
 const plugins = [
   peerDepsExternal(),
   resolve(),
-  replace({
-    __IS_DEV__: process.env.NODE_ENV === 'development',
-  }),
   commonjs(),
   typescript({
     tsconfig: './tsconfig.json',
     useTsconfigDeclarationDir: true,
   }),
   terser(),
-  scss(),
+  scss({
+    processor: () => postcss([autoprefixer()]),
+    failOnError: true,
+    runtime: require("sass"),
+  }),
+  copy({
+    targets: [
+      { src: 'src/Notations', dest: 'dist' }
+    ]
+  })
 ];
 const subfolderPlugins = (folderName) => [
   ...plugins,
@@ -29,17 +37,17 @@ const subfolderPlugins = (folderName) => [
     baseContents: {
       name: `${packageJson.name}/${folderName}`,
       private: true,
-      main: '../cjs/index.js',
+      main: '../../cjs/index.js',
       module: './index.js',
       types: './index.d.ts',
     },
   }),
 ];
-const folderBuilds = getFolders('./src/orchestra').map((folder) => {
+const folderBuilds = getFolders('./src/Staves').map((folder) => {
   return {
-    input: `src/orchestra/${folder}/index.ts`,
+    input: `src/Staves/${folder}/index.ts`,
     output: {
-      file: `dist/${folder}/index.js`,
+      file: `dist/Staves/${folder}/index.js`,
       sourcemap: true,
       exports: 'named',
       format: 'esm',
@@ -51,7 +59,7 @@ const folderBuilds = getFolders('./src/orchestra').map((folder) => {
 
 export default [
   {
-    input: ['src/orchestra/index.ts'],
+    input: ['src/Staves/index.ts'],
     output: [
       {
         file: packageJson.module,
@@ -65,7 +73,7 @@ export default [
   },
   ...folderBuilds,
   {
-    input: ['src/orchestra/index.ts'],
+    input: ['src/Staves/index.ts'],
     output: [
       {
         file: packageJson.main,

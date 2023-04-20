@@ -1,0 +1,192 @@
+// order is important to let some files to use the previous ones
+// Notations
+@import './mixins';
+@import './utility-classes/';
+@import './animations';
+@import './breakpoints';
+@import './colors';
+@import './flexbox';
+@import './fonts';
+@import './functions/';
+@import './grid';
+@import './shadows';
+@import './spaces';
+@import './radius';
+// Staves
+@import '../Staves/Anchor/anchor';
+@import '../Staves/Badge/badge';
+@import '../Staves/Box/box';
+@import '../Staves/Button/button';
+@import '../Staves/Card/card';
+@import '../Staves/Divider/divider';
+@import '../Staves/Icon/icon';
+@import '../Staves/Picture/picture';
+@import '../Staves/Stack/stack';
+@import '../Staves/Sticker/sticker';
+@import '../Staves/Switch/switch';
+@import '../Staves/Text/text';
+@import '../Staves/Title/title';
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  @include selectColorByTheme('background', 'primaryBgColor');
+  @include selectColorByTheme('color', 'primaryColor');
+}
+
+a:not([class]) {
+  outline: none;
+  text-decoration: underline;
+  @include selectColorByTheme('color', 'linkColor');
+
+  i {
+      font-family: $openSans;
+  }
+}
+
+ul {
+  margin-top: $space-3;
+  margin-bottom: $space-3;
+  margin-left: 14px;
+  list-style-position: outside;
+  line-height: $space-4;
+
+  a {
+      font-weight: $fw-medium;
+  }
+}
+
+figure p {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+figcaption, .legend {
+  margin-bottom: ($space-3+$space-2)+$space-3;
+  padding: $space-3;
+  text-align: center;
+}
+
+blockquote {
+  padding: $space-2 $space-3;
+  margin: 0 0 20px;
+  font-size: $fs-2;
+  border-left: 5px solid $grey-0;
+
+  footer {
+      text-align: right;
+  }
+}
+
+.float {
+  margin-top: $space-3;
+  margin-bottom: $space-3;
+
+  &.left {
+      float: left;
+      &--30 {
+          width: 100%;
+
+          @include breakpoint('medium') {
+              width: 30%;
+              margin-right: $space-5;
+          }
+      }
+
+      &--50 {
+        width: 100%;
+
+        @include breakpoint('medium') {
+            width: 50%;
+            margin-right: $space-5;
+        }
+      }
+  }
+
+  &.right {
+    float: right;
+    &--30 {
+      width: 100%;
+
+      @include breakpoint('medium') {
+          width: 30%;
+          margin-left: $space-5;
+      }
+    }
+
+    &--50 {
+      width: 100%;
+
+      @include breakpoint('medium') {
+          width: 50%;
+          margin-left: $space-5;
+      }
+    }
+  }
+
+  figcaption {
+      margin-bottom: $space-3;
+  }
+}
+
+.CookieConsent {
+  position: fixed;
+  @include grid($gridAutoFlow: row, $alignItems: center, $justifyContent: center);
+  overflow: hidden;
+  border-top-left-radius: $radius-4;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  box-shadow: $depth-2--reversed;
+
+  @include breakpoint('medium') {
+      @include grid($gridAutoFlow: column, $alignItems: center);
+      width: unset;
+  }
+
+  #cookieMessage a {
+      color: $blue-10;
+  }
+
+  button {
+      margin-top: 0;
+      margin-left: $space-2;
+
+      @include breakpoint('medium') {
+          margin-top: $space-2;
+          margin-bottom: $space-2;
+          margin-left: $space-2;
+      }
+  }
+}
+
+.banner {
+  font-size: $fs-1;
+  font-weight: $fw-regular;
+
+  &--blue {
+      background-color: $blue-30;
+  }
+}
+
+.status--pending {
+  border-radius: $radius-1;
+  padding: $space-1 $space-2;
+  background-color: $orange-10;
+  color: colorOnBackground($orange-10);
+  font-size: $fs-3;
+  font-weight: $fw-bold;
+  line-height: $space-3+$space-2;
+}
+
+.justifyself-end {
+  justify-self: end;
+}

@@ -1,0 +1,16 @@
+@import '../../Notations/functions/colors';
+@import '../../Notations/mixins/colors';
+@import '../../Notations/mixins/breakpoints';
+@import '../../Notations/breakpoints';
+@import '../../Notations/spaces';
+
+.divider {
+  display: block;
+  margin: $space-3 0;
+  border: 0;
+  height: 1px;
+  @include selectColorByTheme('background-color', 'dividerColor');
+  @include breakpoint('extra-large') {
+      margin: $space-3 + $space-2 0;
+  }
+}

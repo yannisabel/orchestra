@@ -1,0 +1,108 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+
+import { Button } from './Button'
+
+<Meta title="Staves/Button" component={Button} />
+
+export const Template = (args) => <Button {...args} />
+
+# Button
+
+## Default
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      children: 'Button',
+      model: 'default',
+      onClick: () => console.log('coucou')
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## With Color
+
+<Canvas>
+  <Story
+    name="WithColor"
+    args={{
+      children: 'Button',
+      model: 'default',
+      color: 'blue',
+      onClick: () => console.log('coucou')
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Round
+
+<Canvas>
+  <Story
+    name="Round"
+    args={{
+      children: 'Button',
+      model: 'round',
+      icon: 'image',
+      onClick: () => console.log('coucou')
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Ghost Button
+
+<Canvas>
+  <Story
+    name="Ghost button"
+    args={{
+      children: 'Button',
+      model: 'default',
+      state: 'ghost',
+      onClick: () => console.log('coucou')
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Ghost Round
+
+<Canvas>
+  <Story
+    name="Ghost Round"
+    args={{
+      model: 'round',
+      state: 'ghost',
+      icon: 'image',
+      onClick: () => console.log('coucou')
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Raised
+
+<Canvas>
+  <Story
+    name="Raised"
+    args={{
+      children: 'Button',
+      model: 'default',
+      state: 'raised',
+      color: 'blue',
+      onClick: () => console.log('coucou')
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={Button} />

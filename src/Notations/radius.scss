@@ -1,0 +1,33 @@
+// The Height of a component can also be used to define the radius of the element.
+// This will create a rounded sides but will keep the width flat.
+// e.g: the Switch component
+
+$radius-1: 4px;
+$radius-2: 8px;
+$radius-3: 16px;
+$radius-4: 24px;
+$radius-5: 32px;
+$radius-round: 50%;
+
+$valueBetweenRadius: 8px;
+$startingSpace: 8px; // dedidacted to loops: the first radius (4px) cannot be part of a loop
+$radiusAmount: 5;
+
+$radiuses: (
+  'radius-1': $radius-1,
+  'radius-2': $radius-2,
+  'radius-3': $radius-3,
+  'radius-4': $radius-4,
+  'radius-5': $radius-5,
+  'radius-round': $radius-round,
+);
+
+$radiusesDirections: (
+  'all',
+  'top-left',
+  'top-right',
+  'bottom-left',
+  'bottom-right',
+  'top',
+  'bottom'
+);

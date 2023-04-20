@@ -1,7 +1,0 @@
-export const spaces = {
-  'space-1': '4px',
-  'space-2': '8px',
-  'space-3': '16px',
-  'space-4': '32px',
-  'space-5': '64px',
-}

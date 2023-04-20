@@ -1,0 +1,22 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs'
+
+import { Picture } from './Picture'
+
+<Meta
+  title="Staves/Picture"
+  component={Picture}
+/>
+
+# Picture
+
+## Default
+
+<Canvas>
+  <Story
+    name="With Image"
+  >
+    <Picture src="https://via.placeholder.com/200" alt="placeholder image"/>
+  </Story>
+</Canvas>
+
+<ArgsTable of={Picture} />

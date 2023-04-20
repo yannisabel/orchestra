@@ -1,1 +1,0 @@
-export { Capitalize } from './transformText'

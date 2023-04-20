@@ -1,0 +1,35 @@
+@import '../layout';
+
+@mixin generateAlignJustifyClasses($breakpoint: 'none') {
+  $breakpointName: if($breakpoint != 'none', '#{$breakpoint}_', '');
+
+  @each $property in $alignJustifyProperties {
+    @each  $value in $alignJustifyCommonvalues {
+      @if $property == 'justify-items'  {
+        .#{$breakpoint}#{$property}--#{$value} {
+          #{$property}: #{$value};
+        }
+        .#{$breakpoint}#{$property}--left {
+          #{$property}: left;
+        }
+        .#{$breakpoint}#{$property}--right {
+          #{$property}: right;
+        }
+      }
+
+      @else {
+        .#{$breakpoint}#{$property}--#{$value} {
+          #{$property}: #{$value};
+        }
+      }
+    }
+  }
+
+  .#{$breakpoint}justify-content {
+    @each $value in $justifyContentValues {
+      &--#{$value} {
+        justify-content: #{$value};
+      }
+    }
+  }
+}

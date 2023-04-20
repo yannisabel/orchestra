@@ -1,0 +1,19 @@
+@import '../spaces';
+@import '../mixins/spaces';
+@import '../mixins/breakpoints';
+
+// utility classes for Margin and Padding
+
+@include generateSpaceClasses($spacesTypes, $spacesDirections, $spaces);
+
+@include breakpoint('medium') {
+  @include generateSpaceClasses($spacesTypes, $spacesDirections, $spaces, $breakpoint: 'medium');
+}
+
+@include breakpoint('large') {
+  @include generateSpaceClasses($spacesTypes, $spacesDirections, $spaces, $breakpoint: 'large');
+}
+
+@include breakpoint('extra-large') {
+  @include generateSpaceClasses($spacesTypes, $spacesDirections, $spaces, $breakpoint: 'extra-large');
+}

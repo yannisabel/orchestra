@@ -1,0 +1,132 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+
+import { Anchor } from './Anchor'
+
+<Meta title="Staves/Anchor" component={Anchor} />
+
+export const Template = (args) => <Anchor {...args} />
+
+# Anchor
+
+## Default
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      children: 'Anchor',
+      model: 'default',
+      href: 'https://example.com',
+      title: 'go to example website',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## With `isExternal`
+<Canvas>
+  <Story
+    name="isExternal"
+    args={{
+      isExternal: true,
+      children: 'Anchor',
+      model: 'default',
+      state: 'default',
+      href: 'https://example.com',
+      title: 'go to example website'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## With Color
+
+<Canvas>
+  <Story
+    name="WithColor"
+    args={{
+      children: 'Anchor',
+      model: 'button',
+      color: 'blue',
+      state: 'default',
+      href: 'https://example.com',
+      title: 'go to example website'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Round
+
+<Canvas>
+  <Story
+    name="Round"
+    args={{
+      model: 'round',
+      icon: 'image',
+      backgroundColor: 'blue-30',
+      href: 'https://example.com',
+      title: 'go to example website'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Ghost Button
+
+<Canvas>
+  <Story
+    name="Ghost button"
+    args={{
+      children: 'Anchor',
+      model: 'button',
+      state: 'ghost',
+      href: 'https://example.com',
+      title: 'go to example website'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Ghost Round
+
+<Canvas>
+  <Story
+    name="Ghost Round"
+    args={{
+      model: 'round',
+      state: 'ghost',
+      icon: 'image',
+      href: 'https://example.com',
+      title: 'go to example website'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Raised
+
+<Canvas>
+  <Story
+    name="Raised"
+    args={{
+      model: 'button',
+      state: 'raised',
+      color: 'blue',
+      href: 'https://example.com',
+      title: 'go to example website',
+      children: 'Anchor'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={Anchor} />
