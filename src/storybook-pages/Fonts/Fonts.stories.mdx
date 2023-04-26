@@ -11,13 +11,13 @@ import {fontFamilies, fontSizes, fontWeights} from '.'
 ## Font Family
 
 <Box>
-  {Object.entries(fontFamilies).map(([fontName, value]) => {
+  {Object.entries(fontFamilies).map(([fontFamily, value]) => {
     return (
-      <Box key={`${fontName}`}>
-        <Text className={`ff-${fontName}`}>
-          fontName: {fontName}
+      <Box key={`${fontFamily}`}>
+        <Text fontFamily={fontFamily}>
+          fontFamily: {fontFamily}
         </Text>
-        <Text className={`ff-${fontName}`}>
+        <Text fontFamily={fontFamily}>
           value: {value}
         </Text>
       </Box>
@@ -28,23 +28,23 @@ import {fontFamilies, fontSizes, fontWeights} from '.'
 ## Font Size
 
 <Box>
-  {Object.entries(fontFamilies).map(([fontName, value]) => {
+  {Object.entries(fontFamilies).map(([fontFamily, value]) => {
     return (
-      <Box key={`${fontName}`}>
-        <Text className={`ff-${fontName}`}>
-          fontName: {fontName}
+      <Box key={`${fontFamily}`}>
+        <Text fontFamily={fontFamily}>
+          fontFamily: {fontFamily}
         </Text>
-        <Text className={`ff-${fontName}`}>
+        <Text fontFamily={fontFamily}>
           value: {value}
         </Text>
         <Box>
           {Object.entries(fontSizes).map(([fontSize, value]) => {
             return (
               <Box key={`${fontSize}`} className="flex-direction--row">
-                <Text className={`ff-${fontName} ${fontSize}`}>
+                <Text fontFamily={fontFamily} fontSize={fontSize}>
                   fontSize: {fontSize}
                 </Text>
-                <Text className={`ff-${fontName} ${fontSize}`}>
+                <Text fontFamily={fontFamily} fontSize={fontSize}>
                   value: {value}
                 </Text>
               </Box>
@@ -59,23 +59,23 @@ import {fontFamilies, fontSizes, fontWeights} from '.'
 ## Font Weight
 
 <Box>
-  {Object.entries(fontFamilies).map(([fontName, value]) => {
+  {Object.entries(fontFamilies).map(([fontFamily, value]) => {
     return (
-      <Box key={`${fontName}`}>
-        <Text className={`ff-${fontName}`}>
-          fontName: {fontName}
+      <Box key={`${fontFamily}`}>
+        <Text fontFamily={fontFamily}>
+          fontFamily: {fontFamily}
         </Text>
-        <Text className={`ff-${fontName}`}>
+        <Text fontFamily={fontFamily}>
           value: {value}
         </Text>
         <Box>
           {Object.entries(fontWeights).map(([fontWeight, value]) => {
             return (
               <Box key={`${fontWeight}`} className="flex-direction--row">
-                <Text className={`ff-${fontName} ${fontWeight}`}>
+                <Text fontFamily={fontFamily} fontWeight={fontWeight}>
                   fontWeight: {fontWeight}
                 </Text>
-                <Text className={`ff-${fontName} ${fontWeight}`}>
+                <Text fontFamily={fontFamily} fontWeight={fontWeight}>
                   value: {value}
                 </Text>
               </Box>
