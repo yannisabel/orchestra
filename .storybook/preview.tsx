@@ -1,4 +1,4 @@
-import { DecoratorFn } from '@storybook/react'
+import { Decorator } from '@storybook/react'
 import React from 'react'
 import { Title } from '../src/Staves/Title'
 import { Text } from '../src/Staves/Text'
@@ -6,7 +6,7 @@ import { Anchor } from '../src/Staves/Anchor'
 import '../src/Notations/reset.scss'
 import './storybook-styles.scss'
 
-export const withTheme: DecoratorFn = (StoryFn) => {
+export const withTheme: Decorator = (StoryFn) => {
 
       return (
         <div style={{display: 'grid', gridAutoFlow: 'column', minHeight: '200px'}}>
