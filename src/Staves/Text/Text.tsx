@@ -6,11 +6,12 @@ import React from 'react';
 
 export const Text = ({
   as = 'p',
-  fontFamily,
-  fontWeight,
-  fontSize,
+  fontFamily = 'ff-openSans',
+  fontWeight = 'fw-regular',
+  fontSize = 'fs-2',
   align = 'left',
+  className = '',
   ...props
 }: TextProps)  => {
-  return <Box as={as} className={`${fontFamily || 'ff-openSans'} ${fontWeight || 'fw-regular'} ${fontSize || 'fs-2'} text-align--${align} ${props.className || ''}`} {...props} />;
+  return <Box as={as} className={`${fontFamily} ${fontWeight} ${fontSize} text-align--${align} ${className}`} {...props} />
 }

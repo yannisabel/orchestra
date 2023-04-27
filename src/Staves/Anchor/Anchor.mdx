@@ -1,0 +1,44 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/blocks'
+import * as AnchorStories from './Anchor.stories'
+
+import { Anchor } from './Anchor'
+
+<Meta of={AnchorStories} />
+
+export const Template = (args) => <Anchor {...args} />
+
+# Anchor
+
+## Default
+
+<Canvas>
+  <Story of={AnchorStories.Default} />
+</Canvas>
+
+## With `isExternal`
+
+<Canvas of={AnchorStories.IsExternal} />
+
+## With Color
+
+<Canvas of={AnchorStories.WithColor} />
+
+## Round
+
+<Canvas of={AnchorStories.Round} />
+
+## Ghost Button
+
+<Canvas of={AnchorStories.GhostButton} />
+
+## Ghost Round
+
+<Canvas of={AnchorStories.GhostRound} />
+
+## Raised
+
+<Canvas of={AnchorStories.Raised} />
+
+## Props
+
+<ArgsTable of={AnchorStories.Default} />

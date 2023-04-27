@@ -1,44 +1,41 @@
-import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs'
 import { Stack } from '../Stack'
 import { Card } from './Card'
 import { Picture } from '../Picture'
 import { Text } from '../Text'
 import { Anchor } from '../Anchor'
+import React from 'react'
 
-<Meta
-  title="Staves/Card"
-  component={Card}
-/>
+export default {
+  title: 'Staves/Card',
+  component: Card,
+}
 
-# Card
-
-## Default
-
-<Canvas>
-  <Story name="Default">
+export const Default = {
+  render: () => (
     <Card className="display--flex">
-      <Picture
-        src="https://via.placeholder.com/160"
-        alt="placeholder image"
-      />
-      <Stack direction="column" spacing="space-2" className="padding--space-3 medium_padding--space-4 large_padding--space-6">
+      <Picture src="https://via.placeholder.com/160" alt="placeholder image" />
+      <Stack
+        direction="column"
+        spacing="space-2"
+        className="padding--space-3 medium_padding--space-4 large_padding--space-6"
+      >
         <Text>Title</Text>
         <Text>type</Text>
         <Text>description</Text>
       </Stack>
     </Card>
-  </Story>
-</Canvas>
+  ),
 
-## Linkable
+  name: 'Default',
+}
 
-<Canvas>
-  <Story name="Linkable">
+export const Linkable = {
+  render: () => (
     <Card>
-      <Anchor 
+      <Anchor
         href="https://example.com"
         title="go to link"
-        target="_blank"
+        isExternal
         model="wrapper"
         className="display--flex"
       >
@@ -46,16 +43,18 @@ import { Anchor } from '../Anchor'
           src="https://via.placeholder.com/160"
           alt="placeholder image"
         />
-        <Stack direction="column" spacing="space-2" className="padding--space-3 medium_padding--space-4 large_padding--space-6">
+        <Stack
+          direction="column"
+          spacing="space-2"
+          className="padding--space-3 medium_padding--space-4 large_padding--space-6"
+        >
           <Text>Title</Text>
           <Text>type</Text>
           <Text>description</Text>
         </Stack>
       </Anchor>
     </Card>
-  </Story>
-</Canvas>
+  ),
 
-## Props
-
-<ArgsTable of={Card} />
+  name: 'Linkable',
+}

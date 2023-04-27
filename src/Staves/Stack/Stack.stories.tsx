@@ -1,17 +1,15 @@
-import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs'
-
 import { Stack } from './Stack'
 import { Box } from '../Box'
 import { Text } from '../Text'
+import React from 'react'
 
-<Meta title="Staves/Stack" component={Stack} />
+export default {
+  title: 'Staves/Stack',
+  component: Stack,
+}
 
-# Stack
-
-## Horizontal
-
-<Canvas>
-  <Story name="Horizontal">
+export const Horizontal = {
+  render: () => (
     <Stack direction="row">
       <Box className="bg-color--blue-30 padding--space-3">
         <Text>Item 1</Text>
@@ -20,13 +18,13 @@ import { Text } from '../Text'
         <Text>Item 2</Text>
       </Box>
     </Stack>
-  </Story>
-</Canvas>
+  ),
 
-## Horizontal With Space
+  name: 'Horizontal',
+}
 
-<Canvas>
-  <Story name="Horizontal With Space">
+export const HorizontalWithSpace = {
+  render: () => (
     <Stack direction="row" spacing="space-3">
       <Box className="bg-color--blue-30 padding--space-3">
         <Text>Item 1</Text>
@@ -35,13 +33,13 @@ import { Text } from '../Text'
         <Text>Item 2</Text>
       </Box>
     </Stack>
-  </Story>
-</Canvas>
+  ),
 
-## Vertical
+  name: 'Horizontal With Space',
+}
 
-<Canvas>
-  <Story name="Vertical">
+export const Vertical = {
+  render: () => (
     <Stack direction="column">
       <Box className="bg-color--blue-30 padding--space-3">
         <Text>Item 1</Text>
@@ -50,13 +48,13 @@ import { Text } from '../Text'
         <Text>Item 2</Text>
       </Box>
     </Stack>
-  </Story>
-</Canvas>
+  ),
 
-## Vertical With Space
+  name: 'Vertical',
+}
 
-<Canvas>
-  <Story name="Vertical With Space">
+export const VerticalWithSpace = {
+  render: () => (
     <Stack direction="column" spacing="space-3">
       <Box className="bg-color--blue-30 padding--space-3">
         <Text>Item 1</Text>
@@ -65,9 +63,7 @@ import { Text } from '../Text'
         <Text>Item 2</Text>
       </Box>
     </Stack>
-  </Story>
-</Canvas>
+  ),
 
-## Props
-
-<ArgsTable of={Stack} />
+  name: 'Vertical With Space',
+}

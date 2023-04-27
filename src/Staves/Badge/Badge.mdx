@@ -1,0 +1,32 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/blocks'
+import * as BadgeStories from './Badge.stories'
+
+import { Badge } from './Badge'
+
+<Meta of={BadgeStories} />
+
+export const Template = (args) => <Badge {...args} />
+
+# Badge
+
+## Default
+
+<Canvas of={BadgeStories.Default} />
+
+## with Grey Color
+
+<Canvas of={BadgeStories.WithGreyColor} />
+
+## with Blue grey Color
+
+<Canvas of={BadgeStories.WithBlueGreyColor} />
+
+## with Blue Color
+
+<Canvas of={BadgeStories.WithBlueColor} />
+
+## with Orange Color
+
+<Canvas of={BadgeStories.WithOrangeColor} />
+
+<ArgsTable of={BadgeStories.meta} />

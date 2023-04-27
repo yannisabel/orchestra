@@ -1,0 +1,38 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/blocks'
+import * as ButtonStories from './Button.stories'
+
+import { Button } from './Button'
+
+<Meta of={ButtonStories} />
+
+export const Template = (args) => <Button {...args} />
+
+# Button
+
+## Default
+
+<Canvas />
+
+## With Color
+
+<Canvas />
+
+## Round
+
+<Canvas />
+
+## Ghost Button
+
+<Canvas />
+
+## Ghost Round
+
+<Canvas />
+
+## Raised
+
+<Canvas />
+
+## Props
+
+<ArgsTable of={Button} />

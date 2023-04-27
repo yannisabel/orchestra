@@ -35,6 +35,7 @@
   &-m {
     &--default {
       text-decoration: underline;
+      @include selectColorByTheme('color', 'linkColor');
     }
     &--button {
       @extend %buttoninheritance;

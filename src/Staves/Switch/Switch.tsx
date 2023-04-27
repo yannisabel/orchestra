@@ -3,6 +3,7 @@ import { SwitchProps } from './Switch.types'
 import './switch.scss'
 import React from 'react'
 
+
 export const Switch = ({ label, checked, onClick }: SwitchProps) => {
 
   return (

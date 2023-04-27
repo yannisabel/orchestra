@@ -6,7 +6,7 @@ body {
   font-family: $openSans;
 }
 
-#docs-root .sbdocs {
+.sb-unstyled {
   @extend .paragraph-flow--space-5;
 }
 
@@ -16,15 +16,18 @@ body {
 
 @include breakpoint('medium') {
   @include generateGridColumnsClasses(12, $breakpoint: 'medium');
+  @include generateGridRowsClasses(12 , $breakpoint: 'medium');
   @include generateGridGapClasses($gapTypes, $spaces, $breakpoint: 'medium');
 }
 
 @include breakpoint('large') {
   @include generateGridColumnsClasses(12, $breakpoint: 'large');
+  @include generateGridRowsClasses(12 , $breakpoint: 'large');
   @include generateGridGapClasses($gapTypes, $spaces, $breakpoint: 'large');
 }
 
 @include breakpoint('extra-large') {
   @include generateGridColumnsClasses(12, $breakpoint: 'extra-large');
+  @include generateGridRowsClasses(12 , $breakpoint: 'extra-large');
   @include generateGridGapClasses($gapTypes, $spaces, $breakpoint: 'extra-large');
 }

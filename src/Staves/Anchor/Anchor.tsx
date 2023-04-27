@@ -2,7 +2,7 @@ import { forwardRef, useState } from 'react'
 import { Icon } from '../Icon'
 import { AnchorProps } from './Anchor.types'
 import './anchor.scss'
-import React from 'react'
+import * as React from 'react'
 
 export const Anchor = forwardRef(({
   model = 'default',

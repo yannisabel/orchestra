@@ -1,4 +1,4 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import { Canvas, Meta, Story } from '@storybook/blocks'
 import { Card } from '../../Staves/Card'
 import { Box } from '../../Staves/Box'
 import { Text } from '../../Staves/Text'
@@ -9,17 +9,16 @@ import { colors } from '.'
 
 # Colors
 
-
 <Box className="flex-direction--column">
   {Object.entries(colors).map(([colorName, value]) => {
     return (
-      <Card key={`${colorName}`} className="flex align-items--center">
+      <Card key={`${colorName}`} className="display--flex align-items--center">
         <Box style={{backgroundColor: value, width: '50px', height: '50px'}} />
         <Box className="flex-direction--column">
-          <Text className="ff-openSans">
+          <Text fontFamily="ff-openSans">
             colorName: {colorName}
           </Text>
-          <Text className="ff-openSans">
+          <Text fontFamily="ff-openSans">
             value: {value}
           </Text>
         </Box>
