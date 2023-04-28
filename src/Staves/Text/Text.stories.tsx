@@ -1,23 +1,40 @@
 import { Text } from './Text'
 import { Box } from '../Box'
 import React from 'react'
+import { Meta, StoryObj } from '@storybook/react';
 
-export default {
+const meta = {
   title: 'Staves/Text',
   component: Text,
-}
+  argTypes: {
+    children: { table: { type: { summary: 'ReactNode' } } },
+    className: { table: { type: { summary: 'string' } } },
+    as: {
+      defaultValue: 'p',
+      table: {
+        type: {
+          summary: 'Inline Elements',
+        }
+      }
+    },
+  }
+} satisfies Meta<typeof Text>
 
-export const Default = {
-  render: () => <Text>Default Text</Text>,
+export default meta;
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  args: {
+    children: 'Default Text',
+  },
   name: 'Default',
 }
 
-export const RenderAs = {
-  render: () => (
-    <Text>
-      Text<Text as="strong">Strong</Text>
-    </Text>
-  ),
+export const RenderAs: Story = {
+  args: {
+    children: 'Strong Text',
+    as: 'strong',
+  },
   name: 'Render As',
 }
 

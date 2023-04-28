@@ -3,24 +3,25 @@ import { Sticker } from '../Sticker'
 import { Text } from '../Text'
 import { Stack } from '../Stack'
 import React from 'react'
+import './badge.scss'
 
 export const Badge = ({
   image,
   alt,
   legend,
   color,
-  className
+  className = ''
 }: BadgeProps) => {
 
   return (
-    <Stack direction="column" spacing="space-2" className={`badge align-items--center ${className || ''}`}>
+    <Stack direction="column" spacing="space-2" className={`badge align-items--center ${className}`}>
       <Sticker
         type="image"
         image={image}
         alt={alt}
         color={color}
       />
-      <Text className="fs-1">{legend}</Text>
+      <Text fontSize="fs-1">{legend}</Text>
     </Stack>
   )
 }

@@ -4,13 +4,29 @@ import { Picture } from '../Picture'
 import { Text } from '../Text'
 import { Anchor } from '../Anchor'
 import React from 'react'
+import { Meta, StoryObj } from '@storybook/react'
 
-export default {
+const meta = {
   title: 'Staves/Card',
   component: Card,
-}
+  argTypes: {
+    children: { table: { type: { summary: 'ReactNode' } } },
+    className: { table: { type: { summary: 'string' } } },
+    as: {
+      defaultValue: 'div',
+      table: {
+        type: {
+          summary: 'HTMLElement',
+        }
+      }
+    },
+  }
+} satisfies Meta<typeof Card>
 
-export const Default = {
+export default meta;
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
   render: () => (
     <Card className="display--flex">
       <Picture src="https://via.placeholder.com/160" alt="placeholder image" />
@@ -29,7 +45,7 @@ export const Default = {
   name: 'Default',
 }
 
-export const Linkable = {
+export const Linkable: Story = {
   render: () => (
     <Card>
       <Anchor

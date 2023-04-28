@@ -1,12 +1,16 @@
+import { Meta, StoryObj } from '@storybook/react';
 import React from 'react'
 import { useState } from 'react'
 
 import { Switch } from './Switch'
 
-export default {
+const meta = {
   title: 'Staves/Switch',
   component: Switch,
-}
+} satisfies Meta<typeof Switch>
+
+export default meta;
+type Story = StoryObj<typeof meta>
 
 export const Default = {
   render: () => {
@@ -19,6 +23,10 @@ export const Default = {
       />
     )
   },
-
+  args: {
+    label: 'Switch Label',
+    onClick: '() => setValue(!value)',
+    checked: false
+  },
   name: 'Default',
 }

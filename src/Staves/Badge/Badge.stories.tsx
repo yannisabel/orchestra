@@ -4,14 +4,16 @@ import { Badge } from './Badge'
 
 const Template = (args) => <Badge {...args} />
 
-const meta: Meta<typeof Badge> = {
-  /* 👇 The title prop is optional.
-   * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
-   * to learn how to generate automatic titles
-   */
+const meta = {
   title: 'Staves/Badge',
   component: Badge,
-};
+  argTypes: {
+    color: {
+      control: 'select',
+      options: ['blue', 'orange', 'white', 'grey', 'blue-grey']
+    }
+  }
+} satisfies Meta<typeof Badge>
 
 export default meta;
 type Story = StoryObj<typeof Badge>
@@ -27,50 +29,14 @@ export const Default: Story = {
   },
 }
 
-export const WithGreyColor = {
+export const WithColor: Story = {
   render: Template.bind({}),
-  name: 'with Grey Color',
-
-  args: {
-    image: 'https://via.placeholder.com/50',
-    alt: 'placeholder image',
-    legend: 'This is a legend',
-    color: 'grey',
-  },
-}
-
-export const WithBlueGreyColor = {
-  render: Template.bind({}),
-  name: 'with Blue grey Color',
-
-  args: {
-    image: 'https://via.placeholder.com/50',
-    alt: 'placeholder image',
-    legend: 'This is a legend',
-    color: 'blue-grey',
-  },
-}
-
-export const WithBlueColor = {
-  render: Template.bind({}),
-  name: 'with Blue Color',
+  name: 'with Color',
 
   args: {
     image: 'https://via.placeholder.com/50',
     alt: 'placeholder image',
     legend: 'This is a legend',
     color: 'blue',
-  },
-}
-
-export const WithOrangeColor = {
-  render: Template.bind({}),
-  name: 'with Orange Color',
-
-  args: {
-    image: 'https://via.placeholder.com/50',
-    alt: 'placeholder image',
-    legend: 'This is a legend',
-    color: 'orange',
   },
 }

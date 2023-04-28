@@ -2,23 +2,44 @@ import {
   Meta,
   StoryObj,
 } from '@storybook/react'
-import React from 'react';
 
 import { Anchor } from './Anchor'
 
-const Template = (args) => <Anchor {...args} />
-
-const storybookMeta: Meta<typeof Anchor > = {
+const meta = {
   title: 'Staves/Anchor',
   component: Anchor ,
-};
+  argTypes: {
+    model: {
+      control: { type: 'select' },
+      options: ['round', 'default', 'button', 'wrapper'],
+      defaultValue: 'default'
+    },
+    state: {
+      control: { type: 'select' },
+      options: ['base', 'raised', 'ghost'],
+      defaultValue: 'base'
+    },
+    color: {
+      control: { type: 'select' },
+      options: ['transparent', 'blue', 'orange', 'white'],
+      defaultValue: 'transparent'
+    },
+    isExternal: {
+      control: { type: 'boolean' },
+      defaultValue: false
+    },
+    icon: {
+      control: { type: 'select' },
+      options: ['image', 'people', 'art', 'tools'],
+    }
+  }
+} satisfies Meta<typeof Anchor>
 
-export default storybookMeta;
+export default meta;
+type Story = StoryObj<typeof meta>
 
-export const Default = {
-  render: Template.bind({}),
+export const Default: Story = {
   name: 'Default',
-
   args: {
     children: 'Anchor',
     model: 'default',
@@ -27,49 +48,45 @@ export const Default = {
   },
 }
 
-export const IsExternal = {
-  render: Template.bind({}),
+export const IsExternal: Story = {
   name: 'isExternal',
 
   args: {
     isExternal: true,
     children: 'Anchor',
     model: 'default',
-    state: 'default',
+    state: 'base',
     href: 'https://example.com',
     title: 'go to example website',
   },
 }
 
-export const WithColor = {
-  render: Template.bind({}),
+export const WithColor: Story = {
   name: 'WithColor',
 
   args: {
     children: 'Anchor',
     model: 'button',
     color: 'blue',
-    state: 'default',
+    state: 'base',
     href: 'https://example.com',
     title: 'go to example website',
   },
 }
 
-export const Round = {
-  render: Template.bind({}),
+export const Round: Story = {
   name: 'Round',
 
   args: {
     model: 'round',
     icon: 'image',
-    backgroundColor: 'blue-30',
+    color: 'blue',
     href: 'https://example.com',
     title: 'go to example website',
   },
 }
 
-export const GhostButton = {
-  render: Template.bind({}),
+export const GhostButton: Story = {
   name: 'Ghost button',
 
   args: {
@@ -81,8 +98,7 @@ export const GhostButton = {
   },
 }
 
-export const GhostRound = {
-  render: Template.bind({}),
+export const GhostRound: Story = {
   name: 'Ghost Round',
 
   args: {
@@ -94,8 +110,7 @@ export const GhostRound = {
   },
 }
 
-export const Raised = {
-  render: Template.bind({}),
+export const Raised: Story = {
   name: 'Raised',
 
   args: {

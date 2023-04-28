@@ -5,11 +5,18 @@ import { Box } from '../Box'
 
 import { allIcons } from './Icon.types'
 import React from 'react'
+import { Meta, StoryObj } from '@storybook/react'
 
-export default {
+const meta = {
   title: 'Staves/Icon',
   component: Icon,
-}
+  argTypes: {
+    name: { table: { type: { summary: '["image", "art", "people", ...]' } } }
+  }
+} satisfies Meta<typeof Icon>
+
+export default meta;
+type Story = StoryObj<typeof meta>
 
 export const Default = {
   render: () =>

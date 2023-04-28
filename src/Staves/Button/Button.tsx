@@ -13,7 +13,7 @@ export const Button = ({
   icon,
   role,
   tabIndex,
-  onAction,
+  onClick,
   ...props
 }: ButtonProps) => {
   const [isDown, setIsDown] = useState(false)
@@ -60,7 +60,7 @@ export const Button = ({
       onTouchStart={pressOrRelease}
       onMouseUp={pressOrRelease}
       onTouchEnd={pressOrRelease}
-      onClick={onAction}
+      onClick={onClick}
       tabIndex={tabIndex}
     >
       {icon && <Icon name={icon} />}

@@ -1,15 +1,21 @@
-import React from 'react'
+import { Meta, StoryObj } from '@storybook/react';
 import { Sticker } from './Sticker'
 
-const Template = (args) => <Sticker {...args} />
-
-export default {
+const meta = {
   title: 'Staves/Sticker',
   component: Sticker,
-}
+  argTypes: {
+    color: {
+      control: 'select',
+      options: ['blue', 'orange', 'white', 'grey', 'blue-grey']
+    }
+  }
+} satisfies Meta<typeof Sticker>
 
-export const WithIcon = {
-  render: Template.bind({}),
+export default meta;
+type Story = StoryObj<typeof meta>
+
+export const WithIcon: Story = {
   name: 'With Icon',
 
   args: {
@@ -18,8 +24,7 @@ export const WithIcon = {
   },
 }
 
-export const WithImage = {
-  render: Template.bind({}),
+export const WithImage: Story = {
   name: 'With Image',
 
   args: {
@@ -29,8 +34,7 @@ export const WithImage = {
   },
 }
 
-export const WithText = {
-  render: Template.bind({}),
+export const WithText: Story = {
   name: 'With Text',
 
   args: {
