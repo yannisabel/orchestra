@@ -26,7 +26,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const Default = {
   render: () => (
     <Card className="display--flex">
       <Picture src="https://via.placeholder.com/160" alt="placeholder image" />
@@ -45,7 +45,7 @@ export const Default: Story = {
   name: 'Default',
 }
 
-export const Linkable: Story = {
+export const Linkable = {
   render: () => (
     <Card>
       <Anchor

@@ -42,28 +42,6 @@ body {
   @include selectColorByTheme('color', 'primaryColor');
 }
 
-a:not([class]) {
-  outline: none;
-  text-decoration: underline;
-  @include selectColorByTheme('color', 'linkColor');
-
-  i {
-      font-family: $openSans;
-  }
-}
-
-ul {
-  margin-top: $space-3;
-  margin-bottom: $space-3;
-  margin-left: 14px;
-  list-style-position: outside;
-  line-height: $space-4;
-
-  a {
-      font-weight: $fw-medium;
-  }
-}
-
 figure p {
   margin-top: 0;
   padding-top: 0;
@@ -73,68 +51,6 @@ figcaption, .legend {
   margin-bottom: ($space-3+$space-2)+$space-3;
   padding: $space-3;
   text-align: center;
-}
-
-blockquote {
-  padding: $space-2 $space-3;
-  margin: 0 0 20px;
-  font-size: $fs-2;
-  border-left: 5px solid $grey-0;
-
-  footer {
-      text-align: right;
-  }
-}
-
-.float {
-  margin-top: $space-3;
-  margin-bottom: $space-3;
-
-  &.left {
-      float: left;
-      &--30 {
-          width: 100%;
-
-          @include breakpoint('medium') {
-              width: 30%;
-              margin-right: $space-5;
-          }
-      }
-
-      &--50 {
-        width: 100%;
-
-        @include breakpoint('medium') {
-            width: 50%;
-            margin-right: $space-5;
-        }
-      }
-  }
-
-  &.right {
-    float: right;
-    &--30 {
-      width: 100%;
-
-      @include breakpoint('medium') {
-          width: 30%;
-          margin-left: $space-5;
-      }
-    }
-
-    &--50 {
-      width: 100%;
-
-      @include breakpoint('medium') {
-          width: 50%;
-          margin-left: $space-5;
-      }
-    }
-  }
-
-  figcaption {
-      margin-bottom: $space-3;
-  }
 }
 
 .CookieConsent {
@@ -185,8 +101,4 @@ blockquote {
   font-size: $fs-3;
   font-weight: $fw-bold;
   line-height: $space-3+$space-2;
-}
-
-.justifyself-end {
-  justify-self: end;
 }

@@ -31,9 +31,25 @@ b, strong {
   font-weight: $fw-bold;
 }
 
-i, em {
+i, em, cite {
   font-style: italic;
-  font-weight: $fw-regular;
+}
+
+ul {
+  margin-top: $space-5;
+  margin-bottom: $space-5;
+  margin-left: 14px;
+  list-style-position: outside;
+  line-height: $space-4;
+
+  & ul {
+    margin-top: $space-3;
+    margin-bottom: $space-3;
+  }
+
+  a {
+      font-weight: $fw-medium;
+  }
 }
 
 .ellipsis {

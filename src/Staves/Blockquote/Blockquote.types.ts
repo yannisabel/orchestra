@@ -1,0 +1,9 @@
+import { ElementType, ReactNode } from 'react'
+import { BoxProps } from '../Box'
+
+export interface BlockquoteProps extends BoxProps<ElementType> {
+  citeUrl: string
+  quote: ReactNode
+  citeWho: string
+  citeFrom: string
+}

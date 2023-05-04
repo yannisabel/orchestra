@@ -155,3 +155,12 @@
   }
 }
 
+a:not([class]) {
+  outline: none;
+  text-decoration: underline;
+  @include selectColorByTheme('color', 'linkColor');
+
+  i {
+      font-family: $openSans;
+  }
+}

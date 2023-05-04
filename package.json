@@ -11,9 +11,25 @@
     "rollup": "rm -rf dist && rollup -c",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
+    "type-check": "tsc --pretty --noEmit",
     "test": "jest",
     "test:coverage": "jest --coverage --collectCoverageFrom='./src/**'",
     "lint": "eslint --fix --ext .ts,.tsx"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run type-check"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,tsx}": [
+      "eslint --fix",
+      "ynpom run test --bail --findRelatedTests"
+    ],
+    "**/*.{md,mdx}": [
+      "eslint --fix"
+    ]
   },
   "author": "Yann Isabel",
   "license": "ISC",
@@ -42,6 +58,7 @@
     "@typescript-eslint/parser": "^5.39.0",
     "babel-loader": "^8.2.5",
     "eslint": "^8.25.0",
+    "husky": "^8.0.3",
     "jest": "^29.1.2",
     "jest-environment-jsdom": "^29.1.2",
     "postcss": "^8.4.22",

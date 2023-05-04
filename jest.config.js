@@ -1,36 +1,19 @@
 module.exports = {
-
-  // The root of your source code, typically /src
-
-  // `<rootDir>` is a token Jest substitutes
-
   roots: ["<rootDir>/src"],
-
+  coverageDirectory: './coverage',
   testEnvironment: 'jsdom',
-
-
-  // Jest transformations -- this adds support for TypeScript
-
-  // using ts-jest
-
-  transform: {
-
-    "^.+\\.tsx?$": "ts-jest"
-
+  fakeTimers: {
+    enableGlobally: true,
+    legacyFakeTimers: true,
   },
-
-
-  // Test spec file resolution pattern
-
-  // Matches parent folder `__tests__` and filename
-
-  // should contain `test` or `spec`.
-
+  transform: {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  moduleNameMapper: {
+    ".+\\.(css|styl|less|sass|scss|png|jpg|svg|ttf|woff|woff2)$":
+      "<rootDir>/__mock__/mock.js",
+  },
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
-
-
   // Module file extensions for importing
-
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"]
-
 }

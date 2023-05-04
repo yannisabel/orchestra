@@ -23,6 +23,19 @@
 .display--table-column {        display: table-column; }
 .display--table-column-group {  display: table-column-group; }
 
+.float {
+  margin-top: $space-3;
+  margin-bottom: $space-3;
+
+  &--left {
+      float: left;
+  }
+
+  &--right {
+    float: right;
+  }
+}
+
 @include generateAlignJustifyClasses();
 
 @include breakpoint('medium') {
@@ -37,6 +50,19 @@
   .medium_display--table-row-group {    display: table-row-group; }
   .medium_display--table-column {       display: table-column; }
   .medium_display--table-column-group { display: table-column-group; }
+
+  .medium_float {
+    margin-top: $space-3;
+    margin-bottom: $space-3;
+  
+    &--left {
+        float: left;
+    }
+  
+    &--right {
+      float: right;
+    }
+  }
 
   @include generateAlignJustifyClasses($breakpoint: 'medium')
 }
@@ -54,6 +80,19 @@
   .large_display--table-column {       display: table-column; }
   .large_display--table-column-group { display: table-column-group; }
 
+  .large_float {
+    margin-top: $space-3;
+    margin-bottom: $space-3;
+  
+    &--left {
+        float: left;
+    }
+  
+    &--right {
+      float: right;
+    }
+  }
+
   @include generateAlignJustifyClasses($breakpoint: 'large')
 }
 
@@ -70,6 +109,19 @@
   .extra-large_display--table-row-group {    display: table-row-group; }
   .extra-large_display--table-column {       display: table-column; }
   .extra-large_display--table-column-group { display: table-column-group; }
+
+  .extra-large_float {
+    margin-top: $space-3;
+    margin-bottom: $space-3;
+  
+    &--left {
+        float: left;
+    }
+  
+    &--right {
+      float: right;
+    }
+  }
 
   @include generateAlignJustifyClasses($breakpoint: 'extra-large')
 }
