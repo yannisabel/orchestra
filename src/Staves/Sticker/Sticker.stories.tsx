@@ -42,3 +42,13 @@ export const WithText: Story = {
     text: 'Text placeholder',
   },
 }
+
+export const WithColor: Story = {
+  name: 'With Color',
+
+  args: {
+    type: 'icon',
+    icon: 'image',
+    color: 'blue-grey',
+  },
+}

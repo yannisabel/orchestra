@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import type { IconTypes } from '../Icon'
+import type { IconTypes } from '../Icon/Icon.types'
 
 export interface ButtonProps {
   model?: 'default' | 'round'

@@ -1,11 +1,14 @@
 import { CardProps } from './Card.types'
 import { Box } from '../Box'
-import './card.scss'
+import './Card.scss'
 import React from 'react'
 
 export const Card = ({
-  type = 'default', children, as, ...restProps
+  children,
+  className = '',
+  as = 'article',
+  ...restProps
 }: CardProps) => {
 
-  return <Box {...restProps} className={`card ${restProps.className}`} as={as || 'article'}>{children}</Box>
+  return <Box {...restProps} className={`card ${className}`} as={as}>{children}</Box>
 }

@@ -1,2 +1,2 @@
-export { Blockquote } from './Blockquote'
-export type { BlockquoteProps } from './Blockquote.types'
+import { Blockquote } from './Blockquote'
+export { Blockquote }

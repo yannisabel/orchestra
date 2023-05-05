@@ -26,7 +26,7 @@ export const Default = {
   args: {
     label: 'Switch Label',
     onClick: '() => setValue(!value)',
-    checked: false
+    checked: false,
   },
   name: 'Default',
 }

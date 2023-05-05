@@ -1,2 +1,2 @@
-export { Title } from './Title'
-export type { TitleProps } from './Title.types'
+import { Title } from './Title'
+export { Title }

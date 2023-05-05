@@ -3,7 +3,7 @@ import { Sticker } from '../Sticker'
 import { Text } from '../Text'
 import { Stack } from '../Stack'
 import React from 'react'
-import './badge.scss'
+import './Badge.scss'
 
 export const Badge = ({
   image,
@@ -21,7 +21,7 @@ export const Badge = ({
         alt={alt}
         color={color}
       />
-      <Text fontSize="fs-1">{legend}</Text>
+      <Text fontSize="fs-1" align="center">{legend}</Text>
     </Stack>
   )
 }

@@ -1,7 +1,7 @@
 import { forwardRef, useState } from 'react'
 import { Icon } from '../Icon'
 import { AnchorProps } from './Anchor.types'
-import './anchor.scss'
+import './Anchor.scss'
 import * as React from 'react'
 
 export const Anchor = forwardRef(({
@@ -11,7 +11,6 @@ export const Anchor = forwardRef(({
   href,
   title,
   icon,
-  role,
   tabIndex,
   isExternal = false,
   onClick,
@@ -54,6 +53,7 @@ export const Anchor = forwardRef(({
   }`
     return (
       <a
+        {...props}
         ref={ref as any}
         href={href}
         onClick={onClick}
@@ -68,7 +68,8 @@ export const Anchor = forwardRef(({
           rel: 'noopener noreferer'
         }}
       >
-        {model === 'round' && icon ? <Icon name={icon} /> : children}
+        {icon && <Icon name={icon} />}
+        {children}
       </a>
     )
 })

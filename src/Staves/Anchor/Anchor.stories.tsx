@@ -2,7 +2,8 @@ import {
   Meta,
   StoryObj,
 } from '@storybook/react'
-
+import React from 'react';
+import { Text } from '../Text';
 import { Anchor } from './Anchor'
 
 const meta = {
@@ -120,5 +121,18 @@ export const Raised: Story = {
     href: 'https://example.com',
     title: 'go to example website',
     children: 'Anchor',
+  },
+}
+
+export const IconAndText: Story = {
+  name: 'Icon And Text',
+
+  args: {
+    model: 'button',
+    icon: 'image',
+    color: 'blue',
+    href: 'https://example.com',
+    title: 'go to example website',
+    children: <Text as="span">Anchor</Text>,
   },
 }

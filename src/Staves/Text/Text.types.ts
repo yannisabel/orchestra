@@ -1,5 +1,5 @@
 import { ElementType } from 'react'
-import { BoxProps } from '../Box';
+import { BoxProps } from '../Box/Box.types';
 
 type InlineElements = 'address' | 'abbr' | 'b' | 'bdi' | 'bdo' | 'cite' | 'code' | 'dfn' | 'em' | 'figcaption' | 'i' | 'kbd' | 'label' | 'mark' | 'p' | 'q' | 's' | 'samp' | 'small' | 'span' | 'strong' | 'sub' | 'sup' | 'time' | 'u' | 'var' | 'wbr'
 

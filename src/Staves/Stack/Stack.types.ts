@@ -1,5 +1,5 @@
 import { ElementType } from 'react'
-import { BoxProps } from '../Box'
+import { BoxProps } from '../Box/Box.types'
 
 export interface StackProps extends BoxProps<ElementType> {
   direction?: 'column' | 'row'

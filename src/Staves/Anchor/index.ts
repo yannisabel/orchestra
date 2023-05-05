@@ -1,2 +1,2 @@
-export { Anchor } from './Anchor'
-export type { AnchorProps } from './Anchor.types'
+import { Anchor } from './Anchor'
+export { Anchor }

@@ -1,4 +1,4 @@
-import { BoxProps } from '../Box'
+import { BoxProps } from '../Box/Box.types'
 import { ElementType, ReactNode } from 'react'
 
 export interface CardProps extends BoxProps<ElementType> {

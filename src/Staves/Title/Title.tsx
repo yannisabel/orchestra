@@ -1,5 +1,5 @@
 import { TitleProps } from './Title.types'
-import './title.scss'
+import './Title.scss'
 import React from 'react'
 
 export const Title = ({ type, children, className = undefined }: TitleProps) => {

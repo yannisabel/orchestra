@@ -7,8 +7,7 @@ const packageJson = require('./package.json');
 import { getFolders } from './scripts/buildUtils';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
 import copy from 'rollup-plugin-copy'
-import scss from 'rollup-plugin-scss'
-import postcss from 'postcss'
+import postcss from 'rollup-plugin-postcss'
 import autoprefixer from 'autoprefixer'
 
 const plugins = [
@@ -20,19 +19,20 @@ const plugins = [
     useTsconfigDeclarationDir: true,
   }),
   terser(),
-  scss({
-    processor: () => postcss([autoprefixer()]),
-    failOnError: true,
-    runtime: require("sass"),
-  }),
+  postcss({plugins: [autoprefixer()]}),
   copy({
     targets: [
-      { src: 'src/Notations', dest: 'dist' }
+      { src: 'src/Notations', dest: 'dist' },
     ]
   })
 ];
 const subfolderPlugins = (folderName) => [
   ...plugins,
+  copy({
+    targets: [
+      { src: `src/Staves/${folderName}/${folderName}.scss`, dest: `dist/Staves/${folderName}` }
+    ]
+  }),
   generatePackageJson({
     baseContents: {
       name: `${packageJson.name}/${folderName}`,

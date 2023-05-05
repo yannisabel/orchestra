@@ -1,5 +1,5 @@
 import { ElementType } from "react"
-import { BoxProps } from "../Box"
+import { BoxProps } from "../Box/Box.types"
 
 interface StickerCommonProps extends BoxProps<ElementType> {
   model?: 'default' | 'mini'

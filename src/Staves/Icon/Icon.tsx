@@ -1,5 +1,5 @@
 import type { IconProps } from './Icon.types'
-import './icon.scss'
+import './Icon.scss'
 import React from 'react'
 
 const Image = ({className, name}: IconProps) => (

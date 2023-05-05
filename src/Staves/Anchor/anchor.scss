@@ -20,7 +20,6 @@
 %buttoninheritance {
   display: inline-block;
   min-height: 36px;
-  margin: $space-3;
   padding: $space-2;
   font-size: $fs-1;
   line-height: 1.5;
@@ -74,16 +73,21 @@
       svg {
         @include selectColorByTheme('fill', 'textColor');
       }
+
     }
   }
 
   &-c {
     &--blue {
       background-color: $blue-30;
-      color: $white-0;
+      color: colorOnBackground($blue-30);
 
       &:hover, &:focus {
           background-color: $blue-20;
+      }
+
+      span {
+        color: colorOnBackground($blue-30);
       }
 
       svg {
@@ -95,7 +99,6 @@
       background-color: $orange-10;
       font-size: $fs-2;
       font-weight: $fw-bold;
-      color: colorOnBackground($orange-10);
 
       &.round-anchor {
         font-size: $fs-1;
@@ -103,6 +106,10 @@
   
       &:hover, &:focus {
           background-color: $orange-0;
+      }
+
+      span {
+        color: colorOnBackground($orange-10);
       }
   
       svg {
@@ -113,7 +120,6 @@
     &--white {
       background-color: $white-10;
       font-size: $fs-2;
-      color: colorOnBackground($white-10);
 
       &.round-anchor {
         font-size: $fs-1;
@@ -122,6 +128,10 @@
       &:hover, &:focus {
           background-color: $white-0;
       }
+
+      span {
+        color: colorOnBackground($white-10);
+      }
   
       svg {
           fill: colorOnBackground($white-0);
@@ -129,9 +139,22 @@
     }
   }
   &.anchor--icon {
+    display: inline-flex;
+    align-items: center;
     svg {
       pointer-events: none;
     }
+
+    &.anchor-m--button {
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  svg + span {
+    margin-left: $space-2;
   }
 
   &--no-margin {

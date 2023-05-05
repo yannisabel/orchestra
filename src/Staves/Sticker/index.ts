@@ -1,2 +1,2 @@
-export { Sticker } from './Sticker'
-export type { StickerProps } from './Sticker.types'
+import { Sticker } from './Sticker'
+export { Sticker }

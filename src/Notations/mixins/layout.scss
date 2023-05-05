@@ -6,26 +6,26 @@
   @each $property in $alignJustifyProperties {
     @each  $value in $alignJustifyCommonvalues {
       @if $property == 'justify-items'  {
-        .#{$breakpoint}#{$property}--#{$value} {
+        .#{$breakpointName}#{$property}--#{$value} {
           #{$property}: #{$value};
         }
-        .#{$breakpoint}#{$property}--left {
+        .#{$breakpointName}#{$property}--left {
           #{$property}: left;
         }
-        .#{$breakpoint}#{$property}--right {
+        .#{$breakpointName}#{$property}--right {
           #{$property}: right;
         }
       }
 
       @else {
-        .#{$breakpoint}#{$property}--#{$value} {
+        .#{$breakpointName}#{$property}--#{$value} {
           #{$property}: #{$value};
         }
       }
     }
   }
 
-  .#{$breakpoint}justify-content {
+  .#{$breakpointName}justify-content {
     @each $value in $justifyContentValues {
       &--#{$value} {
         justify-content: #{$value};
