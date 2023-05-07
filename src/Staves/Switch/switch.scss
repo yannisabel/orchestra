@@ -36,11 +36,56 @@ $switchHeight: 26px;
     }
 
     &.option-true {
-      background-color: $blue-10;
 
       .switch__switcher {
         left: calc(100% - 2px);
         transform: translateX(-100%);
+      }
+    }
+  }
+
+  &-on {
+    &--white {
+      .option-true {
+        background-color: $white-10;
+      }
+    }
+
+    &--grey {
+      .option-true {
+        background-color: $grey-10;
+      }
+    }
+
+    &--blue {
+      .option-true {
+        background-color: $blue-10;
+      }
+    }
+
+    &--orange {
+      .option-true {
+        background-color: $orange-10;
+      }
+    }
+  }
+
+  &-off {
+    &--black {
+      .option-false {
+        background-color: $black-0;
+      }
+    }
+
+    &--grey {
+      .option-false {
+        background-color: $grey-50;
+      }
+    }
+
+    &--blue {
+      .option-false {
+        background-color: $blue-50;
       }
     }
   }

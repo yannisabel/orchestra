@@ -30,3 +30,24 @@ export const Default = {
   },
   name: 'Default',
 }
+
+export const WithColor = {
+  render: () => {
+    const [value, setValue] = useState(false)
+    return (
+      <Switch
+        label="Switch Label"
+        onClick={() => setValue(!value)}
+        colorOn="orange"
+        colorOff="blue"
+        checked={value}
+      />
+    )
+  },
+  args: {
+    label: 'Switch Label',
+    onClick: '() => setValue(!value)',
+    checked: false,
+  },
+  name: 'Default',
+}

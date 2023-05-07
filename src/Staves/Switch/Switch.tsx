@@ -4,10 +4,10 @@ import './Switch.scss'
 import React from 'react'
 
 
-export const Switch = ({ label, checked, onClick, className = '' }: SwitchProps) => {
+export const Switch = ({ label, checked, onClick, className = '', colorOn = 'blue', colorOff = 'grey' }: SwitchProps) => {
 
   return (
-    <Box className={`display--flex switch__container ${className}`}>
+    <Box className={`display--flex switch__container switch-on--${colorOn} switch-off--${colorOff} ${className}`}>
       <label className={`switch__label ${checked ? 'option-true': 'option-false'}`}>
         <Box as="button"
           role="switch"
