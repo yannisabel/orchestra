@@ -1,7 +1,11 @@
 scripts/
 src/
+converage/
+__mock__/
 .storybook/
 .vscode/
+.babelrc.json
+.release-it.json
 .eslintignore
 .eslintrc.js
 .gitignore
@@ -11,3 +15,6 @@ src/
 rollup.config.js
 tsconfig.json
 tsconfig.paths.json
+jest-setup.js
+jest-config.js
+stats.html
