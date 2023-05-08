@@ -1,9 +1,6 @@
 @import './layout';
 @import '../mixins/breakpoints.scss';
 
-.flex { display: flex; }
-.inline-flex { display: inline-flex; }
-
 /* 1. Fix for Chrome 44 bug.
  * https://code.google.com/p/chromium/issues/detail?id=506893 */
 .flex-auto {
@@ -71,9 +68,6 @@
 .flex-shrink--1 { flex-shrink: 1; }
 
 @include breakpoint('medium') {
-  .medium_flex { display: flex; }
-  .medium_inline-flex { display: inline-flex; }
-
   /* 1. Fix for Chrome 44 bug.
   * https://code.google.com/p/chromium/issues/detail?id=506893 */
   .medium_flex-auto {
@@ -142,9 +136,6 @@
 }
 
 @include breakpoint('large') {
-  .large_flex { display: flex; }
-  .large_inline-flex { display: inline-flex; }
-
   /* 1. Fix for Chrome 44 bug.
   * https://code.google.com/p/chromium/issues/detail?id=506893 */
   .large_flex-auto {
@@ -213,9 +204,6 @@
 }
 
 @include breakpoint('extra-large') {
-  .extra-large_flex { display: flex; }
-  .extra-large_inline-flex { display: inline-flex; }
-
   /* 1. Fix for Chrome 44 bug.
   * https://code.google.com/p/chromium/issues/detail?id=506893 */
   .extra-large_flex-auto {

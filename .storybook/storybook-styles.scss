@@ -1,6 +1,6 @@
-@import '../src/Notations/';
-@import '../src/Notations/utility-classes/';
-@import '../src/Notations/mixins/';
+@import '../src/Notations';
+@import '../src/Notations/utility-classes';
+@import '../src/Notations/mixins';
 
 body {
   font-family: $openSans;
