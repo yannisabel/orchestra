@@ -9,6 +9,7 @@ import generatePackageJson from 'rollup-plugin-generate-package-json';
 import copy from 'rollup-plugin-copy'
 import postcss from 'rollup-plugin-postcss'
 import autoprefixer from 'autoprefixer'
+import { visualizer } from "rollup-plugin-visualizer";
 
 const plugins = [
   peerDepsExternal(),
@@ -24,7 +25,8 @@ const plugins = [
     targets: [
       { src: 'src/Notations', dest: 'dist' },
     ]
-  })
+  }),
+  visualizer(),
 ];
 const subfolderPlugins = (folderName) => [
   ...plugins,
