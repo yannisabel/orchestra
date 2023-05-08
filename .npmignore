@@ -1,6 +1,6 @@
 scripts/
 src/
-converage/
+coverage/
 __mock__/
 .storybook/
 .vscode/
@@ -15,6 +15,6 @@ __mock__/
 rollup.config.js
 tsconfig.json
 tsconfig.paths.json
-jest-setup.js
-jest-config.js
+jest-setup.ts
+jest.config.js
 stats.html
