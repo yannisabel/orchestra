@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { IconTypes } from '../Icon/Icon.types'
+import { IconProps, IconTypes } from '../Icon/Icon.types'
 
 export interface AnchorProps {
   ref?: any
@@ -10,6 +10,7 @@ export interface AnchorProps {
   children?: string | ReactNode
   title: string
   icon?: IconTypes
+  iconSize?: IconProps['size']
   role?: string
   tabIndex?: number
   isExternal?: boolean

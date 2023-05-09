@@ -11,6 +11,7 @@ export const Anchor = forwardRef(({
   href,
   title,
   icon,
+  iconSize = 24,
   tabIndex,
   isExternal = false,
   onClick,
@@ -68,7 +69,7 @@ export const Anchor = forwardRef(({
           rel: 'noopener noreferer'
         }}
       >
-        {icon && <Icon name={icon} />}
+        {icon && <Icon name={icon} size={iconSize} />}
         {children}
       </a>
     )

@@ -11,6 +11,7 @@ export const Button = ({
   type = 'button',
   children,
   icon,
+  iconSize = 24,
   role,
   tabIndex,
   onClick,
@@ -63,7 +64,7 @@ export const Button = ({
       onClick={onClick}
       tabIndex={tabIndex}
     >
-      {icon && <Icon name={icon} />}
+      {icon && <Icon name={icon} size={iconSize} />}
       {children}
     </button>
   )

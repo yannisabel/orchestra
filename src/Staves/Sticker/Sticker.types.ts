@@ -1,5 +1,6 @@
 import { ElementType } from "react"
 import { BoxProps } from "../Box/Box.types"
+import { IconProps } from "../Icon/Icon.types"
 
 interface StickerCommonProps extends BoxProps<ElementType> {
   model?: 'default' | 'mini'
@@ -16,6 +17,7 @@ interface StickerImageProps {
 interface StickerIconProps {
   type: 'icon'
   icon: string
+  iconSize?: IconProps['size']
 }
 
 interface StickerTextProps {

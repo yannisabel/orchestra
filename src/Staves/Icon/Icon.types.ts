@@ -31,4 +31,5 @@ export type IconTypes = typeof allIcons[number]
 export interface IconProps {
   name: IconTypes
   className?: string
+  size?: number | string
 }

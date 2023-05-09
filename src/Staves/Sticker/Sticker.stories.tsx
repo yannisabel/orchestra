@@ -5,6 +5,10 @@ const meta = {
   title: 'Staves/Sticker',
   component: Sticker,
   argTypes: {
+    model: {
+      control: 'radio',
+      options: ['default', 'mini'],
+    },
     color: {
       control: 'select',
       options: ['blue', 'orange', 'white', 'grey', 'blue-grey']
@@ -20,6 +24,16 @@ export const WithIcon: Story = {
 
   args: {
     type: 'icon',
+    icon: 'image',
+  },
+}
+
+export const WithModalMini: Story = {
+  name: 'With Model Mini',
+
+  args: {
+    type: 'icon',
+    model: 'mini',
     icon: 'image',
   },
 }

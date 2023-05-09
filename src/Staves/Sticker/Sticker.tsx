@@ -40,7 +40,7 @@ export const Sticker = ({
     }
 
     if (props.type === 'icon') {
-      return <Icon name={props.icon} />
+      return <Icon name={props.icon} size={model === 'default' ? 50 : 30} />
     }
 
     return <span>{props.text}</span>
