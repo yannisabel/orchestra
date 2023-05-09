@@ -11,7 +11,7 @@ export const Anchor = forwardRef(({
   href,
   title,
   icon,
-  iconSize = 24,
+  iconSize = model === 'round' ? 28 : 24,
   tabIndex,
   isExternal = false,
   onClick,

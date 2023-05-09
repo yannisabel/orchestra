@@ -171,8 +171,8 @@ const Problem = ({className, name, size}: IconProps) => (
 
 const Check = ({className, name, size}: IconProps) => (
   <svg
-    width="100%"
-    height="100%"
+    width={size}
+    height={size}
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
@@ -283,8 +283,8 @@ const Github = ({className, name, size}: IconProps) => (
 const Medium = ({className, name, size}: IconProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="100%"
-    height="100%"
+    width={size}
+    height={size}
     viewBox="53.5 280.5 24 24"
     preserveAspectRatio="xMidYMid meet"
     className={className}

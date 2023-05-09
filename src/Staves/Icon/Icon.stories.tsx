@@ -27,18 +27,10 @@ export const Default = {
           direction="column"
           spacing="space-1"
           className="align-items--center"
-          style={{
-            width: '100px',
-            height: '100px',
-          }}
         >
           <Box
-            style={{
-              width: '50px',
-              height: '50px',
-            }}
           >
-            <Icon name={IconName} className="icon-c--textColor" />
+            <Icon name={IconName} className="icon-c--textColor" size={50} />
           </Box>
           <Text>{IconName}</Text>
         </Stack>

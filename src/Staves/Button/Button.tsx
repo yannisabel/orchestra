@@ -11,7 +11,7 @@ export const Button = ({
   type = 'button',
   children,
   icon,
-  iconSize = 24,
+  iconSize = model === 'round' ? 28 : 24,
   role,
   tabIndex,
   onClick,
