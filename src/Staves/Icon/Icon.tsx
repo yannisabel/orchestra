@@ -252,8 +252,8 @@ const Behance = ({className, name, size}: IconProps) => (
 
 const Codepen = ({className, name, size}: IconProps) => (
   <svg
-    height="30"
-    width="30"
+    height={size}
+    width={size}
     viewBox="0 0 30 30"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid meet"
