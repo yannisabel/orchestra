@@ -4,4 +4,5 @@ export interface PictureProps {
   height?: number | string
   alt: string
   className?: string
+  lazyLoading?: boolean
 }

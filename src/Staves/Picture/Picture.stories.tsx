@@ -12,7 +12,9 @@ type Story = StoryObj<typeof meta>
 export const WithImage: Story = {
   args: {
     src: 'https://via.placeholder.com/200',
-    alt: 'placeholder image'
+    alt: 'placeholder image',
+    width: 200,
+    height: 200
   },
   name: 'With Image',
 }

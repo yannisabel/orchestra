@@ -4,10 +4,9 @@ import React from 'react'
 
 export const Picture = ({
   src,
-  width,
-  height,
   alt,
   className,
+  lazyLoading = true,
   ...resProps
 }: PictureProps) => {
   return (
@@ -16,6 +15,12 @@ export const Picture = ({
       src={src}
       alt={alt}
       className={className}
+      {
+        ...lazyLoading && {
+          loading: 'lazy',
+          decoding: 'async',
+        }
+      }
     />
   )
 }
