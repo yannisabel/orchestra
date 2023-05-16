@@ -1,6 +1,6 @@
 {
   "name": "orchestra-kit",
-  "version": "0.1.10",
+  "version": "0.2.0",
   "description": "Orchestra kit is a library of components that follows Orchestra Design Systems principles to help building web interfaces with React.",
   "main": "dist/cjs/index.js",
   "module": "dist/index.js",
