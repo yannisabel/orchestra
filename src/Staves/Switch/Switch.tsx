@@ -12,6 +12,7 @@ export const Switch = ({ label, checked, onClick, className = '', colorOn = 'blu
         <Box as="button"
           role="switch"
           aria-checked={checked}
+          aria-label={label}
           onClick={onClick}
           className="switch__button"
         >

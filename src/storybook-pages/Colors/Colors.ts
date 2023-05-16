@@ -18,6 +18,7 @@ export const greyPalette = {
   'grey-10': 'rgba(204, 204, 204, 1)',
   'grey-50': 'rgba(145, 145, 145, 1)',
   'grey-60': 'rgba(124, 124, 124, 1)',
+  'grey-70': 'rgba(110, 110, 110, 1)',
   'grey-100': 'rgba(51, 51, 51, 1)',
   'grey-V0--T2': 'rgba(209, 209, 209, .2)',
 }
@@ -47,7 +48,7 @@ export const colorLightTheme = {
   accentColor: 'blue-10',
   cardBgColor: 'white-0',
   cardTitleColor: 'blue-10',
-  discreetColor: 'grey-60',
+  discreetColor: 'grey-70',
   stickerBgColor: 'white-0',
   codeBgColor: 'blue-0',
   codeColor: 'blue-30',
