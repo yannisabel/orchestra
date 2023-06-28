@@ -14,6 +14,7 @@
   border-radius: $radius-round;
   box-shadow: $depth-1;
   text-align: center;
+  line-height: 0;
 
   // model modifiers
   &-m {
@@ -94,15 +95,20 @@
   }
 
   & > * {
+    display: flex;
     position: relative;
     max-width: 50px;
     max-height: 50px;
+    justify-content: center;
+    align-items: center;
   }
   
   & span {
+    display: inline;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     color: colorOnBackground($white-0);
+    line-height: 1em;
   }
 }
