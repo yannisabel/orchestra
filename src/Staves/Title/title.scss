@@ -61,7 +61,7 @@ h6 {
   @include selectColorByTheme('border-bottom-color', 'bg-decoration-color');
   padding-bottom: $space-3+$space-2;
   text-align: center;
-  @include selectColorByTheme('color', 'fg-emphasis-color');
+  @include selectColorByTheme('color', 'fg-title-color');
 }
 
 .subtitle {
