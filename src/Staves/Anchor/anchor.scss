@@ -1,7 +1,7 @@
 @import '../../Notations/functions/colors';
 @import '../../Notations/mixins/colors';
 @import '../../Notations/animations';
-@import '../../Notations/colors';
+@import '../../Notations/colors/semantic';
 @import '../../Notations/fonts';
 @import '../../Notations/radius';
 @import '../../Notations/shadows';
@@ -34,7 +34,7 @@
   &-m {
     &--default {
       text-decoration: underline;
-      @include selectColorByTheme('color', 'linkColor');
+      @include selectColorByTheme('color', 'fg-link-color');
     }
     &--button {
       @extend %buttoninheritance;
@@ -65,13 +65,13 @@
       transition: box-shadow $cubicBezier-025, background-color $cubicBezier-025;
     }
     &--ghost {
-      @include selectColorByTheme('color', 'textColor');
+      @include selectColorByTheme('color', 'fg-main-color');
       &:hover, &:focus {
-        @include selectColorByTheme('background-color', 'ghostButtonHover');
+        @include selectColorByTheme('background-color', 'bg-ghost-button-hover-color');
       }
   
       svg {
-        @include selectColorByTheme('fill', 'textColor');
+        @include selectColorByTheme('fill', 'fg-main-color');
       }
 
     }
@@ -181,7 +181,7 @@
 a:not([class]) {
   outline: none;
   text-decoration: underline;
-  @include selectColorByTheme('color', 'linkColor');
+  @include selectColorByTheme('color', 'fg-link-color');
 
   i {
       font-family: $openSans;

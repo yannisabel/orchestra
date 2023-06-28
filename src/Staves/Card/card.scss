@@ -8,7 +8,7 @@
   overflow: hidden;
   border-radius: $radius-4;
   box-shadow: $depth-1;
-  @include selectColorByTheme('background-color', 'cardBgColor');
+  @include selectColorByTheme('background-color', 'bg-overlay-component-color');
 
   & > .anchor p {
     text-decoration: none;

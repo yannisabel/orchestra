@@ -1,7 +1,7 @@
 @import '../../Notations/functions/colors';
 @import '../../Notations/mixins/colors';
 @import '../../Notations/animations';
-@import '../../Notations/colors';
+@import '../../Notations/colors/semantic';
 @import '../../Notations/fonts';
 @import '../../Notations/radius';
 @import '../../Notations/shadows';
@@ -49,18 +49,25 @@
       transition: box-shadow $cubicBezier-025, background-color $cubicBezier-025;
     }
     &--ghost {
-      @include selectColorByTheme('color', 'textColor');
+      @include selectColorByTheme('color', 'fg-main-color');
       &:hover, &:focus {
-        @include selectColorByTheme('background-color', 'ghostButtonHover');
+        @include selectColorByTheme('background-color', 'bg-ghost-button-hover-color');
       }
   
       svg {
-        @include selectColorByTheme('fill', 'textColor');
+        @include selectColorByTheme('fill', 'fg-main-color');
       }
     }
   }
 
   &-c {
+    &--transparent {
+      @include selectColorByTheme('color', 'fg-main-color');
+
+      svg {
+        @include selectColorByTheme('color', 'fg-main-color');
+      }
+    }
     &--blue {
       background-color: $blue-30;
       color: $white-0;

@@ -4,7 +4,7 @@
 @import './utility-classes/';
 @import './animations';
 @import './breakpoints';
-@import './colors';
+@import './colors/semantic';
 @import './flexbox';
 @import './fonts';
 @import './functions/';
@@ -38,8 +38,8 @@
 body {
   overflow-x: hidden;
   overflow-y: scroll;
-  @include selectColorByTheme('background', 'primaryBgColor');
-  @include selectColorByTheme('color', 'primaryColor');
+  @include selectColorByTheme('background', 'bg-main-color');
+  @include selectColorByTheme('color', 'fg-main-color');
 }
 
 figure p {

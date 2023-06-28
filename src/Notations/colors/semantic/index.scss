@@ -1,0 +1,32 @@
+@import '../core';
+
+$themes: (
+  light: (
+    bg-main-color: $white-10,
+    bg-small-component-color: $grey-0,
+    bg-overlay-component-color: $white-0,
+    bg-decoration-color: $grey-0,
+    bg-code-color: $blue-0,
+    bg-ghost-button-hover-color: $black-V0--T10,
+    fg-main-color: $grey-100,
+    fg-accent-Color: $blue-30,
+    fg-link-color: $blue-30,
+    fg-emphasis-color: $blue-20,
+    fg-subtle-color: $grey-70,
+    fg-code-color: $blue-30,
+  ),
+  dark: (
+    bg-main-color: $blue-100,
+    bg-small-component-color: $blue-30,
+    bg-overlay-component-color: $blue-50,
+    bg-decoration-color: $blue-40,
+    bg-code-color: $blue-30,
+    bg-ghost-button-hover-color: $grey-V0--T2,
+    fg-main-color: $white-10,
+    fg-accent-Color: $blue-20,
+    fg-link-color: $blue-10,
+    fg-emphasis-color: $white-10,
+    fg-subtle-color: $grey-50,
+    fg-code-color: $white-0,
+  )
+)

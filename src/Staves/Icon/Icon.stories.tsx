@@ -30,7 +30,7 @@ export const Default = {
         >
           <Box
           >
-            <Icon name={IconName} className="icon-c--textColor" size={50} />
+            <Icon name={IconName} className="icon-c--fgColor" size={50} />
           </Box>
           <Text>{IconName}</Text>
         </Stack>

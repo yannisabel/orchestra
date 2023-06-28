@@ -1,7 +1,7 @@
 @import '../../Notations/mixins/breakpoints';
 @import '../../Notations/breakpoints';
 @import '../../Notations/mixins/colors';
-@import '../../Notations/colors';
+@import '../../Notations/colors/core';
 @import '../../Notations/fonts';
 @import '../../Notations/spaces';
 
@@ -9,7 +9,7 @@
   margin: 0;
   font-family: $mulish;
   line-height: 1.3;
-  @include selectColorByTheme('color', 'titleColor');
+  @include selectColorByTheme('color', 'fg-emphasis-color');
 }
 
 h1 {
@@ -58,16 +58,16 @@ h6 {
 .title-section {
   margin-bottom: $space-3+$space-2;
   border-bottom: 1px solid;
-  @include selectColorByTheme('border-bottom-color', 'dividerColor');
+  @include selectColorByTheme('border-bottom-color', 'bg-decoration-color');
   padding-bottom: $space-3+$space-2;
   text-align: center;
-  @include selectColorByTheme('color', 'titleColor');
+  @include selectColorByTheme('color', 'fg-emphasis-color');
 }
 
 .subtitle {
   margin-bottom: $space-3+$space-2;
   border-bottom: 1px solid;
-  @include selectColorByTheme('border-bottom-color', 'dividerColor');
+  @include selectColorByTheme('border-bottom-color', 'bg-decoration-color');
   padding-top: 0;
   padding-bottom: $space-2;
   font-size: $fs-6;

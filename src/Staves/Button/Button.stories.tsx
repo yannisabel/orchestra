@@ -36,6 +36,7 @@ export const Default: Story = {
   args: {
     children: 'Button',
     model: 'default',
+    state: 'ghost',
     onClick: () => console.log('hi there!'),
   },
 }
@@ -55,7 +56,6 @@ export const Round: Story = {
   name: 'Round',
 
   args: {
-    children: 'Button',
     model: 'round',
     icon: 'image',
     onClick: () => console.log('hi there!'),

@@ -9,7 +9,7 @@
   margin: $space-3 0;
   border: 0;
   height: 1px;
-  @include selectColorByTheme('background-color', 'dividerColor');
+  @include selectColorByTheme('background-color', 'bg-decoration-color');
   @include breakpoint('extra-large') {
       margin: $space-3 + $space-2 0;
   }

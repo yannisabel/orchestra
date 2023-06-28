@@ -1,4 +1,4 @@
-@import '../../Notations/colors';
+@import '../../Notations/colors/core';
 @import '../../Notations/mixins/colors';
 
 .icon {
@@ -18,8 +18,8 @@
     &--orange {
       fill: $orange-10;
     }
-    &--textColor {
-      @include selectColorByTheme('fill', 'textColor')
+    &--fgColor {
+      @include selectColorByTheme('fill', 'fg-main-color')
     }
   }
 }
