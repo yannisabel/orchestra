@@ -420,6 +420,20 @@ const Construction = ({className, name, size}: IconProps) => (
   </svg>
 )
 
+const Forum = ({className, name, size}: IconProps) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="xMidYMid meet"
+    className={className}
+  >
+    <title>{`${name} icon`}</title>
+    <path d="M0 0h24v24H0z" fill="none"/><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/>
+  </svg>
+)
+
 export const Icon = ({ name, className, size = '100%' }: IconProps) => {
   switch (name) {
     case 'image':
@@ -472,6 +486,8 @@ export const Icon = ({ name, className, size = '100%' }: IconProps) => {
       return <Cookie name={name} className={className} size={size}/>
     case 'construction':
       return <Construction name={name} className={className} size={size}/>
+    case 'forum':
+      return <Forum name={name} className={className} size={size}/>
     default:
       return null
   }
