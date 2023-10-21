@@ -1,28 +1,126 @@
 import { Canvas, Meta, Story } from '@storybook/blocks'
 import { Card } from '../../Staves/Card'
+import { Stack } from '../../Staves/Stack'
 import { Box } from '../../Staves/Box'
 import { Text } from '../../Staves/Text'
+import { Title } from '../../Staves/Title'
+import empty from './empty-alpha.png'
 
-import { colors } from '.'
+import { colors, blackPalette, whitePalette, greyPalette, bluePalette, orangePalette } from '.'
 
 <Meta title="Notations/Colors" />
 
 # Colors
 
-<Box className="flex-direction--column">
-  {Object.entries(colors).map(([colorName, value]) => {
-    return (
-      <Card key={`${colorName}`} className="display--flex align-items--center">
-        <Box style={{backgroundColor: value, width: '50px', height: '50px'}} />
-        <Box className="flex-direction--column">
-          <Text fontFamily="ff-openSans">
-            colorName: {colorName}
-          </Text>
-          <Text fontFamily="ff-openSans">
-            value: {value}
-          </Text>
-        </Box>
-      </Card>
-    )
-  })}
+<Box className="display--grid grid-gap--space-4 sb-unstyled">
+  <Box className="display--grid grid-gap--space-3 align-items--center grid-col-12 margin-top--space-4 margin-bottom--space-5">
+    <Title type="h3" className="grid-item--spanCol2of12 fs-3">black palette</Title>
+    <Stack direction="row" spacing="space-3" className="grid-item--spanCol10of12">
+      {Object.entries(blackPalette).map(([colorName, value]) => {
+        return (
+          <Box key={`${colorName}`} className="color-card">
+            <Box style={{background: `url(${empty})`, overflow: 'hidden', borderBottom: '1px solid #f1f1f1', height: 66}}>
+              <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
+            </Box>
+            <Box className="color-card__text display--flex flex-direction--column">
+              <Text as="span" fontWeight="fw-bold">
+                {colorName}
+              </Text>
+              <Text as="span">
+                {value}
+              </Text>
+            </Box>
+          </Box>
+        )
+      })}
+    </Stack>
+  </Box>
+  <Box className="display--grid grid-gap--space-3 align-items--center grid-col-12 margin-top--space-4 margin-bottom--space-5">
+    <Title type="h3" className="grid-item--spanCol2of12 fs-3">white palette</Title>
+    <Stack direction="row" spacing="space-3" className="grid-item--spanCol10of12">
+      {Object.entries(whitePalette).map(([colorName, value]) => {
+        return (
+          <Box key={`${colorName}`} className="color-card">
+            <Box style={{background: `url(${empty})`, overflow: 'hidden', borderBottom: '1px solid #f1f1f1', height: 66}}>
+              <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
+            </Box>
+            <Box className="color-card__text display--flex flex-direction--column">
+              <Text as="span" fontWeight="fw-bold">
+                {colorName}
+              </Text>
+              <Text as="span">
+                {value}
+              </Text>
+            </Box>
+          </Box>
+        )
+      })}
+    </Stack>
+  </Box>
+  <Box className="display--grid grid-gap--space-3 align-items--center grid-col-12 margin-top--space-4 margin-bottom--space-5">
+    <Title type="h3" className="grid-item--spanCol2of12 fs-3">grey palette</Title>
+    <Stack direction="row" spacing="space-3" className="grid-item--spanCol10of12">
+      {Object.entries(greyPalette).map(([colorName, value]) => {
+        return (
+          <Box key={`${colorName}`} className="color-card">
+            <Box style={{background: `url(${empty})`, overflow: 'hidden', borderBottom: '1px solid #f1f1f1', height: 66}}>
+              <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
+            </Box>
+            <Box className="color-card__text display--flex flex-direction--column">
+              <Text as="span" fontWeight="fw-bold">
+                {colorName}
+              </Text>
+              <Text as="span">
+                {value}
+              </Text>
+            </Box>
+          </Box>
+        )
+      })}
+    </Stack>
+  </Box>
+  <Box className="display--grid grid-gap--space-3 align-items--center grid-col-12 margin-top--space-4 margin-bottom--space-5">
+    <Title type="h3" className="grid-item--spanCol2of12 fs-3">blue palette</Title>
+    <Stack direction="row" spacing="space-3" className="grid-item--spanCol10of12">
+      {Object.entries(bluePalette).map(([colorName, value]) => {
+        return (
+          <Box key={`${colorName}`} className="color-card">
+            <Box style={{background: `url(${empty})`, overflow: 'hidden', borderBottom: '1px solid #f1f1f1', height: 66}}>
+              <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
+            </Box>
+            <Box className="color-card__text display--flex flex-direction--column">
+              <Text as="span" fontWeight="fw-bold">
+                {colorName}
+              </Text>
+              <Text as="span">
+                {value}
+              </Text>
+            </Box>
+          </Box>
+        )
+      })}
+    </Stack>
+  </Box>
+  <Box className="display--grid grid-gap--space-3 align-items--center grid-col-12 margin-top--space-4 margin-bottom--space-5">
+    <Title type="h3" className="grid-item--spanCol2of12 fs-3">orange palette</Title>
+    <Stack direction="row" spacing="space-3" className="grid-item--spanCol10of12">
+      {Object.entries(orangePalette).map(([colorName, value]) => {
+        return (
+          <Box key={`${colorName}`} className="color-card">
+            <Box style={{background: `url(${empty})`, overflow: 'hidden', borderBottom: '1px solid #f1f1f1', height: 66}}>
+              <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
+            </Box>
+            <Box className="color-card__text display--flex flex-direction--column">
+              <Text as="span" fontWeight="fw-bold">
+                {colorName}
+              </Text>
+              <Text as="span">
+                {value}
+              </Text>
+            </Box>
+          </Box>
+        )
+      })}
+    </Stack>
+  </Box>
 </Box>

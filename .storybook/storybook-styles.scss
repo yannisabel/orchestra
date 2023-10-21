@@ -10,6 +10,17 @@ body {
   @extend .paragraph-flow--space-5;
 }
 
+.color-card {
+  border-radius: $space-2;
+  box-shadow: $depth-1;
+  overflow: hidden;
+  font-size: $fs-1;
+
+  &__text {
+    padding: $space-2;
+  }
+}
+
 @include generateGridColumnsClasses(12);
 @include generateGridRowsClasses(12);
 @include generateGridGapClasses($gapTypes, $spaces);

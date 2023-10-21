@@ -27,7 +27,7 @@ export const bluePalette = {
   'blue-0': 'rgba(210, 226, 238, 1)',
   'blue-10': 'rgba(107, 190, 255, 1)',
   'blue-20': 'rgba(58, 115, 160, 1)',
-  'blue-30': 'rgba(38, 75, 104), 1)',
+  'blue-30': 'rgba(38, 75, 104, 1)',
   'blue-40': 'rgba(64, 69, 85, 1)',
   'blue-50': 'rgba(40, 41, 51, 1)',
   'blue-100': 'rgba(33, 34, 40, 1)',

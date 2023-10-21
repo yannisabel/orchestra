@@ -29,11 +29,11 @@ type Story = StoryObj<typeof meta>
 export const Default = {
   render: () => (
     <Card className="display--flex">
-      <Picture src="https://via.placeholder.com/160" alt="placeholder image" />
+      <Picture src="https://via.placeholder.com/160" alt="placeholder image" width={160} height={160} />
       <Stack
         direction="column"
         spacing="space-2"
-        className="padding--space-3 medium_padding--space-4 large_padding--space-6"
+        className="padding--space-3"
       >
         <Text>Title</Text>
         <Text>type</Text>
@@ -62,7 +62,7 @@ export const Linkable = {
         <Stack
           direction="column"
           spacing="space-2"
-          className="padding--space-3 medium_padding--space-4 large_padding--space-6"
+          className="padding--space-3"
         >
           <Text>Title</Text>
           <Text>type</Text>

@@ -84,3 +84,31 @@ export const VerticalWithSpace: Story = {
 
   name: 'Vertical With Space',
 }
+
+export const HorizontalMultipleLines: Story = {
+  args: {
+    direction: 'row',
+    children: <>
+      <Box className="bg-color--blue-30 padding--space-3">
+        <Text>Item 1</Text>
+      </Box>
+      <Box className="bg-color--blue-30 padding--space-3">
+        <Text>Item 2</Text>
+      </Box>
+      <Box className="bg-color--blue-30 padding--space-3">
+        <Text>Item 3</Text>
+      </Box>
+      <Box className="bg-color--blue-30 padding--space-3">
+        <Text>Item 4</Text>
+      </Box>
+      <Box className="bg-color--blue-30 padding--space-3">
+        <Text>Item 5</Text>
+      </Box>
+      <Box className="bg-color--blue-30 padding--space-3">
+        <Text>Item 6</Text>
+      </Box>
+    </>,
+    spacing: 'space-3'
+  },
+  name: 'Horizontal With Space',
+}
