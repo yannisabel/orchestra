@@ -1,4 +1,4 @@
-import { Canvas, Meta, Story } from '@storybook/blocks'
+import { Canvas, Meta, Story, Unstyled } from '@storybook/blocks'
 import { Card } from '../../Staves/Card'
 import { Stack } from '../../Staves/Stack'
 import { Box } from '../../Staves/Box'
@@ -10,9 +10,11 @@ import { colors, blackPalette, whitePalette, greyPalette, bluePalette, orangePal
 
 <Meta title="Notations/Colors" />
 
+<Unstyled>
+
 # Colors
 
-<Box className="display--grid grid-gap--space-4 sb-unstyled">
+<Box className="display--grid grid-gap--space-4">
   <Box className="display--grid grid-gap--space-3 align-items--center grid-col-12 margin-top--space-4 margin-bottom--space-5">
     <Title type="h3" className="grid-item--spanCol2of12 fs-3">black palette</Title>
     <Stack direction="row" spacing="space-3" className="grid-item--spanCol10of12">
@@ -124,3 +126,5 @@ import { colors, blackPalette, whitePalette, greyPalette, bluePalette, orangePal
     </Stack>
   </Box>
 </Box>
+
+</Unstyled>

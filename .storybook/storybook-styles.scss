@@ -21,6 +21,11 @@ body {
   }
 }
 
+ul:not([class]) {
+  margin: $space-5;
+  list-style: disc;
+}
+
 @include generateGridColumnsClasses(12);
 @include generateGridRowsClasses(12);
 @include generateGridGapClasses($gapTypes, $spaces);

@@ -1,11 +1,11 @@
 import { addons } from '@storybook/addons'
 import { create } from '@storybook/theming'
+import orchestralogowhite from './img/orchestra-logo-white.svg'
 
 const theme = create({
   base: 'dark',
-
+  brandImage: orchestralogowhite,
   colorSecondary: '#264B68',
-
   appBg: '#212228',
   appContentBg: '#212228',
   appBorderColor: '#000000',

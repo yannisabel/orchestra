@@ -35,7 +35,7 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ['Overview', ['Introduction', 'Principles', 'Getting Started'], 'Notations', 'Staves'],
+      order: ['Overview', ['Introduction', 'Principles', 'Getting Started'], 'Notations', ['Introduction', 'Colors', 'Fonts', 'Grid'], 'Staves'],
     },
   },
   docs: {

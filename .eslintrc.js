@@ -22,7 +22,7 @@ module.exports = {
       version: 'detect',
     },
   },
-  extends: ['eslint:recommended', 'plugin:prettier/recommended'],
+  extends: ['eslint:recommended', 'plugin:prettier/recommended', 'plugin:storybook/recommended'],
   plugins: ['import', 'react', 'react-hooks'],
   overrides: [
     {
