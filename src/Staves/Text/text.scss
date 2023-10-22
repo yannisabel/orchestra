@@ -12,7 +12,7 @@
   @include selectColorByTheme('color', 'fg-main-color');
 }
 
-address, abbr, b, bdi, bdo, cite, dfn, em, figcaption, i , kbd, mark, p, q, s, samp, small, span, strong, sub, sup, time, u, var, wbr {
+address, abbr, b, bdi, bdo, cite, dfn, em, figcaption, i , kbd, mark, p, q, s, samp, small, span, strong, sub, sup, time, u, ul, var, wbr {
   @extend %text;
 }
 

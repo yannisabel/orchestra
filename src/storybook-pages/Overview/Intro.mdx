@@ -1,0 +1,79 @@
+import { Meta, Unstyled } from '@storybook/blocks'
+import { Box } from '../../Staves/Box'
+import { Stack } from '../../Staves/Stack'
+import { Card } from '../../Staves/Card'
+import { Title } from '../../Staves/Title'
+import { Text } from '../../Staves/Text'
+import { Anchor } from '../../Staves/Anchor'
+import { Picture } from '../../Staves/Picture'
+import { OrchestraIcon } from '../../../.storybook/img/orchestra-icon'
+import orchestraLogoBlue from '../../../.storybook/img/orchestra-logo-blue.svg'
+import { bluePalette } from '../Notations/Colors'
+
+<Meta title="Overview/Introduction" />
+
+<Unstyled>
+
+<Box className="dark sb-unstyled">
+
+<Card className="overview-hero display--flex justify-content--space-between padding-left--space-5 padding-bottom--space-4 margin-bottom--space-6 sb">
+  <Box className="display--flex flex-direction--row">
+    <Stack direction="column" className="padding-right--space-10">
+      <Title type="h1">Orchestra Design System</Title>
+
+      <Text fontFamily="ff-mulish" fontSize="fs-3"><Text as="strong" fontFamily="ff-mulish" fontWeight="fw-bold" fontSize="fs-3">Orchestra</Text> is a Design System created by <Anchor href="https://yannisabel.com" title="Yann Isabel's website" isExternal>Yann Isabel</Anchor> for his own purpose. It aims to follow guidelines inspired by the music area.</Text>
+
+      <Text fontFamily="ff-mulish" fontSize="fs-3" className="margin-bottom--space-5">The component library called <Text as="strong" fontFamily="ff-mulish" fontWeight="fw-bold" fontSize="fs-3">Orchestra Kit</Text> follows the Orchestra principles and allows to create web interfaces with flexibility.</Text>
+    </Stack>
+    <OrchestraIcon className="orchestra-icon padding-right--space-10" fill={bluePalette['blue-30']} />
+  </Box>
+</Card>
+
+<Box className="display--grid grid-col-12 grid-gap--space-5">
+  <Card className="padding--space-5 margin-bottom--space-5 grid-item--spanCol6of12">
+    <Title type="h2">Notations</Title>
+    <Text fontFamily="ff-mulish" className="padding-bottom--space-3">Gather all properties and helpers which will be used to create components</Text>
+    <Anchor
+      href="../?path=/docs/notations-introduction--docs"
+      title="go to Notations page"
+      state="default"
+    >Explore Notations</Anchor>
+  </Card>
+  <Card className="padding--space-5 margin-bottom--space-5 grid-item--spanCol6of12">
+    <Title type="h2">Staves</Title>
+    <Text fontFamily="ff-mulish" className="padding-bottom--space-3">All the smallest components that cannot be splitted in multiple parts without loosing their functionnality.</Text>
+    <Anchor
+      href="../?path=/docs/staves-introduction--docs"
+      title="go to Staves page"
+      state="default"
+    >Explore Staves</Anchor>
+  </Card>
+</Box>
+
+## The story behind Orchestra
+
+Yann Isabel is a musician since he was teenagers so it was natural to think about a music correlation with his Design System.
+
+Music is a language with multiple parts in it. From the notation to how the music is played or how it sounds there are plenty of rules and guidelines to follow to call it music and not only sound.
+
+This is exactly the same idea for the Orchestra Design System.
+
+An orchestra can take multiple forms depending on the stage size, the masterpieces that will be played or how it will be played. Each group of instruments of an orchestra is called a section and each section can be modified or removed to fit the needs.
+Generaly there are 5 sections in an occidental orchestra: String, Woodwind, Brass, Percussion, Keyboard.
+
+However this is not uncommon to see orchestra without the woodwind section or with a choir section in addition to the rest. The only constant is generally the structure and the placement of the instruments in the section itself.
+
+It was the best musical allegory to represent a flexible system and that's why the name Orchestra was chosen for this Design System. 
+
+On a more digital note, to make the system flexible and adaptable to any functionnal differences depending on the project the idea was to be the most atomic possible.
+The Orchestra Design System is divided in 3 main groups:
+
+- **Notations:** Gather all properties and helpers which will be used to create components.
+- **Staves:** All the smallest components that cannot be splitted in multiple parts without loosing their functionnality. Idealy one Stave have only one function.
+- **Scores** This is the result of multiple Staves together that create context.
+
+The [Orchestra Kit](https://www.npmjs.com/package/orchestra-kit) provides only [Notations](../?path=/docs/notations-introduction--docs) and [Staves](../?path=/docs/staves-introduction--docs) because the Scores should reflects the components created in product context.
+
+</Box>
+
+</Unstyled>

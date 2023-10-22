@@ -1,20 +1,22 @@
 import { Decorator } from '@storybook/react'
+import { themes } from '@storybook/theming'
 import React from 'react'
 import { Title } from '../src/Staves/Title'
 import { Text } from '../src/Staves/Text'
 import { Anchor } from '../src/Staves/Anchor'
 import '../src/Notations/reset.scss'
 import './storybook-styles.scss'
+import { bluePalette, whitePalette } from '../src/storybook-pages/Notations/Colors/Colors'
 
 export const withTheme: Decorator = (StoryFn) => {
 
       return (
         <div style={{display: 'grid', gridAutoFlow: 'column', minHeight: '200px'}}>
-            <div className='dark' style={{backgroundColor: '#212228', padding: '16px'}}>
+            <div className='dark' style={{backgroundColor: bluePalette['blue-100'], padding: '16px'}}>
               <Title type="h3">Dark theme</Title>
               <StoryFn />
             </div>
-            <div className='light' style={{backgroundColor: '#F1F1F1', padding: '16px'}}>
+            <div className='light' style={{backgroundColor: whitePalette['white-10'], padding: '16px'}}>
             <Title type="h3">Light theme</Title>
               <StoryFn />
             </div>
@@ -27,6 +29,7 @@ export const decorators = [withTheme]
 export const parameters = {
   layout: 'fullscreen',
   actions: { argTypesRegex: "^on[A-Z].*" },
+  viewMode: 'docs',
   controls: {
     matchers: {
       color: /(background|color)$/i,
@@ -39,6 +42,7 @@ export const parameters = {
     },
   },
   docs: {
+    theme: themes.dark,
     components: {
       h1: ({children}) => <Title type="h1">{children}</Title>,
       h2: ({children}) => <Title type="h2">{children}</Title>,

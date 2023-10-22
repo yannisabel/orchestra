@@ -1,10 +1,13 @@
-import { Canvas, Meta, Story } from '@storybook/blocks'
-import { Box } from '../../Staves/Box'
-import { Text } from '../../Staves/Text'
+import { Canvas, Meta, Story, Unstyled } from '@storybook/blocks'
+import { Box } from '../../../Staves/Box'
+import { Text } from '../../../Staves/Text'
 
 import {fontFamilies, fontSizes, fontWeights} from '.'
 
 <Meta title="Notations/Fonts" />
+
+<Unstyled>
+<Box className="dark">
 
 # Fonts
 
@@ -86,3 +89,6 @@ import {fontFamilies, fontSizes, fontWeights} from '.'
     )
   })}
 </Box>
+
+</Box>
+</Unstyled>

@@ -15,6 +15,7 @@ body {
   box-shadow: $depth-1;
   overflow: hidden;
   font-size: $fs-1;
+  @include selectColorByTheme('background', 'bg-overlay-component-color');
 
   &__text {
     padding: $space-2;

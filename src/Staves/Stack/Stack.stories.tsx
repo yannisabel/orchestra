@@ -107,8 +107,14 @@ export const HorizontalMultipleLines: Story = {
       <Box className="bg-color--blue-30 padding--space-3">
         <Text>Item 6</Text>
       </Box>
+      <Box className="bg-color--blue-30 padding--space-3">
+        <Text>Item 7</Text>
+      </Box>
+      <Box className="bg-color--blue-30 padding--space-3">
+        <Text>Item 8</Text>
+      </Box>
     </>,
     spacing: 'space-3'
   },
-  name: 'Horizontal With Space',
+  name: 'Horizontal Multiple Lines',
 }

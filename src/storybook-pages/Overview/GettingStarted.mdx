@@ -1,0 +1,101 @@
+import { Meta, Unstyled } from '@storybook/blocks'
+import { Box } from '../../Staves/Box'
+
+<Meta title="Overview/Getting Started" />
+
+<Unstyled>
+<Box className="dark">
+
+# Getting Started
+
+From here you can start using the UI kit that follows Orchestra Design System principles.
+
+## Installation
+
+Install it as a package
+
+</Box>
+</Unstyled>
+
+```
+npm install orchestra-kit
+```
+<Unstyled>
+<Box className="dark">
+
+## Usage
+
+### Notations
+
+Notations are tokens, helpers, class utilities and all things that can help build components.
+
+
+Importing Notation token.
+
+</Box>
+</Unstyled>
+
+```css
+@import 'orchestra-kit/dist/Notations/spaces';
+
+.custom-class {
+  padding: $space-3;
+}
+```
+<Unstyled>
+<Box className="dark">
+
+Importing useful mixins.
+
+</Box>
+</Unstyled>
+
+```css
+@import 'orchestra-kit/dist/Notations/mixins/breakpoints';
+@import 'orchestra-kit/dist/Notations/fonts';
+
+.custom-class {
+  font-size: $fs-3;
+
+  @include breakpoint(small) {
+    font-size: $fs-5;
+  }
+}
+```
+<Unstyled>
+<Box className="dark">
+
+Importing useful classes.
+
+</Box>
+</Unstyled>
+
+```css
+// import them all 
+@import 'orchestra-kit/dist/Notations/utility-classes';
+// import only dedicated classes
+@import 'orchestra-kit/dist/Notations/utility-classes/spaces';
+```
+
+<Unstyled>
+<Box className="dark">
+
+### Staves
+
+Staves are all components available to build interfaces.
+
+</Box>
+</Unstyled>
+
+```tsx
+import { Card } from 'orchestra-kit/dist/Staves/Card'
+import { Title } from 'orchestra-kit/dist/Staves/Title'
+import { Text } from 'orchestra-kit/dist/Staves/Text'
+
+export default () => (
+    <Card>
+        <Title type="h1">Welcome</Title>
+        <Text>Orchestra Design System</Text>
+    </Card>
+);
+```
