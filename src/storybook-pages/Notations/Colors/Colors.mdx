@@ -4,9 +4,8 @@ import { Stack } from '../../../Staves/Stack'
 import { Box } from '../../../Staves/Box'
 import { Text } from '../../../Staves/Text'
 import { Title } from '../../../Staves/Title'
-import empty from './empty-alpha.png'
 
-import { colors, blackPalette, whitePalette, greyPalette, bluePalette, orangePalette } from '.'
+import { blackPalette, whitePalette, greyPalette, bluePalette, orangePalette } from '.'
 
 <Meta title="Notations/Colors" />
 
@@ -22,8 +21,10 @@ import { colors, blackPalette, whitePalette, greyPalette, bluePalette, orangePal
       {Object.entries(blackPalette).map(([colorName, value]) => {
         return (
           <Box key={`${colorName}`} className="color-card">
-            <Box style={{background: `url(${empty})`, overflow: 'hidden', borderBottom: '1px solid #f1f1f1', height: 66}}>
-              <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
+            <Box style={{display: 'inline-block', height: 72, width: '100%', background: 'white'}}>
+              <Box className="transparent-color">
+                <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
+              </Box>
             </Box>
             <Box className="color-card__text display--flex flex-direction--column">
               <Text as="span" fontWeight="fw-bold">
@@ -44,8 +45,10 @@ import { colors, blackPalette, whitePalette, greyPalette, bluePalette, orangePal
       {Object.entries(whitePalette).map(([colorName, value]) => {
         return (
           <Box key={`${colorName}`} className="color-card">
-            <Box style={{background: `url(${empty})`, overflow: 'hidden', borderBottom: '1px solid #f1f1f1', height: 66}}>
-              <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
+            <Box style={{display: 'inline-block', height: 72, width: '100%', background: 'white'}}>
+              <Box className="transparent-color">
+                <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
+              </Box>
             </Box>
             <Box className="color-card__text display--flex flex-direction--column">
               <Text as="span" fontWeight="fw-bold">
@@ -66,8 +69,10 @@ import { colors, blackPalette, whitePalette, greyPalette, bluePalette, orangePal
       {Object.entries(greyPalette).map(([colorName, value]) => {
         return (
           <Box key={`${colorName}`} className="color-card">
-            <Box style={{background: `url(${empty})`, overflow: 'hidden', borderBottom: '1px solid #f1f1f1', height: 66}}>
-              <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
+            <Box style={{display: 'inline-block', height: 72, width: '100%', background: 'white'}}>
+              <Box className="transparent-color">
+                <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
+              </Box>
             </Box>
             <Box className="color-card__text display--flex flex-direction--column">
               <Text as="span" fontWeight="fw-bold">
@@ -88,8 +93,10 @@ import { colors, blackPalette, whitePalette, greyPalette, bluePalette, orangePal
       {Object.entries(bluePalette).map(([colorName, value]) => {
         return (
           <Box key={`${colorName}`} className="color-card">
-            <Box style={{background: `url(${empty})`, overflow: 'hidden', borderBottom: '1px solid #f1f1f1', height: 66}}>
-              <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
+            <Box style={{display: 'inline-block', height: 72, width: '100%', background: 'white'}}>
+              <Box className="transparent-color">
+                <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
+              </Box>
             </Box>
             <Box className="color-card__text display--flex flex-direction--column">
               <Text as="span" fontWeight="fw-bold">
@@ -110,8 +117,10 @@ import { colors, blackPalette, whitePalette, greyPalette, bluePalette, orangePal
       {Object.entries(orangePalette).map(([colorName, value]) => {
         return (
           <Box key={`${colorName}`} className="color-card">
-            <Box style={{background: `url(${empty})`, overflow: 'hidden', borderBottom: '1px solid #f1f1f1', height: 66}}>
-              <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
+            <Box style={{display: 'inline-block', height: 72, width: '100%', background: 'white'}}>
+              <Box className="transparent-color">
+                <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
+              </Box>
             </Box>
             <Box className="color-card__text display--flex flex-direction--column">
               <Text as="span" fontWeight="fw-bold">

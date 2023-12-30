@@ -49,5 +49,5 @@ export const WithColor = {
     onClick: '() => setValue(!value)',
     checked: false,
   },
-  name: 'Default',
+  name: 'With Color',
 }

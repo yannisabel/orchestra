@@ -29,8 +29,22 @@ npm install orchestra-kit
 
 Notations are tokens, helpers, class utilities and all things that can help build components.
 
+Import them all:
 
-Importing Notation token.
+</Box>
+</Unstyled>
+
+```css
+// all Notations can be used
+@import 'orchestra-kit/dist/Notations';
+// all Notations from a specific part can be used
+@import 'orchestra-kit/dist/Notations/spaces';
+```
+
+<Unstyled>
+<Box className="dark">
+
+Usage of Notation token:
 
 </Box>
 </Unstyled>
@@ -39,13 +53,14 @@ Importing Notation token.
 @import 'orchestra-kit/dist/Notations/spaces';
 
 .custom-class {
+  // the intellisense of the text editor should suggest available tokens
   padding: $space-3;
 }
 ```
 <Unstyled>
 <Box className="dark">
 
-Importing useful mixins.
+Usage of useful mixins:
 
 </Box>
 </Unstyled>
@@ -65,7 +80,7 @@ Importing useful mixins.
 <Unstyled>
 <Box className="dark">
 
-Importing useful classes.
+Importing utility classes.
 
 </Box>
 </Unstyled>
@@ -75,6 +90,18 @@ Importing useful classes.
 @import 'orchestra-kit/dist/Notations/utility-classes';
 // import only dedicated classes
 @import 'orchestra-kit/dist/Notations/utility-classes/spaces';
+
+// This will import utility classes for Margin and Padding generated in a single scss file
+// All classes available are also available for each breakpoint and directly usable on className prop.
+// for global style
+.padding--space-3 {
+  padding: $space-3;
+}
+
+// for style on large breakpoint
+.large_space-3 {
+  padding: $space-3;
+}
 ```
 
 <Unstyled>
