@@ -82,21 +82,21 @@
     }
 
     &--orange {
-      background-color: $orange-10;
+      background-color: $orange-30;
       font-size: $fs-2;
       font-weight: $fw-bold;
-      color: colorOnBackground($orange-10);
+      color: colorOnBackground($orange-30);
 
       &.round-button {
         font-size: $fs-1;
       }
   
       &:hover, &:focus {
-          background-color: $orange-0;
+          background-color: $orange-20;
       }
   
       svg {
-          fill: colorOnBackground($orange-10);
+          fill: colorOnBackground($orange-30);
       }
     }
 

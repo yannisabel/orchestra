@@ -84,12 +84,12 @@
     }
 
     &--orange {
-      background: $orange-10;
-      color: colorOnBackground($orange-10);
+      background: $orange-20;
+      color: $white-0;
       font-weight: $fw-bold;
 
       svg {
-        fill: colorOnBackground($orange-10);
+        fill: $white-0;
       }
     }
   }

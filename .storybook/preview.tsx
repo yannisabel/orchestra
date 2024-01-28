@@ -6,7 +6,7 @@ import { Text } from '../src/Staves/Text'
 import { Anchor } from '../src/Staves/Anchor'
 import '../src/Notations/reset.scss'
 import './storybook-styles.scss'
-import { bluePalette, whitePalette } from '../src/storybook-pages/Notations/Colors/Colors'
+import { bluePalette, orangePalette } from '../src/storybook-pages/Notations/Colors/Colors'
 
 export const withTheme: Decorator = (StoryFn) => {
 
@@ -16,7 +16,7 @@ export const withTheme: Decorator = (StoryFn) => {
               <Title type="h3">Dark theme</Title>
               <StoryFn />
             </div>
-            <div className='light' style={{backgroundColor: whitePalette['white-10'], padding: '16px'}}>
+            <div className='light' style={{backgroundColor: orangePalette['orange-0'], padding: '16px'}}>
             <Title type="h3">Light theme</Title>
               <StoryFn />
             </div>

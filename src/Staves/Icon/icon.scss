@@ -16,7 +16,7 @@
       fill: $blue-30;
     }
     &--orange {
-      fill: $orange-10;
+      fill: $orange-20;
     }
     &--fgColor {
       @include selectColorByTheme('fill', 'fg-main-color')

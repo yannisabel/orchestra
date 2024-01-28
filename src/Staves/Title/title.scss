@@ -9,7 +9,7 @@
   margin: 0;
   font-family: $mulish;
   line-height: 1.3;
-  @include selectColorByTheme('color', 'fg-emphasis-color');
+  @include selectColorByTheme('color', 'fg-title-color');
 }
 
 h1 {

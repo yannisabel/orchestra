@@ -96,7 +96,7 @@
     }
 
     &--orange {
-      background-color: $orange-10;
+      background-color: $orange-30;
       font-size: $fs-2;
       font-weight: $fw-bold;
 
@@ -109,11 +109,11 @@
       }
 
       span {
-        color: colorOnBackground($orange-10);
+        color: colorOnBackground($orange-30);
       }
   
       svg {
-          fill: colorOnBackground($orange-10);
+          fill: colorOnBackground($orange-30);
       }
     }
 
