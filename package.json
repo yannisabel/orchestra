@@ -20,7 +20,7 @@
     "test:coverage": "jest --coverage --collectCoverageFrom='./src/**'",
     "posttest": "jest-it-up",
     "lint": "eslint --fix --ext .ts,.tsx",
-    "release": "npm run build && git commit -am 'stats for ${npm_package_version}' && release-it"
+    "release": "npm run build && git commit -am 'stats for $npm_package_version' && release-it"
   },
   "husky": {
     "hooks": {
