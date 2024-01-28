@@ -25,6 +25,7 @@ export const allIcons = [
   'cookie',
   'construction',
   'forum',
+  'info',
 ]
 
 export type IconTypes = typeof allIcons[number]
