@@ -6,9 +6,9 @@ blockquote {
   padding: $space-2 $space-3;
   margin: 0 0 20px;
   font-size: $fs-2;
-  border-left-width: 5px;
+  border-left-width: 6px;
   border-style: solid;
-  @include selectColorByTheme('border-color', 'bg-decoration-color');
+  @include selectColorByTheme('border-color', 'fg-accent-color');
 
   footer {
     padding-top: $space-3;
