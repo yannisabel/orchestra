@@ -12,7 +12,7 @@
   outline: none;
   font-family: $mulish;
   font-size: inherit;
-  color: $blue-10;
+  color: var(--fg-action-color);
   cursor: pointer;
   transition: all $cubicBezier-04;
 }
@@ -34,7 +34,7 @@
   &-m {
     &--default {
       text-decoration: underline;
-      @include selectColorByTheme('color', 'fg-link-color');
+      color: var(--fg-action-color);
     }
     &--button {
       @extend %buttoninheritance;
@@ -65,13 +65,13 @@
       transition: box-shadow $cubicBezier-025, background-color $cubicBezier-025;
     }
     &--ghost {
-      @include selectColorByTheme('color', 'fg-main-color');
+      color: var(--fg-main-color);
       &:hover, &:focus {
-        @include selectColorByTheme('background-color', 'bg-ghost-button-hover-color');
+        background-color: var(--bg-subtle-color);
       }
   
       svg {
-        @include selectColorByTheme('fill', 'fg-main-color');
+        fill: var(--fg-main-color);
       }
 
     }
@@ -79,24 +79,24 @@
 
   &-c {
     &--blue {
-      background-color: $blue-30;
-      color: colorOnBackground($blue-30);
+      background-color: var(--bg-action-color);
+      color: $white-0;
 
       &:hover, &:focus {
-          background-color: $blue-20;
+          background-color: var(--bg-action-color-interacting);
       }
 
       span {
-        color: colorOnBackground($blue-30);
+        color: $white-0;
       }
 
       svg {
-          fill: colorOnBackground($blue-30);
+          fill: $white-0;
       }
     }
 
     &--orange {
-      background-color: $orange-30;
+      background-color: $orange-50;
       font-size: $fs-2;
       font-weight: $fw-bold;
 
@@ -105,15 +105,15 @@
       }
   
       &:hover, &:focus {
-          background-color: $orange-0;
+        background-color: var(--bg-action-color-interacting);
       }
 
       span {
-        color: colorOnBackground($orange-30);
+        color: $white-0;
       }
   
       svg {
-          fill: colorOnBackground($orange-30);
+          fill: $white-0;
       }
     }
 
@@ -130,11 +130,11 @@
       }
 
       span {
-        color: colorOnBackground($white-10);
+        color: $grey-10;
       }
   
       svg {
-          fill: colorOnBackground($white-0);
+          fill: $grey-10;
       }
     }
   }
@@ -181,7 +181,7 @@
 a:not([class]) {
   outline: none;
   text-decoration: underline;
-  @include selectColorByTheme('color', 'fg-link-color');
+  color: var(--fg-action-color);
 
   i {
       font-family: $openSans;

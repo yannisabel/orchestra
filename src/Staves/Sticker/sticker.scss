@@ -67,7 +67,7 @@
 
     &--blue-grey {
       background: $blue-40;
-      color: colorOnBackground($blue-50);
+      color: $blue-10;
 
       svg {
         fill: $grey-0;
@@ -76,15 +76,15 @@
 
     &--blue {
       background: $blue-30;
-      color: colorOnBackground($blue-30);
+      color: $white-0;
 
       svg {
-        fill: colorOnBackground($blue-30);
+        fill: $white-0;
       }
     }
 
     &--orange {
-      background: $orange-20;
+      background: $orange-40;
       color: $white-0;
       font-weight: $fw-bold;
 
@@ -108,7 +108,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    color: colorOnBackground($white-0);
+    color: $grey-10;
     line-height: 1em;
   }
 }

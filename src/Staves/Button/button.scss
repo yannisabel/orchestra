@@ -49,72 +49,82 @@
       transition: box-shadow $cubicBezier-025, background-color $cubicBezier-025;
     }
     &--ghost {
-      @include selectColorByTheme('color', 'fg-main-color');
+      color: --fg-main-color;
       &:hover, &:focus {
-        @include selectColorByTheme('background-color', 'bg-ghost-button-hover-color');
+        background-color: var(--bg-subtle-color);
       }
   
       svg {
-        @include selectColorByTheme('fill', 'fg-main-color');
+        fill: var(--fg-main-color);
       }
     }
   }
 
   &-c {
     &--transparent {
-      @include selectColorByTheme('color', 'fg-main-color');
+      color: var(--fg-main-color);
 
       svg {
-        @include selectColorByTheme('color', 'fg-main-color');
+        color: var(--fg-main-color);
       }
     }
     &--blue {
-      background-color: $blue-30;
+      background-color: var(--bg-action-color);
       color: $white-0;
 
       &:hover, &:focus {
-          background-color: $blue-20;
+          background-color: var(--bg-action-color-interacting);
+      }
+
+      span {
+        color: $white-0;
       }
 
       svg {
-          fill: colorOnBackground($blue-30);
+          fill: $white-0;
       }
     }
 
     &--orange {
-      background-color: $orange-30;
+      background-color: $orange-50;
       font-size: $fs-2;
       font-weight: $fw-bold;
-      color: colorOnBackground($orange-30);
 
-      &.round-button {
+      &.round-anchor {
         font-size: $fs-1;
       }
   
       &:hover, &:focus {
-          background-color: $orange-20;
+        background-color: var(--bg-action-color-interacting);
+      }
+
+      span {
+        color: $white-0;
       }
   
       svg {
-          fill: colorOnBackground($orange-30);
+          fill: $white-0;
       }
     }
 
     &--white {
       background-color: $white-10;
       font-size: $fs-2;
-      color: colorOnBackground($white-0);
 
-      &.round-button {
+      &.round-anchor {
         font-size: $fs-1;
       }
   
       &:hover, &:focus {
           background-color: $white-0;
       }
+
+      span {
+        color: $grey-10;
+      }
   
       svg {
-          fill: colorOnBackground($white-0);
+          fill: $grey-10;
       }
     }
   }

@@ -1,42 +1,39 @@
-import {
-  Meta,
-  StoryObj,
-} from '@storybook/react'
-import React from 'react';
-import { Text } from '../Text';
+import { Meta, StoryObj } from '@storybook/react'
+import React from 'react'
+import { Text } from '../Text'
 import { Anchor } from './Anchor'
 
 const meta = {
   title: 'Staves/Anchor',
-  component: Anchor ,
+  component: Anchor,
   argTypes: {
     model: {
       control: { type: 'select' },
       options: ['round', 'default', 'button', 'wrapper'],
-      defaultValue: 'default'
+      defaultValue: 'default',
     },
     state: {
       control: { type: 'select' },
       options: ['base', 'raised', 'ghost'],
-      defaultValue: 'base'
+      defaultValue: 'base',
     },
     color: {
       control: { type: 'select' },
       options: ['transparent', 'blue', 'orange', 'white'],
-      defaultValue: 'transparent'
+      defaultValue: 'transparent',
     },
     isExternal: {
       control: { type: 'boolean' },
-      defaultValue: false
+      defaultValue: false,
     },
     icon: {
       control: { type: 'select' },
       options: ['image', 'people', 'art', 'tools'],
-    }
-  }
+    },
+  },
 } satisfies Meta<typeof Anchor>
 
-export default meta;
+export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {

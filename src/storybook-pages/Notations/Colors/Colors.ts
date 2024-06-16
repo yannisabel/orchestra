@@ -35,9 +35,12 @@ export const bluePalette = {
 
 export const orangePalette = {
   'orange-0': 'rgb(255, 235, 204)',
-  'orange-10': 'rgb(255, 221, 166)',
-  'orange-20': 'rgb(255, 129, 31)',
-  'orange-30': 'rgb(235, 103, 0)',
+  'orange-10': 'rgb(255, 206, 160)',
+  'orange-20': 'rgb(255, 186, 136)',
+  'orange-30': 'rgb(255, 166, 110)',
+  'orange-40': 'rgb(255, 129, 31)',
+  'orange-50': 'rgb(235, 103, 0)',
+  'orange-V20--T50': 'rgba(255, 186, 136, 0.5)'
 }
 
 export const colors = {...blackPalette, ...whitePalette, ...greyPalette, ...bluePalette, ...orangePalette}
@@ -48,7 +51,7 @@ export const colorLightTheme = {
   bgOverlayComponentColor: 'white-0',
   bgDecorationColor: 'grey-0',
   bgCodeColor: 'blue-0',
-  bghostButtonHoverColor: 'black-V0--T10',
+  bghostButtonHoverColor: 'orange-V20--T50',
   fgMainColor: 'grey-100',
   fgAccentColor: 'blue-30',
   fgLinkColor: 'blue-30',

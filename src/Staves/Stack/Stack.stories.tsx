@@ -11,28 +11,30 @@ const meta = {
     direction: {
       control: { type: 'radio' },
       options: ['row', 'column'],
-      defaultValue: 'row'
+      defaultValue: 'row',
     },
     spacing: {
-      table: { type: { summary: 'space-${number}' } }
+      table: { type: { summary: 'space-${number}' } },
     },
-  }
+  },
 } satisfies Meta<typeof Stack>
 
-export default meta;
+export default meta
 type Story = StoryObj<typeof meta>
 
 export const Horizontal: Story = {
   args: {
     direction: 'row',
-    children: <>
-      <Box className="bg-color--blue-30 padding--space-3">
-        <Text>Item 1</Text>
-      </Box>
-      <Box className="bg-color--blue-30 padding--space-3">
-        <Text>Item 2</Text>
-      </Box>
-    </>
+    children: (
+      <>
+        <Box className="full padding--space-3">
+          <Text>Item 1</Text>
+        </Box>
+        <Box className="full padding--space-3">
+          <Text>Item 2</Text>
+        </Box>
+      </>
+    ),
   },
   name: 'Horizontal',
 }
@@ -40,15 +42,17 @@ export const Horizontal: Story = {
 export const HorizontalWithSpace: Story = {
   args: {
     direction: 'row',
-    children: <>
-      <Box className="bg-color--blue-30 padding--space-3">
-        <Text>Item 1</Text>
-      </Box>
-      <Box className="bg-color--blue-30 padding--space-3">
-        <Text>Item 2</Text>
-      </Box>
-    </>,
-    spacing: 'space-3'
+    children: (
+      <>
+        <Box className="full padding--space-3">
+          <Text>Item 1</Text>
+        </Box>
+        <Box className="full padding--space-3">
+          <Text>Item 2</Text>
+        </Box>
+      </>
+    ),
+    spacing: 'space-3',
   },
   name: 'Horizontal With Space',
 }
@@ -56,14 +60,16 @@ export const HorizontalWithSpace: Story = {
 export const Vertical: Story = {
   args: {
     direction: 'column',
-    children: <>
-      <Box className="bg-color--blue-30 padding--space-3">
-        <Text>Item 1</Text>
-      </Box>
-      <Box className="bg-color--blue-30 padding--space-3">
-        <Text>Item 2</Text>
-      </Box>
-    </>
+    children: (
+      <>
+        <Box className="full padding--space-3">
+          <Text>Item 1</Text>
+        </Box>
+        <Box className="full padding--space-3">
+          <Text>Item 2</Text>
+        </Box>
+      </>
+    ),
   },
   name: 'Vertical',
 }
@@ -71,15 +77,17 @@ export const Vertical: Story = {
 export const VerticalWithSpace: Story = {
   args: {
     direction: 'column',
-    children: <>
-      <Box className="bg-color--blue-30 padding--space-3">
-        <Text>Item 1</Text>
-      </Box>
-      <Box className="bg-color--blue-30 padding--space-3">
-        <Text>Item 2</Text>
-      </Box>
-    </>,
-    spacing: 'space-3'
+    children: (
+      <>
+        <Box className="full padding--space-3">
+          <Text>Item 1</Text>
+        </Box>
+        <Box className="full padding--space-3">
+          <Text>Item 2</Text>
+        </Box>
+      </>
+    ),
+    spacing: 'space-3',
   },
 
   name: 'Vertical With Space',
@@ -88,33 +96,35 @@ export const VerticalWithSpace: Story = {
 export const HorizontalMultipleLines: Story = {
   args: {
     direction: 'row',
-    children: <>
-      <Box className="bg-color--blue-30 padding--space-3">
-        <Text>Item 1</Text>
-      </Box>
-      <Box className="bg-color--blue-30 padding--space-3">
-        <Text>Item 2</Text>
-      </Box>
-      <Box className="bg-color--blue-30 padding--space-3">
-        <Text>Item 3</Text>
-      </Box>
-      <Box className="bg-color--blue-30 padding--space-3">
-        <Text>Item 4</Text>
-      </Box>
-      <Box className="bg-color--blue-30 padding--space-3">
-        <Text>Item 5</Text>
-      </Box>
-      <Box className="bg-color--blue-30 padding--space-3">
-        <Text>Item 6</Text>
-      </Box>
-      <Box className="bg-color--blue-30 padding--space-3">
-        <Text>Item 7</Text>
-      </Box>
-      <Box className="bg-color--blue-30 padding--space-3">
-        <Text>Item 8</Text>
-      </Box>
-    </>,
-    spacing: 'space-3'
+    children: (
+      <>
+        <Box className="full padding--space-3">
+          <Text>Item 1</Text>
+        </Box>
+        <Box className="full padding--space-3">
+          <Text>Item 2</Text>
+        </Box>
+        <Box className="full padding--space-3">
+          <Text>Item 3</Text>
+        </Box>
+        <Box className="full padding--space-3">
+          <Text>Item 4</Text>
+        </Box>
+        <Box className="full padding--space-3">
+          <Text>Item 5</Text>
+        </Box>
+        <Box className="full padding--space-3">
+          <Text>Item 6</Text>
+        </Box>
+        <Box className="full padding--space-3">
+          <Text>Item 7</Text>
+        </Box>
+        <Box className="full padding--space-3">
+          <Text>Item 8</Text>
+        </Box>
+      </>
+    ),
+    spacing: 'space-3',
   },
   name: 'Horizontal Multiple Lines',
 }

@@ -1,5 +1,5 @@
 // Black panel
-$black-0: rgb(0, 0, 0);
+$black-0: hsl(0, 0%, 0%);
 $black-V0--T10: rgba($black-0, .10);
 $black-V0--T25: rgba($black-0, .25);
 $black-V0--T50: rgba($black-0, .50);
@@ -7,58 +7,60 @@ $black-V0--T75: rgba($black-0, .75);
 $black-V0--T90: rgba($black-0, .90);
 
 // White panel
-$white-0: rgb(255, 255, 255);
-$white-10: rgb(241, 241, 241);
+$white-0: hsl(0, 0%, 100%);
+$white-10: hsl(0, 0%, 95%);
 $white-V0--T75: rgba($white-0, .75);
 
 // Grey panel
-$grey-0: rgb(209, 209, 209,);
-$grey-10: rgb(204, 204, 204);
-$grey-50: rgb(145, 145, 145);
-$grey-60: rgb(124, 124, 124);
-$grey-70: rgb(110, 110, 110);
-$grey-100: rgb(51, 51, 51);
+$grey-0: hsl(0, 0%, 82%);
 $grey-V0--T2: rgba($grey-0, .2);
+$grey-10: hsl(230, 10, 10);
+$grey-15: hsl(230, 10, 15);
+$grey-20: hsl(230, 10, 20);
+$grey-30: hsl(230, 10, 30);
+$grey-40: hsl(230, 10, 40);
+$grey-50: hsl(230, 10, 50);
+$grey-60: hsl(230, 10, 60);
+$grey-70: hsl(230, 10, 70);
+$grey-80: hsl(230, 10, 80);
+$grey-90: hsl(230, 10, 90);
 
 // Blue panel
 $blue-0: rgb(210, 226, 238);
-$blue-10: rgb(107, 190, 255);
-$blue-20: rgb(58, 115, 160);
-$blue-30: rgb(38, 75, 104);
-$blue-40: rgb(64, 69, 85);
-$blue-50: rgb(40, 41, 51);
-$blue-100: rgb(33, 34, 40);
+$blue-10: hsl(206, 46, 10);
+$blue-15: hsl(206, 46, 15);
+$blue-20: hsl(206, 46, 20);
+$blue-30: hsl(206, 46, 30);
+$blue-40: hsl(206, 46, 40);
+$blue-50: hsl(206, 46, 50);
+$blue-60: hsl(206, 46, 60);
+$blue-70: hsl(206, 46, 70);
+$blue-80: hsl(206, 46, 80);
+$blue-90: hsl(206, 46, 90);
 
 // Orange panel
-$orange-0: rgb(255, 235, 204);
-$orange-10: rgb(255, 221, 166);
-$orange-20: rgb(255, 129, 31);
-$orange-30: rgb(235, 103, 0);
+$orange-0: hsl(20, 80, 50);
+$orange-10: hsl(20, 80, 10);
+$orange-15: hsl(20, 80, 15);
+$orange-20: hsl(20, 80, 20);
+$orange-30: hsl(20, 80, 30);
+$orange-40: hsl(20, 80, 40);
+$orange-50: hsl(20, 80, 50);
+$orange-60: hsl(20, 80, 60);
+$orange-70: hsl(20, 80, 70);
+$orange-80: hsl(20, 80, 80);
+$orange-90: hsl(20, 80, 90);
+$orange-V20--T50: hsla(20, 80, 20, .5);
 
-$colors: (
-  'black-0': $black-0,
-  'black-V0--T10': $black-V0--T10,
-  'black-V0--T25': $black-V0--T25,
-  'black-V0--T50': $black-V0--T50,
-  'black-V0--T75': $black-V0--T75,
-  'black-V0--T90': $black-V0--T90,
-  'white-0': $white-0,
-  'white-10': $white-10,
-  'white-V0--T75': $white-V0--T75,
-  'grey-0': $grey-0,
-  'grey-10': $grey-10,
-  'grey-50': $grey-50,
-  'grey-60':$grey-60,
-  'grey-70':$grey-70,
-  'grey-100': $grey-100,
-  'grey-V0--T2': $grey-V0--T2,
-  'blue-0': $blue-0,
-  'blue-10': $blue-10,
-  'blue-20': $blue-20,
-  'blue-30': $blue-30,
-  'blue-40': $blue-40,
-  'blue-50': $blue-50,
-  'blue-100': $blue-100,
-  'orange-0': $orange-0,
-  'orange-10': $orange-10,
-);
+// Yellow panel
+$yellow-0: hsl(36, 100, 50);
+$yellow-10: hsl(36, 100, 10);
+$yellow-15: hsl(36, 100, 15);
+$yellow-20: hsl(36, 100, 20);
+$yellow-30: hsl(36, 100, 30);
+$yellow-40: hsl(36, 100, 40);
+$yellow-50: hsl(36, 100, 50);
+$yellow-60: hsl(36, 100, 60);
+$yellow-70: hsl(36, 100, 70);
+$yellow-80: hsl(36, 100, 80);
+$yellow-90: hsl(36, 100, 90);

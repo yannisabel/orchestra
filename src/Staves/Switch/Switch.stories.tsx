@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 import { useState } from 'react'
 
@@ -9,7 +9,7 @@ const meta = {
   component: Switch,
 } satisfies Meta<typeof Switch>
 
-export default meta;
+export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default = {

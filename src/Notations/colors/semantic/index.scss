@@ -1,34 +1,51 @@
 @import '../palette';
 
-$themes: (
-  light: (
-    bg-main-color: $orange-0,
-    bg-small-component-color: $grey-0,
-    bg-overlay-component-color: $white-0,
-    bg-decoration-color: $black-V0--T25,
-    bg-code-color: $blue-20,
-    bg-ghost-button-hover-color: $black-V0--T10,
-    fg-main-color: $grey-100,
-    fg-title-color: $blue-20,
-    fg-accent-color: $orange-20,
-    fg-link-color: $blue-30,
-    fg-emphasis-color: $blue-30,
-    fg-subtle-color: $grey-70,
-    fg-code-color: $white-0,
-  ),
-  dark: (
-    bg-main-color: $blue-100,
-    bg-small-component-color: $blue-30,
-    bg-overlay-component-color: $blue-50,
-    bg-decoration-color: $blue-40,
-    bg-code-color: $blue-0,
-    bg-ghost-button-hover-color: $grey-V0--T2,
-    fg-main-color: $white-10,
-    fg-title-color: $white-0,
-    fg-accent-color: $blue-20,
-    fg-link-color: $blue-10,
-    fg-emphasis-color: $blue-20,
-    fg-subtle-color: $grey-50,
-    fg-code-color: $blue-30,
-  )
-)
+:root {
+  --bg-main-color: #{$yellow-90};
+  --bg-main-color-interacting: #{$yellow-80};
+  --bg-neutral-color: #{$yellow-80};
+  --bg-neutral-color-interacting: #{$yellow-70};
+  --bg-accent-color: #{$orange-60};
+  --bg-accent-color-interacting: #{$orange-50};
+  --bg-action-color: #{$orange-50};
+  --bg-action-color-interacting: #{$orange-40};
+  --bg-decoration-color: #{$blue-40};
+  --bg-decoration-color-interacting: #{$blue-30};
+  --bg-subtle-color: #{$yellow-80};
+  --bg-code-color: #{$blue-80};
+  --fg-main-color: #{$grey-10};
+  --fg-main-color-interacting: #{$grey-20};
+  --fg-neutral-color: #{$white-0};
+  --fg-neutral-color-interacting: #{$grey-10};
+  --fg-accent-color: #{$blue-50};
+  --fg-accent-color-interacting: #{$blue-40};
+  --fg-action-color: #{$blue-50};
+  --fg-action-color-interacting: #{$blue-40};
+  --fg-subtle-color: #{$grey-70};
+  --fg-code-color: #{$blue-30};
+}
+
+.dark-theme, [data-theme="dark"] {
+  --bg-main-color: #{$grey-10};
+  --bg-main-color-interacting: #{$grey-30};
+  --bg-neutral-color: #{$grey-15};
+  --bg-neutral-color-interacting: #{$grey-30};
+  --bg-accent-color: #{$blue-50};
+  --bg-accent-color-interacting: #{$blue-60};
+  --bg-action-color: #{$blue-30};
+  --bg-action-color-interacting: #{$blue-40};
+  --bg-decoration-color: #{$blue-40};
+  --bg-decoration-color-interacting: #{$blue-50};
+  --bg-subtle-color: #{$grey-V0--T2};
+  --bg-code-color: #{$blue-90};
+  --fg-main-color: #{$white-10};
+  --fg-main-color-interacting: #{$blue-90};
+  --fg-neutral-color: #{$blue-15};
+  --fg-neutral-color-interacting: #{$blue-30};
+  --fg-accent-color: #{$blue-40};
+  --fg-accent-color-interacting: #{$blue-60};
+  --fg-action-color: #{$blue-60};
+  --fg-action-color-interacting: #{$blue-70};
+  --fg-subtle-color: #{$grey-50};
+  --fg-code-color: #{$blue-30};
+}

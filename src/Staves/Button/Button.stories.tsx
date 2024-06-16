@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react'
 import { Button } from './Button'
 
 const meta = {
@@ -8,26 +8,26 @@ const meta = {
     model: {
       control: { type: 'select' },
       options: ['default', 'round'],
-      defaultValue: 'default'
+      defaultValue: 'default',
     },
     state: {
       control: { type: 'select' },
       options: ['base', 'raised', 'ghost'],
-      defaultValue: 'base'
+      defaultValue: 'base',
     },
     color: {
       control: { type: 'select' },
       options: ['transparent', 'blue', 'orange', 'white'],
-      defaultValue: 'transparent'
+      defaultValue: 'transparent',
     },
     type: {
       control: { type: 'select' },
-      options: ['button', 'submit', 'reset']
-    }
-  }
+      options: ['button', 'submit', 'reset'],
+    },
+  },
 } satisfies Meta<typeof Button>
 
-export default meta;
+export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
