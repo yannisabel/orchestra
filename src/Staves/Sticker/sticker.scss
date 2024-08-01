@@ -53,24 +53,24 @@
       background: $white-0;
 
       svg {
-        fill: $black-V0--T50;
+        fill: $grey-40;
       }
     }
 
     &--grey {
-      background: $grey-0;
+      background: $grey-80;
 
       svg {
-        fill: $black-V0--T75;
+        fill: $grey-40;
       }
     }
 
-    &--blue-grey {
-      background: $blue-40;
-      color: $blue-10;
+    &--inverted-grey {
+      background: $grey-40;
+      color: $grey-90;
 
       svg {
-        fill: $grey-0;
+        fill: $grey-90;
       }
     }
 

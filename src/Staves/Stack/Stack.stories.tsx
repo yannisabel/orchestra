@@ -28,10 +28,10 @@ export const Horizontal: Story = {
     children: (
       <>
         <Box className="full padding--space-3">
-          <Text>Item 1</Text>
+          <Text className="text--white">Item 1</Text>
         </Box>
         <Box className="full padding--space-3">
-          <Text>Item 2</Text>
+          <Text className="text--white">Item 2</Text>
         </Box>
       </>
     ),
@@ -45,10 +45,10 @@ export const HorizontalWithSpace: Story = {
     children: (
       <>
         <Box className="full padding--space-3">
-          <Text>Item 1</Text>
+          <Text className="text--white">Item 1</Text>
         </Box>
         <Box className="full padding--space-3">
-          <Text>Item 2</Text>
+          <Text className="text--white">Item 2</Text>
         </Box>
       </>
     ),
@@ -63,10 +63,10 @@ export const Vertical: Story = {
     children: (
       <>
         <Box className="full padding--space-3">
-          <Text>Item 1</Text>
+          <Text className="text--white">Item 1</Text>
         </Box>
         <Box className="full padding--space-3">
-          <Text>Item 2</Text>
+          <Text className="text--white">Item 2</Text>
         </Box>
       </>
     ),
@@ -80,10 +80,10 @@ export const VerticalWithSpace: Story = {
     children: (
       <>
         <Box className="full padding--space-3">
-          <Text>Item 1</Text>
+          <Text className="text--white">Item 1</Text>
         </Box>
         <Box className="full padding--space-3">
-          <Text>Item 2</Text>
+          <Text className="text--white">Item 2</Text>
         </Box>
       </>
     ),
@@ -99,28 +99,28 @@ export const HorizontalMultipleLines: Story = {
     children: (
       <>
         <Box className="full padding--space-3">
-          <Text>Item 1</Text>
+          <Text className="text--white">Item 1</Text>
         </Box>
         <Box className="full padding--space-3">
-          <Text>Item 2</Text>
+          <Text className="text--white">Item 2</Text>
         </Box>
         <Box className="full padding--space-3">
-          <Text>Item 3</Text>
+          <Text className="text--white">Item 3</Text>
         </Box>
         <Box className="full padding--space-3">
-          <Text>Item 4</Text>
+          <Text className="text--white">Item 4</Text>
         </Box>
         <Box className="full padding--space-3">
-          <Text>Item 5</Text>
+          <Text className="text--white">Item 5</Text>
         </Box>
         <Box className="full padding--space-3">
-          <Text>Item 6</Text>
+          <Text className="text--white">Item 6</Text>
         </Box>
         <Box className="full padding--space-3">
-          <Text>Item 7</Text>
+          <Text className="text--white">Item 7</Text>
         </Box>
         <Box className="full padding--space-3">
-          <Text>Item 8</Text>
+          <Text className="text--white">Item 8</Text>
         </Box>
       </>
     ),

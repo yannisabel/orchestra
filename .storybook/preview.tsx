@@ -12,7 +12,7 @@ export const decorators = [
       light: 'light-theme',
       dark: 'dark-theme',
     },
-    defaultTheme: 'light',
+    defaultTheme: 'dark',
   })
 ]
 
@@ -43,4 +43,4 @@ export const parameters = {
     },
   },
 }
-export const tags = ['autodocs'];
+export const tags = ['autodocs', 'autodocs'];

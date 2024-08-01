@@ -48,8 +48,50 @@
       box-shadow: $depth-2;
       transition: box-shadow $cubicBezier-025, background-color $cubicBezier-025;
     }
-    &--ghost {
-      color: --fg-main-color;
+  }
+
+  &-v {
+    &--primary {
+      background-color: var(--bg-action-primary-color);
+      color: var(--fg-action-primary-color);
+
+      &:hover, &:focus {
+          background-color: var(--bg-action-primary-color-interacting);
+      }
+
+      span {
+        color: var(--fg-action-primary-color-interacting);
+      }
+
+      svg {
+          fill: var(--fg-action-primary-color-interacting);
+      }
+    }
+
+    &--secondary {
+      background-color: var(--bg-action-secondary-color);
+      font-size: $fs-2;
+      font-weight: $fw-bold;
+
+      &.round-anchor {
+        font-size: $fs-1;
+      }
+  
+      &:hover, &:focus {
+        background-color: var(--bg-action-secondary-color-interacting);
+      }
+
+      span {
+        color: var(--fg-action-secondary-color-interacting);
+      }
+  
+      svg {
+          fill: var(--fg-action-secondary-color-interacting);
+      }
+    }
+
+    &--tertiary {
+      color: var(--fg-main-color);
       &:hover, &:focus {
         background-color: var(--bg-subtle-color);
       }
@@ -59,76 +101,10 @@
       }
     }
   }
-
-  &-c {
-    &--transparent {
-      color: var(--fg-main-color);
-
-      svg {
-        color: var(--fg-main-color);
-      }
-    }
-    &--blue {
-      background-color: var(--bg-action-color);
-      color: $white-0;
-
-      &:hover, &:focus {
-          background-color: var(--bg-action-color-interacting);
-      }
-
-      span {
-        color: $white-0;
-      }
-
-      svg {
-          fill: $white-0;
-      }
-    }
-
-    &--orange {
-      background-color: $orange-50;
-      font-size: $fs-2;
-      font-weight: $fw-bold;
-
-      &.round-anchor {
-        font-size: $fs-1;
-      }
-  
-      &:hover, &:focus {
-        background-color: var(--bg-action-color-interacting);
-      }
-
-      span {
-        color: $white-0;
-      }
-  
-      svg {
-          fill: $white-0;
-      }
-    }
-
-    &--white {
-      background-color: $white-10;
-      font-size: $fs-2;
-
-      &.round-anchor {
-        font-size: $fs-1;
-      }
-  
-      &:hover, &:focus {
-          background-color: $white-0;
-      }
-
-      span {
-        color: $grey-10;
-      }
-  
-      svg {
-          fill: $grey-10;
-      }
-    }
-  }
   &.button--icon {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
     svg {
       pointer-events: none;
     }

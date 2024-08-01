@@ -26,7 +26,7 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   render: () => (
     <Box className="full padding--space-3">
-      <Text>Default box</Text>
+      <Text className="text--white">Default box</Text>
     </Box>
   ),
   name: 'Default',
@@ -35,7 +35,7 @@ export const Default: Story = {
 export const RenderAs: Story = {
   render: () => (
     <Box as="header" className="full padding--space-3">
-      <Text>Box as header</Text>
+      <Text className="text--white">Box as header</Text>
     </Box>
   ),
 

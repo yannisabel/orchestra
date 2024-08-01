@@ -11,7 +11,7 @@ const meta = {
     },
     color: {
       control: 'select',
-      options: ['blue', 'orange', 'white', 'grey', 'blue-grey'],
+      options: ['blue', 'orange', 'white', 'grey', 'inverted-grey'],
     },
   },
 } satisfies Meta<typeof Sticker>
@@ -63,6 +63,6 @@ export const WithColor: Story = {
   args: {
     type: 'icon',
     icon: 'image',
-    color: 'blue-grey',
+    color: 'inverted-grey',
   },
 }

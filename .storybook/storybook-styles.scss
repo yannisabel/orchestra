@@ -25,6 +25,10 @@ body {
   color: var(--fg-main-color);
 }
 
+.sb-show-main .sbdocs-wrapper .text--white {
+  color: $white-0;
+}
+
 .full {
   background-color: var(--bg-decoration-color);
   color: var(--fg-main-color);

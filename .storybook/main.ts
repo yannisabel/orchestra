@@ -10,7 +10,8 @@ const config: StorybookConfig = {
     '@storybook/addon-mdx-gfm',
     '@storybook/addon-webpack5-compiler-swc',
     '@chromatic-com/storybook',
-    '@storybook/addon-themes'
+    '@storybook/addon-themes',
+    '@storybook/addon-a11y'
   ],
   framework: {
     name: '@storybook/react-webpack5',
