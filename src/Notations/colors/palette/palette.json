@@ -1,0 +1,118 @@
+{
+  "color": {
+    "black-0": {
+      "value": "#000000"
+    },
+    "blue-10": {
+      "value": "#0e1a25"
+    },
+    "blue-20": {
+      "value": "#1c354a"
+    },
+    "blue-30": {
+      "value": "#2a4f6f"
+    },
+    "blue-40": {
+      "value": "#386a94"
+    },
+    "blue-50": {
+      "value": "#4684b9"
+    },
+    "blue-60": {
+      "value": "#6a9fc8"
+    },
+    "blue-70": {
+      "value": "#8fb7d6"
+    },
+    "blue-80": {
+      "value": "#b5cfe3"
+    },
+    "blue-90": {
+      "value": "#dae7f1"
+    },
+    "orange-10": {
+      "value": "#2e1305"
+    },
+    "orange-20": {
+      "value": "#5c260a"
+    },
+    "orange-30": {
+      "value": "#8a390f"
+    },
+    "orange-40": {
+      "value": "#b84b14"
+    },
+    "orange-50": {
+      "value": "#e55e19"
+    },
+    "orange-60": {
+      "value": "#eb7e47"
+    },
+    "orange-70": {
+      "value": "#f09f75"
+    },
+    "orange-80": {
+      "value": "#f5bfa3"
+    },
+    "orange-90": {
+      "value": "#fadfd1"
+    },
+    "yellow-10": {
+      "value": "#331f00"
+    },
+    "yellow-20": {
+      "value": "#663d00"
+    },
+    "yellow-30": {
+      "value": "#995c00"
+    },
+    "yellow-40": {
+      "value": "#cc7a00"
+    },
+    "yellow-50": {
+      "value": "#fe9800"
+    },
+    "yellow-60": {
+      "value": "#ffad33"
+    },
+    "yellow-70": {
+      "value": "#ffc266"
+    },
+    "yellow-80": {
+      "value": "#ffd699"
+    },
+    "yellow-90": {
+      "value": "#ffebcc"
+    },
+    "grey-10": {
+      "value": "#17181c"
+    },
+    "grey-20": {
+      "value": "#2e3038"
+    },
+    "grey-30": {
+      "value": "#454754"
+    },
+    "grey-40": {
+      "value": "#5c5f70"
+    },
+    "grey-50": {
+      "value": "#72778c"
+    },
+    "grey-60": {
+      "value": "#8f92a3"
+    },
+    "grey-70": {
+      "value": "#abadba"
+    },
+    "grey-80": {
+      "value": "#c7c9d1"
+    },
+    "grey-90": {
+      "value": "#e3e4e8"
+    },
+    "white-0": {
+      "value": "#ffffff"
+    }
+  }
+}

@@ -1,42 +1,38 @@
-import {
-  Meta,
-  StoryObj,
-} from '@storybook/react'
-import React from 'react';
-import { Text } from '../Text';
+import { Meta, StoryObj } from '@storybook/react'
+import React from 'react'
+import { Text } from '../Text'
 import { Anchor } from './Anchor'
 
 const meta = {
   title: 'Staves/Anchor',
-  component: Anchor ,
+  component: Anchor,
   argTypes: {
     model: {
       control: { type: 'select' },
       options: ['round', 'default', 'button', 'wrapper'],
-      defaultValue: 'default'
+      defaultValue: 'default',
     },
     state: {
       control: { type: 'select' },
       options: ['base', 'raised', 'ghost'],
-      defaultValue: 'base'
+      defaultValue: 'base',
     },
-    color: {
+    variant: {
       control: { type: 'select' },
-      options: ['transparent', 'blue', 'orange', 'white'],
-      defaultValue: 'transparent'
+      options: ['primary', 'secondary', 'tertiary'],
     },
     isExternal: {
       control: { type: 'boolean' },
-      defaultValue: false
+      defaultValue: false,
     },
     icon: {
       control: { type: 'select' },
       options: ['image', 'people', 'art', 'tools'],
-    }
-  }
+    },
+  },
 } satisfies Meta<typeof Anchor>
 
-export default meta;
+export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
@@ -62,13 +58,39 @@ export const IsExternal: Story = {
   },
 }
 
-export const WithColor: Story = {
-  name: 'WithColor',
+export const Primary: Story = {
+  name: 'Primary',
 
   args: {
     children: 'Anchor',
     model: 'button',
-    color: 'blue',
+    variant: 'primary',
+    state: 'base',
+    href: 'https://example.com',
+    title: 'go to example website',
+  },
+}
+
+export const Secondary: Story = {
+  name: 'Secondary',
+
+  args: {
+    children: 'Anchor',
+    model: 'button',
+    variant: 'primary',
+    state: 'base',
+    href: 'https://example.com',
+    title: 'go to example website',
+  },
+}
+
+export const Tertiary: Story = {
+  name: 'Tertiary',
+
+  args: {
+    children: 'Anchor',
+    model: 'button',
+    variant: 'primary',
     state: 'base',
     href: 'https://example.com',
     title: 'go to example website',
@@ -81,31 +103,32 @@ export const Round: Story = {
   args: {
     model: 'round',
     icon: 'image',
-    color: 'blue',
+    variant: 'primary',
     href: 'https://example.com',
     title: 'go to example website',
   },
 }
 
-export const GhostButton: Story = {
-  name: 'Ghost button',
+export const TertiaryButton: Story = {
+  name: 'Tertiary button',
 
   args: {
     children: 'Anchor',
     model: 'button',
-    state: 'ghost',
+    variant: 'tertiary',
     href: 'https://example.com',
     title: 'go to example website',
   },
 }
 
-export const GhostRound: Story = {
-  name: 'Ghost Round',
+export const TertiaryRound: Story = {
+  name: 'Tertiary Round',
 
   args: {
     model: 'round',
-    state: 'ghost',
+    state: 'base',
     icon: 'image',
+    variant: 'tertiary',
     href: 'https://example.com',
     title: 'go to example website',
   },
@@ -117,7 +140,7 @@ export const Raised: Story = {
   args: {
     model: 'button',
     state: 'raised',
-    color: 'blue',
+    variant: 'primary',
     href: 'https://example.com',
     title: 'go to example website',
     children: 'Anchor',
@@ -130,7 +153,7 @@ export const IconAndText: Story = {
   args: {
     model: 'button',
     icon: 'image',
-    color: 'blue',
+    variant: 'primary',
     href: 'https://example.com',
     title: 'go to example website',
     children: <Text as="span">Anchor</Text>,

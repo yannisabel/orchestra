@@ -7,7 +7,7 @@ import React from 'react'
 export const Button = ({
   model = 'default',
   state = 'base',
-  color = 'transparent',
+  variant = 'primary',
   type = 'button',
   children,
   icon,
@@ -24,7 +24,7 @@ export const Button = ({
       'button',
       `button-m--${model}`,
       `button-s--${state}`,
-      `button-c--${color}`,
+      `button-v--${variant}`,
     ]
 
     icon && buttonClasses.push('button--icon')

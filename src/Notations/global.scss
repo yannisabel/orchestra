@@ -35,13 +35,6 @@
   padding: 0;
 }
 
-body {
-  overflow-x: hidden;
-  overflow-y: scroll;
-  @include selectColorByTheme('background', 'bg-main-color');
-  @include selectColorByTheme('color', 'fg-main-color');
-}
-
 figure p {
   margin-top: 0;
   padding-top: 0;

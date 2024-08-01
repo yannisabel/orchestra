@@ -8,7 +8,7 @@ blockquote {
   font-size: $fs-2;
   border-left-width: 6px;
   border-style: solid;
-  @include selectColorByTheme('border-color', 'fg-accent-color');
+  border-color: var(--bg-accent-color);
 
   footer {
     padding-top: $space-3;

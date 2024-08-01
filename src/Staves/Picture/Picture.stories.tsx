@@ -6,7 +6,7 @@ const meta = {
   component: Picture,
 } satisfies Meta<typeof Picture>
 
-export default meta;
+export default meta
 type Story = StoryObj<typeof meta>
 
 export const WithImage: Story = {
@@ -14,7 +14,7 @@ export const WithImage: Story = {
     src: 'https://via.placeholder.com/200',
     alt: 'placeholder image',
     width: 200,
-    height: 200
+    height: 200,
   },
   name: 'With Image',
 }

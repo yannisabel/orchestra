@@ -3,8 +3,8 @@ import type { IconProps, IconTypes } from '../Icon/Icon.types'
 
 export interface ButtonProps {
   model?: 'default' | 'round'
-  state?: 'base' | 'raised' | 'ghost'
-  color?: 'blue' | 'orange' | 'white' | 'transparent'
+  state?: 'base' | 'raised'
+  variant?: 'primary' | 'secondary' | 'tertiary'
   type?: 'button' | 'submit' | 'reset'
   children?: string | ReactNode
   icon?: IconTypes

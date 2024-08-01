@@ -14,5 +14,5 @@ export const Text = ({
   children,
   ...props
 }: TextProps)  => {
-  return <Box as={as} className={`${fontFamily} ${fontWeight} ${fontSize} text-align--${align} ${className}`} {...props}>{ children }</Box>
+  return <Box as={as} className={`as${as} ${fontFamily} ${fontWeight} ${fontSize} text-align--${align} ${className}`} {...props}>{ children }</Box>
 }

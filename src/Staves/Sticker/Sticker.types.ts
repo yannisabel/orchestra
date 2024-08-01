@@ -4,7 +4,7 @@ import { IconProps } from "../Icon/Icon.types"
 
 interface StickerCommonProps extends BoxProps<ElementType> {
   model?: 'default' | 'mini'
-  color?: 'white' | 'grey' | 'blue-grey' | 'blue' | 'orange'
+  color?: 'white' | 'grey' | 'inverted-grey' | 'blue' | 'orange'
   className?: string
 }
 

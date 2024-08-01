@@ -7,7 +7,7 @@ import * as React from 'react'
 export const Anchor = forwardRef(({
   model = 'default',
   state = 'base',
-  color = 'transparent',
+  variant = 'none',
   href,
   title,
   icon,
@@ -25,7 +25,7 @@ export const Anchor = forwardRef(({
       'anchor',
       `anchor-m--${model}`,
       `anchor-s--${state}`,
-      `anchor-c--${color}`,
+      `anchor-v--${variant}`,
     ]
 
     icon && AnchorClasses.push('anchor--icon')

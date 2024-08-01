@@ -17,24 +17,25 @@ const meta = {
       table: {
         type: {
           summary: 'HTMLElement',
-        }
-      }
+        },
+      },
     },
-  }
+  },
 } satisfies Meta<typeof Card>
 
-export default meta;
+export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default = {
   render: () => (
     <Card className="display--flex">
-      <Picture src="https://via.placeholder.com/160" alt="placeholder image" width={160} height={160} />
-      <Stack
-        direction="column"
-        spacing="space-2"
-        className="padding--space-3"
-      >
+      <Picture
+        src="https://via.placeholder.com/160"
+        alt="placeholder image"
+        width={160}
+        height={160}
+      />
+      <Stack direction="column" spacing="space-2" className="padding--space-3">
         <Text>Title</Text>
         <Text>type</Text>
         <Text>description</Text>

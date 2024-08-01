@@ -4,8 +4,8 @@ import { IconProps, IconTypes } from '../Icon/Icon.types'
 export interface AnchorProps {
   ref?: any
   model?: 'round' | 'default' | 'button' | 'wrapper'
-  state?: 'base' | 'raised' | 'ghost'
-  color?: 'blue' | 'orange' | 'white' | 'transparent'
+  state?: 'base' | 'raised'
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'none'
   href: string
   children?: string | ReactNode
   title: string

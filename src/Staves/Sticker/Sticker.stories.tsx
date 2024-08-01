@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react'
 import { Sticker } from './Sticker'
 
 const meta = {
@@ -11,12 +11,12 @@ const meta = {
     },
     color: {
       control: 'select',
-      options: ['blue', 'orange', 'white', 'grey', 'blue-grey']
-    }
-  }
+      options: ['blue', 'orange', 'white', 'grey', 'inverted-grey'],
+    },
+  },
 } satisfies Meta<typeof Sticker>
 
-export default meta;
+export default meta
 type Story = StoryObj<typeof meta>
 
 export const WithIcon: Story = {
@@ -63,6 +63,6 @@ export const WithColor: Story = {
   args: {
     type: 'icon',
     icon: 'image',
-    color: 'blue-grey',
+    color: 'inverted-grey',
   },
 }

@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
-import React from 'react';
+import React from 'react'
 import { Badge } from './Badge'
 
 const Template = (args) => <Badge {...args} />
@@ -10,12 +10,12 @@ const meta = {
   argTypes: {
     color: {
       control: 'select',
-      options: ['blue', 'orange', 'white', 'grey', 'blue-grey']
-    }
-  }
+      options: ['blue', 'orange', 'white', 'grey', 'blue-grey'],
+    },
+  },
 } satisfies Meta<typeof Badge>
 
-export default meta;
+export default meta
 type Story = StoryObj<typeof Badge>
 
 export const Default: Story = {

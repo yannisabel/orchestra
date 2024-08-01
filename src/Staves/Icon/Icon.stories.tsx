@@ -11,31 +11,38 @@ const meta = {
   title: 'Staves/Icon',
   component: Icon,
   argTypes: {
-    name: { table: { type: { summary: '["image", "art", "people", ...]' } } }
-  }
+    name: { table: { type: { summary: '["image", "art", "people", ...]' } } },
+  },
 } satisfies Meta<typeof Icon>
 
-export default meta;
+export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default = {
-  render: () =>
-    allIcons.map((IconName) => {
-      return (
-        <Stack
-          key={IconName}
-          direction="column"
-          spacing="space-1"
-          className="align-items--center"
-        >
-          <Box
-          >
-            <Icon name={IconName} className="icon-c--fgColor" size={50} />
-          </Box>
-          <Text>{IconName}</Text>
-        </Stack>
-      )
-    }),
-
+  render: () => {
+    return (
+      <Stack
+        direction="row"
+        spacing="space-5"
+        className="align-items--center"
+      >
+        { allIcons.map((IconName) => {
+          return (
+            <Stack
+              key={IconName}
+              direction="column"
+              spacing="space-1"
+              className="align-items--center"
+            >
+              <Box>
+                <Icon name={IconName} className="icon-c--fgColor" size={50} />
+              </Box>
+              <Text>{IconName}</Text>
+            </Stack>
+          )
+        })}
+      </Stack>
+    )
+  },
   name: 'Default',
 }

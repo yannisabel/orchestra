@@ -1,7 +1,7 @@
 import { Text } from './Text'
 import { Box } from '../Box'
 import React from 'react'
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
   title: 'Staves/Text',
@@ -14,13 +14,13 @@ const meta = {
       table: {
         type: {
           summary: 'Inline Elements',
-        }
-      }
+        },
+      },
     },
-  }
+  },
 } satisfies Meta<typeof Text>
 
-export default meta;
+export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
@@ -36,6 +36,14 @@ export const RenderAs: Story = {
     as: 'strong',
   },
   name: 'Render As',
+}
+
+export const Code: Story = {
+  args: {
+    children: 'Code',
+    as: 'code',
+  },
+  name: 'Code',
 }
 
 export const LineHeight = {

@@ -14,13 +14,13 @@ const meta = {
       table: {
         type: {
           summary: 'heading level: h1 to h6',
-        }
-      }
+        },
+      },
     },
-  }
+  },
 } satisfies Meta<typeof Title>
 
-export default meta;
+export default meta
 type Story = StoryObj<typeof meta>
 
 const titles: Array<TitleProps['type']> = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']

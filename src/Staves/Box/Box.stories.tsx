@@ -1,7 +1,7 @@
 import { Box } from './Box'
 import { Text } from '../Text'
 import React from 'react'
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
   title: 'Staves/Box',
@@ -14,19 +14,19 @@ const meta = {
       table: {
         type: {
           summary: 'HTMLElement',
-        }
-      }
+        },
+      },
     },
-  }
+  },
 } satisfies Meta<typeof Box>
 
-export default meta;
+export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   render: () => (
-    <Box className="bg-color--blue-30 padding--space-3">
-      <Text>Default box</Text>
+    <Box className="full padding--space-3">
+      <Text className="text--white">Default box</Text>
     </Box>
   ),
   name: 'Default',
@@ -34,8 +34,8 @@ export const Default: Story = {
 
 export const RenderAs: Story = {
   render: () => (
-    <Box as="header" className="bg-color--blue-30 padding--space-3">
-      <Text>Box as header</Text>
+    <Box as="header" className="full padding--space-3">
+      <Text className="text--white">Box as header</Text>
     </Box>
   ),
 

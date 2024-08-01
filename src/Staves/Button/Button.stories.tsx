@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react'
 import { Button } from './Button'
 
 const meta = {
@@ -8,26 +8,26 @@ const meta = {
     model: {
       control: { type: 'select' },
       options: ['default', 'round'],
-      defaultValue: 'default'
+      defaultValue: 'default',
     },
     state: {
       control: { type: 'select' },
-      options: ['base', 'raised', 'ghost'],
-      defaultValue: 'base'
+      options: ['base', 'raised'],
+      defaultValue: 'base',
     },
-    color: {
+    variant: {
       control: { type: 'select' },
-      options: ['transparent', 'blue', 'orange', 'white'],
-      defaultValue: 'transparent'
+      options: ['primary', 'secondary', 'tertiary'],
+      defaultValue: 'primary',
     },
     type: {
       control: { type: 'select' },
-      options: ['button', 'submit', 'reset']
-    }
-  }
+      options: ['button', 'submit', 'reset'],
+    },
+  },
 } satisfies Meta<typeof Button>
 
-export default meta;
+export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
@@ -36,18 +36,28 @@ export const Default: Story = {
   args: {
     children: 'Button',
     model: 'default',
-    state: 'ghost',
     onClick: () => console.log('hi there!'),
   },
 }
 
-export const WithColor: Story = {
-  name: 'WithColor',
+export const Secondary: Story = {
+  name: 'Secondary',
 
   args: {
     children: 'Button',
     model: 'default',
-    color: 'blue',
+    variant: 'secondary',
+    onClick: () => console.log('hi there!'),
+  },
+}
+
+export const Tertiary: Story = {
+  name: 'Secondary',
+
+  args: {
+    children: 'Button',
+    model: 'default',
+    variant: 'tertiary',
     onClick: () => console.log('hi there!'),
   },
 }
@@ -58,27 +68,28 @@ export const Round: Story = {
   args: {
     model: 'round',
     icon: 'image',
+    variant: 'primary',
     onClick: () => console.log('hi there!'),
   },
 }
 
-export const GhostButton: Story = {
-  name: 'Ghost button',
+export const TertiaryButton: Story = {
+  name: 'Tertiary button',
 
   args: {
     children: 'Button',
     model: 'default',
-    state: 'ghost',
+    variant: 'tertiary',
     onClick: () => console.log('hi there!'),
   },
 }
 
-export const GhostRound: Story = {
-  name: 'Ghost Round',
+export const TertiaryRound: Story = {
+  name: 'Tertiary Round',
 
   args: {
     model: 'round',
-    state: 'ghost',
+    variant: 'tertiary',
     icon: 'image',
     onClick: () => console.log('hi there!'),
   },
@@ -91,7 +102,18 @@ export const Raised: Story = {
     children: 'Button',
     model: 'default',
     state: 'raised',
-    color: 'blue',
+    variant: 'primary',
     onClick: () => console.log('hi there!'),
+  },
+}
+
+export const IconAndText: Story = {
+  name: 'Icon And Text',
+
+  args: {
+    children: 'Button',
+    model: 'default',
+    icon: 'image',
+    variant: 'primary',
   },
 }

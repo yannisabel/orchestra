@@ -48,77 +48,63 @@
       box-shadow: $depth-2;
       transition: box-shadow $cubicBezier-025, background-color $cubicBezier-025;
     }
-    &--ghost {
-      @include selectColorByTheme('color', 'fg-main-color');
-      &:hover, &:focus {
-        @include selectColorByTheme('background-color', 'bg-ghost-button-hover-color');
-      }
-  
-      svg {
-        @include selectColorByTheme('fill', 'fg-main-color');
-      }
-    }
   }
 
-  &-c {
-    &--transparent {
-      @include selectColorByTheme('color', 'fg-main-color');
-
-      svg {
-        @include selectColorByTheme('color', 'fg-main-color');
-      }
-    }
-    &--blue {
-      background-color: $blue-30;
-      color: $white-0;
+  &-v {
+    &--primary {
+      background-color: var(--bg-action-primary-color);
+      color: var(--fg-action-primary-color);
 
       &:hover, &:focus {
-          background-color: $blue-20;
+          background-color: var(--bg-action-primary-color-interacting);
+      }
+
+      span {
+        color: var(--fg-action-primary-color-interacting);
       }
 
       svg {
-          fill: colorOnBackground($blue-30);
+          fill: var(--fg-action-primary-color-interacting);
       }
     }
 
-    &--orange {
-      background-color: $orange-30;
+    &--secondary {
+      background-color: var(--bg-action-secondary-color);
       font-size: $fs-2;
       font-weight: $fw-bold;
-      color: colorOnBackground($orange-30);
 
-      &.round-button {
+      &.round-anchor {
         font-size: $fs-1;
       }
   
       &:hover, &:focus {
-          background-color: $orange-20;
+        background-color: var(--bg-action-secondary-color-interacting);
+      }
+
+      span {
+        color: var(--fg-action-secondary-color-interacting);
       }
   
       svg {
-          fill: colorOnBackground($orange-30);
+          fill: var(--fg-action-secondary-color-interacting);
       }
     }
 
-    &--white {
-      background-color: $white-10;
-      font-size: $fs-2;
-      color: colorOnBackground($white-0);
-
-      &.round-button {
-        font-size: $fs-1;
-      }
-  
+    &--tertiary {
+      color: var(--fg-main-color);
       &:hover, &:focus {
-          background-color: $white-0;
+        background-color: var(--bg-subtle-color);
       }
   
       svg {
-          fill: colorOnBackground($white-0);
+        fill: var(--fg-main-color);
       }
     }
   }
   &.button--icon {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
     svg {
       pointer-events: none;
     }
