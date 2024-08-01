@@ -157,7 +157,7 @@
 a:not([class]) {
   outline: none;
   text-decoration: underline;
-  color: var(--fg-action-color);
+  color: var(--fg-accent-color);
 
   i {
       font-family: $openSans;

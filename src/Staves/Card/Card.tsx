@@ -1,6 +1,6 @@
 import { CardProps } from './Card.types'
 import { Box } from '../Box'
-import './Card.scss'
+import './card.scss'
 import React from 'react'
 
 export const Card = ({

@@ -3,7 +3,7 @@ import { Sticker } from '../Sticker'
 import { Text } from '../Text'
 import { Stack } from '../Stack'
 import React from 'react'
-import './Badge.scss'
+import './badge.scss'
 
 export const Badge = ({
   image,

@@ -1,6 +1,6 @@
 import { Box } from '../Box'
 import { SwitchProps } from './Switch.types'
-import './Switch.scss'
+import './switch.scss'
 import React from 'react'
 
 

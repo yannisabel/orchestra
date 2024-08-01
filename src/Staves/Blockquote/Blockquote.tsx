@@ -1,7 +1,7 @@
 import { Box } from '../Box'
 import { Text } from '../Text'
 import { BlockquoteProps } from './Blockquote.types'
-import './Blockquote.scss'
+import './blockquote.scss'
 import React from 'react'
 
 
