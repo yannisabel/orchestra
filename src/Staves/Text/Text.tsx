@@ -1,6 +1,6 @@
 import { Box } from '../Box';
 import { TextProps } from './Text.types'
-import './Text.scss'
+import './text.scss'
 import React from 'react';
 
 

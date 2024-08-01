@@ -1,7 +1,7 @@
 import { Picture } from '../Picture'
 import { Icon } from '../Icon'
 import { StickerProps } from './Sticker.types'
-import './Sticker.scss'
+import './sticker.scss'
 import React from 'react'
 
 export const Sticker = ({

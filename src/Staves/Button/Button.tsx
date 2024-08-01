@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Icon } from '../Icon'
 import { ButtonProps } from './Button.types'
-import './Button.scss'
+import './button.scss'
 import React from 'react'
 
 export const Button = ({

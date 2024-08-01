@@ -1,5 +1,5 @@
 import { PictureProps } from './Picture.types'
-import './Picture.scss'
+import './picture.scss'
 import React from 'react'
 
 export const Picture = ({

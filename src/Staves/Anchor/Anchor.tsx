@@ -1,7 +1,7 @@
 import { forwardRef, useState } from 'react'
 import { Icon } from '../Icon'
 import { AnchorProps } from './Anchor.types'
-import './Anchor.scss'
+import './anchor.scss'
 import * as React from 'react'
 
 export const Anchor = forwardRef(({
