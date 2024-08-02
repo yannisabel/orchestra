@@ -3,17 +3,18 @@
 :root {
   --bg-main-color: #{$yellow-90};
   --bg-main-color-interacting: #{$yellow-80};
-  --bg-neutral-color: #{lighten($yellow-90, 4%)};
+  --bg-neutral-color: #{$white-0};
   --bg-neutral-color-interacting: #{$yellow-70};
-  --bg-accent-color: #{$orange-60};
-  --bg-accent-color-interacting: #{$orange-50};
+  --bg-accent-color: #{$orange-40};
+  --bg-accent-color-interacting: #{$orange-60};
   --bg-action-primary-color: #{$orange-40};
   --bg-action-primary-color-interacting: #{$orange-30};
   --bg-action-secondary-color: #{lighten($yellow-90, 4%)};
   --bg-action-secondary-color-interacting: #{$yellow-80};
-  --bg-decoration-color: #{$blue-40};
-  --bg-decoration-color-interacting: #{$blue-30};
+  --bg-decoration-color: #{$orange-40};
+  --bg-decoration-color-interacting: #{$orange-30};
   --bg-subtle-color: #{$yellow-80};
+  --bg-subtle-decoration-color: #{lighten($yellow-90, 4%)};
   --bg-code-color: #{$blue-80};
   --fg-main-color: #{$grey-10};
   --fg-main-color-interacting: #{$grey-20};
@@ -25,7 +26,8 @@
   --fg-action-primary-color-interacting: #{$white-0};
   --fg-action-secondary-color: #{$grey-10};
   --fg-action-secondary-color-interacting: #{$grey-10};
-  --fg-subtle-color: #{$grey-70};
+  --fg-subtle-color: #{$orange-20};
+  --fg-subtle-decoration-color: #{$orange-20};
   --fg-code-color: #{$blue-30};
 }
 
@@ -35,7 +37,7 @@
   --bg-main-color-interacting: #{$grey-30};
   --bg-neutral-color: #{$grey-20};
   --bg-neutral-color-interacting: #{$grey-40};
-  --bg-accent-color: #{$blue-50};
+  --bg-accent-color: #{$blue-40};
   --bg-accent-color-interacting: #{$blue-60};
   --bg-action-primary-color: #{$blue-30};
   --bg-action-primary-color-interacting: #{$blue-40};
@@ -44,6 +46,7 @@
   --bg-decoration-color: #{$blue-40};
   --bg-decoration-color-interacting: #{$blue-50};
   --bg-subtle-color: #{$grey-30};
+  --bg-subtle-decoration-color: #{$grey-30};
   --bg-code-color: #{$blue-90};
   --fg-main-color: #{$white-0};
   --fg-main-color-interacting: #{$blue-90};
@@ -56,5 +59,6 @@
   --fg-action-secondary-color: #{$grey-10};
   --fg-action-secondary-color-interacting: #{$grey-10};
   --fg-subtle-color: #{$grey-50};
+  --fg-subtle-decoration-color: #{$grey-80};
   --fg-code-color: #{$blue-30};
 }

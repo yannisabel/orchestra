@@ -4,6 +4,6 @@ export interface BadgeProps {
   image: string
   alt: string
   legend: string
-  color?: StickerProps['color']
+  variant?: StickerProps['variant']
   className?: string
 }

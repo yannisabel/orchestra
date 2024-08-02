@@ -47,30 +47,36 @@
     }
   }
 
-  // color modifiers
-  &-c {
-    &--white {
-      background: $white-0;
+  // variant modifiers
+  &-v {
+    &--primary {
+      background-color: var(--bg-accent-color);
+      span {
+        color: $white-0;
+      }
 
       svg {
-        fill: $grey-40;
+        fill: $white-0;
       }
     }
 
-    &--grey {
-      background: $grey-80;
-
+    &--secondary {
+      background-color: var(--bg-neutral-color);
+      span {
+        color: var(--fg-main-color);
+      }
       svg {
-        fill: $grey-40;
+        fill: var(--fg-main-color);
       }
     }
 
-    &--inverted-grey {
-      background: $grey-40;
-      color: $grey-90;
-
+    &--tertiary {
+      background-color: var(--bg-subtle-decoration-color);
+      span {
+        color: var(--fg-subtle-decoration-color);
+      }
       svg {
-        fill: $grey-90;
+        fill: var(--fg-subtle-decoration-color);
       }
     }
 
@@ -108,7 +114,6 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    color: $grey-10;
     line-height: 1em;
   }
 }

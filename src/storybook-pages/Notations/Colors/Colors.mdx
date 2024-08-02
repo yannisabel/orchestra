@@ -5,20 +5,19 @@ import { Box } from '../../../Staves/Box'
 import { Text } from '../../../Staves/Text'
 import { Title } from '../../../Staves/Title'
 
-import { blackPalette, whitePalette, greyPalette, bluePalette, orangePalette } from '.'
+import { COLORS } from '../../../Notations/colors/palette'
 
 <Meta title="Notations/Colors" />
 
 <Unstyled>
-<Box className="dark">
 
 # Colors
 
 <Box className="display--grid grid-gap--space-4">
   <Box className="display--grid grid-gap--space-3 align-items--center grid-col-12 margin-top--space-4 margin-bottom--space-5">
-    <Title type="h3" className="grid-item--spanCol2of12 fs-3">black palette</Title>
+    <Title type="h3" className="grid-item--spanCol2of12 fs-3">Palette</Title>
     <Stack direction="row" spacing="space-3" className="grid-item--spanCol10of12">
-      {Object.entries(blackPalette).map(([colorName, value]) => {
+      {Object.entries(COLORS).map(([colorName, value]) => {
         return (
           <Box key={`${colorName}`} className="color-card">
             <Box style={{display: 'inline-block', height: 72, width: '100%', background: 'white'}}>
@@ -39,103 +38,5 @@ import { blackPalette, whitePalette, greyPalette, bluePalette, orangePalette } f
       })}
     </Stack>
   </Box>
-  <Box className="display--grid grid-gap--space-3 align-items--center grid-col-12 margin-top--space-4 margin-bottom--space-5">
-    <Title type="h3" className="grid-item--spanCol2of12 fs-3">white palette</Title>
-    <Stack direction="row" spacing="space-3" className="grid-item--spanCol10of12">
-      {Object.entries(whitePalette).map(([colorName, value]) => {
-        return (
-          <Box key={`${colorName}`} className="color-card">
-            <Box style={{display: 'inline-block', height: 72, width: '100%', background: 'white'}}>
-              <Box className="transparent-color">
-                <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
-              </Box>
-            </Box>
-            <Box className="color-card__text display--flex flex-direction--column">
-              <Text as="span" fontWeight="fw-bold">
-                {colorName}
-              </Text>
-              <Text as="span">
-                {value}
-              </Text>
-            </Box>
-          </Box>
-        )
-      })}
-    </Stack>
-  </Box>
-  <Box className="display--grid grid-gap--space-3 align-items--center grid-col-12 margin-top--space-4 margin-bottom--space-5">
-    <Title type="h3" className="grid-item--spanCol2of12 fs-3">grey palette</Title>
-    <Stack direction="row" spacing="space-3" className="grid-item--spanCol10of12">
-      {Object.entries(greyPalette).map(([colorName, value]) => {
-        return (
-          <Box key={`${colorName}`} className="color-card">
-            <Box style={{display: 'inline-block', height: 72, width: '100%', background: 'white'}}>
-              <Box className="transparent-color">
-                <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
-              </Box>
-            </Box>
-            <Box className="color-card__text display--flex flex-direction--column">
-              <Text as="span" fontWeight="fw-bold">
-                {colorName}
-              </Text>
-              <Text as="span">
-                {value}
-              </Text>
-            </Box>
-          </Box>
-        )
-      })}
-    </Stack>
-  </Box>
-  <Box className="display--grid grid-gap--space-3 align-items--center grid-col-12 margin-top--space-4 margin-bottom--space-5">
-    <Title type="h3" className="grid-item--spanCol2of12 fs-3">blue palette</Title>
-    <Stack direction="row" spacing="space-3" className="grid-item--spanCol10of12">
-      {Object.entries(bluePalette).map(([colorName, value]) => {
-        return (
-          <Box key={`${colorName}`} className="color-card">
-            <Box style={{display: 'inline-block', height: 72, width: '100%', background: 'white'}}>
-              <Box className="transparent-color">
-                <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
-              </Box>
-            </Box>
-            <Box className="color-card__text display--flex flex-direction--column">
-              <Text as="span" fontWeight="fw-bold">
-                {colorName}
-              </Text>
-              <Text as="span">
-                {value}
-              </Text>
-            </Box>
-          </Box>
-        )
-      })}
-    </Stack>
-  </Box>
-  <Box className="display--grid grid-gap--space-3 align-items--center grid-col-12 margin-top--space-4 margin-bottom--space-5">
-    <Title type="h3" className="grid-item--spanCol2of12 fs-3">orange palette</Title>
-    <Stack direction="row" spacing="space-3" className="grid-item--spanCol10of12">
-      {Object.entries(orangePalette).map(([colorName, value]) => {
-        return (
-          <Box key={`${colorName}`} className="color-card">
-            <Box style={{display: 'inline-block', height: 72, width: '100%', background: 'white'}}>
-              <Box className="transparent-color">
-                <Box style={{backgroundColor: value, backgroundPosition: '0 0 10px 30px', height: '100%'}} />
-              </Box>
-            </Box>
-            <Box className="color-card__text display--flex flex-direction--column">
-              <Text as="span" fontWeight="fw-bold">
-                {colorName}
-              </Text>
-              <Text as="span">
-                {value}
-              </Text>
-            </Box>
-          </Box>
-        )
-      })}
-    </Stack>
-  </Box>
-</Box>
-
 </Box>
 </Unstyled>

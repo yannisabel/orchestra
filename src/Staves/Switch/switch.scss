@@ -53,13 +53,13 @@ $switchHeight: 26px;
 
     &--grey {
       .option-true {
-        background-color: $grey-10;
+        background-color: $grey-50;
       }
     }
 
     &--blue {
       .option-true {
-        background-color: $blue-60;
+        background-color: $blue-50;
       }
     }
 
@@ -79,13 +79,13 @@ $switchHeight: 26px;
 
     &--grey {
       .option-false {
-        background-color: $grey-50;
+        background-color: $grey-40;
       }
     }
 
     &--blue {
       .option-false {
-        background-color: $blue-30;
+        background-color: $blue-20;
       }
     }
   }
