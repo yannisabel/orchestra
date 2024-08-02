@@ -9,7 +9,7 @@ export const Badge = ({
   image,
   alt,
   legend,
-  color,
+  variant = 'primary',
   className = ''
 }: BadgeProps) => {
 
@@ -19,7 +19,7 @@ export const Badge = ({
         type="image"
         image={image}
         alt={alt}
-        color={color}
+        variant={variant}
       />
       <Text fontSize="fs-1" align="center">{legend}</Text>
     </Stack>

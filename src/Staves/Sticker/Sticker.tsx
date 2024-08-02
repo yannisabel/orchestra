@@ -6,14 +6,14 @@ import React from 'react'
 
 export const Sticker = ({
   model = 'default',
-  color = 'white',
+  variant = 'primary',
   ...props
 }: StickerProps) => {
   const getStickerClasses = () => {
     const stickerClasses = [
       'sticker',
       `sticker-m--${model}`,
-      `sticker-c--${color}`,
+      `sticker-v--${variant}`,
     ]
 
     return stickerClasses.join(' ')

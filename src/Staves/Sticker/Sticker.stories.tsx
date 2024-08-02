@@ -9,9 +9,9 @@ const meta = {
       control: 'radio',
       options: ['default', 'mini'],
     },
-    color: {
+    variant: {
       control: 'select',
-      options: ['blue', 'orange', 'white', 'grey', 'inverted-grey'],
+      options: ['primary', 'secondary', 'tertiary'],
     },
   },
 } satisfies Meta<typeof Sticker>
@@ -28,7 +28,7 @@ export const WithIcon: Story = {
   },
 }
 
-export const WithModalMini: Story = {
+export const WithModelMini: Story = {
   name: 'With Model Mini',
 
   args: {
@@ -54,15 +54,5 @@ export const WithText: Story = {
   args: {
     type: 'text',
     text: 'Text placeholder',
-  },
-}
-
-export const WithColor: Story = {
-  name: 'With Color',
-
-  args: {
-    type: 'icon',
-    icon: 'image',
-    color: 'inverted-grey',
   },
 }

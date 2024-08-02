@@ -8,9 +8,9 @@ const meta = {
   title: 'Staves/Badge',
   component: Badge,
   argTypes: {
-    color: {
+    variant: {
       control: 'select',
-      options: ['blue', 'orange', 'white', 'grey', 'blue-grey'],
+      options: ['primary', 'secondary', 'tertiary'],
     },
   },
 } satisfies Meta<typeof Badge>
@@ -26,17 +26,5 @@ export const Default: Story = {
     image: 'https://via.placeholder.com/50',
     alt: 'placeholder image',
     legend: 'This is a legend',
-  },
-}
-
-export const WithColor: Story = {
-  render: Template.bind({}),
-  name: 'with Color',
-
-  args: {
-    image: 'https://via.placeholder.com/50',
-    alt: 'placeholder image',
-    legend: 'This is a legend',
-    color: 'blue',
   },
 }
