@@ -11,6 +11,7 @@ export const allIcons = [
   'problem',
   'check',
   'twitter',
+  'x',
   'pinterest',
   'linkedin',
   'behance',
