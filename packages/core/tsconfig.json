@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "moduleResolution": "bundler",
+    "target": "ES2017",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "jsx": "react",
+    "jsxFactory": "h",
+    "skipLibCheck": true,
+    "strictPropertyInitialization": false
+  },
+  "include": ["src", "../storybook/src/stories/components/button/button.stories.tsx"],
+  "exclude": ["node_modules", "src/**/*.spec.ts"]
+}

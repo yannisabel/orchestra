@@ -1,0 +1,56 @@
+
+.orchestra-theme--dark {
+    --background-color: #000;
+    --color: #fff;
+    --border-color: #3c3c3c;
+}
+
+.orchestra-theme--light {
+  --background-color: #fff;
+  --color: #000;
+  --border-color: #d3d3d3;
+}
+
+body,
+.sbdocs-wrapper.sbdocs,
+.sbdocs-preview.sb-unstyled,
+.sbdocs-content [class*='sbdocs-'],
+.sbdocs-content .docblock-source,
+.sbdocs-content th,
+.sbdocs-content tr,
+.sbdocs-content td {
+  background-color: var(--background-color);
+}
+
+.docblock-code-toggle,
+.sbdocs-content .docblock-source,
+.sbdocs-content h1,
+.sbdocs-content h2,
+.sbdocs-content h3,
+.sbdocs-content h4,
+.sbdocs-content h5,
+.sbdocs-content h6,
+.sbdocs-content th,
+.sbdocs-content tr,
+.sbdocs-content td,
+.sbdocs-content code,
+.sbdocs-toc--custom .toc-list-item:not(.is-active-li) > a {
+  color: var(--color) !important;
+}
+
+.sbdocs-content th,
+.sbdocs-content tr,
+.sbdocs-content td,
+.sbdocs-preview,
+.sbdocs-content .docblock-source {
+  border-color: var(--border-color) !important;
+}
+
+.source-code.hidden {
+  display: none;
+}
+
+.stencil-props h1,
+.stencil-props table + hr {
+  display: none;
+}

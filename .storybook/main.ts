@@ -1,36 +1,75 @@
-const path = require('path');
-import type { StorybookConfig } from '@storybook/react-webpack5';
+import type { StorybookConfig } from "@storybook/web-components-vite"
 
+import { join, dirname } from "path"
+
+// This file has been automatically migrated to valid ESM format by Storybook.
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
+
+const { BASE_PATH } = process.env
+
+/**
+ * This function is used to resolve the absolute path of a package.
+ * It is needed in projects that use Yarn PnP or are set up within a monorepo.
+ */
+function getAbsolutePath(value: string): string {
+  return dirname(require.resolve(join(value, "package.json")))
+}
 const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: [
+    "packages/storybook/src/**/*.mdx",
+    "packages/storybook/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "packages/storybook/src/stories/components/**/*.mdx",
+    "packages/storybook/src/stories/components/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+  ],
   addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    '@storybook/addon-mdx-gfm',
-    '@storybook/addon-webpack5-compiler-swc',
-    '@chromatic-com/storybook',
-    '@storybook/addon-themes',
-    '@storybook/addon-a11y'
+    getAbsolutePath("@storybook/addon-links"),
+    getAbsolutePath("@storybook/addon-a11y"),
+    getAbsolutePath("@vueless/storybook-dark-mode"),
+    getAbsolutePath("@storybook/addon-docs"),
+    getAbsolutePath("@storybook/addon-vitest")
   ],
   framework: {
-    name: '@storybook/react-webpack5',
-    options: {}
+    name: getAbsolutePath("@storybook/web-components-vite"),
+    options: {},
   },
-  docs: {},
+  previewHead: (head) => `${head}
+    <script type="module" src="${BASE_PATH ? BASE_PATH : "/"}packages/storybook/www/build/orchestra-kit.esm.js"></script>
+    <script nomodule src="${BASE_PATH ? BASE_PATH : "/"}packages/storybook/www/build/orchestra-kit.js"></script>
+  `,
+  staticDirs: ["packages/storybook/public", { from: "packages/storybook/www", to: "/www" }],
+  async viteFinal(config) {
+    config.base = BASE_PATH || config.base
+
+    const { mergeConfig } = await import("vite")
+    const { liveReload } = await import("vite-plugin-live-reload")
+
+    return mergeConfig(config, {
+      plugins: [
+        liveReload([
+          "www/build/orchestra-kit.esm.js",
+          "www/build/orchestra-kit.js",
+        ]),
+      ],
+      build: {
+        chunkSizeWarningLimit: 1000,
+        rollupOptions: {
+          output: {
+            manualChunks: {
+              lit: ["lit"],
+              react: ["react"],
+              "react-dom": ["react-dom"],
+              "react/jsx-runtime": ["react/jsx-runtime"],
+            },
+          },
+        },
+      },
+    })
+  },
+  // https://storybook.js.org/docs/react/configure/typescript#mainjs-configuration
   typescript: {
-    check: false,
-    checkOptions: {},
-    reactDocgen: 'react-docgen-typescript',
-  },
-  webpackFinal: async (config, { configType }) => {
-    config.module && config.module.rules &&
-    config.module.rules.push({
-      test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader'],
-      include: path.resolve(__dirname, '../')
-    });
-    return config;
+    check: true, // type-check stories during Storybook build
   },
 }
 

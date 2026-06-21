@@ -1,15 +1,37 @@
 {
   "git": {
-    "requireBranch": "main"
-  },
-  "hooks": {
-    "before:init": ["git pull"],
-    "after:bump": "npx auto-changelog -p"
-  },
-  "github": {
-    "release": true
+    "commit": true,
+    "commitMessage": "chore(release): ${version}",
+    "tag": true,
+    "tagName": "${name}@${version}",
+    "push": true,
+    "requireUpstream": false,
+    "getLatestTagInBranch": true
   },
   "npm": {
-    "publish": true
+    "publish": true,
+    "allowSameVersion": false
+  },
+  "github": {
+    "release": true,
+    "releaseName": "${version}"
+  },
+  "plugins": {
+    "@release-it/lerna-changelog": {
+      "inFile": "CHANGELOG.md"
+    },
+    "@release-it/conventional-changelog": {
+      "preset": "angular",
+      "inFile": "CHANGELOG.md"
+    }
+  },
+  "hooks": {
+    "before:init": [
+      "npm run lint",
+      "npm run build"
+    ],
+    "after:bumped": [
+      "npm run format"
+    ]
   }
 }

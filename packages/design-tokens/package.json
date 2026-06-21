@@ -1,0 +1,22 @@
+{
+  "name": "@orchestra-kit/design-tokens",
+  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "main": "sd.config.js",
+  "scripts": {
+    "start": "concurrently 'npm run watch' 'npm run watch:extended'",
+    "watch": "tsx watch --exclude './tokens/gen-*.**' --include './tokens/*.**' sd.config.js",
+    "watch:extended": "tsx watch --include './tokens/extended/tokens/*.**' ./tokens/extended/build.js",
+    "build": "node sd.config.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.3",
+    "json5": "^2.2.3",
+    "lodash": "^4.18.1",
+    "style-dictionary": "^5.5.0",
+    "tsx": "^4.22.4"
+  },
+  "author": "Artur Sopelnik <artur.sopelnik93@gmail.com>",
+  "license": "MIT"
+}

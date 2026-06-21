@@ -1,0 +1,36 @@
+{
+  "name": "@orchestra-kit/icons-library",
+  "version": "0.0.1",
+  "description": "Orchestra icon library - SVG icons for Orchestra components",
+  "author": "Yann Isabel",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "svg"
+  ],
+  "scripts": {
+    "build": "node generate-icons.mjs && tsc && node build.mjs",
+    "build:watch": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "icon",
+    "svg",
+    "orchestra",
+    "design-system"
+  ],
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
