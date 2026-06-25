@@ -17,9 +17,6 @@
     "releaseName": "${version}"
   },
   "plugins": {
-    "@release-it/lerna-changelog": {
-      "inFile": "CHANGELOG.md"
-    },
     "@release-it/conventional-changelog": {
       "preset": "angular",
       "inFile": "CHANGELOG.md"

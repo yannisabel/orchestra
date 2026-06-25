@@ -1,6 +1,5 @@
 {
   "name": "@orchestra-kit/vue",
-  "private": true,
   "version": "0.0.1",
   "author": "Artur Sopelnik <artur.sopelnik93@gmail.com>",
   "files": [

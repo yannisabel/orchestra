@@ -1,6 +1,5 @@
 {
   "name": "@orchestra-kit/core",
-  "private": true,
   "type": "module",
   "version": "0.0.1",
   "description": "Stencil Component Starter",

@@ -10,11 +10,13 @@
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@eslint/json": "^0.14.0",
+    "@release-it/conventional-changelog": "^11.0.1",
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
     "lerna": "^9.0.1",
     "npm-check-updates": "^19.1.2",
     "prettier": "^3.6.2",
+    "release-it": "^20.2.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.47.0"
   },
@@ -22,10 +24,13 @@
     "dev": "npx lerna run storybook:start --scope=@orchestra-kit/storybook",
     "build": "npm run build:tokens && npx lerna run build",
     "build:tokens": "npx lerna run build --scope='@orchestra-kit/design-tokens'",
+    "build:storybook": "npx lerna run build-storybook --scope=@orchestra-kit/storybook",
     "update": "npx npm-check-updates -u",
     "format": "npx prettier . --write",
     "lint": "npx eslint .  --fix",
     "test": "npx lerna run storybook:test --scope=@orchestra-kit/storybook",
-    "test:coverage": "npx lerna run storybook:test-coverage --scope=@orchestra-kit/storybook"
+    "test:coverage": "npx lerna run storybook:test-coverage --scope=@orchestra-kit/storybook",
+    "release": "release-it",
+    "release:dry": "release-it --dry-run"
   }
 }

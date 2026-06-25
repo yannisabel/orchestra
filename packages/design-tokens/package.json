@@ -1,6 +1,5 @@
 {
   "name": "@orchestra-kit/design-tokens",
-  "private": true,
   "type": "module",
   "version": "0.0.1",
   "main": "sd.config.js",
