@@ -1,0 +1,18 @@
+{
+  "git": {
+    "commit": true,
+    "commitMessage": "chore(@orchestra-kit/core): release v${version}",
+    "tag": true,
+    "tagName": "@orchestra-kit/core@${version}",
+    "push": true,
+    "requireUpstream": false
+  },
+  "npm": {
+    "publish": true,
+    "allowSameVersion": false
+  },
+  "github": {
+    "release": true,
+    "releaseName": "@orchestra-kit/core v${version}"
+  }
+}

@@ -6,7 +6,7 @@ import type { Preview } from "@storybook/web-components-vite"
 import { registerIconLibrary } from "@orchestra-kit/core"
 
 // Import and auto-register components
-import "@orchestra-kit/core/dist/esm/orchestra-kit.js"
+import "@orchestra-kit/core/dist/orchestra-kit/orchestra-kit.esm.js"
 
 const preview: Preview = {
   parameters: {

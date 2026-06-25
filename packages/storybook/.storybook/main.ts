@@ -35,7 +35,7 @@ const config: StorybookConfig = {
     options: {},
   },
   previewHead: (head) => `${head}`,
-  staticDirs: ["../public", { from: "../www", to: "/www" }],
+  staticDirs: ["../public"],
   async viteFinal(config) {
     config.base = BASE_PATH || config.base
 

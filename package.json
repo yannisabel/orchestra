@@ -31,6 +31,18 @@
     "test": "npx lerna run storybook:test --scope=@orchestra-kit/storybook",
     "test:coverage": "npx lerna run storybook:test-coverage --scope=@orchestra-kit/storybook",
     "release": "release-it",
-    "release:dry": "release-it --dry-run"
+    "release:dry": "release-it --dry-run",
+    "release:core": "cd packages/core && release-it",
+    "release:core:dry": "cd packages/core && release-it --dry-run",
+    "release:react": "cd packages/react && release-it",
+    "release:react:dry": "cd packages/react && release-it --dry-run",
+    "release:angular": "cd packages/angular && release-it",
+    "release:angular:dry": "cd packages/angular && release-it --dry-run",
+    "release:vue": "cd packages/vue && release-it",
+    "release:vue:dry": "cd packages/vue && release-it --dry-run",
+    "release:design-tokens": "cd packages/design-tokens && release-it",
+    "release:design-tokens:dry": "cd packages/design-tokens && release-it --dry-run",
+    "release:icons-library": "cd packages/icons-library && release-it",
+    "release:icons-library:dry": "cd packages/icons-library && release-it --dry-run"
   }
 }
