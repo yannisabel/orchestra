@@ -13,11 +13,22 @@ const customIcons: Record<string, string> = {
 
 // Register custom icon library BEFORE importing components
 registerIconLibrary('custom', {
-  resolver: (name) => customIcons[name] ?? ''
+  resolver: (name) => {
+    console.log('🎨 Custom library resolver called for:', name)
+    return customIcons[name] ?? ''
+  }
 })
+console.log('✅ Custom library registered')
 
 // Now import and auto-register components
 import "@orchestra-kit/core/dist/orchestra-kit/orchestra-kit.esm.js"
+
+// Store icons globally and register after a delay to ensure components are ready
+Promise.resolve().then(() => {
+  registerIconLibrary('custom', {
+    resolver: (name) => customIcons[name] ?? ''
+  })
+})
 
 const preview: Preview = {
   parameters: {

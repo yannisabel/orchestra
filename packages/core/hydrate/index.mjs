@@ -7733,11 +7733,27 @@ const library = {
     resolver: (name) => getAssetPath(`/icons/${name}.svg`),
 };
 
-let registry = [library, orchestraLibrary];
+// Use window as global registry to share across isolated modules
+const getGlobalRegistry = () => {
+    if (typeof window !== 'undefined') {
+        if (!window.__orchestraIconRegistry) {
+            window.__orchestraIconRegistry = [library, orchestraLibrary];
+        }
+        return window.__orchestraIconRegistry;
+    }
+    // Fallback for non-browser environments
+    if (!globalThis.__orchestraIconRegistry) {
+        globalThis.__orchestraIconRegistry = [library, orchestraLibrary];
+    }
+    return globalThis.__orchestraIconRegistry;
+};
 /**
  * Returns a library from the registry.
  */
-const getIconLibrary = (name) => registry.find((library) => library.name === name);
+const getIconLibrary = (name) => {
+    const registry = getGlobalRegistry();
+    return registry.find((library) => library.name === name);
+};
 
 const iconCss = () => `:host{--icon-color:currentcolor;--icon-size:100%;display:flex}:host svg{fill:var(--icon-color);width:var(--icon-size);height:var(--icon-size)}:host svg *{fill:inherit}`;
 
