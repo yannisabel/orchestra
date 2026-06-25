@@ -195,16 +195,36 @@ npm run storybook:test-coverage # With coverage report
 1. `npm install`
 2. Create feature branch
 3. `npm run build && npm run lint`
-4. Test in Storybook: `npm run storybook:dev`
+4. Test in Storybook: `npm run dev`
 5. Create pull request
 
-**Publishing:**
-```bash
-npm run version   # Bump version across all packages
-npm run publish   # Publish to npm (@orchestra-kit/*)
-```
+**Release Process:**
 
-Monorepo managed with Lerna. All packages share a version.
+The repository uses a dual-workflow strategy:
+
+- **NPM Releases** (main branch only) - Automated via GitHub Actions
+  ```bash
+  git push origin main  # Triggers release.yml workflow
+  ```
+  Workflow steps: Build → Run release-it → Publish to npm → Create GitHub release
+
+- **Storybook Deployment** (all branches except main) - Automated via GitHub Actions
+  ```bash
+  git push origin feature-branch  # Triggers storybook-deploy.yml workflow
+  ```
+  Workflow steps: Build → Deploy to GitHub Pages on gh-pages branch
+  
+  Access deployed Storybook:
+  ```
+  https://<username>.github.io/<repo-name>/<branch-name>/
+  ```
+
+**Local testing before deployment:**
+```bash
+npm run build          # Build all packages
+npm run build:storybook  # Build Storybook static site
+npm run storybook:dev  # Preview locally at http://localhost:6006
+```
 
 ## License
 

@@ -79,6 +79,88 @@ type IconName = typeof iconNames[number]  // Type union of all available icons
 
 Current icons: `checked`
 
+## Custom Icon Libraries
+
+You can register custom SVG icons at runtime using the `registerIconLibrary` function. This is useful for:
+- Application-specific icons
+- Theming icon variants
+- Testing in Storybook
+- Runtime icon customization
+
+### Registering a Custom Library
+
+```typescript
+import { registerIconLibrary } from '@orchestra-kit/core'
+
+// Define your custom icons as SVG strings
+const customIcons = {
+  'star': `<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87..."/></svg>`,
+  'heart': `<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32..."/></svg>`,
+}
+
+// Register the library
+registerIconLibrary('custom', {
+  resolver: (name) => customIcons[name] ?? ''
+})
+
+// Use in components
+<orchestra-icon name="star" library="custom"></orchestra-icon>
+```
+
+### In Storybook Stories
+
+When testing custom icon libraries in Storybook, register them in the `play()` function (runs after component mounts):
+
+```typescript
+// packages/storybook/src/stories/components/icon/icon.stories.ts
+export const CustomLibrary = {
+  render: (args) => 
+    `<orchestra-icon name="${args.name}" library="custom"></orchestra-icon>`,
+  args: { name: 'star' },
+  play: async () => {
+    const customIcons = {
+      'star': `<svg>...</svg>`,
+      'heart': `<svg>...</svg>`,
+    }
+    
+    // Register after component mounts
+    registerIconLibrary('custom', {
+      resolver: (name) => customIcons[name] ?? ''
+    })
+    
+    // Trigger reload by toggling library property
+    const icon = document.querySelector('orchestra-icon')
+    icon.library = 'core'
+    await new Promise(resolve => setTimeout(resolve, 100))
+    icon.library = 'custom'
+  }
+}
+```
+
+### SVG Requirements
+
+Custom SVG icons should:
+- Include `viewBox` attribute for responsive scaling
+- Use `fill="currentColor"` to inherit color from icon component
+- Keep markup clean and minimal
+- Avoid hardcoded dimensions (use `viewBox` instead)
+
+Example SVG:
+```xml
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/>
+</svg>
+```
+
+### Global Registry
+
+Icon libraries are stored in a global registry accessible to all components:
+- Uses `window.__orchestraIconRegistry` for browser environments
+- Uses `globalThis.__orchestraIconRegistry` for Node.js environments
+- Shared across all mounted components and modules
+
+This allows libraries registered in one location (e.g., Storybook preview) to be accessible everywhere.
+
 ## Package Structure
 
 ```
