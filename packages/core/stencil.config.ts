@@ -53,8 +53,6 @@ export const config: Config = {
     }),
     reactOutputTarget({
       outDir: '../react/lib/components/stencil-generated/',
-      hydrateModule: '@orchestra-kit/core/hydrate',
-      clientModule: '@orchestra-kit/core/client',
       esModules: true,
     }),
     {

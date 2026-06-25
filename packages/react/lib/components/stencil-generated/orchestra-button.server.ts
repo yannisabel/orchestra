@@ -31,6 +31,7 @@ export const OrchestraButton: StencilReactComponent<OrchestraButtonElement, Orch
         iconName: 'icon-name'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@orchestra-kit/core/hydrate') as Promise<HydrateModule>) : undefined,
+    // @ts-ignore - clientModule not available in current setup
     clientModule: clientComponents.OrchestraButton as StencilReactComponent<OrchestraButtonElement, OrchestraButtonEvents, Components.OrchestraButton>,
     serializeShadowRoot
 });

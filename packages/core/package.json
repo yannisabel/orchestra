@@ -13,6 +13,52 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/core/core.esm.js",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.js"
+    },
+    "./client": {
+      "types": "./loader/index.d.ts",
+      "require": "./loader/index.cjs.js",
+      "import": "./loader/index.js"
+    },
+    "./loader": {
+      "types": "./loader/index.d.ts",
+      "require": "./loader/index.cjs.js",
+      "import": "./loader/index.js"
+    },
+    "./hydrate": {
+      "types": "./hydrate/index.d.ts",
+      "require": "./hydrate/index.cjs.js",
+      "import": "./hydrate/index.mjs"
+    },
+    "./dist/components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js"
+    },
+    "./dist/components/index": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js"
+    },
+    "./dist/components/orchestra-button.js": {
+      "types": "./dist/components/orchestra-button.d.ts",
+      "import": "./dist/components/orchestra-button.js"
+    },
+    "./dist/components/orchestra-icon.js": {
+      "types": "./dist/components/orchestra-icon.d.ts",
+      "import": "./dist/components/orchestra-icon.js"
+    },
+    "./dist/components/*": {
+      "types": "./dist/components/*.d.ts",
+      "import": "./dist/components/*.js"
+    },
+    "./src/components/*/readme.md": "./src/components/*/readme.md",
+    "./dist/orchestra-kit/themes/*": "./dist/orchestra-kit/themes/*",
+    "./dist/esm/*": "./dist/esm/*",
+    "./dist/orchestra-kit/*": "./dist/orchestra-kit/*"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ionic-team/stencil-component-starter.git"

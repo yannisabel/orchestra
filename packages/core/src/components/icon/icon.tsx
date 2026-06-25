@@ -43,8 +43,6 @@ export class OrchestraIcon {
       console.warn(`❌ Icon library "${iconLibrary}" not found`)
       return ''
     }
-
-    console.log(`✅ Icon library "${iconLibrary}" found, resolving "${name}"`)
     const svg = lib.resolver(name)
     if (svg) {
       cache[`${iconLibrary}:${name}`] = svg
@@ -58,7 +56,6 @@ export class OrchestraIcon {
 
   protected loadIcon(icon: string): void {
     if (!this.name || this.name === '' || this.name === 'undefined') return
-    console.log(`🎨 loadIcon called: name="${this.name}", library="${this.library}", fill="${this.fill}", size="${this.size}"`)
     try {
       this.getSvg(icon)
       this.sanitizeSVG()
@@ -131,7 +128,6 @@ export class OrchestraIcon {
    * Sanitize svg element and allow only svg tags to be written
    */
   public sanitizeSVG(): void {
-    console.log(`🧹 sanitizeSVG called, this.svg: "${this.svg}"`)
     if (!this.svg) {
       console.warn(`⚠️ No SVG to render`)
       return
@@ -141,8 +137,6 @@ export class OrchestraIcon {
       return
     }
     const sanitized = DOMPurify.sanitize(this.svg, { USE_PROFILES: { svg: true, svgFilters: true } })
-    console.log(`🧹 DOMPurify result: "${sanitized}"`)
     this.host.shadowRoot.innerHTML = sanitized
-    console.log(`✨ shadowRoot.innerHTML set to: "${this.host.shadowRoot.innerHTML}"`)
   }
 }

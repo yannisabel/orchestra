@@ -28,6 +28,7 @@ export const OrchestraIcon: StencilReactComponent<OrchestraIconElement, Orchestr
         size: 'size'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@orchestra-kit/core/hydrate') as Promise<HydrateModule>) : undefined,
+    // @ts-ignore - clientModule not available in current setup
     clientModule: clientComponents.OrchestraIcon as StencilReactComponent<OrchestraIconElement, OrchestraIconEvents, Components.OrchestraIcon>,
     serializeShadowRoot
 });

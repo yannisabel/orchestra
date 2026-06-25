@@ -7772,7 +7772,6 @@ class OrchestraIcon {
             console.warn(`❌ Icon library "${iconLibrary}" not found`);
             return '';
         }
-        console.log(`✅ Icon library "${iconLibrary}" found, resolving "${name}"`);
         const svg = lib.resolver(name);
         if (svg) {
             cache[`${iconLibrary}:${name}`] = svg;
@@ -7786,7 +7785,6 @@ class OrchestraIcon {
         var _a;
         if (!this.name || this.name === '' || this.name === 'undefined')
             return;
-        console.log(`🎨 loadIcon called: name="${this.name}", library="${this.library}", fill="${this.fill}", size="${this.size}"`);
         try {
             this.getSvg(icon);
             this.sanitizeSVG();
@@ -7842,13 +7840,12 @@ class OrchestraIcon {
         this.sanitizeSVG();
     }
     render() {
-        return (hAsync(Host, { key: 'fcd543398ac7f6b01bb077c2f3b70ff15d4dbf0d' }));
+        return (hAsync(Host, { key: '3e731c67894249498b852b77b4c16a32844d3c3d' }));
     }
     /**
      * Sanitize svg element and allow only svg tags to be written
      */
     sanitizeSVG() {
-        console.log(`🧹 sanitizeSVG called, this.svg: "${this.svg}"`);
         if (!this.svg) {
             console.warn(`⚠️ No SVG to render`);
             return;
@@ -7858,9 +7855,7 @@ class OrchestraIcon {
             return;
         }
         const sanitized = purify.sanitize(this.svg, { USE_PROFILES: { svg: true, svgFilters: true } });
-        console.log(`🧹 DOMPurify result: "${sanitized}"`);
         this.host.shadowRoot.innerHTML = sanitized;
-        console.log(`✨ shadowRoot.innerHTML set to: "${this.host.shadowRoot.innerHTML}"`);
     }
     get host() { return getElement(this); }
     static get watchers() { return {
