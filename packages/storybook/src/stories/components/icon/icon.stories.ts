@@ -53,7 +53,7 @@ export const Default = {
 
 export const CustomLibrary = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  render: (args: any) => `<orchestra-icon id="custom-icon" name="${args.name}" library="custom" fill="${args.fill}" size="${args.size}"></orchestra-icon>`,
+  render: (args: any) => `<orchestra-icon name="${args.name}" library="custom" fill="${args.fill}" size="${args.size}"></orchestra-icon>`,
   args: {
     name: 'star',
     fill: 'currentcolor',
@@ -67,25 +67,13 @@ export const CustomLibrary = {
         'heart': `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/></svg>`,
       }
       
-      // Register or re-register the custom library
+      // Register SYNCHRONOUSLY before rendering the story
+      // This ensures the library is available when componentWillLoad() is called
       registerIconLibrary('custom', {
-        resolver: (name) => {
-          const svg = customIcons[name]
-          return svg ?? ''
-        }
+        resolver: (name) => customIcons[name] ?? ''
       })
       
-      const html = story()
-      
-      // Force component to reload icon after a microtask to ensure registration is complete
-      Promise.resolve().then(() => {
-        const icon = document.getElementById('custom-icon') as any
-        if (icon && typeof icon.handleNameChange === 'function') {
-          icon.handleNameChange(icon.name)
-        }
-      })
-      
-      return html
+      return story()
     }
   ],
   argTypes: {
