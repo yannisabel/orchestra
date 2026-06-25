@@ -35,7 +35,11 @@ const config: StorybookConfig = {
     options: {},
   },
   previewHead: (head) => `${head}`,
-  staticDirs: ["../public"],
+  previewBody: (body) => `${body}`,
+  staticDirs: [
+    "../public",
+    { from: "../../core/dist/orchestra-kit", to: "/orchestra-kit" },
+  ],
   async viteFinal(config) {
     config.base = BASE_PATH || config.base
 
