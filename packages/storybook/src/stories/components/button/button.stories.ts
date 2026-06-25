@@ -18,6 +18,23 @@ interface ButtonArgs {
 const meta = {
   component: 'orchestra-button',
   title: 'Components/orchestra-button',
+  parameters: {
+    test: {
+      autoplay: false,
+    },
+  },
+  decorators: [
+    (story) => {
+      // Defer focus removal to ensure play function completes first
+      setTimeout(() => {
+        const activeElement = document.activeElement as HTMLElement
+        if (activeElement?.tagName === 'ORCHESTRA-BUTTON' || activeElement?.shadowRoot?.activeElement) {
+          activeElement?.blur?.()
+        }
+      }, 100)
+      return story()
+    },
+  ],
   argTypes: {
     text: {
       type: { name: 'string', required: true },
