@@ -1,20 +1,21 @@
 {
   "git": {
     "commit": true,
-    "commitMessage": "chore(release): ${version}",
+    "commitMessage": "chore(release): v${version}",
     "tag": true,
-    "tagName": "${name}@${version}",
+    "tagName": "v${version}",
     "push": true,
     "requireUpstream": false,
     "getLatestTagInBranch": true
   },
   "npm": {
     "publish": true,
+    "publishPath": ".",
     "allowSameVersion": false
   },
   "github": {
     "release": true,
-    "releaseName": "${version}"
+    "releaseName": "v${version}"
   },
   "plugins": {
     "@release-it/conventional-changelog": {
