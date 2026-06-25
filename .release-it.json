@@ -17,12 +17,6 @@
     "release": true,
     "releaseName": "v${version}"
   },
-  "plugins": {
-    "@release-it/conventional-changelog": {
-      "preset": "angular",
-      "inFile": "CHANGELOG.md"
-    }
-  },
   "hooks": {
     "before:init": [
       "npm run lint",
