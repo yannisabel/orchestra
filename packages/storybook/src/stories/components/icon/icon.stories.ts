@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite'
 import { iconNames } from '@orchestra-kit/icons-library'
-import { registerIconLibrary } from '@orchestra-kit/core'
 
-type IconName = typeof iconNames[number]
+// type IconName = typeof iconNames[number]
 
 interface OrchestraIconArgs {
-  name: IconName
+  name: string
   fill: string
   size: string
   library?: string
@@ -39,7 +38,7 @@ const meta: Meta<OrchestraIconArgs> = {
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<OrchestraIconArgs>
 
 export const Default = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,10 +47,10 @@ export const Default = {
     name: 'checked',
     fill: 'currentcolor',
     size: '60px'
-  },
+  } as OrchestraIconArgs,
 } satisfies Story
 
-export const CustomLibrary = {
+export const CustomLibrary: Story = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   render: (args: any) => `<orchestra-icon name="${args.name}" library="custom" fill="${args.fill}" size="${args.size}"></orchestra-icon>`,
   args: {
