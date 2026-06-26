@@ -5,7 +5,7 @@ const o=["checked"],s={component:"orchestra-icon",title:"Components/orchestra-ic
     name: 'checked',
     fill: 'currentcolor',
     size: '60px'
-  }
+  } as OrchestraIconArgs
 } satisfies Story`,...r.parameters?.docs?.source}}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   render: (args: any) => \`<orchestra-icon name="\${args.name}" library="custom" fill="\${args.fill}" size="\${args.size}"></orchestra-icon>\`,
