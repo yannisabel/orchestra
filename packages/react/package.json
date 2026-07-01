@@ -1,7 +1,7 @@
 {
   "name": "@orchestra-kit/react",
   "version": "0.0.1",
-  "author": "Artur Sopelnik <artur.sopelnik93@gmail.com>",
+  "author": "Yann Isabel",
   "type": "module",
   "files": [
     "lib",

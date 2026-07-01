@@ -34,7 +34,7 @@ npm install @orchestra-kit/core
   <link rel="stylesheet" href="https://unpkg.com/@orchestra-kit/core/dist/orchestra-kit/themes/light.css">
 </head>
 <body>
-  <orchestra-button>Click me</orchestra-button>
+  <orchestra-button text="Click me"></orchestra-button>
 </body>
 </html>
 ```
@@ -49,7 +49,7 @@ import '@orchestra-kit/core/dist/orchestra-kit/themes/light.css'
 defineCustomElements()
 
 export default function App() {
-  return <orchestra-button>Click me</orchestra-button>
+  return <orchestra-button text="Click me"></orchestra-button>
 }
 ```
 
@@ -64,7 +64,7 @@ defineCustomElements()
 </script>
 
 <template>
-  <orchestra-button>Click me</orchestra-button>
+  <orchestra-button text="Click me"></orchestra-button>
 </template>
 ```
 
@@ -85,7 +85,7 @@ export class AppModule {}
 
 ```html
 <!-- app.component.html -->
-<orchestra-button>Click me</orchestra-button>
+<orchestra-button text="Click me"></orchestra-button>
 ```
 
 ## Components
