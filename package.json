@@ -8,12 +8,16 @@
     "@types/node": "^24.10.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@eslint/js": "^9.39.1",
     "@eslint/json": "^0.14.0",
     "@release-it/conventional-changelog": "^11.0.1",
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
+    "husky": "^9.1.7",
     "lerna": "^9.0.1",
+    "lint-staged": "^16.2.6",
     "npm-check-updates": "^19.1.2",
     "prettier": "^3.6.2",
     "release-it": "^20.2.0",
@@ -28,6 +32,9 @@
     "update": "npx npm-check-updates -u",
     "format": "npx prettier . --write",
     "lint": "npx eslint .  --fix",
+    "prepare": "husky",
+    "lint-staged": "lint-staged",
+    "commitlint": "commitlint --edit",
     "test": "npx lerna run storybook:test --scope=@orchestra-kit/storybook",
     "test:coverage": "npx lerna run storybook:test-coverage --scope=@orchestra-kit/storybook",
     "release": "release-it",
@@ -44,5 +51,14 @@
     "release:design-tokens:dry": "cd packages/design-tokens && release-it --dry-run",
     "release:icons-library": "cd packages/icons-library && release-it",
     "release:icons-library:dry": "cd packages/icons-library && release-it --dry-run"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,mjs,cjs}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,css,scss,yml,yaml}": [
+      "prettier --write"
+    ]
   }
 }
