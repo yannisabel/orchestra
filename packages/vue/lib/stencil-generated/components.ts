@@ -15,7 +15,8 @@ export const OrchestraButton: StencilVueComponent<JSX.OrchestraButton> = /*@__PU
   'disabled',
   'size',
   'icon',
-  'iconName'
+  'iconName',
+  'iconLibrary'
 ]);
 
 

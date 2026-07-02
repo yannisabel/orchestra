@@ -5347,11 +5347,16 @@ class OrchestraButton {
          */
         this.icon = 'none';
         /**
-         * Accept all icon names from @pollux-docaposte/icon-library. By using the core-button component you don't have to install it as dependency.
+         * The name of the icon library used by the button icon. Defaults to 'orchestra-icons'.
+         * Consumers can override this when they register another icon library.
          *
          * The icon render only if `iconName` and `iconPosition` are defined.
          */
         this.iconName = undefined;
+        /**
+         * The name of the icon library used by the button icons.
+         */
+        this.iconLibrary = 'orchestra-icons';
         _OrchestraButton_button.set(this, void 0);
         _OrchestraButton_buttonRef.set(this, (button) => {
             __classPrivateFieldSet(this, _OrchestraButton_button, button, "f");
@@ -5402,10 +5407,7 @@ class OrchestraButton {
         this.disabledChanged();
     }
     render() {
-        return (hAsync(Host, { key: 'c285b254c0491faceacf8b07c3596d901586ee2c' }, hAsync("button", { key: '1c1422012a74e7a736a6a34392adbfff5a4401c6', class: `orchestra-button orchestra-button--${this.variant} orchestra-button--${this.size}`, type: this.type, ref: __classPrivateFieldGet(this, _OrchestraButton_buttonRef, "f"), disabled: this.disabled, "data-icon": this.icon, onClick: __classPrivateFieldGet(this, _OrchestraButton_onClick, "f") }, this.iconName && (this.icon === 'start' || this.icon === 'only') &&
-            hAsync("orchestra-icon", { key: 'b7d08754d56ba0338e3720e0cc22c22c31af855c', name: this.iconName }), __classPrivateFieldGet(this, _OrchestraButton_hasTextDisplayed, "f").call(this) &&
-            hAsync("span", { key: 'c9f31bd9908942656be1ba1fe34d3d3e8933840d', class: "orchestra-overflow" }, this.text), this.iconName && this.icon === 'end' &&
-            hAsync("orchestra-icon", { key: '0b810d4e471ea73cbc8f0e6652b0488d9c51f36b', name: this.iconName }))));
+        return (hAsync(Host, { key: '382c54d8677a2c6a144db02cd0d17b628ff7ebb7' }, hAsync("button", { key: 'e733187b2eaa8003ba2ba87760f7b7b5d7fe944e', class: `orchestra-button orchestra-button--${this.variant} orchestra-button--${this.size}`, type: this.type, ref: __classPrivateFieldGet(this, _OrchestraButton_buttonRef, "f"), disabled: this.disabled, "data-icon": this.icon, onClick: __classPrivateFieldGet(this, _OrchestraButton_onClick, "f") }, this.iconName && (this.icon === 'start' || this.icon === 'only') && (hAsync("orchestra-icon", { key: '172ddb7a9df910cfceece3a0b38b568d5f8fc5ca', name: this.iconName, library: this.iconLibrary })), __classPrivateFieldGet(this, _OrchestraButton_hasTextDisplayed, "f").call(this) && (hAsync("span", { key: '5fd6a1689aa86e27ea874ad321960ef0c2a768e4', class: "orchestra-overflow" }, this.text)), this.iconName && this.icon === 'end' && (hAsync("orchestra-icon", { key: 'bec220ae9d1e621aa5c760d04709c29b9babb103', name: this.iconName, library: this.iconLibrary })))));
     }
     static get delegatesFocus() { return true; }
     static get formAssociated() { return true; }
@@ -5426,7 +5428,8 @@ class OrchestraButton {
             "disabled": [1028],
             "size": [1025],
             "icon": [1025],
-            "iconName": [1025, "icon-name"]
+            "iconName": [1025, "icon-name"],
+            "iconLibrary": [1025, "icon-library"]
         },
         "$listeners$": [[0, "click", "onClick"], [0, "keydown", "onKeydown"], [0, "keyup", "onKeyup"]],
         "$lazyBundleId$": "-",
@@ -7724,7 +7727,7 @@ const icons = {
     checked: distExports.checked,
 };
 const orchestraLibrary = {
-    name: 'core',
+    name: 'orchestra-icons',
     resolver: (name) => { var _a; return (_a = icons[name]) !== null && _a !== void 0 ? _a : ''; },
 };
 
@@ -7734,17 +7737,26 @@ const library = {
 };
 
 const ICON_REGISTRY_KEY = '__orchestraIconRegistry';
+const coreLibraryAlias = Object.assign(Object.assign({}, orchestraLibrary), { name: 'core' });
 // Use window as global registry to share across isolated modules
 const getGlobalRegistry = () => {
     if (typeof window !== 'undefined') {
         if (!window[ICON_REGISTRY_KEY]) {
-            window[ICON_REGISTRY_KEY] = [library, orchestraLibrary];
+            window[ICON_REGISTRY_KEY] = [
+                library,
+                orchestraLibrary,
+                coreLibraryAlias,
+            ];
         }
         return window[ICON_REGISTRY_KEY];
     }
     // Fallback for non-browser environments
     if (!globalThis[ICON_REGISTRY_KEY]) {
-        globalThis[ICON_REGISTRY_KEY] = [library, orchestraLibrary];
+        globalThis[ICON_REGISTRY_KEY] = [
+            library,
+            orchestraLibrary,
+            coreLibraryAlias,
+        ];
     }
     return globalThis[ICON_REGISTRY_KEY];
 };
@@ -7753,7 +7765,7 @@ const getGlobalRegistry = () => {
  */
 const getIconLibrary = (name) => {
     const registry = getGlobalRegistry();
-    return registry.find(library => library.name === name);
+    return registry.find((library) => library.name === name);
 };
 
 const iconCss = () => `:host{--icon-color:currentcolor;--icon-size:100%;display:flex}:host svg{fill:var(--icon-color);width:var(--icon-size);height:var(--icon-size)}:host svg *{fill:inherit}`;
@@ -7763,9 +7775,9 @@ class OrchestraIcon {
     constructor(hostRef) {
         registerInstance(this, hostRef);
         /**
-         * The name of the icon library to use. Defaults to 'core'.
+         * The name of the icon library to use. Defaults to 'orchestra-icons'.
          */
-        this.library = 'core';
+        this.library = 'orchestra-icons';
         /**
          * Taking the currentcolor (inherited color of the font) by default, except if specified.
          */
@@ -7814,7 +7826,8 @@ class OrchestraIcon {
                 this.host.style.setProperty('--icon-size', `${this.size}`);
             }
             if (this.host.shadowRoot) {
-                (_a = this.host.shadowRoot.querySelector('svg')) === null || _a === void 0 ? void 0 : _a.classList.add('orchestra-icon');
+                (_a = this.host.shadowRoot
+                    .querySelector('svg')) === null || _a === void 0 ? void 0 : _a.classList.add('orchestra-icon');
             }
         }
         catch (error) {
@@ -7855,21 +7868,23 @@ class OrchestraIcon {
         this.sanitizeSVG();
     }
     render() {
-        return (hAsync(Host, { key: '3e731c67894249498b852b77b4c16a32844d3c3d' }));
+        return hAsync(Host, { key: '95ff5fa43d157effeb4764950e8678240c48da12' });
     }
     /**
      * Sanitize svg element and allow only svg tags to be written
      */
     sanitizeSVG() {
         if (!this.svg) {
-            console.warn(`⚠️ No SVG to render`);
+            console.warn(`⚠️ No SVG to render. ${this.name} this icon may not exist in the ${this.library} library.`);
             return;
         }
         if (!this.host.shadowRoot) {
             console.warn(`⚠️ No shadowRoot available`);
             return;
         }
-        const sanitized = purify.sanitize(this.svg, { USE_PROFILES: { svg: true, svgFilters: true } });
+        const sanitized = purify.sanitize(this.svg, {
+            USE_PROFILES: { svg: true, svgFilters: true },
+        });
         this.host.shadowRoot.innerHTML = sanitized;
     }
     get host() { return getElement(this); }

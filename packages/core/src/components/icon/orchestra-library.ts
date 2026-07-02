@@ -7,7 +7,7 @@ const icons: Record<string, string | undefined> = {
 }
 
 const orchestraLibrary: IconLibrary = {
-  name: 'core',
+  name: 'orchestra-icons',
   resolver: (name) => icons[name] ?? '',
 }
 

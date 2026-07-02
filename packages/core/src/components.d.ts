@@ -18,8 +18,12 @@ export namespace Components {
          */
         "icon"?: 'only' | 'start' | 'end' | 'none';
         /**
-          * Accept all icon names from
-          * @pollux-docaposte /icon-library. By using the core-button component you don't have to install it as dependency.  The icon render only if `iconName` and `iconPosition` are defined.
+          * The name of the icon library used by the button icons.
+          * @default 'orchestra-icons'
+         */
+        "iconLibrary"?: string;
+        /**
+          * The name of the icon library used by the button icon. Defaults to 'orchestra-icons'. Consumers can override this when they register another icon library.  The icon render only if `iconName` and `iconPosition` are defined.
           * @default undefined
          */
         "iconName"?: string;
@@ -50,8 +54,8 @@ export namespace Components {
          */
         "fill"?: string | 'currentcolor';
         /**
-          * The name of the icon library to use. Defaults to 'core'.
-          * @default 'core'
+          * The name of the icon library to use. Defaults to 'orchestra-icons'.
+          * @default 'orchestra-icons'
          */
         "library": string;
         /**
@@ -102,8 +106,12 @@ declare namespace LocalJSX {
          */
         "icon"?: 'only' | 'start' | 'end' | 'none';
         /**
-          * Accept all icon names from
-          * @pollux-docaposte /icon-library. By using the core-button component you don't have to install it as dependency.  The icon render only if `iconName` and `iconPosition` are defined.
+          * The name of the icon library used by the button icons.
+          * @default 'orchestra-icons'
+         */
+        "iconLibrary"?: string;
+        /**
+          * The name of the icon library used by the button icon. Defaults to 'orchestra-icons'. Consumers can override this when they register another icon library.  The icon render only if `iconName` and `iconPosition` are defined.
           * @default undefined
          */
         "iconName"?: string;
@@ -138,8 +146,8 @@ declare namespace LocalJSX {
          */
         "fill"?: string | 'currentcolor';
         /**
-          * The name of the icon library to use. Defaults to 'core'.
-          * @default 'core'
+          * The name of the icon library to use. Defaults to 'orchestra-icons'.
+          * @default 'orchestra-icons'
          */
         "library"?: string;
         /**
@@ -161,6 +169,7 @@ declare namespace LocalJSX {
         "size": 'small' | 'medium' | 'large';
         "icon": 'only' | 'start' | 'end' | 'none';
         "iconName": string;
+        "iconLibrary": string;
     }
     interface OrchestraIconAttributes {
         "name": string;

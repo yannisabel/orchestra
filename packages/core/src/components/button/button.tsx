@@ -9,7 +9,7 @@ const preventDefault = (event: KeyboardEvent | MouseEvent): void => {
   tag: 'orchestra-button',
   styleUrl: 'button.css',
   formAssociated: true,
-  shadow: { delegatesFocus: true }
+  shadow: { delegatesFocus: true },
 })
 export class OrchestraButton {
   /**
@@ -40,11 +40,16 @@ export class OrchestraButton {
    */
   @Prop({ mutable: true }) icon?: 'only' | 'start' | 'end' | 'none' = 'none'
   /**
-   * Accept all icon names from @pollux-docaposte/icon-library. By using the core-button component you don't have to install it as dependency.
+   * The name of the icon library used by the button icon. Defaults to 'orchestra-icons'.
+   * Consumers can override this when they register another icon library.
    *
    * The icon render only if `iconName` and `iconPosition` are defined.
    */
   @Prop({ mutable: true }) iconName?: string = undefined
+  /**
+   * The name of the icon library used by the button icons.
+   */
+  @Prop({ mutable: true }) iconLibrary?: string = 'orchestra-icons'
 
   @Element() host!: HTMLButtonElement
 
@@ -104,25 +109,27 @@ export class OrchestraButton {
           data-icon={this.icon}
           onClick={this.#onClick}
         >
-          { this.iconName && (this.icon === 'start' || this.icon === 'only') &&
-            <orchestra-icon name={this.iconName} ></orchestra-icon>
-          }
-          { this.#hasTextDisplayed() &&
-            <span class="orchestra-overflow">
-              {this.text}
-            </span>
-          }
-          { this.iconName && this.icon === 'end' &&
-            <orchestra-icon name={this.iconName} ></orchestra-icon>
-          }
+          {this.iconName && (this.icon === 'start' || this.icon === 'only') && (
+            <orchestra-icon
+              name={this.iconName}
+              library={this.iconLibrary}
+            ></orchestra-icon>
+          )}
+          {this.#hasTextDisplayed() && (
+            <span class="orchestra-overflow">{this.text}</span>
+          )}
+          {this.iconName && this.icon === 'end' && (
+            <orchestra-icon
+              name={this.iconName}
+              library={this.iconLibrary}
+            ></orchestra-icon>
+          )}
         </button>
       </Host>
     )
   }
 
-  readonly #buttonRef = (
-    button?: HTMLButtonElement,
-  ): void => {
+  readonly #buttonRef = (button?: HTMLButtonElement): void => {
     this.#button = button
   }
 

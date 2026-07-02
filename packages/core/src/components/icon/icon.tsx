@@ -16,9 +16,9 @@ export class OrchestraIcon {
    */
   @Prop({ mutable: true }) name!: string
   /**
-   * The name of the icon library to use. Defaults to 'core'.
+   * The name of the icon library to use. Defaults to 'orchestra-icons'.
    */
-  @Prop({ mutable: true }) library: string = 'core'
+  @Prop({ mutable: true }) library: string = 'orchestra-icons'
   /**
    * Taking the currentcolor (inherited color of the font) by default, except if specified.
    */
@@ -70,7 +70,9 @@ export class OrchestraIcon {
         this.host.style.setProperty('--icon-size', `${this.size}`)
       }
       if (this.host.shadowRoot) {
-        this.host.shadowRoot.querySelector('svg')?.classList.add('orchestra-icon')
+        this.host.shadowRoot
+          .querySelector('svg')
+          ?.classList.add('orchestra-icon')
       }
     } catch (error) {
       console.error('Error loading SVG:', error)
@@ -119,9 +121,7 @@ export class OrchestraIcon {
   }
 
   public render() {
-    return (
-      <Host></Host>
-    )
+    return <Host></Host>
   }
 
   /**
@@ -129,14 +129,18 @@ export class OrchestraIcon {
    */
   public sanitizeSVG(): void {
     if (!this.svg) {
-      console.warn(`⚠️ No SVG to render`)
+      console.warn(
+        `⚠️ No SVG to render. ${this.name} this icon may not exist in the ${this.library} library.`,
+      )
       return
     }
     if (!this.host.shadowRoot) {
       console.warn(`⚠️ No shadowRoot available`)
       return
     }
-    const sanitized = DOMPurify.sanitize(this.svg, { USE_PROFILES: { svg: true, svgFilters: true } })
+    const sanitized = DOMPurify.sanitize(this.svg, {
+      USE_PROFILES: { svg: true, svgFilters: true },
+    })
     this.host.shadowRoot.innerHTML = sanitized
   }
 }

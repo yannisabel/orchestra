@@ -8,14 +8,14 @@ import { Components } from '@orchestra-kit/core';
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'icon', 'iconName', 'size', 'text', 'type', 'variant']
+  inputs: ['disabled', 'icon', 'iconLibrary', 'iconName', 'size', 'text', 'type', 'variant']
 })
 @Component({
   selector: 'orchestra-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'icon', 'iconName', 'size', { name: 'text', required: true }, 'type', 'variant'],
+  inputs: ['disabled', 'icon', 'iconLibrary', 'iconName', 'size', { name: 'text', required: true }, 'type', 'variant'],
   standalone: false
 })
 export class OrchestraButton {
