@@ -1,0 +1,45 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/coverage/**",
+    "**/.storybook/**",
+    "**/.vscode/**",
+    "**/storybook-static/**",
+    "packages/core/hydrate/**",
+    "packages/core/loader/**",
+    "packages/core/src/components.d.ts",
+    "packages/core/www/**",
+    "packages/angular/projects/component-library/src/lib/stencil-generated/**",
+    "packages/storybook/www/**",
+    "packages/storybook/coverage/**",
+    "packages/vue/lib/stencil-generated/**"
+  ],
+  "plugins": [
+    "typescript",
+    "import",
+    "jest",
+    "vitest",
+    "node",
+    "vue",
+    "unicorn",
+    "oxc"
+  ],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "rules": {
+    "typescript/no-extraneous-class": [
+      "warn",
+      {
+        "allowWithDecorator": true
+      }
+    ]
+  },
+  "env": {
+    "builtin": true
+  }
+}

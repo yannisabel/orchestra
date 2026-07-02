@@ -44,7 +44,9 @@ npm run dev
 - `npm run build`: builds tokens first, then all workspaces
 - `npm run build:tokens`: builds only `@orchestra-kit/design-tokens`
 - `npm run build:storybook`: builds static Storybook
-- `npm run lint`: runs ESLint (with `--fix`)
+- `npm run lint`: runs Oxlint (with `--fix`)
+- `npm run lint:check`: runs Oxlint in check-only mode
+- `npm run lint:eslint`: runs ESLint compatibility checks for root config files
 - `npm run test`: runs Storybook/Vitest test project
 - `npm run test:coverage`: runs tests with coverage
 - `npm run format`: runs Prettier across the repo
