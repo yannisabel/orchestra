@@ -61,7 +61,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,cjs}": [
-      "oxlint --fix --import-plugin --vitest-plugin --jest-plugin --node-plugin --vue-plugin",
+      "oxlint --fix --no-error-on-unmatched-pattern --import-plugin --vitest-plugin --jest-plugin --node-plugin --vue-plugin",
       "prettier --write"
     ],
     "*.{json,md,css,scss,yml,yaml}": [

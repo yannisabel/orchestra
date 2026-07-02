@@ -1,11 +1,11 @@
-import type { StorybookConfig } from "@storybook/web-components-vite"
+import type { StorybookConfig } from '@storybook/web-components-vite'
 
-import { join, dirname } from "path"
+import { join, dirname } from 'path'
 
 // This file has been automatically migrated to valid ESM format by Storybook.
-import { createRequire } from "node:module";
+import { createRequire } from 'node:module'
 
-const require = createRequire(import.meta.url);
+const require = createRequire(import.meta.url)
 
 const { BASE_PATH } = process.env
 
@@ -14,49 +14,48 @@ const { BASE_PATH } = process.env
  * It is needed in projects that use Yarn PnP or are set up within a monorepo.
  */
 function getAbsolutePath(value: string): string {
-  return dirname(require.resolve(join(value, "package.json")))
+  return dirname(require.resolve(join(value, 'package.json')))
 }
 const config: StorybookConfig = {
   stories: [
-    "../src/**/*.mdx",
-    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-    "../src/stories/components/**/*.mdx",
-    "../src/stories/components/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    '../src/**/*.mdx',
+    '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../src/stories/components/**/*.mdx',
+    '../src/stories/components/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
   addons: [
-    getAbsolutePath("@storybook/addon-links"),
-    getAbsolutePath("@storybook/addon-a11y"),
-    getAbsolutePath("@vueless/storybook-dark-mode"),
-    getAbsolutePath("@storybook/addon-docs"),
-    getAbsolutePath("@storybook/addon-vitest")
+    getAbsolutePath('@storybook/addon-links'),
+    getAbsolutePath('@storybook/addon-a11y'),
+    getAbsolutePath('@storybook/addon-docs'),
+    getAbsolutePath('@storybook/addon-vitest'),
   ],
   framework: {
-    name: getAbsolutePath("@storybook/web-components-vite"),
+    name: getAbsolutePath('@storybook/web-components-vite'),
     options: {},
   },
   previewHead: (head) => `${head}`,
   previewBody: (body) => `${body}`,
   staticDirs: [
-    "../public",
-    { from: "../../core/dist/orchestra-kit", to: "/orchestra-kit" },
+    '../public',
+    { from: '../../core/dist/orchestra-kit', to: '/orchestra-kit' },
   ],
   async viteFinal(config) {
     config.base = BASE_PATH || config.base
 
-    const { mergeConfig } = await import("vite")
-    const { liveReload } = await import("vite-plugin-live-reload")
+    const { mergeConfig } = await import('vite')
+    const { liveReload } = await import('vite-plugin-live-reload')
 
     return mergeConfig(config, {
       plugins: [
         liveReload([
-          "www/build/orchestra-kit.esm.js",
-          "www/build/orchestra-kit.js",
+          'www/build/orchestra-kit.esm.js',
+          'www/build/orchestra-kit.js',
         ]),
       ],
       resolve: {
         alias: {
-          "@testing-library/dom": "@testing-library/dom",
-          "shadow-dom-testing-library": "shadow-dom-testing-library",
+          '@testing-library/dom': '@testing-library/dom',
+          'shadow-dom-testing-library': 'shadow-dom-testing-library',
         },
       },
       build: {
@@ -64,10 +63,10 @@ const config: StorybookConfig = {
         rollupOptions: {
           output: {
             manualChunks: {
-              lit: ["lit"],
-              react: ["react"],
-              "react-dom": ["react-dom"],
-              "react/jsx-runtime": ["react/jsx-runtime"],
+              lit: ['lit'],
+              react: ['react'],
+              'react-dom': ['react-dom'],
+              'react/jsx-runtime': ['react/jsx-runtime'],
             },
           },
         },
