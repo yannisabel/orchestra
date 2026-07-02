@@ -21,6 +21,7 @@
   "devDependencies": {
     "@stencil/storybook-plugin": "^0.6.1",
     "@storybook/addon-a11y": "^10.4.6",
+    "@storybook/addon-coverage": "^3.0.1",
     "@storybook/addon-docs": "^10.4.6",
     "@storybook/addon-links": "^10.4.6",
     "@storybook/addon-vitest": "^10.4.6",

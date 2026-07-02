@@ -270,8 +270,10 @@ export const IconOnly: Story = {
 
     const icon = host?.shadowRoot?.querySelector('orchestra-icon')
     const text = host?.shadowRoot?.querySelector('span.orchestra-overflow')
+    const button = host?.shadowRoot?.querySelector('button')
     expect(icon).toBeTruthy()
     expect(text).toBeNull()
+    expect(button).toHaveAttribute('aria-label', 'Button')
   },
 }
 

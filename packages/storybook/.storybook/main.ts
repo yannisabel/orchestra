@@ -28,6 +28,7 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-a11y'),
     getAbsolutePath('@storybook/addon-docs'),
     getAbsolutePath('@storybook/addon-vitest'),
+    getAbsolutePath('@storybook/addon-coverage'),
   ],
   framework: {
     name: getAbsolutePath('@storybook/web-components-vite'),

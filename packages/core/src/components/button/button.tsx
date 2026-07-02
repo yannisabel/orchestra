@@ -106,6 +106,7 @@ export class OrchestraButton {
           type={this.type}
           ref={this.#buttonRef}
           disabled={this.disabled}
+          aria-label={this.#getAriaLabel()}
           data-icon={this.icon}
           onClick={this.#onClick}
         >
@@ -142,5 +143,13 @@ export class OrchestraButton {
 
   readonly #hasTextDisplayed = () => {
     return this.icon === 'start' || this.icon === 'end' || this.icon === 'none'
+  }
+
+  readonly #getAriaLabel = (): string | undefined => {
+    if (this.icon === 'only') {
+      return this.text
+    }
+
+    return undefined
   }
 }
