@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - '**'
-      - '!main'
 
 jobs:
   deploy:
@@ -22,8 +21,24 @@ jobs:
         run: npm run build
       - name: Build Storybook
         run: npm run build:storybook
-      - name: Deploy Storybook to GitHub Pages
+      - name: Sanitize branch name
+        id: sanitize
+        run: |
+          SAFE_BRANCH="${{ github.ref_name }}"
+          SAFE_BRANCH="${SAFE_BRANCH//\//-}"
+          echo "branch=$SAFE_BRANCH" >> $GITHUB_OUTPUT
+      - name: Deploy Storybook to GitHub Pages (main)
+        if: github.ref_name == 'main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./packages/storybook/storybook-static
+          keep_files: true
+      - name: Deploy Storybook to GitHub Pages (branch)
+        if: github.ref_name != 'main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./packages/storybook/storybook-static
+          destination_dir: branches/${{ steps.sanitize.outputs.branch }}
+          keep_files: true
