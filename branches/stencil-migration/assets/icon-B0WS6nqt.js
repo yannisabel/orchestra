@@ -38,3 +38,4 @@ registerIconLibrary('externalIcons', {
 `})}),`
 `,e.jsx(n.h2,{id:"component-properties",children:"Component Properties"}),`
 `,e.jsx("div",{className:"stencil-props",children:e.jsx(a,{children:p})})]})}function w(r={}){const{wrapper:n}={...s(),...r.components};return n?e.jsx(n,{...r,children:e.jsx(t,{...r})}):t(r)}export{w as default};
+//# sourceMappingURL=icon-B0WS6nqt.js.map

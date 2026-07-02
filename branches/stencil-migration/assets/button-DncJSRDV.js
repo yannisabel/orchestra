@@ -3,3 +3,4 @@ import{u as o,j as n,f as r,T as a,C as s,h as c}from"./blocks-BWc56X_j.js";impo
 `,n.jsx(t.h2,{id:"default",children:"Default"}),`
 `,n.jsx(s,{of:h}),`
 `,n.jsx("div",{className:"stencil-props",children:n.jsx(c,{children:l})})]})}function D(e={}){const{wrapper:t}={...o(),...e.components};return t?n.jsx(t,{...e,children:n.jsx(i,{...e})}):i(e)}export{D as default};
+//# sourceMappingURL=button-DncJSRDV.js.map
