@@ -161,3 +161,154 @@ export const Disabled: Story = {
     expect(onClick).not.toHaveBeenCalledOnce()
   },
 }
+
+export const KeyboardEnter: Story = {
+  tags: ['!dev'],
+  args: {
+    text: 'Button',
+    disabled: false,
+    variant: 'primary',
+  },
+  play: async ({ canvasElement }) => {
+    const onClick = fn()
+    canvasElement.addEventListener('click', () => onClick())
+
+    const host = canvasElement.querySelector('orchestra-button')
+    expect(host).toBeTruthy()
+    host?.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }),
+    )
+
+    expect(onClick).toHaveBeenCalledOnce()
+  },
+}
+
+export const KeyboardSpace: Story = {
+  tags: ['!dev'],
+  args: {
+    text: 'Button',
+    disabled: false,
+    variant: 'primary',
+  },
+  play: async ({ canvasElement }) => {
+    const onClick = fn()
+    canvasElement.addEventListener('click', () => onClick())
+
+    const host = canvasElement.querySelector('orchestra-button')
+    expect(host).toBeTruthy()
+    host?.dispatchEvent(new KeyboardEvent('keyup', { key: ' ', bubbles: true }))
+
+    expect(onClick).toHaveBeenCalledOnce()
+  },
+}
+
+export const DisabledAttributes: Story = {
+  tags: ['!dev'],
+  args: {
+    text: 'Button',
+    disabled: true,
+    variant: 'primary',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const button = await canvas.findByShadowRole('button')
+
+    expect(button).toBeDisabled()
+    expect(button).toHaveAttribute('aria-disabled', 'true')
+    expect(button.tabIndex).toBe(-1)
+  },
+}
+
+export const SubmitType: Story = {
+  tags: ['!dev'],
+  args: {
+    text: 'Button',
+    type: 'submit',
+    disabled: false,
+    variant: 'primary',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const button = await canvas.findByShadowRole('button')
+
+    expect(button).toHaveAttribute('type', 'submit')
+  },
+}
+
+export const EndIcon: Story = {
+  tags: ['!dev'],
+  args: {
+    text: 'Button',
+    disabled: false,
+    variant: 'primary',
+    icon: 'end',
+    iconName: 'checked',
+  },
+  play: async ({ canvasElement }) => {
+    const host = canvasElement.querySelector('orchestra-button')
+    expect(host).toBeTruthy()
+
+    const icon = host?.shadowRoot?.querySelector('orchestra-icon')
+    const text = host?.shadowRoot?.querySelector('span.orchestra-overflow')
+    expect(icon).toBeTruthy()
+    expect(text).toBeTruthy()
+  },
+}
+
+export const IconOnly: Story = {
+  tags: ['!dev'],
+  args: {
+    text: 'Button',
+    disabled: false,
+    variant: 'primary',
+    icon: 'only',
+    iconName: 'checked',
+  },
+  play: async ({ canvasElement }) => {
+    const host = canvasElement.querySelector('orchestra-button')
+    expect(host).toBeTruthy()
+
+    const icon = host?.shadowRoot?.querySelector('orchestra-icon')
+    const text = host?.shadowRoot?.querySelector('span.orchestra-overflow')
+    expect(icon).toBeTruthy()
+    expect(text).toBeNull()
+  },
+}
+
+export const CustomIconLibrary: Story = {
+  tags: ['!dev'],
+  args: {
+    text: 'Button',
+    disabled: false,
+    variant: 'primary',
+    icon: 'start',
+    iconName: 'checked',
+    iconLibrary: 'custom',
+  },
+  play: async ({ canvasElement }) => {
+    const host = canvasElement.querySelector('orchestra-button')
+    expect(host).toBeTruthy()
+
+    const icon = host?.shadowRoot?.querySelector('orchestra-icon') as
+      (HTMLElement & { library?: string }) | null
+    expect(icon).toBeTruthy()
+    expect(icon?.getAttribute('library') ?? icon?.library).toBe('custom')
+  },
+}
+
+export const VariantAndSizeClass: Story = {
+  tags: ['!dev'],
+  args: {
+    text: 'Button',
+    disabled: false,
+    variant: 'secondary',
+    size: 'large',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const button = await canvas.findByShadowRole('button')
+
+    expect(button).toHaveClass('orchestra-button--secondary')
+    expect(button).toHaveClass('orchestra-button--large')
+  },
+}
