@@ -42,3 +42,8 @@ jobs:
           publish_dir: ./packages/storybook/storybook-static
           destination_dir: branches/${{ steps.sanitize.outputs.branch }}
           keep_files: true
+      - name: Log Storybook URL (branch)
+        if: github.ref_name != 'main'
+        run: |
+          echo "✅ Storybook deployed!"
+          echo "🔗 https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branches/${{ steps.sanitize.outputs.branch }}/"
