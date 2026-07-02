@@ -16,7 +16,7 @@
   "devDependencies": {
     "@stencil/vue-output-target": "^0.11.8",
     "typescript": "^5.9.3",
-    "vue": "^3.5.38"
+    "vue": "^3.5.39"
   },
   "license": "MIT"
 }

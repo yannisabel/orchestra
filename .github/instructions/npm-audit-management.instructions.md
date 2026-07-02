@@ -1,8 +1,9 @@
 ---
 name: npm-audit-management
-applyTo: 'package.json'
-description: 'Monorepo npm audit and dependency update workflow. Prevents common npm
-  vulnerability management pitfalls in the Orchestra workspace.'
+applyTo: "**/package.json"
+description:
+  "Monorepo npm audit and dependency update workflow. Prevents common npm
+  vulnerability management pitfalls in the Orchestra workspace."
 ---
 
 # npm Audit Management for Orchestra Monorepo
@@ -33,9 +34,11 @@ This monorepo uses Lerna workspaces with strong peer dependency requirements bet
 ## ✅ What Works
 
 1. **`.npmrc` Configuration**
+
    ```
    legacy-peer-deps=true
    ```
+
    This file is required for the monorepo to install correctly. Commit it.
 
 2. **Update Strategy**
@@ -64,14 +67,14 @@ This monorepo uses Lerna workspaces with strong peer dependency requirements bet
 
 ## Known Limitations
 
-### Remaining High-Severity Vulnerabilities (Acceptable)
+### Remaining High-Severity Vulnerabilities (Current Baseline)
 
-After applying updates, 4 high-severity vulnerabilities remain in dev dependencies:
+Current audit baseline shows 2 high-severity vulnerabilities, both from dev tooling:
 
-- **http-proxy-middleware** (2 CVEs): Used by Angular dev server
-- **undici** (7 CVEs): Used internally by Angular build tools
+- **http-proxy-middleware**: Used by Angular dev server toolchain via `@angular-devkit/build-angular`
 
 These cannot be resolved without breaking Angular's build toolchain. They are:
+
 - **Development-only dependencies** (not in production)
 - **Structural issues** in Angular's dependency tree (not fixable without upgrading Angular)
 - **Industry standard**: Accepted risk in Angular monorepo development
@@ -85,48 +88,64 @@ These cannot be resolved without breaking Angular's build toolchain. They are:
 ## Monitoring Workflow
 
 ### Monthly Check
+
 ```bash
 cd /repo/root
 npm audit 2>&1 | grep vulnerabilities
-# Expected: ~33 vulnerabilities (3 low, 26 moderate, 4 high)
+# Expected baseline after Wave 3: ~8 vulnerabilities (3 low, 3 moderate, 2 high)
 ```
 
 ### When Vulnerabilities Increase
+
 1. Check which workspace package changed: `git diff packages/*/package.json`
 2. Determine if it's an indirect dependency (from dev tool)
 3. If production dependency: Prioritize update
 4. If dev-only dependency: Assess risk vs. stability
 
 ### Dependency Update Cadence
+
 - **Production deps**: Update within 48 hours of security advisory
 - **Dev deps**: Update within 1 week (batch updates)
 - **Angular**: Major version updates every ~6 months (plan accordingly)
 
+### Proven Reduction Steps (Current Monorepo)
+
+- Add root `overrides` in `package.json` for:
+  - `js-yaml: ^4.3.0`
+  - `tar: ^7.5.16`
+- Remove unused `@storybook/test-runner` from `packages/core/package.json`
+- Re-run `npm install`, `npm audit`, and `npm run build`
+
 ## Reference: Package Vulnerabilities by Workspace
 
-| Workspace | Primary Vulnerability Sources |
-|-----------|------------------------------|
-| angular | @angular-devkit/build-angular → http-proxy-middleware, undici |
-| core | Minimal (Stencil-based, fewer build tools) |
-| react | react/next build tools → undici |
-| storybook | Jest, webpack-dev-server → undici, uuid |
-| vue | Vue build tools → undici |
+| Workspace | Primary Vulnerability Sources                                                    |
+| --------- | -------------------------------------------------------------------------------- |
+| angular   | @angular-devkit/build-angular → http-proxy-middleware, webpack-dev-server/sockjs |
+| core      | Minimal (Stencil-based, fewer build tools)                                       |
+| react     | Generally low/moderate transitive vulnerabilities from build toolchain           |
+| storybook | Minimal after removing unused `@storybook/test-runner` from core workspace       |
+| vue       | Generally low/moderate transitive vulnerabilities from build tooling             |
 
 ## Troubleshooting
 
 ### Error: "Could not resolve dependency"
+
 ```
 npm error ERESOLVE could not resolve
 ```
+
 **Solution**: Ensure `.npmrc` has `legacy-peer-deps=true`. This is required and already committed.
 
 ### Error: "Will install X, which is a breaking change"
+
 ```
 fix available via `npm audit fix --force`
 ```
+
 **Solution**: Ignore this warning. Breaking changes mean downgrading—bad in a monorepo. Use the individual workspace update strategy instead.
 
 ### Build Fails After npm Updates
+
 ```bash
 npm ci --legacy-peer-deps  # Clean install
 npm run build               # Retry build

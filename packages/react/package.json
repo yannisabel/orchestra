@@ -15,7 +15,7 @@
     "@orchestra-kit/core": "^0.0.1"
   },
   "devDependencies": {
-    "@stencil/react-output-target": "^1.5.3",
+    "@stencil/react-output-target": "^1.6.0",
     "@types/react": "^19.2.17",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",

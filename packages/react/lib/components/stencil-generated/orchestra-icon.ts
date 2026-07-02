@@ -16,7 +16,7 @@ import { OrchestraIcon as OrchestraIconElement, defineCustomElement as defineOrc
 
 export type OrchestraIconEvents = NonNullable<unknown>;
 
-export const OrchestraIcon: StencilReactComponent<OrchestraIconElement, OrchestraIconEvents, Components.OrchestraIcon> = /*@__PURE__*/ createComponent<OrchestraIconElement, OrchestraIconEvents, Components.OrchestraIcon>({
+export const OrchestraIcon: StencilReactComponent<OrchestraIconElement, OrchestraIconEvents, Components.OrchestraIcon, 'name'> = /*@__PURE__*/ createComponent<OrchestraIconElement, OrchestraIconEvents, Components.OrchestraIcon, 'name'>({
     tagName: 'orchestra-icon',
     elementClass: OrchestraIconElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.

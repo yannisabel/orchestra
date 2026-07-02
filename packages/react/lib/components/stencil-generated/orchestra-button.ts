@@ -16,7 +16,7 @@ import { OrchestraButton as OrchestraButtonElement, defineCustomElement as defin
 
 export type OrchestraButtonEvents = NonNullable<unknown>;
 
-export const OrchestraButton: StencilReactComponent<OrchestraButtonElement, OrchestraButtonEvents, Components.OrchestraButton> = /*@__PURE__*/ createComponent<OrchestraButtonElement, OrchestraButtonEvents, Components.OrchestraButton>({
+export const OrchestraButton: StencilReactComponent<OrchestraButtonElement, OrchestraButtonEvents, Components.OrchestraButton, 'text'> = /*@__PURE__*/ createComponent<OrchestraButtonElement, OrchestraButtonEvents, Components.OrchestraButton, 'text'>({
     tagName: 'orchestra-button',
     elementClass: OrchestraButtonElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
