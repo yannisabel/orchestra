@@ -7,7 +7,11 @@ Component documentation, testing, and visual development environment for Orchest
 ### View Storybook Locally
 
 ```bash
+# From repository root
 npm run dev
+
+# Or from packages/storybook
+npm run storybook:dev
 ```
 
 Opens at http://localhost:6006/
@@ -15,7 +19,11 @@ Opens at http://localhost:6006/
 ### Build Static Site
 
 ```bash
+# From repository root
 npm run build:storybook
+
+# Or from packages/storybook
+npm run build-storybook
 ```
 
 Output: `packages/storybook/storybook-static/`
@@ -42,15 +50,16 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite'
 export default {
   component: 'orchestra-button',
   title: 'Components/orchestra-button',
-  argTypes: { /* define controls */ }
+  argTypes: {/* define controls */},
 } satisfies Meta
 
 export const Primary = {
-  render: (args) => `<orchestra-button variant="${args.variant}">Click me</orchestra-button>`,
+  render: (args) =>
+    `<orchestra-button variant="${args.variant}">Click me</orchestra-button>`,
   args: { variant: 'primary' },
   play: async ({ canvasElement }) => {
     // Automated tests run here
-  }
+  },
 } satisfies Story
 ```
 
@@ -64,45 +73,32 @@ export const Primary = {
 
 ## Custom Icon Libraries
 
-Orchestra supports registering custom icon libraries at runtime. Use Storybook's `play()` function to register and test custom libraries.
+Orchestra supports registering custom icon libraries at runtime.
+
+Recommended pattern in Storybook:
+
+- Register libraries in `.storybook/preview.ts` (or a global decorator) before stories render.
+- Use `play()` only for interaction assertions or explicit runtime swap scenarios.
 
 ### Example: Custom Library Story
 
 ```typescript
 // packages/storybook/src/stories/components/icon/icon.stories.ts
 export const CustomLibrary = {
-  render: (args) => 
+  render: (args) =>
     `<orchestra-icon name="${args.name}" library="custom" fill="${args.fill}" size="${args.size}"></orchestra-icon>`,
   args: {
     name: 'star',
     fill: 'currentcolor',
-    size: '60px'
+    size: '60px',
   },
-  play: async () => {
-    // Define custom icons
-    const customIcons = {
-      'star': `<svg>...</svg>`,
-      'heart': `<svg>...</svg>`,
-    }
-    
-    // Register library (runs AFTER component mounts)
-    registerIconLibrary('custom', {
-      resolver: (name) => customIcons[name] ?? ''
-    })
-    
-    // Toggle library property to trigger icon reload
-    const icon = document.querySelector('orchestra-icon')
-    icon.library = 'core'
-    await new Promise(resolve => setTimeout(resolve, 100))
-    icon.library = 'custom'
-  }
 } satisfies Story
 ```
 
 ### Key Timing Requirements
 
-- **Register BEFORE render** - Use in render function or early decorator
-- **Trigger reload AFTER mount** - Use `play()` function to toggle props
+- **Register BEFORE render** - Use `.storybook/preview.ts` or an early decorator
+- **Use `play()` for interactions** - Reserve it for assertions or explicit runtime switching tests
 - **Global registry** - Uses `window.__orchestraIconRegistry` for shared access
 
 ## Testing
@@ -114,13 +110,13 @@ Tests run in Storybook's Play panel:
 ```typescript
 play: async ({ canvasElement }) => {
   const button = canvasElement.querySelector('orchestra-button')
-  
+
   // Test initial state
   expect(button.getAttribute('aria-label')).toBe('Click me')
-  
+
   // Simulate interactions
   await userEvent.click(button)
-  
+
   // Assert after action
   expect(button.hasAttribute('active')).toBe(true)
 }
@@ -137,7 +133,7 @@ npm run storybook:test-coverage # With coverage report
 
 Storybook includes light and dark theme support via the Storybook Themes addon.
 
-- **Light Theme** - Default, imports `packages/core/src/themes/light.css`
+- **Light Theme** - Default, imports `@orchestra-design-system/core/dist/orchestra-kit/themes/light.css`
 - **Dark Theme** - Toggle via Storybook theme switcher
 
 To customize themes, see [Design Tokens README](../design-tokens/README.md).
@@ -148,16 +144,17 @@ To customize themes, see [Design Tokens README](../design-tokens/README.md).
 
 - **Entry Point** - `.storybook/main.ts` - Framework setup and static assets
 - **Preview Config** - `.storybook/preview.ts` - Global decorators and theming
-- **Vite Config** - `vite-style.config.js` (imported by main.ts) - Build settings
+- **Vite Config** - customized in `.storybook/main.ts` via `viteFinal` (base path, live-reload plugin, aliases, chunking)
 
 ### Static Assets
 
 Static files are copied during build:
+
 ```typescript
 // .storybook/main.ts
 staticDirs: [
-  "../public",
-  { from: "../../core/dist/orchestra-kit", to: "/orchestra-kit" },
+  '../public',
+  { from: '../../core/dist/orchestra-kit', to: '/orchestra-kit' },
 ]
 ```
 
@@ -190,17 +187,24 @@ packages/storybook/
 
 ## GitHub Pages Deployment
 
-Storybook automatically deploys to GitHub Pages on all branches except `main`:
+Storybook deployment uses two flows:
 
-- **Trigger** - Push to any non-main branch
-- **Workflow** - `.github/workflows/storybook-deploy.yml`
-- **Access** - `https://{username}.github.io/{repo}/{branch}/`
+- **Branch previews**
+  - Trigger: push to any non-main branch
+  - Workflow: `.github/workflows/storybook-deploy.yml`
+  - Access path: `https://{username}.github.io/{repo}/branches/{sanitized-branch}/`
+
+- **Main Storybook**
+  - Trigger: successful non-dry release on `main`
+  - Workflow: `.github/workflows/release.yml` (`deploy-storybook-main` job)
+  - Access path: `https://{username}.github.io/{repo}/`
 
 Example:
+
 ```bash
 git push origin feature/new-component
 # Workflow runs, deploys to:
-# https://yannisabel.github.io/orchestra/feature/new-component/
+# https://yannisabel.github.io/orchestra/branches/feature-new-component/
 ```
 
 ## Development Tips
@@ -208,8 +212,9 @@ git push origin feature/new-component
 ### Hot Module Reload (HMR)
 
 Storybook watches for changes in:
+
 - Story files (`src/stories/**`)
-- Component source (`../../core/src/components/**`)
+- Built core outputs used by Storybook (`../../core/www/build/**`)
 - Preview config (`.storybook/preview.ts`)
 
 Changes auto-reload in browser without manual refresh.

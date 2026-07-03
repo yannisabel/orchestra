@@ -2,6 +2,19 @@
   "name": "@orchestra-design-system/storybook",
   "private": true,
   "version": "0.0.1",
+  "description": "Storybook documentation and testing workspace for Orchestra components",
+  "author": "Yann Isabel",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yannisabel/orchestra.git"
+  },
+  "keywords": [
+    "storybook",
+    "design-system",
+    "web-components",
+    "orchestra"
+  ],
   "type": "module",
   "scripts": {
     "storybook:dev": "storybook dev -p 6006",

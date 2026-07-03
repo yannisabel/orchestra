@@ -203,15 +203,17 @@ npm run build          # Full build (JS + CSS + types)
 ### Watch Mode
 
 ```bash
-npm run dev:js         # Watch and rebuild on changes
+npm run start:js       # Watch Stencil build and docs
+npm run start          # Watch both CSS and JS builds together
 ```
 
 ### Testing
 
 ```bash
-npm run test           # Run tests with Vitest
-npm run test:watch    # Watch mode
-npm run test:coverage # Coverage report
+npm run test           # Run full Stencil test suite
+npm run test:watch     # Watch mode
+npm run test:spec      # Unit/spec tests
+npm run test:e2e       # Browser end-to-end tests
 ```
 
 ### Storybook

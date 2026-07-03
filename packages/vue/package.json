@@ -1,6 +1,7 @@
 {
   "name": "@orchestra-design-system/vue",
   "version": "0.0.2",
+  "description": "Vue wrappers for Orchestra design system web components",
   "author": "Yann Isabel",
   "files": [
     "lib",
@@ -22,5 +23,11 @@
     "typescript": "^5.9.3",
     "vue": "^3.5.39"
   },
+  "keywords": [
+    "design-system",
+    "vue",
+    "web-components",
+    "orchestra"
+  ],
   "license": "MIT"
 }

@@ -2,6 +2,7 @@
   "name": "@orchestra-design-system/design-tokens",
   "type": "module",
   "version": "0.0.2",
+  "description": "Design tokens for the Orchestra design system",
   "main": "sd.config.js",
   "scripts": {
     "start": "concurrently 'npm run watch' 'npm run watch:extended'",
@@ -21,5 +22,11 @@
     "url": "https://github.com/yannisabel/orchestra.git"
   },
   "author": "Yann Isabel",
+  "keywords": [
+    "design-system",
+    "design-tokens",
+    "css-variables",
+    "orchestra"
+  ],
   "license": "MIT"
 }

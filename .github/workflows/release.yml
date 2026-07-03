@@ -124,15 +124,12 @@ jobs:
           npm run release:design-tokens -- --no-github
           npm run release:icons-library -- --no-github
 
-          for tag in \
-            "$(git tag --list '@orchestra-design-system/core@*' --sort=-v:refname | head -n 1)" \
-            "$(git tag --list '@orchestra-design-system/react@*' --sort=-v:refname | head -n 1)" \
-            "$(git tag --list '@orchestra-design-system/angular@*' --sort=-v:refname | head -n 1)" \
-            "$(git tag --list '@orchestra-design-system/vue@*' --sort=-v:refname | head -n 1)" \
-            "$(git tag --list '@orchestra-design-system/design-tokens@*' --sort=-v:refname | head -n 1)" \
-            "$(git tag --list '@orchestra-design-system/icons-library@*' --sort=-v:refname | head -n 1)"; do
+          for pkg in core react angular vue design-tokens icons-library; do
+            tag=$(git tag --list "@orchestra-design-system/${pkg}@*" --sort=-v:refname | sed -n '1p')
+            previous_tag=$(git tag --list "@orchestra-design-system/${pkg}@*" --sort=-v:refname | sed -n '2p')
+
             if [ -z "${tag}" ]; then
-              echo "Failed to resolve package tag for GitHub release creation."
+              echo "Failed to resolve package tag for ${pkg}."
               exit 1
             fi
 
@@ -141,11 +138,59 @@ jobs:
             fi
 
             version="${tag##*@}"
-            if [ "${version}" = "0.0.1" ]; then
+            changelog_file="packages/${pkg}/CHANGELOG.md"
+            notes_file=$(mktemp)
+            combined_notes_file=$(mktemp)
+
+            if [ -f "${changelog_file}" ]; then
+              # Prefer the section that matches the current version.
+              awk -v version="${version}" '
+                BEGIN { capture = 0; found = 0 }
+                /^## / {
+                  if (capture) exit
+                  if (index($0, version) > 0) {
+                    capture = 1
+                    found = 1
+                  }
+                }
+                capture { print }
+                END { if (!found) exit 2 }
+              ' "${changelog_file}" > "${notes_file}" || true
+
+              # Fallback: first changelog section.
+              if [ ! -s "${notes_file}" ]; then
+                awk '
+                  BEGIN { capture = 0; started = 0 }
+                  /^## / {
+                    if (started) exit
+                    capture = 1
+                    started = 1
+                  }
+                  capture { print }
+                ' "${changelog_file}" > "${notes_file}" || true
+              fi
+            fi
+
+            if [ -s "${notes_file}" ]; then
+              if [ "${version}" = "0.0.1" ]; then
+                {
+                  echo "This is the first release under the @orchestra-design-system scope. Previous packages were published under @orchestra-kit."
+                  echo
+                  cat "${notes_file}"
+                } > "${combined_notes_file}"
+                gh release create "${tag}" --notes-file "${combined_notes_file}"
+              else
+                gh release create "${tag}" --notes-file "${notes_file}"
+              fi
+            elif [ "${version}" = "0.0.1" ]; then
               gh release create "${tag}" --generate-notes --notes "This is the first release under the @orchestra-design-system scope. Previous packages were published under @orchestra-kit."
+            elif [ -n "${previous_tag}" ]; then
+              gh release create "${tag}" --generate-notes --notes-start-tag "${previous_tag}"
             else
               gh release create "${tag}" --generate-notes
             fi
+
+            rm -f "${notes_file}" "${combined_notes_file}"
           done
 
           for pkg in core react angular vue design-tokens icons-library; do

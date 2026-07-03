@@ -2,8 +2,14 @@
   "name": "@orchestra-design-system/core",
   "type": "module",
   "version": "0.0.2",
-  "description": "Stencil Component Starter",
+  "description": "Web components for the Orchestra design system",
   "author": "Yann Isabel",
+  "keywords": [
+    "design-system",
+    "web-components",
+    "stencil",
+    "orchestra"
+  ],
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.js",

@@ -90,7 +90,7 @@ npm run build
 
 - `workflow.yml`: runs lint on pushes/PRs and tests on main/master
 - `storybook-deploy.yml`: deploys Storybook for non-main branches
-- `release.yml`: manual (`workflow_dispatch`) release job, gated to main/master, supports dry-run input
+- `release.yml`: manual (`workflow_dispatch`) release job, gated to main, supports dry-run input
 
 Local validation before pushing:
 

@@ -1,6 +1,7 @@
 {
   "name": "@orchestra-design-system/angular",
   "version": "0.0.2",
+  "description": "Angular wrappers for Orchestra design system web components",
   "author": "Yann Isabel",
   "files": [
     "projects",
@@ -30,10 +31,17 @@
     "type": "git",
     "url": "https://github.com/yannisabel/orchestra.git"
   },
+  "keywords": [
+    "design-system",
+    "angular",
+    "web-components",
+    "orchestra"
+  ],
   "devDependencies": {
     "@angular-devkit/build-angular": "^21.2.18",
     "@angular/cli": "^21.2.18",
     "@angular/compiler-cli": "^21.2.17",
     "ng-packagr": "^21.2.5"
-  }
+  },
+  "license": "MIT"
 }

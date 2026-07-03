@@ -1,6 +1,7 @@
 {
   "name": "@orchestra-design-system/react",
   "version": "0.0.2",
+  "description": "React wrappers for Orchestra design system web components",
   "author": "Yann Isabel",
   "type": "module",
   "files": [
@@ -25,7 +26,11 @@
     "react-dom": "^19.2.7",
     "typescript": "^5.9.3"
   },
-  "keywords": [],
-  "description": "",
+  "keywords": [
+    "design-system",
+    "react",
+    "web-components",
+    "orchestra"
+  ],
   "license": "MIT"
 }
