@@ -77,6 +77,14 @@ jobs:
       - name: Validate internal version alignment
         run: |
           node .github/scripts/validate-internal-version-alignment.cjs
+      - name: Preflight dry-run release
+        if: inputs.dry-run == false
+        run: |
+          node .github/scripts/release-packages.cjs
+        env:
+          DRY_RUN: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Release packages
         run: |
           node .github/scripts/release-packages.cjs
