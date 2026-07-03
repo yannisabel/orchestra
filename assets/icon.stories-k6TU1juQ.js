@@ -24,3 +24,4 @@ const t=["checked"],o={component:"orchestra-icon",title:"Components/orchestra-ic
     }
   }
 } satisfies Story`,...n.parameters?.docs?.source}}};const s=["Default","CustomLibrary"],i=Object.freeze(Object.defineProperty({__proto__:null,CustomLibrary:n,Default:e,__namedExportsOrder:s,default:o},Symbol.toStringTag,{value:"Module"}));export{n as C,e as D,i as I};
+//# sourceMappingURL=icon.stories-k6TU1juQ.js.map

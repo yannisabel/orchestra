@@ -12,3 +12,4 @@ ${G}`)},{edgeSpacing:E.spacingOuter,min:E.min,spacing:E.spacingInner},E.colors)}
 ${V.blue(_.helpUrl)}`:"")).join(s)).join(s+"────────"+s)}let a=n(t),m=a.length===0;function h(){if(!m)return ht(".toHaveNoViolations")+`
 
 ${a}`}return{actual:t,message:h,pass:m}}function Ot(e,t){return t&&t.length>0?e.filter(n=>t.includes(n.impact)):e}export{Et as toHaveNoViolations};
+//# sourceMappingURL=matchers-JIUQ3HVY-N4FjKbka.js.map
