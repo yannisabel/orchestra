@@ -1,0 +1,28 @@
+name: Post Storybook Link to PR
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Sanitize branch name
+        id: sanitize
+        run: |
+          SAFE_BRANCH="${{ github.head_ref }}"
+          SAFE_BRANCH="${SAFE_BRANCH//\//-}"
+          echo "branch=$SAFE_BRANCH" >> $GITHUB_OUTPUT
+      - name: Comment with Storybook URL
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `📖 **Storybook Preview**\n\n🔗 https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branches/${{ steps.sanitize.outputs.branch }}/`
+            });

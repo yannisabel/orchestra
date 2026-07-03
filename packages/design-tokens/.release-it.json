@@ -1,0 +1,18 @@
+{
+  "git": {
+    "commit": true,
+    "commitMessage": "chore(@orchestra-kit/design-tokens): release v${version}",
+    "tag": true,
+    "tagName": "@orchestra-kit/design-tokens@${version}",
+    "push": true,
+    "requireUpstream": false
+  },
+  "npm": {
+    "publish": true,
+    "allowSameVersion": false
+  },
+  "github": {
+    "release": true,
+    "releaseName": "@orchestra-kit/design-tokens v${version}"
+  }
+}

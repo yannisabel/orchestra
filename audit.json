@@ -1,0 +1,2226 @@
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {
+    "@angular-devkit/build-angular": {
+      "name": "@angular-devkit/build-angular",
+      "severity": "high",
+      "isDirect": true,
+      "via": [
+        "@angular-devkit/build-webpack",
+        "@angular/build",
+        "@angular/compiler-cli",
+        "@ngtools/webpack",
+        "http-proxy-middleware",
+        "webpack-dev-server"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "node_modules/@angular-devkit/build-angular"
+      ],
+      "fixAvailable": {
+        "name": "@angular-devkit/build-angular",
+        "version": "19.2.8",
+        "isSemVerMajor": true
+      }
+    },
+    "@angular-devkit/build-webpack": {
+      "name": "@angular-devkit/build-webpack",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "webpack-dev-server"
+      ],
+      "effects": [
+        "@angular-devkit/build-angular"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@angular-devkit/build-webpack"
+      ],
+      "fixAvailable": {
+        "name": "@angular-devkit/build-angular",
+        "version": "19.2.8",
+        "isSemVerMajor": true
+      }
+    },
+    "@angular/build": {
+      "name": "@angular/build",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "@angular/compiler-cli",
+        "undici"
+      ],
+      "effects": [
+        "@angular-devkit/build-angular"
+      ],
+      "range": "<=22.0.4",
+      "nodes": [
+        "node_modules/@angular/build"
+      ],
+      "fixAvailable": {
+        "name": "@angular-devkit/build-angular",
+        "version": "19.2.8",
+        "isSemVerMajor": true
+      }
+    },
+    "@angular/compiler-cli": {
+      "name": "@angular/compiler-cli",
+      "severity": "low",
+      "isDirect": true,
+      "via": [
+        "@babel/core"
+      ],
+      "effects": [
+        "@angular-devkit/build-angular",
+        "@angular/build",
+        "@ngtools/webpack"
+      ],
+      "range": "15.1.0-next.0 - 22.0.2",
+      "nodes": [
+        "node_modules/@angular/compiler-cli"
+      ],
+      "fixAvailable": {
+        "name": "@angular-devkit/build-angular",
+        "version": "19.2.8",
+        "isSemVerMajor": true
+      }
+    },
+    "@babel/core": {
+      "name": "@babel/core",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1120793,
+          "name": "@babel/core",
+          "dependency": "@babel/core",
+          "title": "@babel/core: Arbitrary File Read via sourceMappingURL Comment",
+          "url": "https://github.com/advisories/GHSA-4x5r-pxfx-6jf8",
+          "severity": "low",
+          "cwe": [
+            "CWE-22",
+            "CWE-200"
+          ],
+          "cvss": {
+            "score": 3.2,
+            "vectorString": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:L/I:N/A:N"
+          },
+          "range": "<=7.29.0"
+        }
+      ],
+      "effects": [
+        "@angular/compiler-cli"
+      ],
+      "range": "<=7.29.0",
+      "nodes": [
+        "node_modules/@angular/compiler-cli/node_modules/@babel/core"
+      ],
+      "fixAvailable": {
+        "name": "@angular-devkit/build-angular",
+        "version": "19.2.8",
+        "isSemVerMajor": true
+      }
+    },
+    "@istanbuljs/load-nyc-config": {
+      "name": "@istanbuljs/load-nyc-config",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "js-yaml"
+      ],
+      "effects": [
+        "babel-plugin-istanbul",
+        "nyc"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@istanbuljs/load-nyc-config"
+      ],
+      "fixAvailable": {
+        "name": "@storybook/test-runner",
+        "version": "0.24.4",
+        "isSemVerMajor": true
+      }
+    },
+    "@jest/core": {
+      "name": "@jest/core",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@jest/reporters",
+        "@jest/reporters",
+        "@jest/transform",
+        "jest-config",
+        "jest-resolve-dependencies",
+        "jest-runner",
+        "jest-runtime",
+        "jest-snapshot"
+      ],
+      "effects": [
+        "jest",
+        "jest-cli"
+      ],
+      "range": "*",
+      "nodes": [
+        "packages/angular/node_modules/@jest/core",
+        "packages/core/node_modules/@jest/core",
+        "packages/core/node_modules/@storybook/test-runner/node_modules/@jest/core"
+      ],
+      "fixAvailable": {
+        "name": "jest-cli",
+        "version": "30.4.2",
+        "isSemVerMajor": true
+      }
+    },
+    "@jest/expect": {
+      "name": "@jest/expect",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "jest-snapshot"
+      ],
+      "effects": [
+        "@jest/globals",
+        "jest-circus"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@jest/expect"
+      ],
+      "fixAvailable": {
+        "name": "@storybook/test-runner",
+        "version": "0.24.4",
+        "isSemVerMajor": true
+      }
+    },
+    "@jest/globals": {
+      "name": "@jest/globals",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@jest/expect"
+      ],
+      "effects": [
+        "jest-runtime"
+      ],
+      "range": ">=28.0.0-alpha.0",
+      "nodes": [
+        "node_modules/@jest/globals"
+      ],
+      "fixAvailable": {
+        "name": "@storybook/test-runner",
+        "version": "0.24.4",
+        "isSemVerMajor": true
+      }
+    },
+    "@jest/reporters": {
+      "name": "@jest/reporters",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@jest/transform",
+        "node-notifier"
+      ],
+      "effects": [
+        "@jest/core"
+      ],
+      "range": "*",
+      "nodes": [
+        "packages/angular/node_modules/@jest/reporters",
+        "packages/core/node_modules/@jest/reporters",
+        "packages/core/node_modules/@storybook/test-runner/node_modules/@jest/reporters"
+      ],
+      "fixAvailable": {
+        "name": "jest-cli",
+        "version": "30.4.2",
+        "isSemVerMajor": true
+      }
+    },
+    "@jest/test-sequencer": {
+      "name": "@jest/test-sequencer",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "jest-runner",
+        "jest-runtime"
+      ],
+      "effects": [
+        "jest-config"
+      ],
+      "range": "25.1.0 - 28.0.0-alpha.11",
+      "nodes": [
+        "packages/core/node_modules/@jest/test-sequencer"
+      ],
+      "fixAvailable": {
+        "name": "@storybook/test-runner",
+        "version": "0.24.4",
+        "isSemVerMajor": true
+      }
+    },
+    "@jest/transform": {
+      "name": "@jest/transform",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "babel-plugin-istanbul"
+      ],
+      "effects": [
+        "@jest/core",
+        "@jest/reporters",
+        "jest-runner",
+        "jest-runtime",
+        "jest-snapshot"
+      ],
+      "range": ">=25.1.0",
+      "nodes": [
+        "node_modules/@jest/transform",
+        "packages/core/node_modules/@jest/transform",
+        "packages/core/node_modules/@storybook/test-runner/node_modules/@jest/transform"
+      ],
+      "fixAvailable": {
+        "name": "jest-cli",
+        "version": "30.4.2",
+        "isSemVerMajor": true
+      }
+    },
+    "@lerna/create": {
+      "name": "@lerna/create",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "pacote"
+      ],
+      "effects": [
+        "lerna"
+      ],
+      "range": "3.11.0 - 3.14.2 || 4.0.0 - 8.2.4",
+      "nodes": [
+        "node_modules/@lerna/create"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@lerna/legacy-package-management": {
+      "name": "@lerna/legacy-package-management",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "@npmcli/arborist",
+        "@npmcli/run-script",
+        "@octokit/rest",
+        "inquirer",
+        "libnpmpublish",
+        "minimatch",
+        "npm-registry-fetch",
+        "pacote",
+        "semver",
+        "tar",
+        "uuid"
+      ],
+      "effects": [
+        "lerna"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@lerna/legacy-package-management"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@ngtools/webpack": {
+      "name": "@ngtools/webpack",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@angular/compiler-cli"
+      ],
+      "effects": [
+        "@angular-devkit/build-angular"
+      ],
+      "range": "16.0.0-next.0 - 22.0.4",
+      "nodes": [
+        "node_modules/@ngtools/webpack"
+      ],
+      "fixAvailable": {
+        "name": "@angular-devkit/build-angular",
+        "version": "19.2.8",
+        "isSemVerMajor": true
+      }
+    },
+    "@npmcli/arborist": {
+      "name": "@npmcli/arborist",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "@npmcli/metavuln-calculator",
+        "@npmcli/run-script",
+        "cacache",
+        "npm-registry-fetch",
+        "pacote"
+      ],
+      "effects": [
+        "lerna"
+      ],
+      "range": "<=7.5.4",
+      "nodes": [
+        "node_modules/@lerna/legacy-package-management/node_modules/@npmcli/arborist",
+        "packages/angular/node_modules/@npmcli/arborist",
+        "packages/core/node_modules/@npmcli/arborist"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@npmcli/metavuln-calculator": {
+      "name": "@npmcli/metavuln-calculator",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "cacache",
+        "pacote"
+      ],
+      "effects": [
+        "@npmcli/arborist"
+      ],
+      "range": "<=7.1.1",
+      "nodes": [
+        "node_modules/@lerna/legacy-package-management/node_modules/@npmcli/metavuln-calculator",
+        "packages/angular/node_modules/@npmcli/metavuln-calculator",
+        "packages/core/node_modules/@npmcli/metavuln-calculator"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@npmcli/run-script": {
+      "name": "@npmcli/run-script",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "node-gyp"
+      ],
+      "effects": [
+        "pacote"
+      ],
+      "range": "1.1.1 - 9.0.1",
+      "nodes": [
+        "node_modules/@lerna/create/node_modules/@npmcli/run-script",
+        "node_modules/@lerna/legacy-package-management/node_modules/@npmcli/arborist/node_modules/@npmcli/run-script",
+        "node_modules/@lerna/legacy-package-management/node_modules/@npmcli/run-script",
+        "node_modules/@lerna/legacy-package-management/node_modules/pacote/node_modules/@npmcli/run-script",
+        "packages/angular/node_modules/@npmcli/arborist/node_modules/@npmcli/run-script",
+        "packages/angular/node_modules/@npmcli/run-script",
+        "packages/angular/node_modules/pacote/node_modules/@npmcli/run-script",
+        "packages/core/node_modules/@npmcli/arborist/node_modules/@npmcli/run-script",
+        "packages/core/node_modules/@npmcli/run-script",
+        "packages/core/node_modules/pacote/node_modules/@npmcli/run-script"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@nrwl/cli": {
+      "name": "@nrwl/cli",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "nx"
+      ],
+      "effects": [
+        "nx"
+      ],
+      "range": "14.3.3 - 15.9.7",
+      "nodes": [
+        "node_modules/@nrwl/cli"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@nrwl/tao": {
+      "name": "@nrwl/tao",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "nx"
+      ],
+      "effects": [
+        "nx"
+      ],
+      "range": "<=0.0.0-pr-31222-862e973 || 14.3.3 - 19.0.7 || 19.1.0-beta.0 - 19.1.0-canary.20240524-12c6a73",
+      "nodes": [
+        "node_modules/@nrwl/tao"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@octokit/core": {
+      "name": "@octokit/core",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@octokit/graphql",
+        "@octokit/request",
+        "@octokit/request-error"
+      ],
+      "effects": [
+        "@octokit/rest"
+      ],
+      "range": "<=5.0.0-beta.5",
+      "nodes": [
+        "node_modules/@lerna/legacy-package-management/node_modules/@octokit/core",
+        "packages/angular/node_modules/@octokit/core",
+        "packages/core/node_modules/@octokit/core"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@octokit/graphql": {
+      "name": "@octokit/graphql",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@octokit/request"
+      ],
+      "effects": [],
+      "range": "<=2.1.3 || 3.0.0 - 6.0.1",
+      "nodes": [
+        "node_modules/@lerna/legacy-package-management/node_modules/@octokit/graphql",
+        "packages/angular/node_modules/@octokit/graphql",
+        "packages/core/node_modules/@octokit/graphql"
+      ],
+      "fixAvailable": true
+    },
+    "@octokit/plugin-paginate-rest": {
+      "name": "@octokit/plugin-paginate-rest",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1102898,
+          "name": "@octokit/plugin-paginate-rest",
+          "dependency": "@octokit/plugin-paginate-rest",
+          "title": "@octokit/plugin-paginate-rest has a Regular Expression in iterator Leads to ReDoS Vulnerability Due to Catastrophic Backtracking",
+          "url": "https://github.com/advisories/GHSA-h5c3-5r3r-rr8q",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-1333"
+          ],
+          "cvss": {
+            "score": 5.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+          },
+          "range": ">=1.0.0 <9.2.2"
+        }
+      ],
+      "effects": [
+        "@octokit/rest"
+      ],
+      "range": "<=9.2.1",
+      "nodes": [
+        "node_modules/@lerna/legacy-package-management/node_modules/@octokit/plugin-paginate-rest",
+        "packages/angular/node_modules/@octokit/plugin-paginate-rest",
+        "packages/core/node_modules/@octokit/plugin-paginate-rest"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@octokit/request": {
+      "name": "@octokit/request",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@octokit/request-error",
+        {
+          "source": 1112248,
+          "name": "@octokit/request",
+          "dependency": "@octokit/request",
+          "title": "@octokit/request has a Regular Expression in fetchWrapper that Leads to ReDoS Vulnerability Due to Catastrophic Backtracking",
+          "url": "https://github.com/advisories/GHSA-rmvr-2pp2-xj38",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-1333"
+          ],
+          "cvss": {
+            "score": 5.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+          },
+          "range": ">=1.0.0 <8.4.1"
+        }
+      ],
+      "effects": [
+        "@octokit/core",
+        "@octokit/graphql"
+      ],
+      "range": "<=8.4.0",
+      "nodes": [
+        "node_modules/@lerna/legacy-package-management/node_modules/@octokit/request",
+        "packages/angular/node_modules/@octokit/request",
+        "packages/core/node_modules/@octokit/request"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@octokit/request-error": {
+      "name": "@octokit/request-error",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1102256,
+          "name": "@octokit/request-error",
+          "dependency": "@octokit/request-error",
+          "title": "@octokit/request-error has a Regular Expression in index that Leads to ReDoS Vulnerability Due to Catastrophic Backtracking",
+          "url": "https://github.com/advisories/GHSA-xx4v-prfh-6cgc",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-1333"
+          ],
+          "cvss": {
+            "score": 5.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+          },
+          "range": ">=1.0.0 <5.1.1"
+        }
+      ],
+      "effects": [
+        "@octokit/core",
+        "@octokit/request"
+      ],
+      "range": "<=5.1.0",
+      "nodes": [
+        "node_modules/@lerna/legacy-package-management/node_modules/@octokit/request-error",
+        "packages/angular/node_modules/@octokit/request-error",
+        "packages/core/node_modules/@octokit/request-error"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@octokit/rest": {
+      "name": "@octokit/rest",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@octokit/core",
+        "@octokit/plugin-paginate-rest"
+      ],
+      "effects": [
+        "@lerna/legacy-package-management",
+        "lerna"
+      ],
+      "range": "16.39.0 - 20.0.1",
+      "nodes": [
+        "node_modules/@lerna/legacy-package-management/node_modules/@octokit/rest",
+        "packages/angular/node_modules/@octokit/rest",
+        "packages/core/node_modules/@octokit/rest"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@sigstore/sign": {
+      "name": "@sigstore/sign",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "make-fetch-happen"
+      ],
+      "effects": [
+        "sigstore"
+      ],
+      "range": "<=2.3.2",
+      "nodes": [
+        "node_modules/@lerna/create/node_modules/@sigstore/sign",
+        "node_modules/@lerna/legacy-package-management/node_modules/@sigstore/sign",
+        "packages/angular/node_modules/@sigstore/sign",
+        "packages/core/node_modules/@sigstore/sign"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@sigstore/tuf": {
+      "name": "@sigstore/tuf",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "tuf-js"
+      ],
+      "effects": [
+        "sigstore"
+      ],
+      "range": "<=2.3.4",
+      "nodes": [
+        "node_modules/@lerna/create/node_modules/@sigstore/tuf",
+        "node_modules/@lerna/legacy-package-management/node_modules/@sigstore/tuf",
+        "packages/angular/node_modules/@sigstore/tuf",
+        "packages/core/node_modules/@sigstore/tuf"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@storybook/test-runner": {
+      "name": "@storybook/test-runner",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "jest",
+        "jest-circus",
+        "jest-playwright-preset",
+        "jest-runner",
+        "jest-watch-typeahead",
+        "nyc"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "packages/angular/node_modules/@storybook/test-runner",
+        "packages/core/node_modules/@storybook/test-runner"
+      ],
+      "fixAvailable": {
+        "name": "@storybook/test-runner",
+        "version": "0.24.4",
+        "isSemVerMajor": true
+      }
+    },
+    "@yarnpkg/parsers": {
+      "name": "@yarnpkg/parsers",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "js-yaml"
+      ],
+      "effects": [
+        "nx"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@yarnpkg/parsers"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "babel-jest": {
+      "name": "babel-jest",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@jest/transform",
+        "babel-plugin-istanbul"
+      ],
+      "effects": [
+        "jest-config"
+      ],
+      "range": ">=25.1.0",
+      "nodes": [
+        "node_modules/babel-jest",
+        "packages/core/node_modules/@storybook/test-runner/node_modules/babel-jest",
+        "packages/core/node_modules/babel-jest"
+      ],
+      "fixAvailable": {
+        "name": "@storybook/test-runner",
+        "version": "0.24.4",
+        "isSemVerMajor": true
+      }
+    },
+    "babel-plugin-istanbul": {
+      "name": "babel-plugin-istanbul",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@istanbuljs/load-nyc-config"
+      ],
+      "effects": [
+        "@jest/transform",
+        "babel-jest"
+      ],
+      "range": ">=6.0.0-beta.0",
+      "nodes": [
+        "node_modules/babel-plugin-istanbul"
+      ],
+      "fixAvailable": {
+        "name": "jest-cli",
+        "version": "30.4.2",
+        "isSemVerMajor": true
+      }
+    },
+    "cacache": {
+      "name": "cacache",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "tar"
+      ],
+      "effects": [
+        "@npmcli/arborist",
+        "@npmcli/metavuln-calculator",
+        "make-fetch-happen",
+        "ng-packagr",
+        "pacote"
+      ],
+      "range": "14.0.0 - 18.0.4",
+      "nodes": [
+        "node_modules/@lerna/create/node_modules/cacache",
+        "node_modules/@lerna/create/node_modules/make-fetch-happen/node_modules/cacache",
+        "node_modules/@lerna/legacy-package-management/node_modules/cacache",
+        "node_modules/@lerna/legacy-package-management/node_modules/make-fetch-happen/node_modules/cacache",
+        "packages/angular/node_modules/cacache",
+        "packages/angular/node_modules/make-fetch-happen/node_modules/cacache",
+        "packages/core/node_modules/cacache",
+        "packages/core/node_modules/make-fetch-happen/node_modules/cacache"
+      ],
+      "fixAvailable": {
+        "name": "ng-packagr",
+        "version": "21.2.5",
+        "isSemVerMajor": true
+      }
+    },
+    "create-jest": {
+      "name": "create-jest",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "jest-config"
+      ],
+      "effects": [
+        "jest-cli"
+      ],
+      "range": ">=29.7.0",
+      "nodes": [
+        "node_modules/create-jest"
+      ],
+      "fixAvailable": {
+        "name": "jest-cli",
+        "version": "30.4.2",
+        "isSemVerMajor": true
+      }
+    },
+    "esbuild": {
+      "name": "esbuild",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1102341,
+          "name": "esbuild",
+          "dependency": "esbuild",
+          "title": "esbuild enables any website to send any requests to the development server and read the response",
+          "url": "https://github.com/advisories/GHSA-67mh-4wv8-2f99",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-346"
+          ],
+          "cvss": {
+            "score": 5.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N"
+          },
+          "range": "<=0.24.2"
+        },
+        {
+          "source": 1120680,
+          "name": "esbuild",
+          "dependency": "esbuild",
+          "title": "esbuild allows arbitrary file read when running the development server on Windows",
+          "url": "https://github.com/advisories/GHSA-g7r4-m6w7-qqqr",
+          "severity": "low",
+          "cwe": [
+            "CWE-22"
+          ],
+          "cvss": {
+            "score": 2.5,
+            "vectorString": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": ">=0.27.3 <0.28.1"
+        }
+      ],
+      "effects": [
+        "ng-packagr"
+      ],
+      "range": "<=0.24.2 || 0.27.3 - 0.28.0",
+      "nodes": [
+        "node_modules/vite/node_modules/esbuild",
+        "packages/angular/node_modules/esbuild",
+        "packages/core/node_modules/esbuild"
+      ],
+      "fixAvailable": {
+        "name": "ng-packagr",
+        "version": "21.2.5",
+        "isSemVerMajor": true
+      }
+    },
+    "external-editor": {
+      "name": "external-editor",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "tmp"
+      ],
+      "effects": [
+        "inquirer"
+      ],
+      "range": ">=1.1.1",
+      "nodes": [
+        "node_modules/external-editor"
+      ],
+      "fixAvailable": true
+    },
+    "http-proxy-middleware": {
+      "name": "http-proxy-middleware",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1121163,
+          "name": "http-proxy-middleware",
+          "dependency": "http-proxy-middleware",
+          "title": "http-proxy-middleware: multipart/form-data field injection via unescaped CRLF in `fixRequestBody`",
+          "url": "https://github.com/advisories/GHSA-gcq2-9pq2-cxqm",
+          "severity": "high",
+          "cwe": [
+            "CWE-93"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:L/I:H/A:N"
+          },
+          "range": ">=3.0.4 <3.0.7"
+        },
+        {
+          "source": 1121361,
+          "name": "http-proxy-middleware",
+          "dependency": "http-proxy-middleware",
+          "title": "http-proxy-middleware `router` host+path substring matching allows Host-header-driven backend routing bypass",
+          "url": "https://github.com/advisories/GHSA-64mm-vxmg-q3vj",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-20",
+            "CWE-187"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": ">=3.0.0 <3.0.6"
+        }
+      ],
+      "effects": [
+        "@angular-devkit/build-angular"
+      ],
+      "range": "3.0.0 - 3.0.6",
+      "nodes": [
+        "node_modules/http-proxy-middleware"
+      ],
+      "fixAvailable": {
+        "name": "@angular-devkit/build-angular",
+        "version": "19.2.8",
+        "isSemVerMajor": true
+      }
+    },
+    "inquirer": {
+      "name": "inquirer",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "external-editor"
+      ],
+      "effects": [],
+      "range": "3.0.0 - 8.2.6 || 9.0.0 - 9.3.7",
+      "nodes": [
+        "node_modules/@lerna/legacy-package-management/node_modules/inquirer"
+      ],
+      "fixAvailable": true
+    },
+    "istanbul-lib-processinfo": {
+      "name": "istanbul-lib-processinfo",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "uuid"
+      ],
+      "effects": [
+        "nyc"
+      ],
+      "range": "<=3.0.0",
+      "nodes": [
+        "node_modules/istanbul-lib-processinfo"
+      ],
+      "fixAvailable": {
+        "name": "@storybook/test-runner",
+        "version": "0.24.4",
+        "isSemVerMajor": true
+      }
+    },
+    "jest": {
+      "name": "jest",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "@jest/core",
+        "jest-cli",
+        "jest-cli"
+      ],
+      "effects": [
+        "@storybook/test-runner",
+        "jest-playwright-preset",
+        "jest-watch-typeahead"
+      ],
+      "range": ">=24.2.0-alpha.0",
+      "nodes": [
+        "packages/angular/node_modules/jest",
+        "packages/core/node_modules/@storybook/test-runner/node_modules/jest",
+        "packages/core/node_modules/jest"
+      ],
+      "fixAvailable": {
+        "name": "jest",
+        "version": "30.4.2",
+        "isSemVerMajor": true
+      }
+    },
+    "jest-circus": {
+      "name": "jest-circus",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@jest/expect",
+        "jest-runtime",
+        "jest-snapshot"
+      ],
+      "effects": [
+        "@storybook/test-runner",
+        "jest-config"
+      ],
+      "range": ">=25.2.4",
+      "nodes": [
+        "node_modules/jest-circus"
+      ],
+      "fixAvailable": {
+        "name": "@storybook/test-runner",
+        "version": "0.24.4",
+        "isSemVerMajor": true
+      }
+    },
+    "jest-cli": {
+      "name": "jest-cli",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "@jest/core",
+        "@jest/core",
+        "create-jest",
+        "jest-config"
+      ],
+      "effects": [
+        "jest"
+      ],
+      "range": ">=24.2.0-alpha.0",
+      "nodes": [
+        "packages/angular/node_modules/jest-cli",
+        "packages/core/node_modules/@storybook/test-runner/node_modules/jest-cli",
+        "packages/core/node_modules/jest-cli"
+      ],
+      "fixAvailable": {
+        "name": "jest-cli",
+        "version": "30.4.2",
+        "isSemVerMajor": true
+      }
+    },
+    "jest-config": {
+      "name": "jest-config",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@jest/test-sequencer",
+        "babel-jest",
+        "jest-circus",
+        "jest-runner"
+      ],
+      "effects": [
+        "create-jest",
+        "jest-runner",
+        "jest-runtime"
+      ],
+      "range": ">=25.1.0",
+      "nodes": [
+        "node_modules/jest-config",
+        "packages/core/node_modules/@storybook/test-runner/node_modules/jest-config",
+        "packages/core/node_modules/jest-config"
+      ],
+      "fixAvailable": {
+        "name": "@storybook/test-runner",
+        "version": "0.24.4",
+        "isSemVerMajor": true
+      }
+    },
+    "jest-playwright-preset": {
+      "name": "jest-playwright-preset",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "jest",
+        "jest-circus",
+        "jest-runner",
+        "nyc",
+        "uuid"
+      ],
+      "effects": [
+        "@storybook/test-runner"
+      ],
+      "range": ">=1.0.0-rc1",
+      "nodes": [
+        "packages/angular/node_modules/jest-playwright-preset",
+        "packages/core/node_modules/@storybook/test-runner/node_modules/jest-playwright-preset"
+      ],
+      "fixAvailable": {
+        "name": "@storybook/test-runner",
+        "version": "0.24.4",
+        "isSemVerMajor": true
+      }
+    },
+    "jest-resolve-dependencies": {
+      "name": "jest-resolve-dependencies",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "jest-snapshot"
+      ],
+      "effects": [],
+      "range": ">=27.0.0-next.0",
+      "nodes": [
+        "packages/angular/node_modules/jest-resolve-dependencies",
+        "packages/core/node_modules/@storybook/test-runner/node_modules/jest-resolve-dependencies"
+      ],
+      "fixAvailable": true
+    },
+    "jest-runner": {
+      "name": "jest-runner",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@jest/transform",
+        "jest-config",
+        "jest-runtime"
+      ],
+      "effects": [
+        "@jest/test-sequencer",
+        "@storybook/test-runner",
+        "jest-config",
+        "jest-playwright-preset"
+      ],
+      "range": ">=25.1.0",
+      "nodes": [
+        "node_modules/jest-runner",
+        "packages/core/node_modules/@jest/test-sequencer/node_modules/jest-runner"
+      ],
+      "fixAvailable": {
+        "name": "@storybook/test-runner",
+        "version": "0.24.4",
+        "isSemVerMajor": true
+      }
+    },
+    "jest-runtime": {
+      "name": "jest-runtime",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@jest/globals",
+        "@jest/transform",
+        "jest-config",
+        "jest-snapshot"
+      ],
+      "effects": [
+        "@jest/test-sequencer",
+        "jest-circus",
+        "jest-runner"
+      ],
+      "range": ">=25.1.0",
+      "nodes": [
+        "node_modules/jest-runtime",
+        "packages/core/node_modules/@jest/test-sequencer/node_modules/jest-runtime"
+      ],
+      "fixAvailable": {
+        "name": "@storybook/test-runner",
+        "version": "0.24.4",
+        "isSemVerMajor": true
+      }
+    },
+    "jest-snapshot": {
+      "name": "jest-snapshot",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@jest/transform"
+      ],
+      "effects": [
+        "@jest/core",
+        "@jest/expect",
+        "jest-circus",
+        "jest-resolve-dependencies",
+        "jest-runtime"
+      ],
+      "range": ">=27.0.0-next.0",
+      "nodes": [
+        "node_modules/jest-snapshot"
+      ],
+      "fixAvailable": {
+        "name": "jest-cli",
+        "version": "30.4.2",
+        "isSemVerMajor": true
+      }
+    },
+    "jest-watch-typeahead": {
+      "name": "jest-watch-typeahead",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "jest"
+      ],
+      "effects": [
+        "@storybook/test-runner"
+      ],
+      "range": ">=0.6.0",
+      "nodes": [
+        "packages/angular/node_modules/jest-watch-typeahead",
+        "packages/core/node_modules/@storybook/test-runner/node_modules/jest-watch-typeahead"
+      ],
+      "fixAvailable": {
+        "name": "@storybook/test-runner",
+        "version": "0.24.4",
+        "isSemVerMajor": true
+      }
+    },
+    "js-yaml": {
+      "name": "js-yaml",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1112715,
+          "name": "js-yaml",
+          "dependency": "js-yaml",
+          "title": "js-yaml has prototype pollution in merge (<<)",
+          "url": "https://github.com/advisories/GHSA-mh29-5h37-fv8m",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-1321"
+          ],
+          "cvss": {
+            "score": 5.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": ">=4.0.0 <4.1.1"
+        },
+        {
+          "source": 1120792,
+          "name": "js-yaml",
+          "dependency": "js-yaml",
+          "title": "JS-YAML: Quadratic-complexity DoS in merge key handling via repeated aliases",
+          "url": "https://github.com/advisories/GHSA-h67p-54hq-rp68",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 5.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+          },
+          "range": "<=4.1.1"
+        }
+      ],
+      "effects": [
+        "@istanbuljs/load-nyc-config",
+        "@yarnpkg/parsers",
+        "lerna",
+        "nx"
+      ],
+      "range": "<=4.1.1",
+      "nodes": [
+        "node_modules/@istanbuljs/load-nyc-config/node_modules/js-yaml",
+        "node_modules/@nrwl/cli/node_modules/js-yaml",
+        "node_modules/@nrwl/tao/node_modules/js-yaml",
+        "node_modules/@yarnpkg/parsers/node_modules/js-yaml",
+        "node_modules/lerna/node_modules/js-yaml",
+        "packages/angular/node_modules/js-yaml",
+        "packages/core/node_modules/js-yaml"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.6.2",
+        "isSemVerMajor": true
+      }
+    },
+    "lerna": {
+      "name": "lerna",
+      "severity": "high",
+      "isDirect": true,
+      "via": [
+        "@lerna/create",
+        "@lerna/legacy-package-management",
+        "@npmcli/arborist",
+        "@npmcli/run-script",
+        "@octokit/rest",
+        "js-yaml",
+        "libnpmaccess",
+        "libnpmpublish",
+        "minimatch",
+        "npm-registry-fetch",
+        "nx",
+        "pacote",
+        "tar",
+        "tar",
+        "uuid"
+      ],
+      "effects": [],
+      "range": "3.11.0 - 3.14.2 || >=4.0.0",
+      "nodes": [
+        "node_modules/lerna",
+        "packages/angular/node_modules/lerna",
+        "packages/core/node_modules/lerna"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "libnpmaccess": {
+      "name": "libnpmaccess",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "npm-registry-fetch"
+      ],
+      "effects": [],
+      "range": "4.0.0 - 8.0.6",
+      "nodes": [
+        "packages/angular/node_modules/libnpmaccess",
+        "packages/core/node_modules/libnpmaccess"
+      ],
+      "fixAvailable": true
+    },
+    "libnpmpublish": {
+      "name": "libnpmpublish",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "npm-registry-fetch",
+        "sigstore"
+      ],
+      "effects": [
+        "@lerna/legacy-package-management",
+        "lerna"
+      ],
+      "range": "3.0.0 - 9.0.9",
+      "nodes": [
+        "node_modules/@lerna/legacy-package-management/node_modules/libnpmpublish",
+        "packages/angular/node_modules/libnpmpublish",
+        "packages/core/node_modules/libnpmpublish"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "make-fetch-happen": {
+      "name": "make-fetch-happen",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "cacache"
+      ],
+      "effects": [
+        "@sigstore/sign",
+        "node-gyp",
+        "npm-registry-fetch",
+        "sigstore",
+        "tuf-js"
+      ],
+      "range": "7.1.1 - 14.0.0",
+      "nodes": [
+        "node_modules/@lerna/create/node_modules/@sigstore/sign/node_modules/make-fetch-happen",
+        "node_modules/@lerna/create/node_modules/make-fetch-happen",
+        "node_modules/@lerna/create/node_modules/npm-registry-fetch/node_modules/make-fetch-happen",
+        "node_modules/@lerna/create/node_modules/sigstore/node_modules/make-fetch-happen",
+        "node_modules/@lerna/create/node_modules/tuf-js/node_modules/make-fetch-happen",
+        "node_modules/@lerna/legacy-package-management/node_modules/@sigstore/sign/node_modules/make-fetch-happen",
+        "node_modules/@lerna/legacy-package-management/node_modules/make-fetch-happen",
+        "node_modules/@lerna/legacy-package-management/node_modules/npm-registry-fetch/node_modules/make-fetch-happen",
+        "node_modules/@lerna/legacy-package-management/node_modules/sigstore/node_modules/make-fetch-happen",
+        "node_modules/@lerna/legacy-package-management/node_modules/tuf-js/node_modules/make-fetch-happen",
+        "packages/angular/node_modules/@sigstore/sign/node_modules/make-fetch-happen",
+        "packages/angular/node_modules/make-fetch-happen",
+        "packages/angular/node_modules/npm-registry-fetch/node_modules/make-fetch-happen",
+        "packages/angular/node_modules/sigstore/node_modules/make-fetch-happen",
+        "packages/angular/node_modules/tuf-js/node_modules/make-fetch-happen",
+        "packages/core/node_modules/@sigstore/sign/node_modules/make-fetch-happen",
+        "packages/core/node_modules/make-fetch-happen",
+        "packages/core/node_modules/npm-registry-fetch/node_modules/make-fetch-happen",
+        "packages/core/node_modules/sigstore/node_modules/make-fetch-happen",
+        "packages/core/node_modules/tuf-js/node_modules/make-fetch-happen"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "minimatch": {
+      "name": "minimatch",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1113459,
+          "name": "minimatch",
+          "dependency": "minimatch",
+          "title": "minimatch has a ReDoS via repeated wildcards with non-matching literal in pattern",
+          "url": "https://github.com/advisories/GHSA-3ppc-4f35-3m26",
+          "severity": "high",
+          "cwe": [
+            "CWE-1333"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<3.1.3"
+        },
+        {
+          "source": 1113538,
+          "name": "minimatch",
+          "dependency": "minimatch",
+          "title": "minimatch has ReDoS: matchOne() combinatorial backtracking via multiple non-adjacent GLOBSTAR segments",
+          "url": "https://github.com/advisories/GHSA-7r86-cg39-jmmj",
+          "severity": "high",
+          "cwe": [
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<3.1.3"
+        },
+        {
+          "source": 1113546,
+          "name": "minimatch",
+          "dependency": "minimatch",
+          "title": "minimatch ReDoS: nested *() extglobs generate catastrophically backtracking regular expressions",
+          "url": "https://github.com/advisories/GHSA-23c5-xmqv-rm74",
+          "severity": "high",
+          "cwe": [
+            "CWE-1333"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<3.1.4"
+        }
+      ],
+      "effects": [
+        "@lerna/legacy-package-management",
+        "lerna",
+        "nx"
+      ],
+      "range": "<=3.1.3",
+      "nodes": [
+        "node_modules/@lerna/legacy-package-management/node_modules/minimatch",
+        "node_modules/@nrwl/cli/node_modules/minimatch",
+        "node_modules/@nrwl/tao/node_modules/minimatch",
+        "packages/angular/node_modules/lerna/node_modules/minimatch",
+        "packages/angular/node_modules/nx/node_modules/minimatch",
+        "packages/core/node_modules/lerna/node_modules/minimatch",
+        "packages/core/node_modules/nx/node_modules/minimatch"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.6.2",
+        "isSemVerMajor": true
+      }
+    },
+    "ng-packagr": {
+      "name": "ng-packagr",
+      "severity": "high",
+      "isDirect": true,
+      "via": [
+        "cacache",
+        "esbuild",
+        "piscina"
+      ],
+      "effects": [],
+      "range": "12.0.0-next.0 - 19.2.0-next.2",
+      "nodes": [
+        "packages/angular/node_modules/ng-packagr",
+        "packages/core/node_modules/ng-packagr"
+      ],
+      "fixAvailable": {
+        "name": "ng-packagr",
+        "version": "21.2.5",
+        "isSemVerMajor": true
+      }
+    },
+    "node-gyp": {
+      "name": "node-gyp",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "make-fetch-happen",
+        "tar"
+      ],
+      "effects": [
+        "@npmcli/run-script"
+      ],
+      "range": "<=10.3.1",
+      "nodes": [
+        "node_modules/@lerna/create/node_modules/node-gyp",
+        "node_modules/@lerna/legacy-package-management/node_modules/node-gyp",
+        "packages/angular/node_modules/node-gyp",
+        "packages/core/node_modules/node-gyp"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "node-notifier": {
+      "name": "node-notifier",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1086436,
+          "name": "node-notifier",
+          "dependency": "node-notifier",
+          "title": "OS Command Injection in node-notifier",
+          "url": "https://github.com/advisories/GHSA-5fw9-fq32-wv5p",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-78"
+          ],
+          "cvss": {
+            "score": 5.6,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L"
+          },
+          "range": "<8.0.1"
+        }
+      ],
+      "effects": [
+        "@jest/reporters"
+      ],
+      "range": "<8.0.1",
+      "nodes": [
+        "node_modules/node-notifier"
+      ],
+      "fixAvailable": {
+        "name": "jest-cli",
+        "version": "30.4.2",
+        "isSemVerMajor": true
+      }
+    },
+    "npm-registry-fetch": {
+      "name": "npm-registry-fetch",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "make-fetch-happen"
+      ],
+      "effects": [
+        "@npmcli/arborist",
+        "libnpmaccess",
+        "libnpmpublish",
+        "pacote"
+      ],
+      "range": "7.0.0 - 18.0.0",
+      "nodes": [
+        "node_modules/@lerna/create/node_modules/npm-registry-fetch",
+        "node_modules/@lerna/legacy-package-management/node_modules/npm-registry-fetch",
+        "packages/angular/node_modules/libnpmaccess/node_modules/npm-registry-fetch",
+        "packages/angular/node_modules/npm-registry-fetch",
+        "packages/core/node_modules/libnpmaccess/node_modules/npm-registry-fetch",
+        "packages/core/node_modules/npm-registry-fetch"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "nx": {
+      "name": "nx",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "@nrwl/cli",
+        "@nrwl/tao",
+        "@yarnpkg/parsers",
+        "js-yaml",
+        "minimatch"
+      ],
+      "effects": [
+        "@nrwl/cli",
+        "@nrwl/tao",
+        "lerna"
+      ],
+      "range": "<=0.0.0-pr-34253-d811c6c || 13.10.0-beta.1 - 22.7.0-rc.2",
+      "nodes": [
+        "node_modules/@nrwl/cli/node_modules/nx",
+        "node_modules/@nrwl/tao/node_modules/nx",
+        "packages/angular/node_modules/nx",
+        "packages/core/node_modules/nx"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "nyc": {
+      "name": "nyc",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@istanbuljs/load-nyc-config",
+        "istanbul-lib-processinfo"
+      ],
+      "effects": [
+        "@storybook/test-runner"
+      ],
+      "range": ">=15.0.0-alpha.0",
+      "nodes": [
+        "node_modules/nyc"
+      ],
+      "fixAvailable": {
+        "name": "@storybook/test-runner",
+        "version": "0.24.4",
+        "isSemVerMajor": true
+      }
+    },
+    "pacote": {
+      "name": "pacote",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "@npmcli/run-script",
+        "cacache",
+        "npm-registry-fetch",
+        "sigstore",
+        "tar"
+      ],
+      "effects": [
+        "@lerna/create"
+      ],
+      "range": "5.0.0 - 19.0.1 || 20.0.0 || 21.0.0",
+      "nodes": [
+        "node_modules/@lerna/create/node_modules/pacote",
+        "node_modules/@lerna/legacy-package-management/node_modules/pacote",
+        "packages/angular/node_modules/pacote",
+        "packages/core/node_modules/pacote"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "piscina": {
+      "name": "piscina",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1121167,
+          "name": "piscina",
+          "dependency": "piscina",
+          "title": "piscina: Prototype Pollution Gadget → RCE via inherited options.filename",
+          "url": "https://github.com/advisories/GHSA-x9g3-xrwr-cwfg",
+          "severity": "high",
+          "cwe": [
+            "CWE-94",
+            "CWE-1321"
+          ],
+          "cvss": {
+            "score": 8.1,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+          },
+          "range": "<=4.9.2"
+        }
+      ],
+      "effects": [
+        "ng-packagr"
+      ],
+      "range": "<=4.9.2",
+      "nodes": [
+        "packages/angular/node_modules/piscina",
+        "packages/core/node_modules/piscina"
+      ],
+      "fixAvailable": {
+        "name": "ng-packagr",
+        "version": "21.2.5",
+        "isSemVerMajor": true
+      }
+    },
+    "semver": {
+      "name": "semver",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1112921,
+          "name": "semver",
+          "dependency": "semver",
+          "title": "semver vulnerable to Regular Expression Denial of Service",
+          "url": "https://github.com/advisories/GHSA-c2qf-rxjj-qqgw",
+          "severity": "high",
+          "cwe": [
+            "CWE-1333"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=7.0.0 <7.5.2"
+        }
+      ],
+      "effects": [
+        "@lerna/legacy-package-management"
+      ],
+      "range": "7.0.0 - 7.5.1",
+      "nodes": [
+        "node_modules/@lerna/legacy-package-management/node_modules/semver"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "sigstore": {
+      "name": "sigstore",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "@sigstore/sign",
+        "@sigstore/tuf",
+        "make-fetch-happen"
+      ],
+      "effects": [
+        "libnpmpublish",
+        "pacote"
+      ],
+      "range": "0.0.1-alpha.1 - 2.3.1",
+      "nodes": [
+        "node_modules/@lerna/create/node_modules/sigstore",
+        "node_modules/@lerna/legacy-package-management/node_modules/sigstore",
+        "packages/angular/node_modules/sigstore",
+        "packages/core/node_modules/sigstore"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "sockjs": {
+      "name": "sockjs",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "uuid"
+      ],
+      "effects": [
+        "webpack-dev-server"
+      ],
+      "range": ">=0.3.17",
+      "nodes": [
+        "node_modules/sockjs"
+      ],
+      "fixAvailable": {
+        "name": "@angular-devkit/build-angular",
+        "version": "19.2.8",
+        "isSemVerMajor": true
+      }
+    },
+    "tar": {
+      "name": "tar",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1097493,
+          "name": "tar",
+          "dependency": "tar",
+          "title": "Denial of service while parsing a tar file due to lack of folders count validation",
+          "url": "https://github.com/advisories/GHSA-f5x3-32g6-xq36",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-400"
+          ],
+          "cvss": {
+            "score": 6.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H"
+          },
+          "range": "<6.2.1"
+        },
+        {
+          "source": 1112659,
+          "name": "tar",
+          "dependency": "tar",
+          "title": "node-tar Vulnerable to Arbitrary File Creation/Overwrite via Hardlink Path Traversal",
+          "url": "https://github.com/advisories/GHSA-34x7-hfp2-rc4v",
+          "severity": "high",
+          "cwe": [
+            "CWE-22",
+            "CWE-59"
+          ],
+          "cvss": {
+            "score": 8.2,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:N"
+          },
+          "range": "<7.5.7"
+        },
+        {
+          "source": 1113300,
+          "name": "tar",
+          "dependency": "tar",
+          "title": "node-tar is Vulnerable to Arbitrary File Overwrite and Symlink Poisoning via Insufficient Path Sanitization",
+          "url": "https://github.com/advisories/GHSA-8qq5-rm4j-mr97",
+          "severity": "high",
+          "cwe": [
+            "CWE-22"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<=7.5.2"
+        },
+        {
+          "source": 1113375,
+          "name": "tar",
+          "dependency": "tar",
+          "title": "Arbitrary File Read/Write via Hardlink Target Escape Through Symlink Chain in node-tar Extraction",
+          "url": "https://github.com/advisories/GHSA-83g3-92jg-28cx",
+          "severity": "high",
+          "cwe": [
+            "CWE-22"
+          ],
+          "cvss": {
+            "score": 7.1,
+            "vectorString": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N"
+          },
+          "range": "<7.5.8"
+        },
+        {
+          "source": 1114200,
+          "name": "tar",
+          "dependency": "tar",
+          "title": "tar has Hardlink Path Traversal via Drive-Relative Linkpath",
+          "url": "https://github.com/advisories/GHSA-qffp-2rhf-9h96",
+          "severity": "high",
+          "cwe": [
+            "CWE-22",
+            "CWE-59"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<=7.5.9"
+        },
+        {
+          "source": 1114302,
+          "name": "tar",
+          "dependency": "tar",
+          "title": "node-tar Symlink Path Traversal via Drive-Relative Linkpath",
+          "url": "https://github.com/advisories/GHSA-9ppj-qmqm-q256",
+          "severity": "high",
+          "cwe": [
+            "CWE-22"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<=7.5.10"
+        },
+        {
+          "source": 1114680,
+          "name": "tar",
+          "dependency": "tar",
+          "title": "Race Condition in node-tar Path Reservations via Unicode Ligature Collisions on macOS APFS",
+          "url": "https://github.com/advisories/GHSA-r6q2-hw4h-h46w",
+          "severity": "high",
+          "cwe": [
+            "CWE-176",
+            "CWE-367"
+          ],
+          "cvss": {
+            "score": 8.8,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:H/A:L"
+          },
+          "range": "<=7.5.3"
+        },
+        {
+          "source": 1120782,
+          "name": "tar",
+          "dependency": "tar",
+          "title": "node-tar applies PAX size override to intermediary GNU long-name/long-link headers, causing tar parser interpretation differential (file smuggling)",
+          "url": "https://github.com/advisories/GHSA-vmf3-w455-68vh",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-436"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<=7.5.15"
+        }
+      ],
+      "effects": [
+        "cacache",
+        "lerna",
+        "node-gyp",
+        "pacote"
+      ],
+      "range": "<=7.5.15",
+      "nodes": [
+        "node_modules/@lerna/create/node_modules/tar",
+        "node_modules/@lerna/legacy-package-management/node_modules/tar",
+        "node_modules/tar",
+        "packages/angular/node_modules/lerna/node_modules/tar",
+        "packages/angular/node_modules/tar",
+        "packages/core/node_modules/lerna/node_modules/tar",
+        "packages/core/node_modules/tar"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "tmp": {
+      "name": "tmp",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1109537,
+          "name": "tmp",
+          "dependency": "tmp",
+          "title": "tmp allows arbitrary temporary file / directory write via symbolic link `dir` parameter",
+          "url": "https://github.com/advisories/GHSA-52f5-9888-hmc6",
+          "severity": "low",
+          "cwe": [
+            "CWE-59"
+          ],
+          "cvss": {
+            "score": 2.5,
+            "vectorString": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": "<=0.2.3"
+        },
+        {
+          "source": 1120654,
+          "name": "tmp",
+          "dependency": "tmp",
+          "title": "tmp has Path Traversal via unsanitized prefix/postfix that enables directory escape",
+          "url": "https://github.com/advisories/GHSA-ph9p-34f9-6g65",
+          "severity": "high",
+          "cwe": [
+            "CWE-22"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<0.2.6"
+        }
+      ],
+      "effects": [
+        "external-editor"
+      ],
+      "range": "<=0.2.5",
+      "nodes": [
+        "node_modules/external-editor/node_modules/tmp"
+      ],
+      "fixAvailable": true
+    },
+    "tuf-js": {
+      "name": "tuf-js",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "make-fetch-happen"
+      ],
+      "effects": [
+        "@sigstore/tuf"
+      ],
+      "range": "<=2.2.1",
+      "nodes": [
+        "node_modules/@lerna/create/node_modules/tuf-js",
+        "node_modules/@lerna/legacy-package-management/node_modules/tuf-js",
+        "packages/angular/node_modules/tuf-js",
+        "packages/core/node_modules/tuf-js"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "undici": {
+      "name": "undici",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1121187,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to TLS certificate validation bypass via dropped requestTls in SOCKS5 ProxyAgent",
+          "url": "https://github.com/advisories/GHSA-vmh5-mc38-953g",
+          "severity": "high",
+          "cwe": [
+            "CWE-295"
+          ],
+          "cvss": {
+            "score": 7.4,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"
+          },
+          "range": ">=7.23.0 <7.28.0"
+        },
+        {
+          "source": 1121241,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to HTTP header injection via Set-Cookie percent-decoding",
+          "url": "https://github.com/advisories/GHSA-p88m-4jfj-68fv",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-93"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
+          },
+          "range": ">=7.0.0 <7.28.0"
+        },
+        {
+          "source": 1121244,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici WebSocket client vulnerable to denial of service via fragment count bypass",
+          "url": "https://github.com/advisories/GHSA-vxpw-j846-p89q",
+          "severity": "high",
+          "cwe": [
+            "CWE-400",
+            "CWE-770"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=7.0.0 <7.28.0"
+        },
+        {
+          "source": 1121247,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to cross-origin request routing via SOCKS5 proxy pool reuse",
+          "url": "https://github.com/advisories/GHSA-hm92-r4w5-c3mj",
+          "severity": "high",
+          "cwe": [
+            "CWE-346"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H"
+          },
+          "range": ">=7.23.0 <7.28.0"
+        },
+        {
+          "source": 1121249,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to HTTP response queue poisoning via keep-alive socket reuse",
+          "url": "https://github.com/advisories/GHSA-35p6-xmwp-9g52",
+          "severity": "low",
+          "cwe": [
+            "CWE-367"
+          ],
+          "cvss": {
+            "score": 3.7,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": ">=7.0.0 <7.28.0"
+        },
+        {
+          "source": 1121254,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to Set-Cookie SameSite attribute downgrade via permissive substring matching",
+          "url": "https://github.com/advisories/GHSA-g8m3-5g58-fq7m",
+          "severity": "low",
+          "cwe": [
+            "CWE-183"
+          ],
+          "cvss": {
+            "score": 3.7,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": ">=7.0.0 <7.28.0"
+        },
+        {
+          "source": 1121428,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to cross-user information disclosure via shared cache whitespace bypass",
+          "url": "https://github.com/advisories/GHSA-pr7r-676h-xcf6",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-524"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"
+          },
+          "range": ">=7.0.0 <7.28.0"
+        }
+      ],
+      "effects": [
+        "@angular/build"
+      ],
+      "range": "7.0.0 - 7.27.2",
+      "nodes": [
+        "node_modules/undici"
+      ],
+      "fixAvailable": {
+        "name": "@angular-devkit/build-angular",
+        "version": "19.2.8",
+        "isSemVerMajor": true
+      }
+    },
+    "uuid": {
+      "name": "uuid",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1119441,
+          "name": "uuid",
+          "dependency": "uuid",
+          "title": "uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided",
+          "url": "https://github.com/advisories/GHSA-w5hq-g745-h8pq",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-787",
+            "CWE-1285"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+          },
+          "range": "<11.1.1"
+        }
+      ],
+      "effects": [
+        "istanbul-lib-processinfo",
+        "jest-playwright-preset",
+        "lerna",
+        "sockjs"
+      ],
+      "range": "<11.1.1",
+      "nodes": [
+        "node_modules/uuid"
+      ],
+      "fixAvailable": {
+        "name": "lerna",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "webpack-dev-server": {
+      "name": "webpack-dev-server",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "sockjs"
+      ],
+      "effects": [
+        "@angular-devkit/build-angular",
+        "@angular-devkit/build-webpack"
+      ],
+      "range": ">=2.0.0-beta",
+      "nodes": [
+        "node_modules/webpack-dev-server"
+      ],
+      "fixAvailable": {
+        "name": "@angular-devkit/build-angular",
+        "version": "19.2.8",
+        "isSemVerMajor": true
+      }
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 5,
+      "moderate": 39,
+      "high": 28,
+      "critical": 0,
+      "total": 72
+    },
+    "dependencies": {
+      "prod": 2072,
+      "dev": 1808,
+      "optional": 309,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 3930
+    }
+  }
+}

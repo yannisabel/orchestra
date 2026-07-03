@@ -1,0 +1,15 @@
+:host {
+  --icon-color: currentcolor;
+  --icon-size: 100%;
+  display: flex;
+}
+
+:host svg {
+  fill: var(--icon-color);
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+:host svg * {
+  fill: inherit;
+}

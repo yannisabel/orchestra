@@ -1,0 +1,49 @@
+name: Deploy Storybook
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: '.nvmrc'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build packages
+        run: npm run build
+      - name: Build Storybook
+        run: npm run build:storybook
+      - name: Sanitize branch name
+        id: sanitize
+        run: |
+          SAFE_BRANCH="${{ github.ref_name }}"
+          SAFE_BRANCH="${SAFE_BRANCH//\//-}"
+          echo "branch=$SAFE_BRANCH" >> $GITHUB_OUTPUT
+      - name: Deploy Storybook to GitHub Pages (main)
+        if: github.ref_name == 'main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./packages/storybook/storybook-static
+          keep_files: true
+      - name: Deploy Storybook to GitHub Pages (branch)
+        if: github.ref_name != 'main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./packages/storybook/storybook-static
+          destination_dir: branches/${{ steps.sanitize.outputs.branch }}
+          keep_files: true
+      - name: Log Storybook URL (branch)
+        if: github.ref_name != 'main'
+        run: |
+          echo "✅ Storybook deployed!"
+          echo "🔗 https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branches/${{ steps.sanitize.outputs.branch }}/"

@@ -1,0 +1,311 @@
+[![Built With Stencil](https://img.shields.io/badge/-Built%20With%20Stencil-16161d.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI%2BCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI%2BCgkuc3Qwe2ZpbGw6I0ZGRkZGRjt9Cjwvc3R5bGU%2BCjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00MjQuNywzNzMuOWMwLDM3LjYtNTUuMSw2OC42LTkyLjcsNjguNkgxODAuNGMtMzcuOSwwLTkyLjctMzAuNy05Mi43LTY4LjZ2LTMuNmgzMzYuOVYzNzMuOXoiLz4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTQyNC43LDI5Mi4xSDE4MC40Yy0zNy42LDAtOTIuNy0zMS05Mi43LTY4LjZ2LTMuNkgzMzJjMzcuNiwwLDkyLjcsMzEsOTIuNyw2OC42VjI5Mi4xeiIvPgo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDI0LjcsMTQxLjdIODcuN3YtMy42YzAtMzcuNiw1NC44LTY4LjYsOTIuNy02OC42SDMzMmMzNy45LDAsOTIuNywzMC43LDkyLjcsNjguNlYxNDEuN3oiLz4KPC9zdmc%2BCg%3D%3D&colorA=16161d&style=flat-square)](https://stenciljs.com)
+
+# @orchestra-kit/core
+
+Stencil-based web components for the Orchestra design system. Provides a comprehensive component library built with web standards, theme-aware styling, and extensive accessibility support.
+
+## Installation
+
+```bash
+npm install @orchestra-kit/core
+```
+
+## Features
+
+- ✅ **Web Components** - Framework-agnostic, standards-based components
+- ✅ **Shadow DOM Encapsulation** - Scoped styles and DOM isolation
+- ✅ **Theme Support** - Light and dark themes via CSS variables
+- ✅ **Design Tokens** - Integrated with @orchestra-kit/design-tokens
+- ✅ **Icon System** - Extensible icon library with custom library support
+- ✅ **Accessibility** - ARIA attributes, keyboard navigation, screen reader support
+- ✅ **TypeScript** - Full type definitions included
+- ✅ **Lazy Loading** - Automatic code splitting and lazy loading
+- ✅ **SSR Ready** - Pre-rendering support for static sites
+
+## Quick Start
+
+### HTML
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="module" src="https://unpkg.com/@orchestra-kit/core"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@orchestra-kit/core/dist/orchestra-kit/themes/light.css">
+</head>
+<body>
+  <orchestra-button text="Click me"></orchestra-button>
+</body>
+</html>
+```
+
+### React
+
+```tsx
+import React from 'react'
+import { defineCustomElements } from '@orchestra-kit/core/loader'
+import '@orchestra-kit/core/dist/orchestra-kit/themes/light.css'
+
+defineCustomElements()
+
+export default function App() {
+  return <orchestra-button text="Click me"></orchestra-button>
+}
+```
+
+### Vue
+
+```vue
+<script setup>
+import { defineCustomElements } from '@orchestra-kit/core/loader'
+import '@orchestra-kit/core/dist/orchestra-kit/themes/light.css'
+
+defineCustomElements()
+</script>
+
+<template>
+  <orchestra-button text="Click me"></orchestra-button>
+</template>
+```
+
+### Angular
+
+```typescript
+// app.module.ts
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
+import { defineCustomElements } from '@orchestra-kit/core/loader'
+
+defineCustomElements()
+
+@NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+})
+export class AppModule {}
+```
+
+```html
+<!-- app.component.html -->
+<orchestra-button text="Click me"></orchestra-button>
+```
+
+## Components
+
+### Available Components
+
+- **orchestra-button** - Button component with variants
+- **orchestra-icon** - Icon component with library registry system
+
+See [Storybook](../storybook/README.md) for interactive documentation and examples.
+
+### Component Structure
+
+Each component is located in `src/components/{name}/`:
+
+```
+src/components/button/
+├── button.tsx           # Component implementation
+├── button.css          # Shadow DOM styles
+├── button.spec.ts      # Unit tests
+├── readme.md           # Auto-generated docs
+└── test/               # E2E tests (optional)
+```
+
+## Icon Component
+
+The icon component supports multiple icon libraries using a registry system.
+
+### Using Built-in Icons
+
+```html
+<orchestra-icon name="checked" size="24px" fill="currentcolor"></orchestra-icon>
+```
+
+Available from `@orchestra-kit/icons-library`:
+
+```typescript
+import { iconNames } from '@orchestra-kit/icons-library'
+
+type IconName = typeof iconNames[number]
+```
+
+### Registering Custom Icon Libraries
+
+```typescript
+import { registerIconLibrary } from '@orchestra-kit/core'
+
+const myIcons = {
+  'star': `<svg viewBox="0 0 24 24">...</svg>`,
+  'heart': `<svg viewBox="0 0 24 24">...</svg>`,
+}
+
+registerIconLibrary('my-icons', {
+  resolver: (name) => myIcons[name] ?? ''
+})
+```
+
+Then use:
+```html
+<orchestra-icon name="star" library="my-icons"></orchestra-icon>
+```
+
+See [@orchestra-kit/icons-library README](../icons-library/README.md) for details on custom libraries and Storybook integration.
+
+## Theming
+
+Components use CSS variables for theming. Import theme stylesheets:
+
+```html
+<!-- Light theme (default) -->
+<link rel="stylesheet" href="https://unpkg.com/@orchestra-kit/core/dist/orchestra-kit/themes/light.css">
+
+<!-- Dark theme -->
+<link rel="stylesheet" href="https://unpkg.com/@orchestra-kit/core/dist/orchestra-kit/themes/dark.css">
+```
+
+Or use in JavaScript:
+
+```javascript
+import '@orchestra-kit/core/dist/orchestra-kit/themes/light.css'
+```
+
+### Custom Themes
+
+Override CSS variables in your styles:
+
+```css
+:root {
+  --primary-color: #007bff;
+  --primary-color-hover: #0056b3;
+  --text-color: #333;
+  --background-color: #fff;
+}
+```
+
+See [Design Tokens README](../design-tokens/README.md) for complete token reference.
+
+## Development
+
+### Setup
+
+```bash
+cd packages/core
+npm install
+```
+
+### Build
+
+```bash
+npm run build:js        # Compile TypeScript → JavaScript
+npm run build:css       # Generate CSS from tokens
+npm run build          # Full build (JS + CSS + types)
+```
+
+### Watch Mode
+
+```bash
+npm run dev:js         # Watch and rebuild on changes
+```
+
+### Testing
+
+```bash
+npm run test           # Run tests with Vitest
+npm run test:watch    # Watch mode
+npm run test:coverage # Coverage report
+```
+
+### Storybook
+
+See [../storybook/README.md](../storybook/README.md) for component development and testing with Storybook.
+
+## Building Components
+
+### Creating a New Component
+
+1. **Create component file** - `src/components/{name}/{name}.tsx`
+2. **Define Stencil component**:
+
+```typescript
+import { Component, Prop, h } from '@stencil/core'
+
+@Component({
+  tag: 'orchestra-mycomponent',
+  shadow: true,
+  styleUrl: 'mycomponent.css',
+})
+export class MyComponent {
+  @Prop() label!: string
+
+  render() {
+    return <button>{this.label}</button>
+  }
+}
+```
+
+3. **Add styles** - `src/components/{name}/{name}.css` (scoped to shadow DOM)
+4. **Export from index** - `src/index.ts`
+5. **Add story** - `../storybook/src/stories/components/{name}/{name}.stories.ts`
+6. **Test in Storybook** - `npm run dev`
+
+### Component Conventions
+
+See [.github/instructions/component-conventions.instructions.md](.github/instructions/component-conventions.instructions.md) for:
+- Naming conventions
+- Property/method patterns
+- Event handling
+- Accessibility requirements
+- Documentation standards
+
+## Output Targets
+
+Components are compiled to multiple formats:
+
+- **ESM** - `dist/orchestra-kit/index.esm.js` (modern browsers)
+- **CommonJS** - `dist/index.cjs.js` (Node.js)
+- **UMD** - `dist/orchestra-kit.js` (browser globals)
+- **Hydrate** - `hydrate/index.js` (server-side rendering)
+- **Loader** - `loader/index.js` (lazy loading)
+
+See `stencil.config.ts` for output target configuration.
+
+## Distribution
+
+Packages are published to npm:
+
+```bash
+npm install @orchestra-kit/core
+```
+
+CDN:
+```html
+<script src="https://unpkg.com/@orchestra-kit/core"></script>
+```
+
+## File Structure
+
+```
+packages/core/
+├── src/
+│   ├── components/       # Component implementations
+│   │   ├── button/
+│   │   ├── icon/
+│   │   └── ...
+│   ├── utils/            # Utility functions
+│   │   ├── a11y.ts      # Accessibility utilities
+│   │   └── ...
+│   ├── types/            # TypeScript type definitions
+│   ├── themes/           # CSS theme files (generated)
+│   ├── helpers.ts        # Helper functions
+│   └── index.ts          # Package entry point
+├── dist/                 # Build output (generated)
+├── stencil.config.ts     # Stencil configuration
+├── tsconfig.json
+├── package.json
+└── README.md
+```
+
+## Learn More
+
+- [Stencil Documentation](https://stenciljs.com)
+- [Web Components MDN](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
+- [Orchestra Design System](https://example.com) (replace with actual URL)

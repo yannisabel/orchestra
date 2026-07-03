@@ -1,25 +1,22 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
-  "editor.formatOnSave": false,
-  "eslint.options": {
-    "extensions": [
-      ".js",
-      ".jsx",
-      ".ts",
-      ".tsx",
-      ".md",
-      ".mdx"
-    ]
-  },
+  "eslint.experimental.useFlatConfig": true,
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
   "eslint.validate": [
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact",
-    "markdown",
-    "mdx"
-  ]
+    "typescriptreact"
+  ],
+  "prettier.requireConfig": true,
+  "prettier.configPath": ".prettierrc.json"
 }
