@@ -104,7 +104,9 @@ function runRealReleases(releaseVersion) {
     releaseVersion,
   ])
 
-  runCommand('npm', ['install', '--package-lock-only'])
+  // Delay lockfile regeneration until package versions are bumped by release-it.
+  // Running npm install here can resolve freshly bumped internal ranges against
+  // the registry before local workspace versions match, causing ETARGET.
   for (const pkg of packages) {
     runCommand('npm', [
       'run',
