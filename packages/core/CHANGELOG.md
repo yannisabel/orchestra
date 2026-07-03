@@ -1,5 +1,7 @@
 # Changelog
 
+## [0.0.4](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.3...@orchestra-design-system/core@0.0.4) (2026-07-03)
+
 ## [0.0.3](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.2...@orchestra-design-system/core@0.0.3) (2026-07-03)
 
 ### Bug Fixes
