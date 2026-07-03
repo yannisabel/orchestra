@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.0.3](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/react@0.0.2...@orchestra-design-system/react@0.0.3) (2026-07-03)
+
+### Bug Fixes
+
+- **release:** avoid early lockfile install before version bump ([037dd73](https://github.com/yannisabel/orchestra/commit/037dd73bdec688c330f6a10f6ef2ba85a5916bdd))
+- **release:** commit synced manifests before package releases ([38619b2](https://github.com/yannisabel/orchestra/commit/38619b2c19236d0158a762b9e5d0e30c536a17de))
+- **release:** disable package-lock updates during package publish ([f1efa5f](https://github.com/yannisabel/orchestra/commit/f1efa5fed11f489875aed5a2d9584ab409693e25))
+- **release:** pass target version as positional release-it arg ([7094f82](https://github.com/yannisabel/orchestra/commit/7094f823e2b7f5434d9eb4cc2df15cae44620ab4))
+- **release:** tolerate transient ETARGET when syncing lockfile ([e40b05f](https://github.com/yannisabel/orchestra/commit/e40b05f32f9154a325c18a39b7065c957aa06988))
+- resolve how changelog is displayed ([2942b93](https://github.com/yannisabel/orchestra/commit/2942b93c6cd6b1d209de071b082979b4224bec25))
+
 ## [0.0.2](https://github.com/yannisabel/orchestra/compare/v0.0.1...@orchestra-design-system/react@0.0.2) (2026-07-03)
 
 ### Bug Fixes
