@@ -6,7 +6,7 @@ on:
       dry-run:
         description: 'Dry run release'
         required: false
-        default: false
+        default: true
         type: boolean
 
 jobs:
@@ -34,6 +34,29 @@ jobs:
           fi
           echo "::add-mask::${NPM_TOKEN}"
           echo "NPM_TOKEN is configured."
+      - name: Validate GitHub release permissions
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -z "${GH_TOKEN}" ]; then
+            echo "GITHUB_TOKEN is missing."
+            exit 1
+          fi
+
+          response=$(curl -sS -w "\n%{http_code}" \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}")
+          body=$(echo "${response}" | sed '$d')
+          status_code=$(echo "${response}" | tail -n 1)
+
+          if [ "${status_code}" != "200" ]; then
+            echo "Unable to access repository API with GITHUB_TOKEN (HTTP ${status_code})."
+            echo "Ensure workflow permissions include contents: write and token is available."
+            exit 1
+          fi
+
+          echo "${body}" | node -e 'let data="";process.stdin.on("data",c=>data+=c);process.stdin.on("end",()=>{const json=JSON.parse(data);const canPush=Boolean(json.permissions&&json.permissions.push);if(!canPush){console.error("GITHUB_TOKEN does not have push permission. Set workflow permissions: contents: write.");process.exit(1);}console.log("GitHub token is valid and has push permission.");});'
       - name: Install dependencies
         run: npm ci
       - name: Build packages
@@ -57,12 +80,33 @@ jobs:
       - name: Release
         if: inputs.dry-run == false
         run: |
-          npm run release:core
-          npm run release:react
-          npm run release:angular
-          npm run release:vue
-          npm run release:design-tokens
-          npm run release:icons-library
+          npm run release:core:dry
+          npm run release:react:dry
+          npm run release:angular:dry
+          npm run release:vue:dry
+          npm run release:design-tokens:dry
+          npm run release:icons-library:dry
+
+          npm run release:core -- --no-github
+          npm run release:react -- --no-github
+          npm run release:angular -- --no-github
+          npm run release:vue -- --no-github
+          npm run release:design-tokens -- --no-github
+          npm run release:icons-library -- --no-github
+
+          for tag in \
+            "$(git tag --list '@orchestra-kit/core@*' --sort=-v:refname | head -n 1)" \
+            "$(git tag --list '@orchestra-kit/react@*' --sort=-v:refname | head -n 1)" \
+            "$(git tag --list '@orchestra-kit/angular@*' --sort=-v:refname | head -n 1)" \
+            "$(git tag --list '@orchestra-kit/vue@*' --sort=-v:refname | head -n 1)" \
+            "$(git tag --list '@orchestra-kit/design-tokens@*' --sort=-v:refname | head -n 1)" \
+            "$(git tag --list '@orchestra-kit/icons-library@*' --sort=-v:refname | head -n 1)"; do
+            if [ -z "${tag}" ]; then
+              echo "Failed to resolve package tag for GitHub release creation."
+              exit 1
+            fi
+            gh release view "${tag}" >/dev/null 2>&1 || gh release create "${tag}" --generate-notes
+          done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

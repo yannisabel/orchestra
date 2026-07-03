@@ -15,5 +15,11 @@
   "github": {
     "release": true,
     "releaseName": "@orchestra-kit/angular v${version}"
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": "conventionalcommits",
+      "infile": "CHANGELOG.md"
+    }
   }
 }
