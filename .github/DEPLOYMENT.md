@@ -1,309 +1,143 @@
 # GitHub Deployment Strategy
 
-Orchestra uses a dual-workflow CI/CD strategy to manage releases and documentation separately.
+This repository uses separate workflows for package releases and Storybook deployments.
 
 ## Overview
 
-- **NPM Releases** - Automated package publishing to npm (main branch only)
-- **Storybook Deployment** - Automated documentation to GitHub Pages (all branches except main)
+- **Package Release Workflow**: manual, main branch only, publishes npm packages under `@orchestra-design-system/*`
+- **Storybook Branch Previews**: automatic on push, deploys non-main branches to branch paths in GitHub Pages
+- **Storybook Main Deployment**: runs only after a successful non-dry package release
 
-This strategy allows:
-
-- Release-ready packages published only from main branch
-- Pre-production documentation on feature branches
-- Per-branch Storybook URLs for design reviews and testing
-
-## Release Workflow (NPM Packages)
+## Release Workflow
 
 **File**: `.github/workflows/release.yml`
 
 ### Trigger
 
-```yaml
-on:
-  push:
-    branches:
-      - main
-      - master
-```
+Release is manually triggered with `workflow_dispatch` and supports a `dry-run` input.
 
-Only runs when pushing to `main` or `master` branches.
+- Default: `dry-run: true`
+- Branch guard: job runs only on `main`
 
-### Steps
+### Release Flow
 
-1. **Checkout** - Clone repository
-2. **Setup Node.js** - Install Node.js runtime
-3. **Install dependencies** - `npm ci`
-4. **Build packages** - `npm run build`
-5. **Run release-it** - Bump versions, create git tags, publish to npm
-6. **Create GitHub Release** - Auto-generated release notes
+1. Validate `NPM_TOKEN`
+2. Validate npm scope access for `@orchestra-design-system`
+3. Validate `GITHUB_TOKEN` repo API access
+4. Install dependencies and build all packages
+5. Configure git identity
+6. Execute release mode:
 
-### Output
+#### Dry-run mode (`dry-run: true`)
 
-- **npm packages** - Published to @orchestra-design-system/* namespace
-  - `@orchestra-design-system/core`
-  - `@orchestra-design-system/design-tokens`
-  - `@orchestra-design-system/icons-library`
-  - etc.
-- **Git tags** - Semantic versioning tags (v1.0.0, v1.1.0, etc.)
-- **GitHub Release** - Release notes on GitHub Releases page
+- Runs package dry-runs only:
+  - `release:core:dry`
+  - `release:react:dry`
+  - `release:angular:dry`
+  - `release:vue:dry`
+  - `release:design-tokens:dry`
+  - `release:icons-library:dry`
 
-### Manual Release
+#### Real release mode (`dry-run: false`)
 
-```bash
-# On main branch
-git push origin main
-# Workflow runs automatically
-```
+- First runs all package dry-runs as a preflight
+- Then publishes all packages with `--no-github` (npm publish first)
+- Only after publish succeeds for all packages, creates GitHub Releases from generated package tags
 
-## Storybook Deployment Workflow
+This guarantees GitHub releases are created only after successful package publishing.
+
+### Published Packages
+
+Release workflow publishes these packages:
+
+- `@orchestra-design-system/core`
+- `@orchestra-design-system/react`
+- `@orchestra-design-system/angular`
+- `@orchestra-design-system/vue`
+- `@orchestra-design-system/design-tokens`
+- `@orchestra-design-system/icons-library`
+
+`@orchestra-design-system/storybook` is not published to npm.
+
+### Changelog Behavior
+
+Each publishable package maintains its own `CHANGELOG.md` and is updated by release-it conventional changelog plugin during release.
+
+## Storybook Deployment
+
+### Branch Preview Workflow
 
 **File**: `.github/workflows/storybook-deploy.yml`
 
-### Trigger
+- Trigger: push to all branches
+- For non-main branches: builds and deploys to `gh-pages` under:
 
-```yaml
-on:
-  push:
-    branches:
-      - '**' # All branches
-      - '!main' # Except main
-```
+`/branches/{sanitized-branch-name}/`
 
-Runs on all branch pushes except `main`.
+- For `main`: this workflow intentionally skips main deployment
 
-### Steps
+### Main Storybook Deployment (Post-Release)
 
-1. **Checkout** - Clone repository
-2. **Setup Node.js** - Install Node.js runtime
-3. **Install dependencies** - `npm ci`
-4. **Build all packages** - `npm run build`
-5. **Build Storybook** - `npm run build:storybook`
-6. **Deploy to GitHub Pages** - Upload to gh-pages branch with branch-specific path
+**File**: `.github/workflows/release.yml` (`deploy-storybook-main` job)
 
-### Output
+- Runs only when:
+  - release job succeeds
+  - branch is `main`
+  - `dry-run` is `false`
 
-- **GitHub Pages URL** - `https://{username}.github.io/{repo}/{branch}/`
-- **Storybook static site** - HTML, CSS, JS, assets
-- **gh-pages branch** - Contains all deployed Storybook versions
+- Steps:
+  - install dependencies
+  - build packages
+  - build Storybook
+  - deploy to GitHub Pages root
 
-### Access Deployed Storybooks
+This ensures main Storybook is updated only after a successful real package release.
 
-After pushing to any branch except main:
+## Required Secrets and Permissions
 
-```bash
-git push origin feature-branch
-# Wait ~2-3 minutes for workflow to complete
+### Secrets
 
-# View at:
-# https://yannisabel.github.io/orchestra/feature-branch/
-```
+- `NPM_TOKEN`: npm automation token with publish rights to `@orchestra-design-system`
+- `GITHUB_TOKEN`: provided by GitHub Actions
 
-**Example URLs:**
+### Job Permissions
 
-- `https://yannisabel.github.io/orchestra/stencil-migration/` - stencil-migration branch
-- `https://yannisabel.github.io/orchestra/feature/new-component/` - feature/new-component branch
-- `https://yannisabel.github.io/orchestra/docs-update/` - docs-update branch
+- `contents: write` is required for tags/releases and `gh-pages` deployment
 
-## Workflow Configuration
+## Operational Notes
 
-### release.yml
+- Release is not automatic on push; it is manually dispatched.
+- Use dry-run by default to validate release readiness before publishing.
+- If npm scope access fails (`E404 Scope not found`), verify the npm org and token permissions.
 
-```yaml
-name: Release
-on:
-  push:
-    branches: [main, master]
+## Local Validation
 
-jobs:
-  release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-      - run: npm ci
-      - run: npm run build
-      - run: npx release-it --ci
-```
-
-### storybook-deploy.yml
-
-```yaml
-name: Deploy Storybook
-on:
-  push:
-    branches:
-      - '**'
-      - '!main'
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-      - run: npm ci
-      - run: npm run build
-      - run: npm run build:storybook
-      - uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: packages/storybook/storybook-static
-          destination_dir: ${{ github.ref_name }}
-```
-
-## GitHub Pages Configuration
-
-**Settings** → **Pages**
-
-- **Source**: Deploy from branch
-- **Branch**: `gh-pages` / `/(root)`
-- **Custom domain** (optional)
-
-### Branch-Specific Paths
-
-Storybook deploys each branch to a subdirectory:
-
-```
-gh-pages branch structure:
-├── stencil-migration/     # Branch: stencil-migration
-│   ├── index.html
-│   ├── assets/
-│   └── ...
-├── feature-new-component/ # Branch: feature/new-component
-│   ├── index.html
-│   ├── assets/
-│   └── ...
-└── docs-update/          # Branch: docs-update
-    ├── index.html
-    ├── assets/
-    └── ...
-```
-
-Each branch gets its own isolated Storybook instance at `/{branch}/`.
-
-## Local Testing Before Deployment
-
-### Simulate Release Workflow
+### Validate package build
 
 ```bash
-# Build all packages
 npm run build
-
-# Verify build output
-ls packages/*/dist
-
-# Check what would be published
-npm run version --dry-run  # Or use release-it --dry-run
 ```
 
-### Simulate Storybook Deployment
+### Validate Storybook build
 
 ```bash
-# Build Storybook
 npm run build:storybook
-
-# Test build output
-ls packages/storybook/storybook-static/
-cd packages/storybook/storybook-static
-python3 -m http.server 8000
-# Visit http://localhost:8000
 ```
 
-## Troubleshooting
+### Validate release commands without publishing
 
-### Storybook Not Deploying
-
-1. **Check workflow status** - Go to GitHub Actions tab
-2. **View logs** - Click failed job → see error output
-3. **Common issues**:
-   - Node cache miss → Clear cache in Actions settings
-   - Build errors → Run `npm run build` locally to reproduce
-   - Branch filter → Ensure branch is not `main`
-
-### Release Not Publishing
-
-1. **Check release-it configuration** - `.releaserc.json` or `lerna.json`
-2. **Verify npm token** - GitHub Actions needs `GITHUB_TOKEN` and npm credentials
-3. **Check semver** - Ensure version bump is valid (major.minor.patch)
-
-### GitHub Pages Not Showing
-
-1. **Enable Pages** - Settings → Pages → Enable if needed
-2. **Check branch** - Verify `gh-pages` branch exists
-3. **Check CNAME** - If custom domain, verify DNS records
-4. **Clear cache** - Force refresh or clear browser cache
-
-## Security
-
-### GitHub Secrets
-
-Workflows use `${{ secrets.GITHUB_TOKEN }}` which is automatically provided by GitHub Actions. No additional credentials needed.
-
-### Automatic Deployments
-
-Both workflows are fully automated and require no manual intervention:
-
-- No npm login needed
-- No deployment keys needed
-- Uses GitHub's trusted deployment system
-
-## Monitoring
-
-### GitHub Actions Dashboard
-
-View workflow runs: **Actions** tab → Click workflow → See runs
-
-Each run shows:
-
-- Status (success, failed, cancelled)
-- Duration
-- Logs for each step
-- Artifacts (if configured)
-
-### Notifications
-
-Workflow failures notify:
-
-- Repository watchers
-- Workflow file contributors
-- GitHub commit status checks
-
-## Customization
-
-### Change Deployment Branch
-
-In `storybook-deploy.yml`:
-
-```yaml
-push:
-  branches:
-    - develop # Deploy from develop branch
-    - '!main'
-    - '!staging'
+```bash
+npm run release:core:dry
+npm run release:react:dry
+npm run release:angular:dry
+npm run release:vue:dry
+npm run release:design-tokens:dry
+npm run release:icons-library:dry
 ```
-
-### Change Build Command
-
-```yaml
-- run: npm run build:storybook -- --output-dir dist
-```
-
-### Add Custom Domain
-
-In GitHub Pages settings:
-
-- Enter custom domain (e.g., `storybook.example.com`)
-- Update DNS records
-- Add CNAME file to gh-pages branch
 
 ## References
 
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 - [GitHub Pages Documentation](https://docs.github.com/en/pages)
-- [Release-it Documentation](https://github.com/release-it/release-it)
+- [release-it Documentation](https://github.com/release-it/release-it)
 - [Lerna Documentation](https://lerna.js.org/)

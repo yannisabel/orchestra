@@ -1,8 +1,8 @@
-import StencilMd from "@orchestra-kit/core/src/components/icon/readme.md?raw"
-import { Markdown } from "@storybook/addon-docs/blocks"
-import { Meta, Title, Canvas, Source } from "@storybook/addon-docs/blocks"
-import * as IconStories from "./icon.stories"
-import { hrefTo } from "@storybook/addon-links"
+import StencilMd from '@orchestra-design-system/core/src/components/icon/readme.md?raw'
+import { Markdown } from '@storybook/addon-docs/blocks'
+import { Meta, Title, Canvas, Source } from '@storybook/addon-docs/blocks'
+import * as IconStories from './icon.stories'
+import { hrefTo } from '@storybook/addon-links'
 
 <Meta of={IconStories} />
 
@@ -27,16 +27,17 @@ import { hrefTo } from "@storybook/addon-links"
 To use a custom icon library with hardcoded SVGs, register it before rendering:
 
 ```typescript
-import { registerIconLibrary } from '@orchestra-kit/core'
+import { registerIconLibrary } from '@orchestra-design-system/core'
 
 registerIconLibrary('myIcons', {
   resolver: (name) => {
     const icons: Record<string, string> = {
-      'star': '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">...</svg>',
-      'heart': '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">...</svg>',
+      star: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">...</svg>',
+      heart:
+        '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">...</svg>',
     }
     return icons[name] ?? ''
-  }
+  },
 })
 ```
 
@@ -45,21 +46,26 @@ registerIconLibrary('myIcons', {
 For production use, import icons from an external package:
 
 ```typescript
-import { registerIconLibrary } from '@orchestra-kit/core'
+import { registerIconLibrary } from '@orchestra-design-system/core'
 import * as Icons from '@your-org/icons-library'
 
 registerIconLibrary('externalIcons', {
   resolver: (name) => {
     const iconExport = (Icons as Record<string, any>)[name]
     return typeof iconExport === 'string' ? iconExport : ''
-  }
+  },
 })
 ```
 
 Then use it:
 
 ```html
-<orchestra-icon name="star" library="externalIcons" fill="red" size="24px"></orchestra-icon>
+<orchestra-icon
+  name="star"
+  library="externalIcons"
+  fill="red"
+  size="24px"
+></orchestra-icon>
 ```
 
 ## Component Properties
