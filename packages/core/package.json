@@ -83,6 +83,9 @@
     "update": "npx npm-check-updates -u",
     "preview": "npx http-server www"
   },
+  "dependencies": {
+    "@orchestra-design-system/icons-library": "^0.0.1"
+  },
   "devDependencies": {
     "@playwright/test": "^1.61.1",
     "@stencil/angular-output-target": "^1.4.0",
