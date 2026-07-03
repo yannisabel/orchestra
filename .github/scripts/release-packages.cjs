@@ -20,7 +20,7 @@ function runCommand(command, args, options = {}) {
   const result = spawnSync(command, args, {
     encoding: 'utf8',
     stdio: options.capture ? 'pipe' : 'inherit',
-    env: process.env,
+    env: options.env || process.env,
   })
 
   if (result.error) {
@@ -108,14 +108,23 @@ function runRealReleases(releaseVersion) {
   // Running npm install here can resolve freshly bumped internal ranges against
   // the registry before local workspace versions match, causing ETARGET.
   for (const pkg of packages) {
-    runCommand('npm', [
-      'run',
-      `release:${pkg}`,
-      '--',
-      '--no-github',
-      '--release-version',
-      releaseVersion,
-    ])
+    runCommand(
+      'npm',
+      [
+        'run',
+        `release:${pkg}`,
+        '--',
+        '--no-github',
+        '--release-version',
+        releaseVersion,
+      ],
+      {
+        env: {
+          ...process.env,
+          npm_config_package_lock: 'false',
+        },
+      },
+    )
   }
 
   runCommand('npm', ['install', '--package-lock-only'])
