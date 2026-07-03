@@ -1,7 +1,7 @@
 {
   "name": "@orchestra-design-system/design-tokens",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Design tokens for the Orchestra design system",
   "main": "sd.config.js",
   "scripts": {
