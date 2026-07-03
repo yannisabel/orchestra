@@ -24,69 +24,48 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           registry-url: 'https://registry.npmjs.org'
-      - name: Validate npm token
+      - name: Preflight permissions
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if [ -z "${NPM_TOKEN}" ]; then
+          set -euo pipefail
+
+          if [ -z "${NODE_AUTH_TOKEN}" ]; then
             echo "NPM_TOKEN secret is missing. Add it in repository settings: Settings > Secrets and variables > Actions."
             exit 1
           fi
-          echo "::add-mask::${NPM_TOKEN}"
-          echo "NPM_TOKEN is configured."
-      - name: Validate npm scope access
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          npm config delete always-auth --location=user || true
-          npm whoami >/dev/null
-
-          NPM_SCOPE=$(node -p "require('./packages/core/package.json').name.split('/')[0]")
-          if [ -z "${NPM_SCOPE}" ] || [ "${NPM_SCOPE#@}" = "${NPM_SCOPE}" ]; then
-            echo "No scoped package name detected in packages/core/package.json."
-            exit 1
-          fi
-
-          set +e
-          scope_output=$(npm access list packages "${NPM_SCOPE}" --json 2>&1)
-          scope_exit=$?
-          set -e
-
-          if [ ${scope_exit} -ne 0 ]; then
-            echo "${scope_output}"
-            if echo "${scope_output}" | grep -Eqi 'E404|scope not found'; then
-              echo "NPM scope ${NPM_SCOPE} was not found or this token has no access to it."
-              echo "Create the scope/org on npm and grant this token publish rights, or rename packages to a scope you own."
-            else
-              echo "Unable to verify npm scope access for ${NPM_SCOPE}."
-            fi
-            exit 1
-          fi
-
-          echo "NPM scope ${NPM_SCOPE} is accessible."
-      - name: Validate GitHub release permissions
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
           if [ -z "${GH_TOKEN}" ]; then
             echo "GITHUB_TOKEN is missing."
             exit 1
           fi
 
-          response=$(curl -sS -w "\n%{http_code}" \
+          echo "::add-mask::${NODE_AUTH_TOKEN}"
+          npm config delete always-auth --location=user || true
+          npm whoami >/dev/null
+
+          npm_scope=$(node -p "require('./packages/core/package.json').name.split('/')[0]")
+          if [ -z "${npm_scope}" ] || [ "${npm_scope#@}" = "${npm_scope}" ]; then
+            echo "No scoped package name detected in packages/core/package.json."
+            exit 1
+          fi
+
+          if ! npm access list packages "${npm_scope}" --json >/dev/null; then
+            echo "Unable to verify npm scope access for ${npm_scope}."
+            echo "Ensure the scope exists and the NPM token has publish access."
+            exit 1
+          fi
+
+          if ! curl -fsS \
             -H "Authorization: Bearer ${GH_TOKEN}" \
             -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${GITHUB_REPOSITORY}")
-          body=$(echo "${response}" | sed '$d')
-          status_code=$(echo "${response}" | tail -n 1)
-
-          if [ "${status_code}" != "200" ]; then
-            echo "Unable to access repository API with GITHUB_TOKEN (HTTP ${status_code})."
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}" >/dev/null; then
+            echo "Unable to access repository API with GITHUB_TOKEN."
             echo "Ensure workflow permissions include contents: write and token is available."
             exit 1
           fi
 
-          echo "GitHub token is valid and can access repository API."
+          echo "npm and GitHub permission checks passed."
       - name: Install dependencies
         run: npm ci
       - name: Build packages
@@ -95,109 +74,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-      - name: Release (dry-run)
-        if: inputs.dry-run == true
+      - name: Validate internal version alignment
         run: |
-          npm run release:core:dry
-          npm run release:react:dry
-          npm run release:angular:dry
-          npm run release:vue:dry
-          npm run release:design-tokens:dry
-          npm run release:icons-library:dry
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Release
-        if: inputs.dry-run == false
+          node .github/scripts/validate-internal-version-alignment.cjs
+      - name: Release packages
         run: |
-          npm run release:core:dry
-          npm run release:react:dry
-          npm run release:angular:dry
-          npm run release:vue:dry
-          npm run release:design-tokens:dry
-          npm run release:icons-library:dry
-
-          npm run release:core -- --no-github
-          npm run release:react -- --no-github
-          npm run release:angular -- --no-github
-          npm run release:vue -- --no-github
-          npm run release:design-tokens -- --no-github
-          npm run release:icons-library -- --no-github
-
-          for pkg in core react angular vue design-tokens icons-library; do
-            tag=$(git tag --list "@orchestra-design-system/${pkg}@*" --sort=-v:refname | sed -n '1p')
-            previous_tag=$(git tag --list "@orchestra-design-system/${pkg}@*" --sort=-v:refname | sed -n '2p')
-
-            if [ -z "${tag}" ]; then
-              echo "Failed to resolve package tag for ${pkg}."
-              exit 1
-            fi
-
-            if gh release view "${tag}" >/dev/null 2>&1; then
-              continue
-            fi
-
-            version="${tag##*@}"
-            changelog_file="packages/${pkg}/CHANGELOG.md"
-            notes_file=$(mktemp)
-            combined_notes_file=$(mktemp)
-
-            if [ -f "${changelog_file}" ]; then
-              # Prefer the section that matches the current version.
-              awk -v version="${version}" '
-                BEGIN { capture = 0; found = 0 }
-                /^## / {
-                  if (capture) exit
-                  if (index($0, version) > 0) {
-                    capture = 1
-                    found = 1
-                  }
-                }
-                capture { print }
-                END { if (!found) exit 2 }
-              ' "${changelog_file}" > "${notes_file}" || true
-
-              # Fallback: first changelog section.
-              if [ ! -s "${notes_file}" ]; then
-                awk '
-                  BEGIN { capture = 0; started = 0 }
-                  /^## / {
-                    if (started) exit
-                    capture = 1
-                    started = 1
-                  }
-                  capture { print }
-                ' "${changelog_file}" > "${notes_file}" || true
-              fi
-            fi
-
-            if [ -s "${notes_file}" ]; then
-              if [ "${version}" = "0.0.1" ]; then
-                {
-                  echo "This is the first release under the @orchestra-design-system scope. Previous packages were published under @orchestra-kit."
-                  echo
-                  cat "${notes_file}"
-                } > "${combined_notes_file}"
-                gh release create "${tag}" --notes-file "${combined_notes_file}"
-              else
-                gh release create "${tag}" --notes-file "${notes_file}"
-              fi
-            elif [ "${version}" = "0.0.1" ]; then
-              gh release create "${tag}" --generate-notes --notes "This is the first release under the @orchestra-design-system scope. Previous packages were published under @orchestra-kit."
-            elif [ -n "${previous_tag}" ]; then
-              gh release create "${tag}" --generate-notes --notes-start-tag "${previous_tag}"
-            else
-              gh release create "${tag}" --generate-notes
-            fi
-
-            rm -f "${notes_file}" "${combined_notes_file}"
-          done
-
-          for pkg in core react angular vue design-tokens icons-library; do
-            npm deprecate "@orchestra-kit/${pkg}@<1000.0.0" "Package moved to @orchestra-design-system/${pkg}. Please migrate to the new scope." \
-              || echo "Skipping deprecate for @orchestra-kit/${pkg} (package may not exist or token lacks rights)."
-          done
+          node .github/scripts/release-packages.cjs
         env:
+          DRY_RUN: ${{ inputs.dry-run }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

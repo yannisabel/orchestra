@@ -21,30 +21,24 @@ Release is manually triggered with `workflow_dispatch` and supports a `dry-run` 
 
 ### Release Flow
 
-1. Validate `NPM_TOKEN`
-2. Validate npm scope access for `@orchestra-design-system`
-3. Validate `GITHUB_TOKEN` repo API access
-4. Install dependencies and build all packages
-5. Configure git identity
-6. Execute release mode:
+1. Run preflight permission checks (`NPM_TOKEN`, npm scope access, `GITHUB_TOKEN` API access)
+2. Install dependencies and build all packages
+3. Configure git identity
+4. Validate internal package version/dependency alignment
+5. Execute release mode via `.github/scripts/release-packages.cjs`
 
 #### Dry-run mode (`dry-run: true`)
 
-- Runs package dry-runs only:
-  - `release:core:dry`
-  - `release:react:dry`
-  - `release:angular:dry`
-  - `release:vue:dry`
-  - `release:design-tokens:dry`
-  - `release:icons-library:dry`
+- Computes shared version from `core` dry-run.
+- Runs remaining package dry-runs with the shared version.
 
 #### Real release mode (`dry-run: false`)
 
-- First runs all package dry-runs as a preflight
-- Then publishes all packages with `--no-github` (npm publish first)
-- Only after publish succeeds for all packages, creates GitHub Releases from generated package tags
+- Syncs internal dependency ranges to the shared release version
+- Publishes all packages with `--no-github` (npm publish first)
+- Refreshes and commits lockfile if needed
+- After publish succeeds for all packages, creates GitHub Releases from generated package tags
 - Adds a migration note automatically on first `0.0.1` releases under the new scope
-- Deprecates legacy `@orchestra-kit/*` packages with a migration message (best effort)
 
 This guarantees GitHub releases are created only after successful package publishing.
 
@@ -139,6 +133,8 @@ npm run release:icons-library:dry
 ```
 
 ## References
+
+- `.github/scripts/README.md` (release helper scripts and usage)
 
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 - [GitHub Pages Documentation](https://docs.github.com/en/pages)
