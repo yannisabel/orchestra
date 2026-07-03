@@ -35,7 +35,10 @@ jobs:
           echo "::add-mask::${NPM_TOKEN}"
           echo "NPM_TOKEN is configured."
       - name: Validate npm scope access
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          npm config delete always-auth --location=user || true
           npm whoami >/dev/null
 
           NPM_SCOPE=$(node -p "require('./packages/core/package.json').name.split('/')[0]")
