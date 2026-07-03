@@ -160,7 +160,28 @@ function runRealReleases(releaseVersion) {
     )
   }
 
-  runCommand('npm', ['install', '--package-lock-only'])
+  const lockfileResult = runCommand('npm', ['install', '--package-lock-only'], {
+    capture: true,
+    allowFailure: true,
+  })
+
+  if (lockfileResult.status !== 0) {
+    const output = `${lockfileResult.stdout || ''}\n${lockfileResult.stderr || ''}`
+    const isInternalTargetMiss =
+      /npm error code ETARGET/i.test(output) &&
+      /@orchestra-design-system\//i.test(output)
+
+    if (isInternalTargetMiss) {
+      console.warn(
+        'Skipping lockfile sync: npm registry has not indexed a freshly published internal version yet.',
+      )
+      return
+    }
+
+    process.stdout.write(lockfileResult.stdout || '')
+    process.stderr.write(lockfileResult.stderr || '')
+    process.exit(lockfileResult.status || 1)
+  }
 
   const diffResult = runCommand(
     'git',
