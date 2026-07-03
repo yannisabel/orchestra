@@ -9,6 +9,7 @@
   },
   "npm": {
     "publish": true,
+    "publishArgs": ["--access", "public"],
     "allowSameVersion": false
   },
   "github": {
