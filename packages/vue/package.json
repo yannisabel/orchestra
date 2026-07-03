@@ -1,6 +1,6 @@
 {
   "name": "@orchestra-design-system/vue",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Yann Isabel",
   "files": [
     "lib",
