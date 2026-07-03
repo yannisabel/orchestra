@@ -101,9 +101,8 @@ function runDryReleaseForRemainingPackages(releaseVersion) {
       'run',
       `release:${pkg}:dry`,
       '--',
-      '--ci',
-      '--release-version',
       releaseVersion,
+      '--ci',
     ])
   }
 }
@@ -143,14 +142,7 @@ function runRealReleases(releaseVersion) {
   for (const pkg of packages) {
     runCommand(
       'npm',
-      [
-        'run',
-        `release:${pkg}`,
-        '--',
-        '--no-github',
-        '--release-version',
-        releaseVersion,
-      ],
+      ['run', `release:${pkg}`, '--', releaseVersion, '--no-github'],
       {
         env: {
           ...process.env,
