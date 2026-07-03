@@ -1,11 +1,11 @@
-# @orchestra-kit/vue
+# @orchestra-design-system/vue
 
 Vue wrapper components for Orchestra web components.
 
 ## Installation
 
 ```bash
-npm install @orchestra-kit/vue @orchestra-kit/core vue
+npm install @orchestra-design-system/vue @orchestra-design-system/core vue
 ```
 
 ## Register the plugin
@@ -13,20 +13,20 @@ npm install @orchestra-kit/vue @orchestra-kit/core vue
 ```ts
 import { createApp } from 'vue'
 import App from './App.vue'
-import { ComponentLibrary } from '@orchestra-kit/vue'
+import { ComponentLibrary } from '@orchestra-design-system/vue'
 
 const app = createApp(App)
 app.use(ComponentLibrary)
 app.mount('#app')
 ```
 
-The plugin calls `defineCustomElements()` from `@orchestra-kit/core/loader`.
+The plugin calls `defineCustomElements()` from `@orchestra-design-system/core/loader`.
 
 ## Usage
 
 ```vue
 <script setup lang="ts">
-import { OrchestraButton, OrchestraIcon } from '@orchestra-kit/vue'
+import { OrchestraButton, OrchestraIcon } from '@orchestra-design-system/vue'
 </script>
 
 <template>

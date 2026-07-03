@@ -1,9 +1,9 @@
 {
   "git": {
     "commit": true,
-    "commitMessage": "chore(@orchestra-kit/vue): release v${version}",
+    "commitMessage": "chore(@orchestra-design-system/vue): release v${version}",
     "tag": true,
-    "tagName": "@orchestra-kit/vue@${version}",
+    "tagName": "@orchestra-design-system/vue@${version}",
     "push": true,
     "requireUpstream": false
   },
@@ -14,7 +14,7 @@
   },
   "github": {
     "release": true,
-    "releaseName": "@orchestra-kit/vue v${version}"
+    "releaseName": "@orchestra-design-system/vue v${version}"
   },
   "plugins": {
     "@release-it/conventional-changelog": {

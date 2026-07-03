@@ -11,8 +11,8 @@ import type { StencilReactComponent } from '@stencil/react-output-target/runtime
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import type { Components } from "@orchestra-kit/core/dist/components";
-import { OrchestraButton as OrchestraButtonElement, defineCustomElement as defineOrchestraButton } from "@orchestra-kit/core/dist/components/orchestra-button.js";
+import type { Components } from "@orchestra-design-system/core/dist/components";
+import { OrchestraButton as OrchestraButtonElement, defineCustomElement as defineOrchestraButton } from "@orchestra-design-system/core/dist/components/orchestra-button.js";
 
 export type OrchestraButtonEvents = NonNullable<unknown>;
 

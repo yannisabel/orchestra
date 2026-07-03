@@ -1,5 +1,5 @@
 {
-  "name": "@orchestra-kit/vue",
+  "name": "@orchestra-design-system/vue",
   "version": "0.0.1",
   "author": "Yann Isabel",
   "files": [
@@ -11,7 +11,7 @@
     "tsc": "tsc -p . --outDir ./dist"
   },
   "dependencies": {
-    "@orchestra-kit/core": "^0.0.1"
+    "@orchestra-design-system/core": "^0.0.1"
   },
   "devDependencies": {
     "@stencil/vue-output-target": "^0.11.8",

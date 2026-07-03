@@ -34,6 +34,33 @@ jobs:
           fi
           echo "::add-mask::${NPM_TOKEN}"
           echo "NPM_TOKEN is configured."
+      - name: Validate npm scope access
+        run: |
+          npm whoami >/dev/null
+
+          NPM_SCOPE=$(node -p "require('./packages/core/package.json').name.split('/')[0]")
+          if [ -z "${NPM_SCOPE}" ] || [ "${NPM_SCOPE#@}" = "${NPM_SCOPE}" ]; then
+            echo "No scoped package name detected in packages/core/package.json."
+            exit 1
+          fi
+
+          set +e
+          scope_output=$(npm access ls-packages "${NPM_SCOPE}" --json 2>&1)
+          scope_exit=$?
+          set -e
+
+          if [ ${scope_exit} -ne 0 ]; then
+            echo "${scope_output}"
+            if echo "${scope_output}" | grep -Eqi 'E404|scope not found'; then
+              echo "NPM scope ${NPM_SCOPE} was not found or this token has no access to it."
+              echo "Create the scope/org on npm and grant this token publish rights, or rename packages to a scope you own."
+            else
+              echo "Unable to verify npm scope access for ${NPM_SCOPE}."
+            fi
+            exit 1
+          fi
+
+          echo "NPM scope ${NPM_SCOPE} is accessible."
       - name: Validate GitHub release permissions
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -95,12 +122,12 @@ jobs:
           npm run release:icons-library -- --no-github
 
           for tag in \
-            "$(git tag --list '@orchestra-kit/core@*' --sort=-v:refname | head -n 1)" \
-            "$(git tag --list '@orchestra-kit/react@*' --sort=-v:refname | head -n 1)" \
-            "$(git tag --list '@orchestra-kit/angular@*' --sort=-v:refname | head -n 1)" \
-            "$(git tag --list '@orchestra-kit/vue@*' --sort=-v:refname | head -n 1)" \
-            "$(git tag --list '@orchestra-kit/design-tokens@*' --sort=-v:refname | head -n 1)" \
-            "$(git tag --list '@orchestra-kit/icons-library@*' --sort=-v:refname | head -n 1)"; do
+            "$(git tag --list '@orchestra-design-system/core@*' --sort=-v:refname | head -n 1)" \
+            "$(git tag --list '@orchestra-design-system/react@*' --sort=-v:refname | head -n 1)" \
+            "$(git tag --list '@orchestra-design-system/angular@*' --sort=-v:refname | head -n 1)" \
+            "$(git tag --list '@orchestra-design-system/vue@*' --sort=-v:refname | head -n 1)" \
+            "$(git tag --list '@orchestra-design-system/design-tokens@*' --sort=-v:refname | head -n 1)" \
+            "$(git tag --list '@orchestra-design-system/icons-library@*' --sort=-v:refname | head -n 1)"; do
             if [ -z "${tag}" ]; then
               echo "Failed to resolve package tag for GitHub release creation."
               exit 1

@@ -8,6 +8,7 @@ Orchestra uses a dual-workflow CI/CD strategy to manage releases and documentati
 - **Storybook Deployment** - Automated documentation to GitHub Pages (all branches except main)
 
 This strategy allows:
+
 - Release-ready packages published only from main branch
 - Pre-production documentation on feature branches
 - Per-branch Storybook URLs for design reviews and testing
@@ -39,10 +40,10 @@ Only runs when pushing to `main` or `master` branches.
 
 ### Output
 
-- **npm packages** - Published to @orchestra-kit/* namespace
-  - `@orchestra-kit/core`
-  - `@orchestra-kit/design-tokens`
-  - `@orchestra-kit/icons-library`
+- **npm packages** - Published to @orchestra-design-system/* namespace
+  - `@orchestra-design-system/core`
+  - `@orchestra-design-system/design-tokens`
+  - `@orchestra-design-system/icons-library`
   - etc.
 - **Git tags** - Semantic versioning tags (v1.0.0, v1.1.0, etc.)
 - **GitHub Release** - Release notes on GitHub Releases page
@@ -65,8 +66,8 @@ git push origin main
 on:
   push:
     branches:
-      - '**'      # All branches
-      - '!main'   # Except main
+      - '**' # All branches
+      - '!main' # Except main
 ```
 
 Runs on all branch pushes except `main`.
@@ -99,6 +100,7 @@ git push origin feature-branch
 ```
 
 **Example URLs:**
+
 - `https://yannisabel.github.io/orchestra/stencil-migration/` - stencil-migration branch
 - `https://yannisabel.github.io/orchestra/feature/new-component/` - feature/new-component branch
 - `https://yannisabel.github.io/orchestra/docs-update/` - docs-update branch
@@ -245,6 +247,7 @@ Workflows use `${{ secrets.GITHUB_TOKEN }}` which is automatically provided by G
 ### Automatic Deployments
 
 Both workflows are fully automated and require no manual intervention:
+
 - No npm login needed
 - No deployment keys needed
 - Uses GitHub's trusted deployment system
@@ -256,6 +259,7 @@ Both workflows are fully automated and require no manual intervention:
 View workflow runs: **Actions** tab → Click workflow → See runs
 
 Each run shows:
+
 - Status (success, failed, cancelled)
 - Duration
 - Logs for each step
@@ -264,6 +268,7 @@ Each run shows:
 ### Notifications
 
 Workflow failures notify:
+
 - Repository watchers
 - Workflow file contributors
 - GitHub commit status checks
@@ -277,7 +282,7 @@ In `storybook-deploy.yml`:
 ```yaml
 push:
   branches:
-    - develop        # Deploy from develop branch
+    - develop # Deploy from develop branch
     - '!main'
     - '!staging'
 ```
@@ -291,6 +296,7 @@ push:
 ### Add Custom Domain
 
 In GitHub Pages settings:
+
 - Enter custom domain (e.g., `storybook.example.com`)
 - Update DNS records
 - Add CNAME file to gh-pages branch

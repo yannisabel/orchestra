@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, NgZo
 
 import { ProxyCmp } from './angular-component-lib/utils';
 
-import { Components } from '@orchestra-kit/core';
+import { Components } from '@orchestra-design-system/core';
 
 
 @ProxyCmp({

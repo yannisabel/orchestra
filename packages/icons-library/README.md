@@ -1,4 +1,4 @@
-# @orchestra-kit/icons-library
+# @orchestra-design-system/icons-library
 
 SVG icon library for Orchestra components. Provides pre-built SVG icons as TypeScript exports for use with the Orchestra icon component.
 
@@ -7,13 +7,13 @@ SVG icon library for Orchestra components. Provides pre-built SVG icons as TypeS
 - ✅ SVGs embedded at build time (zero HTTP requests)
 - ✅ TypeScript support with full type definitions
 - ✅ ESM and CommonJS outputs
-- ✅ Works seamlessly with `@orchestra-kit/core` icon component
+- ✅ Works seamlessly with `@orchestra-design-system/core` icon component
 - ✅ Supports dynamic color and size customization
 
 ## Installation
 
 ```bash
-npm install @orchestra-kit/icons-library
+npm install @orchestra-design-system/icons-library
 ```
 
 ## Usage
@@ -42,8 +42,8 @@ The icon component automatically uses the `orchestra-icons` library (pre-registe
 **Register as custom library (for consumers):**
 
 ```typescript
-import { registerIconLibrary } from '@orchestra-kit/core'
-import * as icons from '@orchestra-kit/icons-library'
+import { registerIconLibrary } from '@orchestra-design-system/core'
+import * as icons from '@orchestra-design-system/icons-library'
 
 registerIconLibrary('orchestra-icons', {
   resolver: (name) => icons[name] ?? '',
@@ -64,10 +64,10 @@ For non-component usage:
 
 ```typescript
 // ESM
-import { checked } from '@orchestra-kit/icons-library'
+import { checked } from '@orchestra-design-system/icons-library'
 
 // CommonJS
-const { checked } = require('@orchestra-kit/icons-library')
+const { checked } = require('@orchestra-design-system/icons-library')
 ```
 
 ## Available Icons
@@ -75,7 +75,7 @@ const { checked } = require('@orchestra-kit/icons-library')
 All icons are automatically discovered from the `svg/` folder. Access the list programmatically:
 
 ```typescript
-import { iconNames } from '@orchestra-kit/icons-library'
+import { iconNames } from '@orchestra-design-system/icons-library'
 
 type IconName = (typeof iconNames)[number] // Type union of all available icons
 ```
@@ -94,7 +94,7 @@ You can register custom SVG icons at runtime using the `registerIconLibrary` fun
 ### Registering a Custom Library
 
 ```typescript
-import { registerIconLibrary } from '@orchestra-kit/core'
+import { registerIconLibrary } from '@orchestra-design-system/core'
 
 // Define your custom icons as SVG strings
 const customIcons = {
@@ -239,7 +239,7 @@ When creating SVGs, follow these guidelines:
 The icon is automatically exported and available:
 
 ```typescript
-import { iconNames, myIcon } from '@orchestra-kit/icons-library'
+import { iconNames, myIcon } from '@orchestra-design-system/icons-library'
 
 type IconName = (typeof iconNames)[number] // Automatically includes 'myIcon'
 ```
@@ -249,7 +249,7 @@ type IconName = (typeof iconNames)[number] // Automatically includes 'myIcon'
 To add the icon to the default 'core' library, update `packages/core/src/components/icon/orchestra-library.ts`:
 
 ```typescript
-import { checked, myIcon } from '@orchestra-kit/icons-library'
+import { checked, myIcon } from '@orchestra-design-system/icons-library'
 
 const icons = {
   checked: checked,
@@ -297,7 +297,7 @@ The package exports pre-built SVG strings suitable for:
 Consumers can create custom icon libraries:
 
 ```typescript
-import { registerIconLibrary } from '@orchestra-kit/core'
+import { registerIconLibrary } from '@orchestra-design-system/core'
 
 // Create library resolver
 const myLibraryResolver = (name) => {

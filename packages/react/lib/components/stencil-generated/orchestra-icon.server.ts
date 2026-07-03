@@ -11,9 +11,9 @@ import type { StencilReactComponent } from '@stencil/react-output-target/runtime
 import { createComponent, type HydrateModule, type SerializeShadowRootOptions } from '@stencil/react-output-target/ssr';
 
 // @ts-ignore - ignore potential type issues as the project is importing itself
-import * as clientComponents from "@orchestra-kit/core/client";
-import type { Components } from "@orchestra-kit/core/dist/components";
-import { OrchestraIcon as OrchestraIconElement } from "@orchestra-kit/core/dist/components/orchestra-icon.js";
+import * as clientComponents from "@orchestra-design-system/core/client";
+import type { Components } from "@orchestra-design-system/core/dist/components";
+import { OrchestraIcon as OrchestraIconElement } from "@orchestra-design-system/core/dist/components/orchestra-icon.js";
 
 export const serializeShadowRoot: SerializeShadowRootOptions = { default: "declarative-shadow-dom" };
 
@@ -27,7 +27,7 @@ export const OrchestraIcon: StencilReactComponent<OrchestraIconElement, Orchestr
         fill: 'fill',
         size: 'size'
     },
-    hydrateModule: typeof window === 'undefined' ? (import('@orchestra-kit/core/hydrate') as Promise<HydrateModule>) : undefined,
+    hydrateModule: typeof window === 'undefined' ? (import('@orchestra-design-system/core/hydrate') as Promise<HydrateModule>) : undefined,
     // @ts-ignore - clientModule not available in current setup
     clientModule: clientComponents.OrchestraIcon as StencilReactComponent<OrchestraIconElement, OrchestraIconEvents, Components.OrchestraIcon>,
     serializeShadowRoot

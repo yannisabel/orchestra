@@ -1,13 +1,13 @@
 [![Built With Stencil](https://img.shields.io/badge/-Built%20With%20Stencil-16161d.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI%2BCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI%2BCgkuc3Qwe2ZpbGw6I0ZGRkZGRjt9Cjwvc3R5bGU%2BCjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00MjQuNywzNzMuOWMwLDM3LjYtNTUuMSw2OC42LTkyLjcsNjguNkgxODAuNGMtMzcuOSwwLTkyLjctMzAuNy05Mi43LTY4LjZ2LTMuNmgzMzYuOVYzNzMuOXoiLz4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTQyNC43LDI5Mi4xSDE4MC40Yy0zNy42LDAtOTIuNy0zMS05Mi43LTY4LjZ2LTMuNkgzMzJjMzcuNiwwLDkyLjcsMzEsOTIuNyw2OC42VjI5Mi4xeiIvPgo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDI0LjcsMTQxLjdIODcuN3YtMy42YzAtMzcuNiw1NC44LTY4LjYsOTIuNy02OC42SDMzMmMzNy45LDAsOTIuNywzMC43LDkyLjcsNjguNlYxNDEuN3oiLz4KPC9zdmc%2BCg%3D%3D&colorA=16161d&style=flat-square)](https://stenciljs.com)
 
-# @orchestra-kit/core
+# @orchestra-design-system/core
 
 Stencil-based web components for the Orchestra design system. Provides a comprehensive component library built with web standards, theme-aware styling, and extensive accessibility support.
 
 ## Installation
 
 ```bash
-npm install @orchestra-kit/core
+npm install @orchestra-design-system/core
 ```
 
 ## Features
@@ -15,7 +15,7 @@ npm install @orchestra-kit/core
 - ✅ **Web Components** - Framework-agnostic, standards-based components
 - ✅ **Shadow DOM Encapsulation** - Scoped styles and DOM isolation
 - ✅ **Theme Support** - Light and dark themes via CSS variables
-- ✅ **Design Tokens** - Integrated with @orchestra-kit/design-tokens
+- ✅ **Design Tokens** - Integrated with @orchestra-design-system/design-tokens
 - ✅ **Icon System** - Extensible icon library with custom library support
 - ✅ **Accessibility** - ARIA attributes, keyboard navigation, screen reader support
 - ✅ **TypeScript** - Full type definitions included
@@ -30,8 +30,8 @@ npm install @orchestra-kit/core
 <!DOCTYPE html>
 <html>
 <head>
-  <script type="module" src="https://unpkg.com/@orchestra-kit/core"></script>
-  <link rel="stylesheet" href="https://unpkg.com/@orchestra-kit/core/dist/orchestra-kit/themes/light.css">
+  <script type="module" src="https://unpkg.com/@orchestra-design-system/core"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@orchestra-design-system/core/dist/orchestra-kit/themes/light.css">
 </head>
 <body>
   <orchestra-button text="Click me"></orchestra-button>
@@ -43,8 +43,8 @@ npm install @orchestra-kit/core
 
 ```tsx
 import React from 'react'
-import { defineCustomElements } from '@orchestra-kit/core/loader'
-import '@orchestra-kit/core/dist/orchestra-kit/themes/light.css'
+import { defineCustomElements } from '@orchestra-design-system/core/loader'
+import '@orchestra-design-system/core/dist/orchestra-kit/themes/light.css'
 
 defineCustomElements()
 
@@ -57,8 +57,8 @@ export default function App() {
 
 ```vue
 <script setup>
-import { defineCustomElements } from '@orchestra-kit/core/loader'
-import '@orchestra-kit/core/dist/orchestra-kit/themes/light.css'
+import { defineCustomElements } from '@orchestra-design-system/core/loader'
+import '@orchestra-design-system/core/dist/orchestra-kit/themes/light.css'
 
 defineCustomElements()
 </script>
@@ -73,7 +73,7 @@ defineCustomElements()
 ```typescript
 // app.module.ts
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
-import { defineCustomElements } from '@orchestra-kit/core/loader'
+import { defineCustomElements } from '@orchestra-design-system/core/loader'
 
 defineCustomElements()
 
@@ -120,10 +120,10 @@ The icon component supports multiple icon libraries using a registry system.
 <orchestra-icon name="checked" size="24px" fill="currentcolor"></orchestra-icon>
 ```
 
-Available from `@orchestra-kit/icons-library`:
+Available from `@orchestra-design-system/icons-library`:
 
 ```typescript
-import { iconNames } from '@orchestra-kit/icons-library'
+import { iconNames } from '@orchestra-design-system/icons-library'
 
 type IconName = typeof iconNames[number]
 ```
@@ -131,7 +131,7 @@ type IconName = typeof iconNames[number]
 ### Registering Custom Icon Libraries
 
 ```typescript
-import { registerIconLibrary } from '@orchestra-kit/core'
+import { registerIconLibrary } from '@orchestra-design-system/core'
 
 const myIcons = {
   'star': `<svg viewBox="0 0 24 24">...</svg>`,
@@ -148,7 +148,7 @@ Then use:
 <orchestra-icon name="star" library="my-icons"></orchestra-icon>
 ```
 
-See [@orchestra-kit/icons-library README](../icons-library/README.md) for details on custom libraries and Storybook integration.
+See [@orchestra-design-system/icons-library README](../icons-library/README.md) for details on custom libraries and Storybook integration.
 
 ## Theming
 
@@ -156,16 +156,16 @@ Components use CSS variables for theming. Import theme stylesheets:
 
 ```html
 <!-- Light theme (default) -->
-<link rel="stylesheet" href="https://unpkg.com/@orchestra-kit/core/dist/orchestra-kit/themes/light.css">
+<link rel="stylesheet" href="https://unpkg.com/@orchestra-design-system/core/dist/orchestra-kit/themes/light.css">
 
 <!-- Dark theme -->
-<link rel="stylesheet" href="https://unpkg.com/@orchestra-kit/core/dist/orchestra-kit/themes/dark.css">
+<link rel="stylesheet" href="https://unpkg.com/@orchestra-design-system/core/dist/orchestra-kit/themes/dark.css">
 ```
 
 Or use in JavaScript:
 
 ```javascript
-import '@orchestra-kit/core/dist/orchestra-kit/themes/light.css'
+import '@orchestra-design-system/core/dist/orchestra-kit/themes/light.css'
 ```
 
 ### Custom Themes
@@ -273,12 +273,12 @@ See `stencil.config.ts` for output target configuration.
 Packages are published to npm:
 
 ```bash
-npm install @orchestra-kit/core
+npm install @orchestra-design-system/core
 ```
 
 CDN:
 ```html
-<script src="https://unpkg.com/@orchestra-kit/core"></script>
+<script src="https://unpkg.com/@orchestra-design-system/core"></script>
 ```
 
 ## File Structure

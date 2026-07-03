@@ -3,7 +3,7 @@
 /* auto-generated vue proxies */
 import { defineContainer, type StencilVueComponent } from '@stencil/vue-output-target/runtime';
 
-import type { JSX } from '@orchestra-kit/core';
+import type { JSX } from '@orchestra-design-system/core';
 
 
 

@@ -1,4 +1,4 @@
-# @orchestra-kit/design-tokens
+# @orchestra-design-system/design-tokens
 
 Design tokens for Orchestra - a theme-aware, maintainable design system exported from Figma.
 
@@ -16,15 +16,15 @@ Design tokens for Orchestra - a theme-aware, maintainable design system exported
 ### Install
 
 ```bash
-npm install @orchestra-kit/design-tokens
+npm install @orchestra-design-system/design-tokens
 ```
 
 ### Import Themes
 
 ```typescript
 // Import both themes (light is default)
-import '@orchestra-kit/design-tokens/dist/css/variables.light.css'
-import '@orchestra-kit/design-tokens/dist/css/variables.dark.css'
+import '@orchestra-design-system/design-tokens/dist/css/variables.light.css'
+import '@orchestra-design-system/design-tokens/dist/css/variables.dark.css'
 
 // Toggle theme
 document.documentElement.classList.toggle('orchestra-theme--dark')
@@ -51,7 +51,7 @@ Colors, spacing, and sizing automatically adjust when theme changes—no compone
 ### JavaScript/TypeScript Usage
 
 ```typescript
-import { colorActionPrimaryContainerDefault } from '@orchestra-kit/design-tokens'
+import { colorActionPrimaryContainerDefault } from '@orchestra-design-system/design-tokens'
 
 // Access token value directly
 const brandColor = colorActionPrimaryContainerDefault
@@ -62,17 +62,20 @@ const brandColor = colorActionPrimaryContainerDefault
 ### Three-Tier Token System
 
 **1. Primitives** (`primitive.json`)
+
 - Raw colors: `#FF6B6B`, `#1A1A1A`, etc.
 - Immutable and shared across themes
 - Never used directly in components
 
 **2. Semantic Tokens** (`semantic.light.json`, `semantic.dark.json`)
+
 - Meaningful names: `text/primary`, `background/surface`
 - Light theme: dark text on light background
 - Dark theme: light text on dark background
 - Used directly in components
 
 **3. Component Tokens** (`component.json`)
+
 - Button, form, card styles
 - References semantic tokens
 - Component-specific semantics
@@ -129,19 +132,33 @@ typography
 ### Light Theme (Default)
 
 Applied by default when importing:
+
 ```css
-:root { color-scheme: light; }
-:root { --orchestra-color-text-primary: #1a1a1a; }
-:root { --orchestra-color-background-primary: #ffffff; }
+:root {
+  color-scheme: light;
+}
+:root {
+  --orchestra-color-text-primary: #1a1a1a;
+}
+:root {
+  --orchestra-color-background-primary: #ffffff;
+}
 ```
 
 ### Dark Theme
 
 Activated by CSS class:
+
 ```css
-:host(.orchestra-theme--dark) { color-scheme: dark; }
-:host(.orchestra-theme--dark) { --orchestra-color-text-primary: #f0f0f0; }
-:host(.orchestra-theme--dark) { --orchestra-color-background-primary: #0a0a0a; }
+:host(.orchestra-theme--dark) {
+  color-scheme: dark;
+}
+:host(.orchestra-theme--dark) {
+  --orchestra-color-text-primary: #f0f0f0;
+}
+:host(.orchestra-theme--dark) {
+  --orchestra-color-background-primary: #0a0a0a;
+}
 ```
 
 ### Switching Themes
@@ -168,12 +185,13 @@ All CSS variables update automatically. Components using `var(--orchestra-...)` 
 @Component({
   tag: 'orchestra-button',
   styleUrl: 'button.css',
-  shadow: true
+  shadow: true,
 })
-export class Button { }
+export class Button {}
 ```
 
 **button.css:**
+
 ```css
 :host {
   --btn-bg: var(--orchestra-color-action-primary-container-default);
@@ -194,12 +212,14 @@ button {
 ### With React/Vue
 
 Import theme CSS in your app root:
+
 ```typescript
-import '@orchestra-kit/design-tokens/dist/css/variables.light.css'
-import '@orchestra-kit/design-tokens/dist/css/variables.dark.css'
+import '@orchestra-design-system/design-tokens/dist/css/variables.light.css'
+import '@orchestra-design-system/design-tokens/dist/css/variables.dark.css'
 ```
 
 Use in component CSS:
+
 ```css
 .card {
   background: var(--orchestra-color-background-surface);
@@ -221,6 +241,7 @@ Use in component CSS:
    - Replace in `packages/design-tokens/tokens/`
 
 3. **Build**
+
    ```bash
    npm run build
    ```
@@ -243,24 +264,26 @@ In Figma (Free Plan Workaround):
    - "Semantic Dark"
 
 2. **Same structure, different values:**
+
    ```
    Light:
    - text/primary = #1a1a1a
    - background/primary = #ffffff
-   
+
    Dark:
    - text/primary = #f0f0f0
    - background/primary = #0a0a0a
    ```
 
 3. **Both reference primitives:**
+
    ```
    Primitives:
    - brand-color = #FF6B6B
-   
+
    Semantic Light:
    - action/primary = {brand-color}
-   
+
    Semantic Dark:
    - action/primary = {brand-color} (adjusted if needed)
    ```
@@ -272,6 +295,7 @@ In Figma (Free Plan Workaround):
 ### Available Tokens
 
 View generated variables:
+
 ```bash
 # CSS variables
 cat dist/css/variables.light.css
@@ -297,6 +321,7 @@ cat dist/json/properties.light.json
 ```
 
 Scoped to:
+
 - Light: `:root, :host, .orchestra-theme--light`
 - Dark: `:host, .orchestra-theme--dark`
 
@@ -330,11 +355,13 @@ export const spacingGlobalMd = '1rem'
 ## Building Locally
 
 ### Prerequisites
+
 ```bash
 npm install
 ```
 
 ### Build Tokens
+
 ```bash
 npm run build
 ```
@@ -342,6 +369,7 @@ npm run build
 Generates all formats for both light and dark themes.
 
 ### Watch Mode
+
 ```bash
 npm run build:watch
 ```
@@ -353,6 +381,7 @@ Rebuilds automatically when token files change.
 ### CSS Variables
 
 Access tokens via CSS custom properties:
+
 ```css
 /* Format: --orchestra-{category}-{subcategory}... */
 --orchestra-color-text-primary
@@ -363,8 +392,12 @@ Access tokens via CSS custom properties:
 ### JavaScript Exports
 
 Access tokens programmatically:
+
 ```typescript
-import { colorTextPrimary, spacingGlobalMd } from '@orchestra-kit/design-tokens'
+import {
+  colorTextPrimary,
+  spacingGlobalMd,
+} from '@orchestra-design-system/design-tokens'
 ```
 
 Naming: camelCase, with category prefix (color, spacing, radius, etc.)
@@ -382,7 +415,7 @@ The design token system enforces:
 
 ## Distribution
 
-Published as `@orchestra-kit/design-tokens`:
+Published as `@orchestra-design-system/design-tokens`:
 
 - **main**: CommonJS exports
 - **module**: ESM exports

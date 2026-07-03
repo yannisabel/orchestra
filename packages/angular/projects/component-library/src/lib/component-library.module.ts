@@ -1,5 +1,5 @@
 import { APP_INITIALIZER, NgModule } from "@angular/core"
-import { defineCustomElements } from "@orchestra-kit/core/loader"
+import { defineCustomElements } from "@orchestra-design-system/core/loader"
 
 @NgModule({
   providers: [

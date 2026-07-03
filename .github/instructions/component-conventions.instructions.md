@@ -33,7 +33,10 @@ import DOMPurify from 'dompurify'
   shadow: true,
   styleUrl: '{name}.css',
 })
-export class Orchestra{Name} {
+export class Orchestra {
+  Name
+}
+{
   // implementation
 }
 ```
@@ -137,7 +140,9 @@ public render() {
 - Apply via `style.setProperty()` in component
 
 ```typescript
-this.host.shadowRoot.querySelector('svg')?.style.setProperty('--icon-color', color)
+this.host.shadowRoot
+  .querySelector('svg')
+  ?.style.setProperty('--icon-color', color)
 ```
 
 ## Security Pattern
@@ -251,21 +256,25 @@ export { OrchestraIcon } from './components/icon/icon'
 ### Imports
 
 **From local modules:**
+
 ```typescript
 import { helper } from './helper'
 ```
 
 **From npm packages:**
+
 ```typescript
-import { registerIconLibrary } from '@orchestra-kit/core'
+import { registerIconLibrary } from '@orchestra-design-system/core'
 ```
 
 **From other orchestra packages:**
+
 ```typescript
-import { checked } from '@orchestra-kit/icons-library'
+import { checked } from '@orchestra-design-system/icons-library'
 ```
 
 Guidelines:
+
 - Use relative paths for internal modules
 - Use package names for monorepo packages
 - Monorepo packages resolved via npm workspaces
@@ -292,11 +301,11 @@ Guidelines:
 const meta = {
   component: 'orchestra-component',
   title: 'Components/orchestra-component',
-  argTypes: { /* ... */ }
+  argTypes: {/* ... */},
 } satisfies Meta<typeof OrchestraComponent>
 
 export const Default: Story = {
-  args: { propName: 'value' }
+  args: { propName: 'value' },
 }
 ```
 

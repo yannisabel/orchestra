@@ -1,5 +1,5 @@
 {
-  "name": "@orchestra-kit/react",
+  "name": "@orchestra-design-system/react",
   "version": "0.0.1",
   "author": "Yann Isabel",
   "type": "module",
@@ -12,7 +12,7 @@
     "tsc": "tsc -p . --outDir ./dist"
   },
   "dependencies": {
-    "@orchestra-kit/core": "^0.0.1"
+    "@orchestra-design-system/core": "^0.0.1"
   },
   "devDependencies": {
     "@stencil/react-output-target": "^1.6.0",

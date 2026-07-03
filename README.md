@@ -42,7 +42,7 @@ npm run dev
 
 - `npm run dev`: starts Storybook development and core watchers
 - `npm run build`: builds tokens first, then all workspaces
-- `npm run build:tokens`: builds only `@orchestra-kit/design-tokens`
+- `npm run build:tokens`: builds only `@orchestra-design-system/design-tokens`
 - `npm run build:storybook`: builds static Storybook
 - `npm run lint`: runs Oxlint (with `--fix`)
 - `npm run lint:check`: runs Oxlint in check-only mode

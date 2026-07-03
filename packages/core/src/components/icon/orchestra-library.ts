@@ -1,4 +1,4 @@
-import { checked } from '@orchestra-kit/icons-library'
+import { checked } from '@orchestra-design-system/icons-library'
 
 import type { IconLibrary } from './library'
 

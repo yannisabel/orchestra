@@ -1,8 +1,8 @@
-import { Config } from '@stencil/core';
-import { reactOutputTarget } from '@stencil/react-output-target';
-import { angularOutputTarget } from '@stencil/angular-output-target';
-import { vueOutputTarget } from '@stencil/vue-output-target';
-import postcss from 'rollup-plugin-postcss';
+import { Config } from '@stencil/core'
+import { reactOutputTarget } from '@stencil/react-output-target'
+import { angularOutputTarget } from '@stencil/angular-output-target'
+import { vueOutputTarget } from '@stencil/vue-output-target'
+import postcss from 'rollup-plugin-postcss'
 
 export const config: Config = {
   namespace: 'orchestra-kit',
@@ -42,13 +42,15 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
     angularOutputTarget({
-      componentCorePackage: '@orchestra-kit/core',
+      componentCorePackage: '@orchestra-design-system/core',
       outputType: 'component',
-      directivesProxyFile: '../angular/projects/component-library/src/lib/stencil-generated/components.ts',
-      directivesArrayFile: '../angular/projects/component-library/src/lib/stencil-generated/index.ts',
+      directivesProxyFile:
+        '../angular/projects/component-library/src/lib/stencil-generated/components.ts',
+      directivesArrayFile:
+        '../angular/projects/component-library/src/lib/stencil-generated/index.ts',
     }),
     vueOutputTarget({
-      componentCorePackage: '@orchestra-kit/core',
+      componentCorePackage: '@orchestra-design-system/core',
       proxiesFile: '../vue/lib/stencil-generated/components.ts',
     }),
     reactOutputTarget({
@@ -68,4 +70,4 @@ export const config: Config = {
   ],
   //eslint-disable-next-line
   watchIgnoredRegex: [/src\/themes\/[^\/]+\.css$/],
-};
+}

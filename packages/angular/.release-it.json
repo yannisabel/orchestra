@@ -1,9 +1,9 @@
 {
   "git": {
     "commit": true,
-    "commitMessage": "chore(@orchestra-kit/angular): release v${version}",
+    "commitMessage": "chore(@orchestra-design-system/angular): release v${version}",
     "tag": true,
-    "tagName": "@orchestra-kit/angular@${version}",
+    "tagName": "@orchestra-design-system/angular@${version}",
     "push": true,
     "requireUpstream": false
   },
@@ -14,7 +14,7 @@
   },
   "github": {
     "release": true,
-    "releaseName": "@orchestra-kit/angular v${version}"
+    "releaseName": "@orchestra-design-system/angular v${version}"
   },
   "plugins": {
     "@release-it/conventional-changelog": {

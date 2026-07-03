@@ -11,8 +11,8 @@ import type { StencilReactComponent } from '@stencil/react-output-target/runtime
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import type { Components } from "@orchestra-kit/core/dist/components";
-import { OrchestraIcon as OrchestraIconElement, defineCustomElement as defineOrchestraIcon } from "@orchestra-kit/core/dist/components/orchestra-icon.js";
+import type { Components } from "@orchestra-design-system/core/dist/components";
+import { OrchestraIcon as OrchestraIconElement, defineCustomElement as defineOrchestraIcon } from "@orchestra-design-system/core/dist/components/orchestra-icon.js";
 
 export type OrchestraIconEvents = NonNullable<unknown>;
 

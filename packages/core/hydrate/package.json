@@ -1,5 +1,5 @@
 {
-  "name": "@orchestra-kit/core/hydrate",
+  "name": "@orchestra-design-system/core/hydrate",
   "description": "OrchestraKit component hydration app.",
   "main": "index.js",
   "types": "index.d.ts",

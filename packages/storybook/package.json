@@ -1,5 +1,5 @@
 {
-  "name": "@orchestra-kit/storybook",
+  "name": "@orchestra-design-system/storybook",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -14,8 +14,8 @@
     "update": "npx npm-check-updates -u"
   },
   "dependencies": {
-    "@orchestra-kit/core": "^0.0.1",
-    "@orchestra-kit/icons-library": "^0.0.1",
+    "@orchestra-design-system/core": "^0.0.1",
+    "@orchestra-design-system/icons-library": "^0.0.1",
     "lit": "^3.3.3"
   },
   "devDependencies": {

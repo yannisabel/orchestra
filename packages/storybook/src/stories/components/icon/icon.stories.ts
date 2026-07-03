@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite'
-import { iconNames } from '@orchestra-kit/icons-library'
+import { iconNames } from '@orchestra-design-system/icons-library'
 
 // type IconName = typeof iconNames[number]
 

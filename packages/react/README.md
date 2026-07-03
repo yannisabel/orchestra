@@ -1,17 +1,17 @@
-# @orchestra-kit/react
+# @orchestra-design-system/react
 
 React wrapper components for Orchestra web components.
 
 ## Installation
 
 ```bash
-npm install @orchestra-kit/react @orchestra-kit/core
+npm install @orchestra-design-system/react @orchestra-design-system/core
 ```
 
 ## Usage
 
 ```tsx
-import { OrchestraButton, OrchestraIcon } from '@orchestra-kit/react'
+import { OrchestraButton, OrchestraIcon } from '@orchestra-design-system/react'
 
 export function Example() {
   return (
@@ -41,5 +41,5 @@ Build output is emitted to `dist/`.
 ## Development notes
 
 - Source proxies are in `lib/components/stencil-generated/`.
-- Core component behavior and styles come from `@orchestra-kit/core`.
+- Core component behavior and styles come from `@orchestra-design-system/core`.
 - For component API details, see [../core/README.md](../core/README.md).

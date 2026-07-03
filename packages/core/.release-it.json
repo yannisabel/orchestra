@@ -1,9 +1,9 @@
 {
   "git": {
     "commit": true,
-    "commitMessage": "chore(@orchestra-kit/core): release v${version}",
+    "commitMessage": "chore(@orchestra-design-system/core): release v${version}",
     "tag": true,
-    "tagName": "@orchestra-kit/core@${version}",
+    "tagName": "@orchestra-design-system/core@${version}",
     "push": true,
     "requireUpstream": false
   },
@@ -14,7 +14,7 @@
   },
   "github": {
     "release": true,
-    "releaseName": "@orchestra-kit/core v${version}"
+    "releaseName": "@orchestra-design-system/core v${version}"
   },
   "plugins": {
     "@release-it/conventional-changelog": {

@@ -1,9 +1,9 @@
 {
   "git": {
     "commit": true,
-    "commitMessage": "chore(@orchestra-kit/design-tokens): release v${version}",
+    "commitMessage": "chore(@orchestra-design-system/design-tokens): release v${version}",
     "tag": true,
-    "tagName": "@orchestra-kit/design-tokens@${version}",
+    "tagName": "@orchestra-design-system/design-tokens@${version}",
     "push": true,
     "requireUpstream": false
   },
@@ -14,7 +14,7 @@
   },
   "github": {
     "release": true,
-    "releaseName": "@orchestra-kit/design-tokens v${version}"
+    "releaseName": "@orchestra-design-system/design-tokens v${version}"
   },
   "plugins": {
     "@release-it/conventional-changelog": {
