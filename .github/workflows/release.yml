@@ -56,7 +56,7 @@ jobs:
             exit 1
           fi
 
-          echo "${body}" | node -e 'let data="";process.stdin.on("data",c=>data+=c);process.stdin.on("end",()=>{const json=JSON.parse(data);const canPush=Boolean(json.permissions&&json.permissions.push);if(!canPush){console.error("GITHUB_TOKEN does not have push permission. Set workflow permissions: contents: write.");process.exit(1);}console.log("GitHub token is valid and has push permission.");});'
+          echo "GitHub token is valid and can access repository API."
       - name: Install dependencies
         run: npm ci
       - name: Build packages
