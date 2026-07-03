@@ -198,12 +198,18 @@ function createGithubReleaseForPackage(pkg) {
     process.exit(1)
   }
 
+  console.log(`Checking GitHub release for ${tag}...`)
+
   const releaseExists = runCommand('gh', ['release', 'view', tag], {
+    capture: true,
     allowFailure: true,
   })
   if (releaseExists.status === 0) {
+    console.log(`GitHub release already exists for ${tag}; skipping creation.`)
     return
   }
+
+  console.log(`Creating GitHub release for ${tag}...`)
 
   const version = tag.split('@').pop()
   const changelogFile = `packages/${pkg}/CHANGELOG.md`
@@ -264,6 +270,8 @@ function createGithubReleaseForPackage(pkg) {
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true })
   }
+
+  console.log(`GitHub release created for ${tag}.`)
 }
 
 function main() {
@@ -278,6 +286,9 @@ function main() {
   for (const pkg of packages) {
     createGithubReleaseForPackage(pkg)
   }
+  console.log(
+    `GitHub release checks completed for ${packages.length} packages at version ${releaseVersion}.`,
+  )
 }
 
 main()
