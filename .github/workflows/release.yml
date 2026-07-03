@@ -135,7 +135,22 @@ jobs:
               echo "Failed to resolve package tag for GitHub release creation."
               exit 1
             fi
-            gh release view "${tag}" >/dev/null 2>&1 || gh release create "${tag}" --generate-notes
+
+            if gh release view "${tag}" >/dev/null 2>&1; then
+              continue
+            fi
+
+            version="${tag##*@}"
+            if [ "${version}" = "0.0.1" ]; then
+              gh release create "${tag}" --generate-notes --notes "This is the first release under the @orchestra-design-system scope. Previous packages were published under @orchestra-kit."
+            else
+              gh release create "${tag}" --generate-notes
+            fi
+          done
+
+          for pkg in core react angular vue design-tokens icons-library; do
+            npm deprecate "@orchestra-kit/${pkg}@<1000.0.0" "Package moved to @orchestra-design-system/${pkg}. Please migrate to the new scope." \
+              || echo "Skipping deprecate for @orchestra-kit/${pkg} (package may not exist or token lacks rights)."
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

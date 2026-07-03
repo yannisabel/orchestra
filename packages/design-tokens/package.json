@@ -16,6 +16,10 @@
     "style-dictionary": "^5.5.0",
     "tsx": "^4.22.4"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yannisabel/orchestra.git"
+  },
   "author": "Yann Isabel",
   "license": "MIT"
 }

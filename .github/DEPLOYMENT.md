@@ -43,6 +43,8 @@ Release is manually triggered with `workflow_dispatch` and supports a `dry-run` 
 - First runs all package dry-runs as a preflight
 - Then publishes all packages with `--no-github` (npm publish first)
 - Only after publish succeeds for all packages, creates GitHub Releases from generated package tags
+- Adds a migration note automatically on first `0.0.1` releases under the new scope
+- Deprecates legacy `@orchestra-kit/*` packages with a migration message (best effort)
 
 This guarantees GitHub releases are created only after successful package publishing.
 
@@ -109,6 +111,7 @@ This ensures main Storybook is updated only after a successful real package rele
 - Release is not automatic on push; it is manually dispatched.
 - Use dry-run by default to validate release readiness before publishing.
 - If npm scope access fails (`E404 Scope not found`), verify the npm org and token permissions.
+- First release under `@orchestra-design-system` is expected to start at `0.0.1`.
 
 ## Local Validation
 
