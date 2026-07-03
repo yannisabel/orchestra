@@ -48,7 +48,7 @@ jobs:
           fi
 
           set +e
-          scope_output=$(npm access ls-packages "${NPM_SCOPE}" --json 2>&1)
+          scope_output=$(npm access list packages "${NPM_SCOPE}" --json 2>&1)
           scope_exit=$?
           set -e
 
