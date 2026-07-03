@@ -1,7 +1,7 @@
 {
   "name": "@orchestra-design-system/design-tokens",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "sd.config.js",
   "scripts": {
     "start": "concurrently 'npm run watch' 'npm run watch:extended'",
