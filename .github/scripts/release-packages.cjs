@@ -13,6 +13,16 @@ const packages = [
   'design-tokens',
   'icons-library',
 ]
+const internalReleaseManifests = [
+  'packages/core/package.json',
+  'packages/react/package.json',
+  'packages/angular/package.json',
+  'packages/vue/package.json',
+  'packages/design-tokens/package.json',
+  'packages/icons-library/package.json',
+  'packages/storybook/package.json',
+  'packages/angular/projects/component-library/package.json',
+]
 const firstReleaseScopeNote =
   'This is the first release under the @orchestra-design-system scope. Previous packages were published under @orchestra-kit.'
 
@@ -98,11 +108,34 @@ function runDryReleaseForRemainingPackages(releaseVersion) {
   }
 }
 
+function commitSyncedInternalDeps(releaseVersion) {
+  const diffResult = runCommand(
+    'git',
+    ['diff', '--quiet', '--', ...internalReleaseManifests],
+    { allowFailure: true },
+  )
+
+  if (diffResult.status === 0) {
+    return
+  }
+  if (diffResult.status !== 1) {
+    process.exit(diffResult.status || 1)
+  }
+
+  runCommand('git', ['add', ...internalReleaseManifests])
+  runCommand('git', [
+    'commit',
+    '-m',
+    `chore(release): sync internal deps to ^${releaseVersion}`,
+  ])
+}
+
 function runRealReleases(releaseVersion) {
   runCommand('node', [
     '.github/scripts/sync-internal-release-deps.cjs',
     releaseVersion,
   ])
+  commitSyncedInternalDeps(releaseVersion)
 
   // Delay lockfile regeneration until package versions are bumped by release-it.
   // Running npm install here can resolve freshly bumped internal ranges against
