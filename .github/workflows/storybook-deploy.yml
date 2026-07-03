@@ -29,11 +29,9 @@ jobs:
           echo "branch=$SAFE_BRANCH" >> $GITHUB_OUTPUT
       - name: Deploy Storybook to GitHub Pages (main)
         if: github.ref_name == 'main'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./packages/storybook/storybook-static
-          keep_files: true
+        run: |
+          echo "Skipping main deployment in this workflow."
+          echo "Main Storybook is deployed only from the Release workflow after a successful non-dry release."
       - name: Deploy Storybook to GitHub Pages (branch)
         if: github.ref_name != 'main'
         uses: peaceiris/actions-gh-pages@v3
