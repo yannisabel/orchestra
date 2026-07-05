@@ -11,12 +11,21 @@
       "types": "./dist/js/variables.light.d.ts",
       "default": "./dist/js/variables.light.js"
     },
+    "./dist/css/variables.light.css": {
+      "types": "./types/css.d.ts",
+      "default": "./dist/css/variables.light.css"
+    },
+    "./dist/css/variables.dark.css": {
+      "types": "./types/css.d.ts",
+      "default": "./dist/css/variables.dark.css"
+    },
     "./dist/*": "./dist/*",
     "./tokens/*": "./tokens/*"
   },
   "files": [
     "dist",
-    "tokens"
+    "tokens",
+    "types"
   ],
   "scripts": {
     "start": "concurrently 'npm run watch' 'npm run watch:extended'",
