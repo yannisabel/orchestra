@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.5](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/angular@0.0.4...@orchestra-design-system/angular@0.0.5) (2026-07-05)
+
+### Bug Fixes
+
+- **CI:** resolve ECONNRESET failure ([4f2d42a](https://github.com/yannisabel/orchestra/commit/4f2d42a2e7bc8893985eb8c7b2fd6829b8e430e9))
+- **release:** review how dry run release blocks release ([02caa6b](https://github.com/yannisabel/orchestra/commit/02caa6b4c5f9d2602ec3386c0ddd4b556f06353a))
+- resolve dependencies consumption ([47023f4](https://github.com/yannisabel/orchestra/commit/47023f4d5a4d2a081ce54f0df224f6f2815fbe60))
+
 ## [0.0.4](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/angular@0.0.3...@orchestra-design-system/angular@0.0.4) (2026-07-03)
 
 ## [0.0.3](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/angular@0.0.2...@orchestra-design-system/angular@0.0.3) (2026-07-03)
