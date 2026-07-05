@@ -4,6 +4,16 @@
   "description": "React wrappers for Orchestra design system web components",
   "author": "Yann Isabel",
   "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
   "files": [
     "lib",
     "dist"
