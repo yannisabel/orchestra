@@ -1,0 +1,46 @@
+name: npm ci retry
+description: Run npm ci with resilient network retry and backoff settings
+inputs:
+  attempts:
+    description: Number of npm ci attempts
+    required: false
+    default: '3'
+  no-audit:
+    description: Pass --no-audit to npm ci
+    required: false
+    default: 'true'
+runs:
+  using: composite
+  steps:
+    - name: Configure npm network retry settings
+      shell: bash
+      run: |
+        npm config set fetch-retries 5
+        npm config set fetch-retry-factor 2
+        npm config set fetch-retry-mintimeout 20000
+        npm config set fetch-retry-maxtimeout 120000
+
+    - name: Install dependencies with retry
+      shell: bash
+      run: |
+        set -euo pipefail
+
+        attempts='${{ inputs.attempts }}'
+        npm_args=""
+        if [ '${{ inputs.no-audit }}' = 'true' ]; then
+          npm_args="--no-audit"
+        fi
+
+        for attempt in $(seq 1 "$attempts"); do
+          echo "npm ci attempt ${attempt}/${attempts}"
+          if npm ci ${npm_args}; then
+            exit 0
+          fi
+
+          if [ "$attempt" -lt "$attempts" ]; then
+            echo "npm ci failed, retrying..."
+          fi
+        done
+
+        echo "npm ci failed after ${attempts} attempts"
+        exit 1

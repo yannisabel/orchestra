@@ -16,8 +16,8 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version-file: '.nvmrc'
-      - name: Install dependencies
-        run: npm ci
+      - name: Install dependencies (retry)
+        uses: ./.github/actions/npm-ci-retry
       - name: Run linting
         run: npm run lint
 
@@ -31,8 +31,8 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version-file: '.nvmrc'
-      - name: Install dependencies
-        run: npm ci
+      - name: Install dependencies (retry)
+        uses: ./.github/actions/npm-ci-retry
       - name: Build packages
         run: npm run build
       - name: Run tests
