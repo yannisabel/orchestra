@@ -5,8 +5,14 @@ Vue wrapper components for Orchestra web components.
 ## Installation
 
 ```bash
-npm install @orchestra-design-system/vue @orchestra-design-system/core vue
+npm install @orchestra-design-system/vue vue
 ```
+
+`@orchestra-design-system/core` is installed transitively by the Vue wrapper.
+
+The wrapper expects `vue@^3` as a peer dependency.
+
+Install core explicitly only if your app imports from core directly.
 
 ## Register the plugin
 

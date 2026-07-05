@@ -5,8 +5,14 @@ React wrapper components for Orchestra web components.
 ## Installation
 
 ```bash
-npm install @orchestra-design-system/react @orchestra-design-system/core
+npm install @orchestra-design-system/react
 ```
+
+`@orchestra-design-system/core` is installed transitively by the React wrapper.
+
+The wrapper expects `react` and `react-dom` as peer dependencies (`>=17 <20`). Most React apps already provide these.
+
+Install core explicitly only if your app imports from core directly (for example `@orchestra-design-system/core/loader` or raw web component modules).
 
 ## Usage
 
