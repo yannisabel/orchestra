@@ -1,7 +1,7 @@
 {
   "name": "@orchestra-design-system/design-tokens",
   "type": "module",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Design tokens for the Orchestra design system",
   "main": "./dist/js/variables.light.js",
   "module": "./dist/js/variables.light.js",
