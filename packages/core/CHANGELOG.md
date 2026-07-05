@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.9](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.8...@orchestra-design-system/core@0.0.9) (2026-07-05)
+
+### Bug Fixes
+
+- **design-tokens:** adding explicit CSS subpath typings ([de30be1](https://github.com/yannisabel/orchestra/commit/de30be17a42ec1f7fb6ae1b58522e5ca5759a7c3))
+
 ## [0.0.8](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.7...@orchestra-design-system/core@0.0.8) (2026-07-05)
 
 ### Bug Fixes
