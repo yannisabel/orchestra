@@ -3,12 +3,27 @@
   "type": "module",
   "version": "0.0.7",
   "description": "Design tokens for the Orchestra design system",
-  "main": "sd.config.js",
+  "main": "./dist/js/variables.light.js",
+  "module": "./dist/js/variables.light.js",
+  "types": "./dist/js/variables.light.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/js/variables.light.d.ts",
+      "default": "./dist/js/variables.light.js"
+    },
+    "./dist/*": "./dist/*",
+    "./tokens/*": "./tokens/*"
+  },
+  "files": [
+    "dist",
+    "tokens"
+  ],
   "scripts": {
     "start": "concurrently 'npm run watch' 'npm run watch:extended'",
     "watch": "tsx watch --exclude './tokens/gen-*.**' --include './tokens/*.**' sd.config.js",
     "watch:extended": "tsx watch --include './tokens/extended/tokens/*.**' ./tokens/extended/build.js",
-    "build": "node sd.config.js"
+    "build": "node sd.config.js",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "concurrently": "^9.2.3",
