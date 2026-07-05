@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.8](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.7...@orchestra-design-system/core@0.0.8) (2026-07-05)
+
+### Bug Fixes
+
+- allow design tokens to be consumed directly ([8d4f0ad](https://github.com/yannisabel/orchestra/commit/8d4f0adc4ce9e8044dbb332fca1a6baa3d913089))
+
 ## [0.0.7](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.6...@orchestra-design-system/core@0.0.7) (2026-07-05)
 
 ### Bug Fixes
