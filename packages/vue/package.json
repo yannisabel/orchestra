@@ -12,7 +12,7 @@
     "tsc": "tsc -p . --outDir ./dist"
   },
   "dependencies": {
-    "@orchestra-design-system/core": "^0.0.4",
+    "@orchestra-design-system/core": "^0.0.5",
     "@stencil/vue-output-target": "^0.11.8"
   },
   "repository": {

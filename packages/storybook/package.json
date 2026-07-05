@@ -27,8 +27,8 @@
     "update": "npx npm-check-updates -u"
   },
   "dependencies": {
-    "@orchestra-design-system/core": "^0.0.4",
-    "@orchestra-design-system/icons-library": "^0.0.4",
+    "@orchestra-design-system/core": "^0.0.5",
+    "@orchestra-design-system/icons-library": "^0.0.5",
     "lit": "^3.3.3"
   },
   "devDependencies": {

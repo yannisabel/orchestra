@@ -90,7 +90,7 @@
     "preview": "npx http-server www"
   },
   "dependencies": {
-    "@orchestra-design-system/icons-library": "^0.0.4"
+    "@orchestra-design-system/icons-library": "^0.0.5"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.1",
