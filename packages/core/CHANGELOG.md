@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.7](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.6...@orchestra-design-system/core@0.0.7) (2026-07-05)
+
+### Bug Fixes
+
+- resolve Node.js ESM resolution ([0389018](https://github.com/yannisabel/orchestra/commit/038901871cf72f9c770bf46ef95fd6b0c0a7d52c))
+
 ## [0.0.6](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.5...@orchestra-design-system/core@0.0.6) (2026-07-05)
 
 ### Bug Fixes
