@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.6](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/react@0.0.5...@orchestra-design-system/react@0.0.6) (2026-07-05)
+
+### Bug Fixes
+
+- resolve exports in React and Vue packages ([f429627](https://github.com/yannisabel/orchestra/commit/f42962725e81684e4af768d5874c0d7c3f7c6fce))
+
 ## [0.0.5](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/react@0.0.4...@orchestra-design-system/react@0.0.5) (2026-07-05)
 
 ### Bug Fixes
