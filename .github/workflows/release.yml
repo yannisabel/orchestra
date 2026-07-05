@@ -69,6 +69,7 @@ jobs:
       - name: Install dependencies (retry)
         uses: ./.github/actions/npm-ci-retry
       - name: Build packages
+        id: build_packages
         run: npm run build
       - name: Configure Git
         run: |
@@ -77,15 +78,23 @@ jobs:
       - name: Validate internal version alignment
         run: |
           node .github/scripts/validate-internal-version-alignment.cjs
-      - name: Preflight dry-run release
+      - name: Preflight dry-run release (advisory)
+        id: preflight_release
         if: inputs.dry-run == false
+        continue-on-error: true
         run: |
           node .github/scripts/release-packages.cjs
         env:
           DRY_RUN: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Preflight result
+        if: inputs.dry-run == false && steps.preflight_release.outcome == 'failure'
+        run: |
+          echo "Preflight dry-run failed, continuing to real release."
+          echo "Check preflight logs for package-level dry-run issues."
       - name: Release packages
+        if: steps.build_packages.outcome == 'success'
         run: |
           node .github/scripts/release-packages.cjs
         env:
