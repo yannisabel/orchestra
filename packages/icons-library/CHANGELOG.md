@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.10](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/icons-library@0.0.9...@orchestra-design-system/icons-library@0.0.10) (2026-07-06)
+
+### Bug Fixes
+
+- **design-tokens:** add typesVersions fallback for css side-effect imports ([a3d6db6](https://github.com/yannisabel/orchestra/commit/a3d6db681256dca58008203c451c2e4c9faa4838))
+
 ## [0.0.9](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/icons-library@0.0.8...@orchestra-design-system/icons-library@0.0.9) (2026-07-05)
 
 ### Bug Fixes
