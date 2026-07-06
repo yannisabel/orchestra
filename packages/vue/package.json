@@ -1,6 +1,6 @@
 {
   "name": "@orchestra-design-system/vue",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Vue wrappers for Orchestra design system web components",
   "author": "Yann Isabel",
   "main": "./dist/index.js",
