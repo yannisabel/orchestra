@@ -5413,7 +5413,7 @@ class OrchestraButton {
         this.disabledChanged();
     }
     render() {
-        return (hAsync(Host, { key: '382c54d8677a2c6a144db02cd0d17b628ff7ebb7' }, hAsync("button", { key: 'd49e4fbce92bc1f157b9c3be99484d1fdbfebafb', class: `orchestra-button orchestra-button--${this.variant} orchestra-button--${this.size}`, type: this.type, ref: __classPrivateFieldGet(this, _OrchestraButton_buttonRef, "f"), disabled: this.disabled, "aria-label": __classPrivateFieldGet(this, _OrchestraButton_getAriaLabel, "f").call(this), "data-icon": this.icon, onClick: __classPrivateFieldGet(this, _OrchestraButton_onClick, "f") }, this.iconName && (this.icon === 'start' || this.icon === 'only') && (hAsync("orchestra-icon", { key: 'e7402f0692a67cfcdc4e823f0e2079910c43503a', name: this.iconName, library: this.iconLibrary })), __classPrivateFieldGet(this, _OrchestraButton_hasTextDisplayed, "f").call(this) && (hAsync("span", { key: '7c5f773d340fc224fca12b481799b04b14873c4a', class: "orchestra-overflow" }, this.text)), this.iconName && this.icon === 'end' && (hAsync("orchestra-icon", { key: '52a522dcaecdf25ab80119266758bd3df5becedd', name: this.iconName, library: this.iconLibrary })))));
+        return (hAsync(Host, { key: '0e168fe26768f79ac12f3725618abec69c454bab' }, hAsync("button", { key: '5546f40dbef93ade594ecd8db0c9f7ca50d9acfc', class: `orchestra-button orchestra-button--${this.variant} orchestra-button--${this.size}`, type: this.type, ref: __classPrivateFieldGet(this, _OrchestraButton_buttonRef, "f"), disabled: this.disabled, "aria-label": __classPrivateFieldGet(this, _OrchestraButton_getAriaLabel, "f").call(this), "data-icon": this.icon, onClick: __classPrivateFieldGet(this, _OrchestraButton_onClick, "f") }, this.iconName && (this.icon === 'start' || this.icon === 'only') && (hAsync("orchestra-icon", { key: '7d5d592aae55f31432eb08410293cd09a790095f', name: this.iconName, library: this.iconLibrary })), __classPrivateFieldGet(this, _OrchestraButton_hasTextDisplayed, "f").call(this) && (hAsync("span", { key: 'bb277b59fe61d1eb84c034c5b02496715437618b', class: "orchestra-overflow" }, this.text)), this.iconName && this.icon === 'end' && (hAsync("orchestra-icon", { key: 'afe4b2a27f9fc2dee0d276c61e860267e1c05947', name: this.iconName, library: this.iconLibrary })))));
     }
     static get delegatesFocus() { return true; }
     static get formAssociated() { return true; }
@@ -7874,7 +7874,7 @@ class OrchestraIcon {
         this.sanitizeSVG();
     }
     render() {
-        return hAsync(Host, { key: '95ff5fa43d157effeb4764950e8678240c48da12' });
+        return hAsync(Host, { key: 'b62857b6d664da850ec98f047dbb01cb96a0798e' });
     }
     /**
      * Sanitize svg element and allow only svg tags to be written
