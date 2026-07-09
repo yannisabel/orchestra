@@ -4,12 +4,6 @@
   "private": false,
   "type": "module",
   "description": "Theme CSS entry points for Orchestra design system",
-  "author": "Yann Isabel",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yannisabel/orchestra.git"
-  },
   "exports": {
     "./light.css": "./dist/css/light.css",
     "./dark.css": "./dist/css/dark.css",
@@ -23,9 +17,16 @@
     "README.md"
   ],
   "scripts": {
-    "build": "node build.mjs"
+    "build": "node build.mjs",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "style-dictionary": "^5.5.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yannisabel/orchestra.git"
+  },
+  "author": "Yann Isabel",
+  "license": "MIT"
 }

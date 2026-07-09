@@ -3,7 +3,7 @@ import { outputReferencesFilter } from 'style-dictionary/utils'
 import { rmSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { transforms, transformTypes, formats } from 'style-dictionary/enums'
+import { formats, transformTypes, transforms } from 'style-dictionary/enums'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PREFIX = 'orchestra'
@@ -27,8 +27,10 @@ StyleDictionary.registerTransform({
 StyleDictionary.registerTransform({
   name: 'name/kebab-no-alias-no-component',
   type: transformTypes.name,
-  transform: function (token) {
-    const path = token.path.filter((p) => p !== 'alias' && p !== 'component')
+  transform: (token) => {
+    const path = token.path.filter(
+      (part) => part !== 'alias' && part !== 'component',
+    )
     return [PREFIX, ...path].join('-')
   },
 })

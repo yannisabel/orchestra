@@ -1,0 +1,25 @@
+{
+  "git": {
+    "commit": true,
+    "commitMessage": "chore(@orchestra-design-system/themes): release v${version}",
+    "tag": true,
+    "tagName": "@orchestra-design-system/themes@${version}",
+    "push": true,
+    "requireUpstream": false
+  },
+  "npm": {
+    "publish": true,
+    "publishArgs": ["--access", "public"],
+    "allowSameVersion": false
+  },
+  "github": {
+    "release": true,
+    "releaseName": "@orchestra-design-system/themes v${version}"
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": "conventionalcommits",
+      "infile": "CHANGELOG.md"
+    }
+  }
+}

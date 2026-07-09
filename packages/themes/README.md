@@ -2,14 +2,13 @@
 
 Theme entry points for the Orchestra design system.
 
-This package is the recommended public entry point for applications and Storybook. It is generated from the design-tokens package and exposes ready-to-use light and dark theme bundles.
+This package is the recommended public entry point for applications and Storybook. It owns primitive, semantic, and component token sources and generates ready-to-use light and dark theme bundles.
 
 ## How it works
 
-- The design-tokens package stores the source token files (primitive, semantic, component).
-- The themes package combines primitive tokens with per-theme semantic and per-theme component token files.
-- The themes package generates CSS variables for each theme and publishes the final theme bundles.
-- Applications should import the themes package, not the lower-level design-tokens CSS files directly.
+- Token sources live in `tokens/`.
+- The build uses Style Dictionary to generate CSS variables per theme.
+- Consumers should import this package, not internal token build files.
 
 ## Usage
 
@@ -18,8 +17,13 @@ This package is the recommended public entry point for applications and Storyboo
 @import '@orchestra-design-system/themes/dark.css';
 ```
 
-```typescript
-import '@orchestra-design-system/themes/light.css'
-```
+## Files
 
-> Best practice: use the themes package in apps. The design-tokens package remains the source of truth for token generation and should be considered an implementation detail unless you need to consume raw variables directly.
+- dist/css/light.css
+- dist/css/dark.css
+
+## Build
+
+```bash
+npm run build
+```
