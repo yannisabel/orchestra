@@ -1,7 +1,7 @@
 {
   "name": "@orchestra-design-system/core",
   "type": "module",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Web components for the Orchestra design system",
   "author": "Yann Isabel",
   "keywords": [
