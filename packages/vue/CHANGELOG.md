@@ -1,5 +1,7 @@
 # Changelog
 
+## [0.0.13](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/vue@0.0.11...@orchestra-design-system/vue@0.0.13) (2026-07-09)
+
 ## [0.0.11](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/vue@0.0.10...@orchestra-design-system/vue@0.0.11) (2026-07-09)
 
 ## [0.0.10](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/vue@0.0.9...@orchestra-design-system/vue@0.0.10) (2026-07-06)
