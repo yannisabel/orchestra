@@ -5,26 +5,19 @@ const fs = require('fs')
 const os = require('os')
 const path = require('path')
 
-const packages = [
-  'core',
-  'react',
-  'angular',
-  'vue',
-  'design-tokens',
-  'icons-library',
-]
+const packages = ['core', 'react', 'angular', 'vue', 'themes', 'icons-library']
 const internalReleaseManifests = [
   'packages/core/package.json',
   'packages/react/package.json',
   'packages/angular/package.json',
   'packages/vue/package.json',
-  'packages/design-tokens/package.json',
+  'packages/themes/package.json',
   'packages/icons-library/package.json',
   'packages/storybook/package.json',
   'packages/angular/projects/component-library/package.json',
 ]
 const firstReleaseScopeNote =
-  'This is the first release under the @orchestra-design-system scope. Previous packages were published under @orchestra-kit.'
+  'This is the first release under the @orchestra-design-system scope. Previous packages were published under the legacy orchestra-kit scope.'
 
 function runCommand(command, args, options = {}) {
   const result = spawnSync(command, args, {

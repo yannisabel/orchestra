@@ -1,6 +1,6 @@
 {
   "name": "@orchestra-design-system/core/hydrate",
-  "description": "OrchestraKit component hydration app.",
+  "description": "OrchestraDesignSystem component hydration app.",
   "main": "index.js",
   "types": "index.d.ts",
   "exports": {

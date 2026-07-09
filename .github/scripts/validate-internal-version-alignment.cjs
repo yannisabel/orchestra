@@ -6,7 +6,7 @@ const packageFiles = [
   'packages/react/package.json',
   'packages/angular/package.json',
   'packages/vue/package.json',
-  'packages/design-tokens/package.json',
+  'packages/themes/package.json',
   'packages/icons-library/package.json',
   'packages/storybook/package.json',
   'packages/angular/projects/component-library/package.json',
@@ -17,7 +17,7 @@ const publishableNames = [
   '@orchestra-design-system/react',
   '@orchestra-design-system/angular',
   '@orchestra-design-system/vue',
-  '@orchestra-design-system/design-tokens',
+  '@orchestra-design-system/themes',
   '@orchestra-design-system/icons-library',
 ]
 

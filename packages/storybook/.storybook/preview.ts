@@ -1,5 +1,5 @@
-import '@orchestra-design-system/core/dist/orchestra-kit/themes/light.css'
-import '@orchestra-design-system/core/dist/orchestra-kit/themes/dark.css'
+import '@orchestra-design-system/themes/light.css'
+import '@orchestra-design-system/themes/dark.css'
 import './globals.css'
 
 import type { Preview } from '@storybook/web-components-vite'
@@ -44,7 +44,7 @@ registerIconLibrary('custom', {
 console.log('✅ Custom library registered')
 
 // Now import and auto-register components
-import '@orchestra-design-system/core/dist/orchestra-kit/orchestra-kit.esm.js'
+import '@orchestra-design-system/core/dist/orchestra-design-system/orchestra-design-system.esm.js'
 
 // Store icons globally and register after a delay to ensure components are ready
 Promise.resolve().then(() => {

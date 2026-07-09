@@ -5,14 +5,10 @@ import { vueOutputTarget } from '@stencil/vue-output-target'
 import postcss from 'rollup-plugin-postcss'
 
 export const config: Config = {
-  namespace: 'orchestra-kit',
+  namespace: 'orchestra-design-system',
   outputTargets: [
     {
       type: 'dist',
-      copy: [
-        { src: 'themes/vite-generated/light.css', dest: 'themes/light.css' },
-        { src: 'themes/vite-generated/dark.css', dest: 'themes/dark.css' },
-      ],
       esmLoaderPath: '../loader',
     },
     {
@@ -27,14 +23,7 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null, // disable service workers
-      copy: [
-        { src: '**/*.html' },
-        {
-          src: 'themes/vite-generated/light.css',
-          dest: 'themes/light.css',
-        },
-        { src: 'themes/vite-generated/dark.css', dest: 'themes/dark.css' },
-      ],
+      copy: [{ src: '**/*.html' }],
     },
     {
       type: 'www',
@@ -68,6 +57,4 @@ export const config: Config = {
       minimize: true,
     }),
   ],
-  //eslint-disable-next-line
-  watchIgnoredRegex: [/src\/themes\/[^\/]+\.css$/],
 }

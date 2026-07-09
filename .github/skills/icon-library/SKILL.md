@@ -487,7 +487,7 @@ When using LLMs to work on icon systems:
 
 - **Related Skills**:
   - [stencil-components](../stencil-components/SKILL.md) — Component architecture
-  - [design-tokens](../design-tokens/SKILL.md) — Token-based styling
+  - [themes](../themes/SKILL.md) — Token-based styling
   - [token-optimization](../token-optimization/SKILL.md) — LLM efficiency
 
 - **Documentation**:

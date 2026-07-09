@@ -519,7 +519,7 @@ handleKeyDown(e: KeyboardEvent) {
 - Consistent color hierarchy
 ```
 
-**Orchestra Pattern** (See [design-tokens](../design-tokens/SKILL.md)):
+**Orchestra Pattern** (See [themes](../themes/SKILL.md)):
 
 ```css
 /* Light theme (default) */
@@ -688,6 +688,6 @@ Store learnings in `/memories/repo/`:
 
 - [token-optimization](../token-optimization/SKILL.md) — Efficient system exploration
 - [stencil-components](../stencil-components/SKILL.md) — Orchestra component implementation
-- [design-tokens](../design-tokens/SKILL.md) — Token structure & theming
+- [themes](../themes/SKILL.md) — Token structure & theming
 - [story-testing](../story-testing/SKILL.md) — Testing patterns
 - [code-conventions](../code-conventions/SKILL.md) — Naming & standards

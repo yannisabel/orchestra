@@ -1,5 +1,5 @@
 ---
-name: design-tokens
+name: themes
 description: 'Manage Orchestra design tokens for flexible UI theming. Use when adding new token categories, extending themes (dark/light), or understanding token structure. Covers token hierarchy (primitive/semantic/component), CSS variable generation, theme switching, and Style Dictionary configuration.'
 argument-hint: "Describe what you're adding (e.g., 'new color category', 'spacing tokens', 'dark theme override')"
 user-invocable: true
@@ -20,7 +20,7 @@ Orchestra uses **Style Dictionary v5.1.1** to manage design tokens in a hierarch
 Raw design values—colors, spacing, typography. **Not exported to CSS** (used as references only).
 
 ```json
-// packages/design-tokens/tokens/primitive.json
+// packages/themes/tokens/primitive.json
 {
   "vibrant": {
     "purple": {
@@ -51,7 +51,7 @@ Raw design values—colors, spacing, typography. **Not exported to CSS** (used a
 Meaningful references tied to **states and actions**. These reference primitives and are exported to CSS.
 
 ```json
-// packages/design-tokens/tokens/semantic.json
+// packages/themes/tokens/semantic.json
 {
   "color": {
     "action": {
@@ -101,7 +101,7 @@ Meaningful references tied to **states and actions**. These reference primitives
 Component-specific overrides and compositions. Reference semantic tokens and define component-level defaults.
 
 ```json
-// packages/design-tokens/tokens/component.json
+// packages/themes/tokens/component.json
 {
   "button": {
     "primary": {
@@ -161,7 +161,7 @@ Generated CSS variables follow this pattern:
 
 ### Light Theme (Default)
 
-**File**: `packages/design-tokens/tokens/primitive.json` + `packages/design-tokens/tokens/semantic.json`
+**File**: `packages/themes/tokens/primitive.json` + `packages/themes/tokens/semantic.json`
 
 Generated to: `dist/css/variables.light.css`
 
@@ -183,7 +183,7 @@ Scoped to:
 
 ### Dark Theme
 
-**File**: `packages/design-tokens/tokens/gen-tokens.dark.json5`
+**File**: `packages/themes/tokens/gen-tokens.dark.json5`
 
 Override only the tokens that differ in dark mode:
 
@@ -233,7 +233,7 @@ Scoped to:
 
 ### Style Dictionary Configuration
 
-**File**: `packages/design-tokens/sd.config.js`
+**File**: `packages/themes/sd.config.js`
 
 ```javascript
 const StyleDictionary = require('style-dictionary')
@@ -288,16 +288,16 @@ new StyleDictionary(darkConfig).buildAllPlatforms()
 
 ```bash
 # Full build (light + dark)
-npm run build --workspace=@orchestra-design-system/design-tokens
+npm run build --workspace=@orchestra-design-system/themes
 
 # Watch mode
-npm run watch --workspace=@orchestra-design-system/design-tokens
+npm run watch --workspace=@orchestra-design-system/themes
 ```
 
 **Output**:
 
 ```
-packages/design-tokens/dist/
+packages/themes/dist/
 ├── css/
 │   ├── variables.light.css
 │   └── variables.dark.css
@@ -352,7 +352,7 @@ Always reference lower levels:
 ### Step 4: Rebuild & Test
 
 ```bash
-npm run build --workspace=@orchestra-design-system/design-tokens
+npm run build --workspace=@orchestra-design-system/themes
 
 # Verify output in packages/core/src/themes/
 # Light: <link rel="stylesheet" href="light.css" />
@@ -418,7 +418,7 @@ npm run build --workspace=@orchestra-design-system/design-tokens
 ### 4. Build & Use in Component
 
 ```bash
-npm run build --workspace=@orchestra-design-system/design-tokens
+npm run build --workspace=@orchestra-design-system/themes
 ```
 
 **Now available in CSS**:
@@ -479,5 +479,5 @@ When working with LLMs, be specific about token-related tasks:
 - [token-optimization](../token-optimization/SKILL.md) — Efficient token exploration
 - [Design Token Community Group](https://tr.designtokens.org/)
 - [Style Dictionary v5 Documentation](https://styledictionary.com/)
-- [Orchestra Token Generator](../../packages/design-tokens/sd.config.js)
+- [Orchestra Token Generator](../../packages/themes/sd.config.js)
 - [stencil-components](../stencil-components/SKILL.md) — How to use tokens in components

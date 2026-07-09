@@ -1,6 +1,6 @@
-# Orchestra Kit Storybook
+# Orchestra Design System Storybook
 
-Component documentation, testing, and visual development environment for Orchestra Kit web components.
+Component documentation, testing, and visual development environment for Orchestra Design System web components.
 
 ## Quick Start
 
@@ -133,10 +133,12 @@ npm run storybook:test-coverage # With coverage report
 
 Storybook includes light and dark theme support via the Storybook Themes addon.
 
-- **Light Theme** - Default, imports `@orchestra-design-system/core/dist/orchestra-kit/themes/light.css`
+- **Light Theme** - Default, imports `@orchestra-design-system/themes/light.css`
 - **Dark Theme** - Toggle via Storybook theme switcher
 
-To customize themes, see [Design Tokens README](../design-tokens/README.md).
+Best practice for applications and Storybook is to use the themes package as the public entry point. The themes package now owns primitive/semantic/component token sources and generates token CSS variables directly.
+
+To customize themes, see [Themes README](../themes/README.md).
 
 ## Configuration
 
@@ -154,7 +156,10 @@ Static files are copied during build:
 // .storybook/main.ts
 staticDirs: [
   '../public',
-  { from: '../../core/dist/orchestra-kit', to: '/orchestra-kit' },
+  {
+    from: '../../core/dist/orchestra-design-system',
+    to: '/orchestra-design-system',
+  },
 ]
 ```
 

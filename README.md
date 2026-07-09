@@ -1,14 +1,14 @@
-# Orchestra Kit
+# Orchestra Design System
 
-Orchestra Kit is a monorepo for a design system built on Stencil web components, design tokens, and framework wrappers.
+Orchestra Design System is a monorepo for a design system built on Stencil web components, design tokens, theme bundles, and framework wrappers.
 
 ## Monorepo overview
 
 ```text
 orchestra/
 ├── packages/
-│   ├── core/              # Stencil components (currently button and icon)
-│   ├── design-tokens/     # Token source + generated outputs
+│   ├── core/              # Stencil components
+│   ├── themes/            # Public theme bundles (light/dark) with primitive/semantic/component token sources
 │   ├── icons-library/     # SVG ingestion and icon exports
 │   ├── angular/           # Angular wrapper package
 │   ├── react/             # React wrapper package
@@ -41,8 +41,8 @@ npm run dev
 ## Root scripts
 
 - `npm run dev`: starts Storybook development and core watchers
-- `npm run build`: builds tokens first, then all workspaces
-- `npm run build:tokens`: builds only `@orchestra-design-system/design-tokens`
+- `npm run build`: builds themes first, then all workspaces
+- `npm run build:tokens`: builds only `@orchestra-design-system/themes`
 - `npm run build:storybook`: builds static Storybook
 - `npm run lint`: runs Oxlint (with `--fix`)
 - `npm run lint:check`: runs Oxlint in check-only mode
@@ -54,8 +54,8 @@ npm run dev
 
 ## Package documentation
 
-- [packages/core/README.md](packages/core/README.md): Stencil components
-- [packages/design-tokens/README.md](packages/design-tokens/README.md): token architecture and usage
+- [packages/core/README.md](packages/core/README.md): Stencil components and component package usage
+- [packages/themes/README.md](packages/themes/README.md): public theme bundles and recommended app entry point
 - [packages/icons-library/README.md](packages/icons-library/README.md): icon build and exports
 - [packages/angular/README.md](packages/angular/README.md): Angular wrapper package
 - [packages/react/README.md](packages/react/README.md): React wrapper package
@@ -67,10 +67,11 @@ npm run dev
 ### Add or update a component
 
 1. Implement component logic in `packages/core/src/components/<name>/`
-2. Update tokens in `packages/design-tokens/tokens/` if needed
-3. Add or update stories in `packages/storybook/src/stories/`
-4. Add test assertions in Storybook play functions
-5. Build and verify:
+2. Update theme tokens in `packages/themes/tokens/` if needed
+3. If necessary, update the generated theme bundles via the themes package
+4. Add or update stories in `packages/storybook/src/stories/`
+5. Add test assertions in Storybook play functions
+6. Build and verify:
 
 ```bash
 npm run build
@@ -85,6 +86,17 @@ npm run test
 ```bash
 npm run build
 ```
+
+## Theme usage
+
+Best practice for applications is to consume the themes package:
+
+```css
+@import '@orchestra-design-system/themes/light.css';
+@import '@orchestra-design-system/themes/dark.css';
+```
+
+The themes package is the source of truth for primitive, semantic, and component token sources as well as generated light/dark CSS bundles.
 
 ## CI and release
 

@@ -32,7 +32,7 @@
   "scripts": {
     "dev": "npx lerna run storybook:start --scope=@orchestra-design-system/storybook",
     "build": "npm run build:tokens && npx lerna run build",
-    "build:tokens": "npx lerna run build --scope='@orchestra-design-system/design-tokens'",
+    "build:tokens": "npx lerna run build --scope='@orchestra-design-system/themes'",
     "build:storybook": "npx lerna run build-storybook --scope=@orchestra-design-system/storybook",
     "update": "npx npm-check-updates -u",
     "format": "npx prettier . --write",
@@ -54,8 +54,8 @@
     "release:angular:dry": "cd packages/angular && release-it --dry-run",
     "release:vue": "cd packages/vue && release-it",
     "release:vue:dry": "cd packages/vue && release-it --dry-run",
-    "release:design-tokens": "cd packages/design-tokens && release-it",
-    "release:design-tokens:dry": "cd packages/design-tokens && release-it --dry-run",
+    "release:themes": "cd packages/themes && release-it",
+    "release:themes:dry": "cd packages/themes && release-it --dry-run",
     "release:icons-library": "cd packages/icons-library && release-it",
     "release:icons-library:dry": "cd packages/icons-library && release-it --dry-run"
   },

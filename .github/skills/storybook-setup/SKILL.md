@@ -370,7 +370,7 @@ When working with LLMs on Storybook:
 - [token-optimization](../token-optimization/SKILL.md) — Efficient exploration
 - [story-testing](../story-testing/SKILL.md) — Write tests in play functions
 - [stencil-components](../stencil-components/SKILL.md) — Component implementation
-- [design-tokens](../design-tokens/SKILL.md) — Token theming
+- [themes](../themes/SKILL.md) — Token theming
 - [Storybook Official Docs](https://storybook.js.org/)
 - [Stencil Storybook Plugin](https://github.com/ionic-team/stencil-storybook-plugin)
 - [Vitest + Storybook Integration](https://storybook.js.org/docs/writing-tests/vitest)

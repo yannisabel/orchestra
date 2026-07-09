@@ -210,7 +210,7 @@ describe('orchestra-component', () => {
 ```typescript
 // stencil.config.ts
 export const config: Config = {
-  namespace: 'orchestra-kit',
+  namespace: 'orchestra-design-system',
   outputTargets: [
     {
       type: 'dist',

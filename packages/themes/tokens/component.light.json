@@ -1,0 +1,212 @@
+{
+  "focus": {
+    "outer-ring": {
+      "color": {
+        "$extensions": {
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{color.outline}"
+      }
+    },
+    "inner-ring": {
+      "color": {
+        "$extensions": {
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{color.action.primary.content.focus}"
+      }
+    }
+  },
+  "button": {
+    "primary": {
+      "container": {
+        "radius": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{radius.action.primary.container}"
+        },
+        "padding": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.primary.container}"
+        },
+        "padding-inline-start": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.primary.large}"
+        },
+        "padding-inline-end": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.primary.large}"
+        },
+        "padding-block-start": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.primary.medium}"
+        },
+        "padding-block-end": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.primary.medium}"
+        }
+      },
+      "content": {
+        "gap": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.primary.content}"
+        }
+      }
+    },
+    "secondary": {
+      "container": {
+        "radius": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{radius.action.secondary.container}"
+        },
+        "padding": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.secondary.container}"
+        },
+        "padding-inline-start": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.secondary.large}"
+        },
+        "padding-inline-end": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.secondary.large}"
+        },
+        "padding-block-start": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.secondary.medium}"
+        },
+        "padding-block-end": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.secondary.medium}"
+        }
+      },
+      "content": {
+        "gap": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.secondary.content}"
+        }
+      }
+    },
+    "tertiary": {
+      "container": {
+        "radius": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{radius.action.tertiary.container}"
+        },
+        "padding": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.tertiary.container}"
+        },
+        "padding-inline-start": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.tertiary.large}"
+        },
+        "padding-inline-end": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.tertiary.large}"
+        },
+        "padding-block-start": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.tertiary.medium}"
+        },
+        "padding-block-end": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.tertiary.medium}"
+        }
+      },
+      "content": {
+        "gap": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{spacing.action.tertiary.content}"
+        }
+      }
+    }
+  }
+}
