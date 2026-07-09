@@ -102,6 +102,11 @@ jobs:
         run: |
           echo "Preflight dry-run failed, continuing to real release."
           echo "Check preflight logs for package-level dry-run issues."
+      - name: Normalize generated hydrate artifacts
+        if: steps.build_packages.outcome == 'success'
+        run: |
+          set -euo pipefail
+          git restore --worktree packages/core/hydrate/index.js packages/core/hydrate/index.mjs || true
       - name: Preflight working tree cleanliness
         if: steps.build_packages.outcome == 'success'
         run: |
