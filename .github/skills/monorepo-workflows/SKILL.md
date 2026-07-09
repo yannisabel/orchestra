@@ -28,7 +28,7 @@ orchestra/
 │   ├── vue/                    # Vue wrapper (auto-generated proxies)
 │   ├── angular/                # Angular wrapper (auto-generated proxies)
 │   ├── storybook/              # Storybook & testing hub
-│   ├── design-tokens/          # Design token generation
+│   ├── themes/          # Design token generation
 │   └── icons/                  # Shared icon assets
 ├── package.json                # Root workspace config
 ├── lerna.json                  # Lerna configuration
@@ -39,27 +39,27 @@ orchestra/
 
 ### Package Purposes
 
-| Package           | Purpose                                    | Dependencies        |
-| ----------------- | ------------------------------------------ | ------------------- |
-| **core**          | Stencil components (web components)        | design-tokens       |
-| **react**         | React proxy components                     | core                |
-| **vue**           | Vue proxy components                       | core                |
-| **angular**       | Angular proxy components                   | core                |
-| **storybook**     | Interactive documentation & testing        | core, design-tokens |
-| **design-tokens** | Design token generation (Style Dictionary) | (none)              |
-| **icons**         | Icon assets & SVGs                         | (none)              |
+| Package       | Purpose                                    | Dependencies |
+| ------------- | ------------------------------------------ | ------------ |
+| **core**      | Stencil components (web components)        | themes       |
+| **react**     | React proxy components                     | core         |
+| **vue**       | Vue proxy components                       | core         |
+| **angular**   | Angular proxy components                   | core         |
+| **storybook** | Interactive documentation & testing        | core, themes |
+| **themes**    | Design token generation (Style Dictionary) | (none)       |
+| **icons**     | Icon assets & SVGs                         | (none)       |
 
 ### Dependency Graph
 
 ```
-design-tokens
+themes
     ↓
-core (depends on design-tokens)
+core (depends on themes)
     ↓
 ├→ react (depends on core)
 ├→ vue (depends on core)
 ├→ angular (depends on core)
-└→ storybook (depends on core + design-tokens)
+└→ storybook (depends on core + themes)
 ```
 
 ## Lerna Configuration
@@ -93,7 +93,7 @@ core (depends on design-tokens)
   "scripts": {
     "dev": "npm run storybook:start --workspace=@orchestra-design-system/storybook",
     "build": "npm run build:tokens && lerna run build",
-    "build:tokens": "npm run build --workspace=@orchestra-design-system/design-tokens",
+    "build:tokens": "npm run build --workspace=@orchestra-design-system/themes",
     "test": "npm run test --workspaces",
     "test:coverage": "npm run test:coverage --workspaces",
     "lint": "eslint . --cache",
@@ -271,7 +271,7 @@ Each package can have:
 **Design Tokens** (no dependencies):
 
 ```json
-{ "name": "@orchestra-design-system/design-tokens", "dependencies": {} }
+{ "name": "@orchestra-design-system/themes", "dependencies": {} }
 ```
 
 **Core** (depends on Design Tokens):
@@ -280,7 +280,7 @@ Each package can have:
 {
   "name": "@orchestra-design-system/core",
   "dependencies": {
-    "@orchestra-design-system/design-tokens": "^0.0.1"
+    "@orchestra-design-system/themes": "^0.0.1"
   }
 }
 ```

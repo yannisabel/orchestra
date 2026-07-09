@@ -1,0 +1,31 @@
+{
+  "name": "@orchestra-design-system/themes",
+  "version": "0.0.10",
+  "private": false,
+  "type": "module",
+  "description": "Theme CSS entry points for Orchestra design system",
+  "author": "Yann Isabel",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yannisabel/orchestra.git"
+  },
+  "exports": {
+    "./light.css": "./dist/css/light.css",
+    "./dark.css": "./dist/css/dark.css",
+    "./dist/css/light.css": "./dist/css/light.css",
+    "./dist/css/dark.css": "./dist/css/dark.css",
+    "./dist/*": "./dist/*"
+  },
+  "files": [
+    "tokens",
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "style-dictionary": "^5.5.0"
+  }
+}

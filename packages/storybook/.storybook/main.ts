@@ -38,7 +38,10 @@ const config: StorybookConfig = {
   previewBody: (body) => `${body}`,
   staticDirs: [
     '../public',
-    { from: '../../core/dist/orchestra-kit', to: '/orchestra-kit' },
+    {
+      from: '../../core/dist/orchestra-design-system',
+      to: '/orchestra-design-system',
+    },
   ],
   async viteFinal(config) {
     config.base = BASE_PATH || config.base
@@ -49,8 +52,8 @@ const config: StorybookConfig = {
     return mergeConfig(config, {
       plugins: [
         liveReload([
-          'www/build/orchestra-kit.esm.js',
-          'www/build/orchestra-kit.js',
+          'www/build/orchestra-design-system.esm.js',
+          'www/build/orchestra-design-system.js',
         ]),
       ],
       resolve: {

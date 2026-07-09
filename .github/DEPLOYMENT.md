@@ -50,7 +50,7 @@ Release workflow publishes these packages:
 - `@orchestra-design-system/react`
 - `@orchestra-design-system/angular`
 - `@orchestra-design-system/vue`
-- `@orchestra-design-system/design-tokens`
+- `@orchestra-design-system/themes`
 - `@orchestra-design-system/icons-library`
 
 `@orchestra-design-system/storybook` is not published to npm.
@@ -128,7 +128,7 @@ npm run release:core:dry
 npm run release:react:dry
 npm run release:angular:dry
 npm run release:vue:dry
-npm run release:design-tokens:dry
+npm run release:themes:dry
 npm run release:icons-library:dry
 ```
 

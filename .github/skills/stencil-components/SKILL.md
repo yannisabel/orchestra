@@ -9,7 +9,7 @@ user-invocable: true
 
 ## Overview
 
-Orchestra uses **Stencil** to build reusable web components with multiple output targets (React, Vue, Angular, vanilla JS). Components are token-driven (pulling values from [design-tokens](../design-tokens/SKILL.md)), support dark/light themes automatically, and are tested in Storybook (v10.4.6) with Vitest (v4.1.9).
+Orchestra uses **Stencil** to build reusable web components with multiple output targets (React, Vue, Angular, vanilla JS). Components are token-driven (pulling values from [themes](../themes/SKILL.md)), support dark/light themes automatically, and are tested in Storybook (v10.4.6) with Vitest (v4.1.9).
 
 **Build Pipeline**:
 
@@ -223,7 +223,7 @@ export class OrchestraButton {
 
 ### CSS Variables
 
-Use tokens in your component CSS (see [design-tokens](../design-tokens/SKILL.md)):
+Use tokens in your component CSS (see [themes](../themes/SKILL.md)):
 
 ```css
 /* packages/core/src/components/button/button.css */
@@ -617,7 +617,7 @@ When working with LLMs on component development:
 
 - [token-optimization](../token-optimization/SKILL.md) — Reduce context when building components
 - [Stencil Documentation](https://stenciljs.com/)
-- [design-tokens](../design-tokens/SKILL.md) — Token structure and theming
+- [themes](../themes/SKILL.md) — Token structure and theming
 - [story-testing](../story-testing/SKILL.md) — Testing in Storybook
 - [code-conventions](../code-conventions/SKILL.md) — Naming and TypeScript rules
 - [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/)

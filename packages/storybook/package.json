@@ -22,13 +22,14 @@
     "storybook:test": "vitest --project=storybook",
     "storybook:test-coverage": "vitest --project=storybook --coverage",
     "build-storybook": "storybook build",
-    "build-storybook-ci": "BASE_PATH=/orchestra-kit/ storybook build",
+    "build-storybook-ci": "BASE_PATH=/orchestra-design-system/ storybook build",
     "preview-storybook": "npx http-server storybook-static",
     "update": "npx npm-check-updates -u"
   },
   "dependencies": {
     "@orchestra-design-system/core": "^0.0.10",
     "@orchestra-design-system/icons-library": "^0.0.10",
+    "@orchestra-design-system/themes": "^0.0.10",
     "lit": "^3.3.3"
   },
   "devDependencies": {

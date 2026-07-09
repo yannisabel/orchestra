@@ -60,9 +60,8 @@
       "import": "./dist/components/*.js"
     },
     "./src/components/*/readme.md": "./src/components/*/readme.md",
-    "./dist/orchestra-kit/themes/*": "./dist/orchestra-kit/themes/*",
     "./dist/esm/*": "./dist/esm/*",
-    "./dist/orchestra-kit/*": "./dist/orchestra-kit/*"
+    "./dist/orchestra-design-system/*": "./dist/orchestra-design-system/*"
   },
   "repository": {
     "type": "git",
@@ -74,12 +73,10 @@
     "hydrate/"
   ],
   "scripts": {
-    "start": "concurrently 'npm run start:css' 'npm run start:js'",
-    "start:css": "vite build --config vite-style.config.js --watch",
+    "start": "npm run start:js",
     "start:js": "stencil build --docs --watch",
     "start:preview": "concurrently 'npm run preview' 'npm run start:js'",
-    "build": "npm run build:css && npm run build:js",
-    "build:css": "vite build --config vite-style.config.js",
+    "build": "npm run build:js",
     "build:js": "stencil build --docs",
     "test": "stencil-test",
     "test:watch": "stencil-test --watch",

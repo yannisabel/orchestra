@@ -228,7 +228,7 @@ packages/
   vue/                # Vue wrapper components
   angular/            # Angular wrapper components
   storybook/          # Shared Storybook config
-  design-tokens/      # Design token generation
+  themes/             # Design token generation
   icons/              # Icon assets
 ```
 

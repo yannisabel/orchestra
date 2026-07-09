@@ -129,8 +129,8 @@ function hydrateFactory($stencilWindow, $stencilHydrateOpts, $stencilHydrateResu
     /*hydrateAppClosure start*/
 
 
-const NAMESPACE = 'orchestra-kit';
-const BUILD = /* orchestra-kit */ { hotModuleReplacement: false, hydratedSelectorName: "hydrated", slotRelocation: true, state: true, updatable: true};
+const NAMESPACE = 'orchestra-design-system';
+const BUILD = /* orchestra-design-system */ { hotModuleReplacement: false, hydratedSelectorName: "hydrated", slotRelocation: true, state: true, updatable: true};
 
 /*
  Stencil Hydrate Platform v4.43.5 | MIT Licensed | https://stenciljs.com

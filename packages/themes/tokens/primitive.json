@@ -3,9 +3,7 @@
     "purple": {
       "50": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -13,9 +11,7 @@
       },
       "100": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -23,9 +19,7 @@
       },
       "200": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -33,9 +27,7 @@
       },
       "300": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -43,9 +35,7 @@
       },
       "400": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -53,9 +43,7 @@
       },
       "500": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -63,9 +51,7 @@
       },
       "600": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -73,9 +59,7 @@
       },
       "700": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -83,9 +67,7 @@
       },
       "800": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -93,9 +75,7 @@
       },
       "900": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -103,9 +83,7 @@
       },
       "950": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -115,9 +93,7 @@
     "grey": {
       "0": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -125,9 +101,7 @@
       },
       "50": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -135,9 +109,7 @@
       },
       "100": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -145,9 +117,7 @@
       },
       "200": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -155,9 +125,7 @@
       },
       "300": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -165,9 +133,7 @@
       },
       "400": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -175,9 +141,7 @@
       },
       "500": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -185,9 +149,7 @@
       },
       "600": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -195,9 +157,7 @@
       },
       "700": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -205,9 +165,7 @@
       },
       "800": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -215,9 +173,7 @@
       },
       "900": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -225,9 +181,7 @@
       },
       "950": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -235,9 +189,7 @@
       },
       "1000": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -245,9 +197,7 @@
       },
       "transparent": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -257,9 +207,7 @@
     "green": {
       "50": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -267,9 +215,7 @@
       },
       "100": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -277,9 +223,7 @@
       },
       "200": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -287,9 +231,7 @@
       },
       "300": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -297,9 +239,7 @@
       },
       "400": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -307,9 +247,7 @@
       },
       "500": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -317,9 +255,7 @@
       },
       "600": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -327,9 +263,7 @@
       },
       "700": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -337,9 +271,7 @@
       },
       "800": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -347,9 +279,7 @@
       },
       "900": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -357,9 +287,7 @@
       },
       "950": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -369,9 +297,7 @@
     "yellow": {
       "50": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -379,9 +305,7 @@
       },
       "100": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -389,9 +313,7 @@
       },
       "200": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -399,9 +321,7 @@
       },
       "300": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -409,9 +329,7 @@
       },
       "400": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -419,9 +337,7 @@
       },
       "500": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -429,9 +345,7 @@
       },
       "600": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -439,9 +353,7 @@
       },
       "700": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -449,9 +361,7 @@
       },
       "800": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -459,9 +369,7 @@
       },
       "900": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -469,9 +377,7 @@
       },
       "950": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -481,9 +387,7 @@
     "red": {
       "50": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -491,9 +395,7 @@
       },
       "100": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -501,9 +403,7 @@
       },
       "200": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -511,9 +411,7 @@
       },
       "300": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -521,9 +419,7 @@
       },
       "400": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -531,9 +427,7 @@
       },
       "500": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -541,9 +435,7 @@
       },
       "600": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -551,9 +443,7 @@
       },
       "700": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -561,9 +451,7 @@
       },
       "800": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -571,9 +459,7 @@
       },
       "900": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -581,9 +467,7 @@
       },
       "950": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -593,9 +477,7 @@
     "blue": {
       "50": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -603,9 +485,7 @@
       },
       "100": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -613,9 +493,7 @@
       },
       "200": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -623,9 +501,7 @@
       },
       "300": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -633,9 +509,7 @@
       },
       "400": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -643,9 +517,7 @@
       },
       "500": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -653,9 +525,7 @@
       },
       "600": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -663,9 +533,7 @@
       },
       "700": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -673,9 +541,7 @@
       },
       "800": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -683,9 +549,7 @@
       },
       "900": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -693,9 +557,7 @@
       },
       "950": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -707,9 +569,7 @@
     "purple": {
       "50": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -717,9 +577,7 @@
       },
       "100": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -727,9 +585,7 @@
       },
       "200": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -737,9 +593,7 @@
       },
       "300": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -747,9 +601,7 @@
       },
       "400": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -757,9 +609,7 @@
       },
       "500": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -767,9 +617,7 @@
       },
       "600": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -777,9 +625,7 @@
       },
       "700": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -787,9 +633,7 @@
       },
       "800": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -797,9 +641,7 @@
       },
       "900": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -807,9 +649,7 @@
       },
       "950": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -819,9 +659,7 @@
     "grey": {
       "0": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -829,9 +667,7 @@
       },
       "50": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -839,9 +675,7 @@
       },
       "100": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -849,9 +683,7 @@
       },
       "200": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -859,9 +691,7 @@
       },
       "300": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -869,9 +699,7 @@
       },
       "400": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -879,9 +707,7 @@
       },
       "500": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -889,9 +715,7 @@
       },
       "600": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -899,9 +723,7 @@
       },
       "700": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -909,9 +731,7 @@
       },
       "800": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -919,9 +739,7 @@
       },
       "900": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -929,9 +747,7 @@
       },
       "950": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -939,9 +755,7 @@
       },
       "1000": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -949,9 +763,7 @@
       },
       "transparent": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -961,9 +773,7 @@
     "green": {
       "50": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -971,9 +781,7 @@
       },
       "100": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -981,9 +789,7 @@
       },
       "200": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -991,9 +797,7 @@
       },
       "300": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1001,9 +805,7 @@
       },
       "400": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1011,9 +813,7 @@
       },
       "500": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1021,9 +821,7 @@
       },
       "600": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1031,9 +829,7 @@
       },
       "700": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1041,9 +837,7 @@
       },
       "800": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1051,9 +845,7 @@
       },
       "900": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1061,9 +853,7 @@
       },
       "950": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1073,9 +863,7 @@
     "yellow": {
       "50": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1083,9 +871,7 @@
       },
       "100": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1093,9 +879,7 @@
       },
       "200": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1103,9 +887,7 @@
       },
       "300": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1113,9 +895,7 @@
       },
       "400": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1123,9 +903,7 @@
       },
       "500": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1133,9 +911,7 @@
       },
       "600": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1143,9 +919,7 @@
       },
       "700": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1153,9 +927,7 @@
       },
       "800": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1163,9 +935,7 @@
       },
       "900": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1173,9 +943,7 @@
       },
       "950": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1185,9 +953,7 @@
     "red": {
       "50": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1195,9 +961,7 @@
       },
       "100": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1205,9 +969,7 @@
       },
       "200": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1215,9 +977,7 @@
       },
       "300": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1225,9 +985,7 @@
       },
       "400": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1235,9 +993,7 @@
       },
       "500": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1245,9 +1001,7 @@
       },
       "600": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1255,9 +1009,7 @@
       },
       "700": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1265,9 +1017,7 @@
       },
       "800": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1275,9 +1025,7 @@
       },
       "900": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1285,9 +1033,7 @@
       },
       "950": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1297,9 +1043,7 @@
     "blue": {
       "50": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1307,9 +1051,7 @@
       },
       "100": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1317,9 +1059,7 @@
       },
       "200": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1327,9 +1067,7 @@
       },
       "300": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1337,9 +1075,7 @@
       },
       "400": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1347,9 +1083,7 @@
       },
       "500": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1357,9 +1091,7 @@
       },
       "600": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1367,9 +1099,7 @@
       },
       "700": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1377,9 +1107,7 @@
       },
       "800": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1387,9 +1115,7 @@
       },
       "900": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1397,9 +1123,7 @@
       },
       "950": {
         "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
+          "com.figma.scopes": ["ALL_SCOPES"],
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
@@ -1410,9 +1134,7 @@
   "number": {
     ":4": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1420,9 +1142,7 @@
     },
     "x1": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1430,9 +1150,7 @@
     },
     "x2": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1440,9 +1158,7 @@
     },
     "x3": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1450,9 +1166,7 @@
     },
     "x4": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1460,9 +1174,7 @@
     },
     "x5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1470,9 +1182,7 @@
     },
     "x6": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1480,9 +1190,7 @@
     },
     "x7": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1490,9 +1198,7 @@
     },
     "x8": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1500,9 +1206,7 @@
     },
     "x9": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1510,9 +1214,7 @@
     },
     "x10": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1520,9 +1222,7 @@
     },
     ":2": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1530,9 +1230,7 @@
     },
     "none": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1540,9 +1238,7 @@
     },
     "x11": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1550,9 +1246,7 @@
     },
     "x12": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1560,9 +1254,7 @@
     },
     "x13": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1570,9 +1262,7 @@
     },
     "x14": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1580,9 +1270,7 @@
     },
     "x15": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1590,9 +1278,7 @@
     },
     "x16": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1600,9 +1286,7 @@
     },
     "x17": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1610,9 +1294,7 @@
     },
     "x18": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1620,9 +1302,7 @@
     },
     "x19": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1630,9 +1310,7 @@
     },
     "x20": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1640,9 +1318,7 @@
     },
     "full": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1650,9 +1326,7 @@
     },
     "x17,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1660,9 +1334,7 @@
     },
     "x1,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1670,9 +1342,7 @@
     },
     "x2,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1680,9 +1350,7 @@
     },
     "x3,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1690,9 +1358,7 @@
     },
     "x4,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1700,9 +1366,7 @@
     },
     "x5,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1710,9 +1374,7 @@
     },
     "x6,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1720,9 +1382,7 @@
     },
     "x7,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1730,9 +1390,7 @@
     },
     "x8,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1740,9 +1398,7 @@
     },
     "x9,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1750,9 +1406,7 @@
     },
     "x10,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1760,9 +1414,7 @@
     },
     "x11,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1770,9 +1422,7 @@
     },
     "x12,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1780,9 +1430,7 @@
     },
     "x13,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1790,9 +1438,7 @@
     },
     "x14,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1800,9 +1446,7 @@
     },
     "x15,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1810,9 +1454,7 @@
     },
     "x16,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1820,9 +1462,7 @@
     },
     "x18,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1830,9 +1470,7 @@
     },
     "x19,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
@@ -1840,9 +1478,7 @@
     },
     "x20,5": {
       "$extensions": {
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
+        "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
