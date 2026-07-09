@@ -34,23 +34,12 @@ const packageData = packageFiles.map((relativePath) => {
   return { relativePath, json }
 })
 
-const publishableVersions = packageData
-  .filter(({ json }) => publishable.has(json.name))
-  .map(({ json }) => ({ name: json.name, version: json.version }))
+const publishableVersionByName = new Map(
+  packageData
+    .filter(({ json }) => publishable.has(json.name))
+    .map(({ json }) => [json.name, json.version]),
+)
 
-const uniqueVersions = [
-  ...new Set(publishableVersions.map((item) => item.version)),
-]
-if (uniqueVersions.length !== 1) {
-  console.error('Publishable package versions are not aligned:')
-  for (const item of publishableVersions) {
-    console.error(`- ${item.name}: ${item.version}`)
-  }
-  process.exit(1)
-}
-
-const sharedVersion = uniqueVersions[0]
-const expectedRange = `^${sharedVersion}`
 const issues = []
 
 for (const { relativePath, json } of packageData) {
@@ -65,6 +54,15 @@ for (const { relativePath, json } of packageData) {
         continue
       }
 
+      const depVersion = publishableVersionByName.get(depName)
+      if (!depVersion) {
+        issues.push(
+          `${relativePath} -> ${section}.${depName} points to a publishable package with no known local version`,
+        )
+        continue
+      }
+
+      const expectedRange = `^${depVersion}`
       if (deps[depName] !== expectedRange) {
         issues.push(
           `${relativePath} -> ${section}.${depName} is ${deps[depName]} (expected ${expectedRange})`,
@@ -74,7 +72,13 @@ for (const { relativePath, json } of packageData) {
   }
 }
 
+const publishableVersions = [...publishableVersionByName.entries()]
+
 if (issues.length > 0) {
+  console.error('Publishable package versions:')
+  for (const [name, version] of publishableVersions) {
+    console.error(`- ${name}: ${version}`)
+  }
   console.error('Internal dependency ranges are out of sync:')
   for (const issue of issues) {
     console.error(`- ${issue}`)
@@ -82,5 +86,10 @@ if (issues.length > 0) {
   process.exit(1)
 }
 
-console.log(`Internal package versions are aligned at ${sharedVersion}.`)
-console.log(`Internal dependency ranges are aligned to ${expectedRange}.`)
+console.log('Publishable package versions (independent):')
+for (const [name, version] of publishableVersions) {
+  console.log(`- ${name}: ${version}`)
+}
+console.log(
+  'Internal dependency ranges are aligned to each referenced package version.',
+)
