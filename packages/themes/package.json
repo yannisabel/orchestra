@@ -1,6 +1,6 @@
 {
   "name": "@orchestra-design-system/themes",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "private": false,
   "type": "module",
   "description": "Theme CSS entry points for Orchestra design system",
