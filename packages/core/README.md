@@ -39,63 +39,30 @@ npm install @orchestra-design-system/core
 </html>
 ```
 
-### React
+### JavaScript (Bundlers)
 
-```tsx
-import React from 'react'
+```ts
 import { defineCustomElements } from '@orchestra-design-system/core/loader'
 import '@orchestra-design-system/themes/light.css'
 
 defineCustomElements()
-
-export default function App() {
-  return <orchestra-button text="Click me"></orchestra-button>
-}
 ```
 
-### Vue
-
-```vue
-<script setup>
-import { defineCustomElements } from '@orchestra-design-system/core/loader'
-import '@orchestra-design-system/themes/light.css'
-
-defineCustomElements()
-</script>
-
-<template>
-  <orchestra-button text="Click me"></orchestra-button>
-</template>
-```
-
-### Angular
-
-```typescript
-// app.module.ts
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
-import { defineCustomElements } from '@orchestra-design-system/core/loader'
-
-defineCustomElements()
-
-@NgModule({
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-})
-export class AppModule {}
-```
+Then use Orchestra components in your markup:
 
 ```html
-<!-- app.component.html -->
 <orchestra-button text="Click me"></orchestra-button>
 ```
 
+### Framework Wrappers
+
+Framework-specific integration lives in dedicated wrapper packages:
+
+- [Angular wrapper README](../angular/README.md)
+- [React wrapper README](../react/README.md)
+- [Vue wrapper README](../vue/README.md)
+
 ## Components
-
-### Available Components
-
-- **orchestra-button** - Button component with variants
-- **orchestra-icon** - Icon component with library registry system
-
-See [Storybook](../storybook/README.md) for interactive documentation and examples.
 
 ### Component Structure
 
@@ -110,52 +77,12 @@ src/components/button/
 └── test/               # E2E tests (optional)
 ```
 
-## Icon Component
-
-The icon component supports multiple icon libraries using a registry system.
-
-### Using Built-in Icons
-
-```html
-<orchestra-icon name="checked" size="24px" fill="currentcolor"></orchestra-icon>
-```
-
-Available from `@orchestra-design-system/icons-library`:
-
-```typescript
-import { iconNames } from '@orchestra-design-system/icons-library'
-
-type IconName = typeof iconNames[number]
-```
-
-### Registering Custom Icon Libraries
-
-```typescript
-import { registerIconLibrary } from '@orchestra-design-system/core'
-
-const myIcons = {
-  'star': `<svg viewBox="0 0 24 24">...</svg>`,
-  'heart': `<svg viewBox="0 0 24 24">...</svg>`,
-}
-
-registerIconLibrary('my-icons', {
-  resolver: (name) => myIcons[name] ?? ''
-})
-```
-
-Then use:
-```html
-<orchestra-icon name="star" library="my-icons"></orchestra-icon>
-```
-
-See [@orchestra-design-system/icons-library README](../icons-library/README.md) for details on custom libraries and Storybook integration.
-
 ## Theming
 
 Components use CSS variables for theming. The recommended approach is to import the theme bundle from the dedicated themes package:
 
 ```html
-<!-- Light theme (default) -->
+<!-- Light theme -->
 <link rel="stylesheet" href="https://unpkg.com/@orchestra-design-system/themes/light.css">
 
 <!-- Dark theme -->
@@ -222,6 +149,22 @@ npm run test:e2e       # Browser end-to-end tests
 ### Storybook
 
 See [../storybook/README.md](../storybook/README.md) for component development and testing with Storybook.
+
+## Implementation Workflow
+
+Use this workflow when adding or updating components:
+
+1. Implement component logic in `src/components/{name}/`.
+2. Update tokens in `../themes/tokens/` if needed.
+3. Build or regenerate theme bundles when token sources change.
+4. Add or update stories in `../storybook/src/stories/`.
+5. Add or update interaction assertions in Storybook play functions.
+6. Build and verify:
+
+```bash
+npm run build
+npm run test
+```
 
 ## Building Components
 
@@ -313,4 +256,3 @@ packages/core/
 
 - [Stencil Documentation](https://stenciljs.com)
 - [Web Components MDN](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
-- [Orchestra Design System](https://example.com) (replace with actual URL)
