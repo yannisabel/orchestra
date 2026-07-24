@@ -223,6 +223,22 @@ npm run test:e2e       # Browser end-to-end tests
 
 See [../storybook/README.md](../storybook/README.md) for component development and testing with Storybook.
 
+## Implementation Workflow
+
+Use this workflow when adding or updating components:
+
+1. Implement component logic in `src/components/{name}/`.
+2. Update tokens in `../themes/tokens/` if needed.
+3. Build or regenerate theme bundles when token sources change.
+4. Add or update stories in `../storybook/src/stories/`.
+5. Add or update interaction assertions in Storybook play functions.
+6. Build and verify:
+
+```bash
+npm run build
+npm run test
+```
+
 ## Building Components
 
 ### Creating a New Component
@@ -313,4 +329,3 @@ packages/core/
 
 - [Stencil Documentation](https://stenciljs.com)
 - [Web Components MDN](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
-- [Orchestra Design System](https://example.com) (replace with actual URL)
