@@ -1132,7 +1132,7 @@
     }
   },
   "number": {
-    ":4": {
+    "d4": {
       "$extensions": {
         "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
@@ -1220,7 +1220,7 @@
       "$type": "dimension",
       "$value": "5rem"
     },
-    ":2": {
+    "d2": {
       "$extensions": {
         "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
