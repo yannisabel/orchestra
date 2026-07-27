@@ -111,7 +111,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{medium.blue.800}"
+            "$value": "{medium.blue.900}"
           },
           "hover": {
             "$extensions": {
@@ -119,7 +119,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{medium.blue.700}"
+            "$value": "{medium.blue.800}"
           },
           "active": {
             "$extensions": {
@@ -135,7 +135,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{medium.blue.700}"
+            "$value": "{medium.blue.800}"
           }
         }
       },
@@ -147,7 +147,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{medium.purple.600}"
+            "$value": "{vibrant.purple.600}"
           },
           "hover": {
             "$extensions": {
@@ -155,7 +155,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{medium.purple.500}"
+            "$value": "{vibrant.purple.700}"
           },
           "active": {
             "$extensions": {
@@ -163,7 +163,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{medium.purple.400}"
+            "$value": "{vibrant.purple.800}"
           },
           "disabled": {
             "$extensions": {
@@ -171,7 +171,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{medium.purple.500}"
+            "$value": "{vibrant.purple.400}"
           },
           "readonly": {
             "$extensions": {
@@ -179,7 +179,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{medium.purple.500}"
+            "$value": "{vibrant.purple.400}"
           },
           "focus": {
             "$extensions": {
@@ -187,7 +187,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{medium.purple.500}"
+            "$value": "{vibrant.purple.700}"
           }
         },
         "content": {
@@ -249,7 +249,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{medium.grey.950}"
+            "$value": "{vibrant.grey.200}"
           },
           "hover": {
             "$extensions": {
@@ -257,7 +257,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{medium.grey.900}"
+            "$value": "{vibrant.grey.300}"
           },
           "active": {
             "$extensions": {
@@ -265,7 +265,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{medium.grey.800}"
+            "$value": "{vibrant.grey.400}"
           },
           "disabled": {
             "$extensions": {
@@ -273,7 +273,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{medium.grey.800}"
+            "$value": "{vibrant.grey.400}"
           },
           "readonly": {
             "$extensions": {
@@ -281,7 +281,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{medium.grey.500}"
+            "$value": "{vibrant.grey.700}"
           },
           "focus": {
             "$extensions": {
@@ -289,7 +289,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{medium.grey.900}"
+            "$value": "{vibrant.grey.300}"
           }
         },
         "content": {
@@ -351,7 +351,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
-        "$value": "{medium.purple.500}"
+        "$value": "{vibrant.purple.600}"
       },
       "hover": {
         "$extensions": {
@@ -359,7 +359,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
-        "$value": "{medium.purple.300}"
+        "$value": "{vibrant.purple.700}"
       },
       "disabled": {
         "$extensions": {
@@ -367,7 +367,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
-        "$value": "{medium.purple.400}"
+        "$value": "{vibrant.purple.400}"
       },
       "highlight": {
         "$extensions": {
@@ -375,7 +375,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
-        "$value": "{medium.purple.800}"
+        "$value": "{vibrant.purple.400}"
       },
       "active": {
         "$extensions": {
@@ -383,7 +383,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
-        "$value": "{medium.purple.300}"
+        "$value": "{vibrant.purple.800}"
       },
       "focus": {
         "$extensions": {
@@ -391,7 +391,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
-        "$value": "{medium.purple.300}"
+        "$value": "{vibrant.purple.700}"
       },
       "readonly": {
         "$extensions": {
@@ -399,7 +399,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
-        "$value": "{medium.purple.400}"
+        "$value": "{vibrant.purple.400}"
       }
     },
     "outline": {
@@ -550,9 +550,73 @@
             "com.figma.hiddenFromPublishing": false
           },
           "$type": "dimension",
+          "$value": "{number.:2}"
+        },
+        "default-outline": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x1}"
+        },
+        "small": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.:2}"
+        },
+        "medium": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x1}"
+        },
+        "large": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x2}"
+        },
+        "rounded": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
           "$value": "{number.full}"
         },
-        "outline": {
+        "small-outline": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x1}"
+        },
+        "medium-outline": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x2}"
+        },
+        "large-outline": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x3}"
+        },
+        "rounded-outline": {
           "$extensions": {
             "com.figma.scopes": ["ALL_SCOPES"],
             "com.figma.hiddenFromPublishing": false
@@ -568,9 +632,73 @@
             "com.figma.hiddenFromPublishing": false
           },
           "$type": "dimension",
+          "$value": "{number.x1}"
+        },
+        "small": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.:2}"
+        },
+        "medium": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x1}"
+        },
+        "large": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x2}"
+        },
+        "rounded": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
           "$value": "{number.full}"
         },
-        "outline": {
+        "default-outline": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x2}"
+        },
+        "small-outline": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x1}"
+        },
+        "medium-outline": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x2}"
+        },
+        "large-outline": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x3}"
+        },
+        "rounded-outline": {
           "$extensions": {
             "com.figma.scopes": ["ALL_SCOPES"],
             "com.figma.hiddenFromPublishing": false
@@ -586,9 +714,73 @@
             "com.figma.hiddenFromPublishing": false
           },
           "$type": "dimension",
+          "$value": "{number.x1}"
+        },
+        "small": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.:2}"
+        },
+        "medium": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x1}"
+        },
+        "large": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x2}"
+        },
+        "rounded": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
           "$value": "{number.full}"
         },
-        "outline": {
+        "default-outline": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x2}"
+        },
+        "small-outline": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x1}"
+        },
+        "medium-outline": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x2}"
+        },
+        "large-outline": {
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.hiddenFromPublishing": false
+          },
+          "$type": "dimension",
+          "$value": "{number.x3}"
+        },
+        "rounded-outline": {
           "$extensions": {
             "com.figma.scopes": ["ALL_SCOPES"],
             "com.figma.hiddenFromPublishing": false
