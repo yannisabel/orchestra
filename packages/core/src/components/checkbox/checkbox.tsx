@@ -44,6 +44,11 @@ export class OrchestraCheckbox {
   @Prop() required?: boolean = false
 
   /**
+   * The unique identifier for the checkbox. Used to associate with external label elements.
+   */
+  @Prop() componentId?: string
+
+  /**
    * Native change event - emitted when checkbox state changes.
    */
   @Event({ bubbles: true, composed: true }) orchestraChange!: EventEmitter<boolean>
@@ -119,11 +124,11 @@ export class OrchestraCheckbox {
     return (
       <Host>
         <input
+          id={this.componentId}
           class={`orchestra-checkbox orchestra-checkbox--${this.variant}`}
           type="checkbox"
           ref={this.#checkboxRef}
           onChange={this.handleChange}
-          aria-checked={this.checked ? 'true' : 'false'}
         />
         <span class="orchestra-checkbox-visual"></span>
       </Host>

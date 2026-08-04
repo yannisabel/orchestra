@@ -31,14 +31,14 @@ export declare interface OrchestraButton extends Components.OrchestraButton {}
 
 
 @ProxyCmp({
-  inputs: ['checked', 'disabled', 'name', 'required', 'value', 'variant']
+  inputs: ['checked', 'componentId', 'disabled', 'name', 'required', 'value', 'variant']
 })
 @Component({
   selector: 'orchestra-checkbox',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'name', 'required', 'value', 'variant'],
+  inputs: ['checked', 'componentId', 'disabled', 'name', 'required', 'value', 'variant'],
   outputs: ['orchestraChange'],
   standalone: false
 })

@@ -8,8 +8,8 @@ interface CheckboxArgs {
   disabled?: boolean
   name?: string
   value?: string
-  ariaLabel?: string
-  ariaLabelledBy?: string
+  componentId?: string
+  label?: string
 }
 
 const meta = {
@@ -74,15 +74,15 @@ const meta = {
         defaultValue: { summary: 'on' },
       },
     },
-    ariaLabel: {
+    componentId: {
       type: { name: 'string' },
       control: 'text',
-      description: 'A string providing an accessible label for the checkbox.',
+      description: 'The unique identifier for the checkbox. Used to associate with external label elements.',
     },
-    ariaLabelledBy: {
+    label: {
       type: { name: 'string' },
       control: 'text',
-      description: 'A string providing an ID of a label element associated with this checkbox.',
+      description: 'Label text to associate with the checkbox (rendered as external label element).',
     },
   },
 } satisfies Meta<CheckboxArgs>
@@ -95,14 +95,22 @@ export const Default: Story = {
     variant: 'primary',
     checked: false,
     disabled: false,
-    ariaLabel: 'Accept terms',
+    componentId: 'checkbox-example',
+    label: 'Accept terms and conditions',
   },
   render: (args) => `
-    <orchestra-checkbox
-      variant="${args.variant}"
-      ${args.checked ? 'checked' : ''}
-      ${args.disabled ? 'disabled' : ''}
-      aria-label="${args.ariaLabel}"
-    ></orchestra-checkbox>
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <orchestra-checkbox
+        component-id="${args.componentId}"
+        variant="${args.variant}"
+        name="terms"
+        value="accept"
+        ${args.checked ? 'checked' : ''}
+        ${args.disabled ? 'disabled' : ''}
+      ></orchestra-checkbox>
+      <label for="${args.componentId}" style="cursor: pointer;">
+        ${args.label}
+      </label>
+    </div>
   `,
 }
