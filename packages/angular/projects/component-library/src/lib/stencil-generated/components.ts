@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* auto-generated angular directive proxies */
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, NgZone } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Output, NgZone } from '@angular/core';
 
 import { ProxyCmp } from './angular-component-lib/utils';
 
@@ -28,6 +28,38 @@ export class OrchestraButton {
 
 
 export declare interface OrchestraButton extends Components.OrchestraButton {}
+
+
+@ProxyCmp({
+  inputs: ['checked', 'disabled', 'name', 'required', 'value', 'variant']
+})
+@Component({
+  selector: 'orchestra-checkbox',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['checked', 'disabled', 'name', 'required', 'value', 'variant'],
+  outputs: ['orchestraChange'],
+  standalone: false
+})
+export class OrchestraCheckbox {
+  protected el: HTMLOrchestraCheckboxElement;
+  @Output() orchestraChange = new EventEmitter<OrchestraCheckboxCustomEvent<boolean>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { OrchestraCheckboxCustomEvent } from '@orchestra-design-system/core';
+
+export declare interface OrchestraCheckbox extends Components.OrchestraCheckbox {
+  /**
+   * Native change event - emitted when checkbox state changes.
+   */
+  orchestraChange: EventEmitter<OrchestraCheckboxCustomEvent<boolean>>;
+}
 
 
 @ProxyCmp({
