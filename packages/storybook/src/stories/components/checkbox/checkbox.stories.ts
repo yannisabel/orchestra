@@ -8,7 +8,7 @@ interface CheckboxArgs {
   disabled?: boolean
   name?: string
   value?: string
-  componentId?: string
+  htmlId?: string
   label?: string
 }
 
@@ -74,10 +74,10 @@ const meta = {
         defaultValue: { summary: 'on' },
       },
     },
-    componentId: {
+    htmlId: {
       type: { name: 'string' },
       control: 'text',
-      description: 'The unique identifier for the checkbox. Used to associate with external label elements.',
+      description: 'The unique identifier for the checkbox input. Used to associate with external label elements.',
     },
     label: {
       type: { name: 'string' },
@@ -91,24 +91,25 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+export const Default: Story = {
   args: {
     variant: 'primary',
     checked: false,
     disabled: false,
-    componentId: 'checkbox-example',
+    htmlId: 'checkbox-example',
     label: 'Accept terms and conditions',
   },
   render: (args) => `
     <div style="display: flex; align-items: center; gap: 0.5rem;">
       <orchestra-checkbox
-        component-id="${args.componentId}"
+        html-id="${args.htmlId}"
         variant="${args.variant}"
         name="terms"
         value="accept"
         ${args.checked ? 'checked' : ''}
         ${args.disabled ? 'disabled' : ''}
       ></orchestra-checkbox>
-      <label for="${args.componentId}" style="cursor: pointer;">
+      <label for="${args.htmlId}" style="cursor: pointer;">
         ${args.label}
       </label>
     </div>

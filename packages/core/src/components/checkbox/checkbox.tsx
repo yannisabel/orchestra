@@ -44,9 +44,9 @@ export class OrchestraCheckbox {
   @Prop() required?: boolean = false
 
   /**
-   * The unique identifier for the checkbox. Used to associate with external label elements.
+   * The unique identifier for the checkbox input. Used to associate with external label elements.
    */
-  @Prop() componentId?: string
+  @Prop() htmlId?: string
 
   /**
    * Native change event - emitted when checkbox state changes.
@@ -124,7 +124,7 @@ export class OrchestraCheckbox {
     return (
       <Host>
         <input
-          id={this.componentId}
+          id={this.htmlId}
           class={`orchestra-checkbox orchestra-checkbox--${this.variant}`}
           type="checkbox"
           ref={this.#checkboxRef}

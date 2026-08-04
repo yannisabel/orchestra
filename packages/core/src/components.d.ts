@@ -54,14 +54,14 @@ export namespace Components {
          */
         "checked"?: boolean;
         /**
-          * The unique identifier for the checkbox. Used to associate with external label elements.
-         */
-        "componentId"?: string;
-        /**
           * A boolean indicating the disable state of the checkbox.
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * The unique identifier for the checkbox input. Used to associate with external label elements.
+         */
+        "htmlId"?: string;
         /**
           * A string representing the name of the checkbox for form submission.
           * @default ''
@@ -204,10 +204,6 @@ declare namespace LocalJSX {
          */
         "checked"?: boolean;
         /**
-          * The unique identifier for the checkbox. Used to associate with external label elements.
-         */
-        "componentId"?: string;
-        /**
           * A boolean indicating the disable state of the checkbox.
           * @default false
          */
@@ -216,6 +212,10 @@ declare namespace LocalJSX {
           * The `id` of a `<form>` element to associate this element with.
          */
         "form"?: string;
+        /**
+          * The unique identifier for the checkbox input. Used to associate with external label elements.
+         */
+        "htmlId"?: string;
         /**
           * A string representing the name of the checkbox for form submission.
           * @default ''
@@ -280,7 +280,7 @@ declare namespace LocalJSX {
         "name": string;
         "value": string;
         "required": boolean;
-        "componentId": string;
+        "htmlId": string;
     }
     interface OrchestraIconAttributes {
         "name": string;
