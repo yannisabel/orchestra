@@ -47,29 +47,28 @@
 /* ========== PRIMARY VARIANT ========== */
 
 .orchestra-checkbox--primary {
-  border: var(--orchestra-size-action-primary-border-width-default, 1px) solid
-    var(--orchestra-color-action-primary-border-default);
+  border: 1px solid var(--orchestra-color-action-primary-container-default);
   background-color: var(--orchestra-color-action-primary-container-default);
-  border-radius: var(--orchestra-button-primary-container-radius);
+  border-radius: var(--orchestra-checkbox-primary-container-radius, 0.25rem);
 }
 
 .orchestra-checkbox--primary:hover:not(:disabled) {
-  border-color: var(--orchestra-color-action-primary-border-hover);
+  border-color: var(--orchestra-color-action-primary-container-hover);
   background-color: var(--orchestra-color-action-primary-container-hover);
 }
 
 .orchestra-checkbox--primary:active:not(:disabled) {
-  border-color: var(--orchestra-color-action-primary-border-active);
+  border-color: var(--orchestra-color-action-primary-container-active);
   background-color: var(--orchestra-color-action-primary-container-active);
 }
 
 .orchestra-checkbox--primary:focus-visible {
-  border-color: var(--orchestra-color-action-primary-border-focus);
+  border-color: var(--orchestra-color-action-primary-container-focus);
   background-color: var(--orchestra-color-action-primary-container-focus);
 }
 
 .orchestra-checkbox--primary:disabled {
-  border-color: var(--orchestra-color-action-primary-border-disabled);
+  border-color: var(--orchestra-color-action-primary-container-disabled);
   background-color: var(--orchestra-color-action-primary-container-disabled);
   opacity: 0.6;
 }
@@ -112,29 +111,28 @@
 /* ========== SECONDARY VARIANT ========== */
 
 .orchestra-checkbox--secondary {
-  border: var(--orchestra-size-action-secondary-border-width-default, 1px) solid
-    var(--orchestra-color-action-secondary-border-default);
+  border: 1px solid var(--orchestra-color-action-secondary-container-default);
   background-color: var(--orchestra-color-action-secondary-container-default);
-  border-radius: var(--orchestra-button-secondary-container-radius);
+  border-radius: var(--orchestra-checkbox-secondary-container-radius, 0.25rem);
 }
 
 .orchestra-checkbox--secondary:hover:not(:disabled) {
-  border-color: var(--orchestra-color-action-secondary-border-hover);
+  border-color: var(--orchestra-color-action-secondary-container-hover);
   background-color: var(--orchestra-color-action-secondary-container-hover);
 }
 
 .orchestra-checkbox--secondary:active:not(:disabled) {
-  border-color: var(--orchestra-color-action-secondary-border-active);
+  border-color: var(--orchestra-color-action-secondary-container-active);
   background-color: var(--orchestra-color-action-secondary-container-active);
 }
 
 .orchestra-checkbox--secondary:focus-visible {
-  border-color: var(--orchestra-color-action-secondary-border-focus);
+  border-color: var(--orchestra-color-action-secondary-container-focus);
   background-color: var(--orchestra-color-action-secondary-container-focus);
 }
 
 .orchestra-checkbox--secondary:disabled {
-  border-color: var(--orchestra-color-action-secondary-border-disabled);
+  border-color: var(--orchestra-color-action-secondary-container-disabled);
   background-color: var(--orchestra-color-action-secondary-container-disabled);
   opacity: 0.6;
 }
