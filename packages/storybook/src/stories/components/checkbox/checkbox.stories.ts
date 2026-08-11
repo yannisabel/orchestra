@@ -229,7 +229,7 @@ export const WithError: Story = {
     checked: false,
     indeterminate: false,
     disabled: false,
-    htmlId: 'checkbox-error',
+    htmlId: 'checkbox-agreement',
     label: 'I agree to the terms',
   },
   render: (args) => {
@@ -257,12 +257,12 @@ export const WithError: Story = {
     }
 
     const label = document.createElement('label')
-    const labelId = `${args.htmlId ?? 'checkbox-error'}-label`
+    const labelId = `${args.htmlId ?? 'checkbox-agreement'}-label`
     label.id = labelId
     label.textContent = args.label ?? 'I agree to the terms'
     label.style.cursor = 'pointer'
 
-    checkbox.htmlId = args.htmlId ?? 'checkbox-error'
+    checkbox.htmlId = args.htmlId ?? 'checkbox-agreement'
     checkbox.name = 'agreement'
     checkbox.value = 'agreed'
     checkbox.checked = args.checked ?? false
