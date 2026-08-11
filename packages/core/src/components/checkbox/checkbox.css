@@ -8,15 +8,16 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--orchestra-spacing-action-primary-small, 0.25rem);
-  padding: var(--checkbox-hit-area-padding);
   position: relative;
 }
 
 .orchestra-checkbox-wrapper {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: var(--orchestra-spacing-action-primary-small, 0.25rem);
+  padding: var(--checkbox-hit-area-padding);
   position: relative;
+  margin: calc(var(--checkbox-hit-area-padding) * -1);
 }
 
 .orchestra-checkbox {
