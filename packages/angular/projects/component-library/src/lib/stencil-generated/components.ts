@@ -31,7 +31,7 @@ export declare interface OrchestraButton extends Components.OrchestraButton {}
 
 
 @ProxyCmp({
-  inputs: ['ariaDescribedby', 'ariaLabel', 'ariaLabelledby', 'checked', 'disabled', 'htmlId', 'indeterminate', 'name', 'required', 'validationMessage', 'value'],
+  inputs: ['ariaDescribedby', 'ariaLabel', 'ariaLabelledby', 'checked', 'disabled', 'htmlId', 'indeterminate', 'label', 'name', 'required', 'validationMessage', 'value'],
   methods: ['checkValidity', 'reportValidity', 'setCustomValidity']
 })
 @Component({
@@ -39,7 +39,7 @@ export declare interface OrchestraButton extends Components.OrchestraButton {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaDescribedby', 'ariaLabel', 'ariaLabelledby', 'checked', 'disabled', 'htmlId', 'indeterminate', 'name', 'required', 'validationMessage', 'value'],
+  inputs: ['ariaDescribedby', 'ariaLabel', 'ariaLabelledby', 'checked', 'disabled', 'htmlId', 'indeterminate', 'label', 'name', 'required', 'validationMessage', 'value'],
   outputs: ['orchestraChange', 'orchestraStateChange'],
   standalone: false
 })

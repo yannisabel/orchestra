@@ -12,6 +12,13 @@
   position: relative;
 }
 
+.orchestra-checkbox-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--orchestra-spacing-action-primary-small, 0.25rem);
+  position: relative;
+}
+
 .orchestra-checkbox {
   appearance: none;
   box-sizing: border-box;
@@ -59,6 +66,21 @@
   width: 0.625rem;
   height: 0.625rem;
   pointer-events: none;
+}
+
+.orchestra-checkbox-label {
+  cursor: pointer;
+  font-family: var(--orchestra-font-family-default);
+  font-size: var(--orchestra-font-size-body-default, 1rem);
+  line-height: 1.5;
+  color: var(--orchestra-color-text-primary);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.orchestra-checkbox:disabled ~ .orchestra-checkbox-label {
+  cursor: not-allowed;
+  color: var(--orchestra-color-text-disabled);
 }
 
 .orchestra-checkbox:disabled {

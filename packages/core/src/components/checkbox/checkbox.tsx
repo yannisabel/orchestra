@@ -74,6 +74,11 @@ export class OrchestraCheckbox {
   @Prop() htmlId?: string
 
   /**
+   * Optional visible label text displayed next to the checkbox.
+   */
+  @Prop() label?: string
+
+  /**
    * Accessible label for screen readers when no visible label is associated.
    */
   @Prop({ attribute: 'aria-label' }) ariaLabel?: string
@@ -332,6 +337,13 @@ export class OrchestraCheckbox {
     this.invalid = false
   }
 
+  private handleLabelClick = (e: Event): void => {
+    e.preventDefault()
+    if (!(this.disabled ?? false)) {
+      this.checked = !(this.checked ?? false)
+    }
+  }
+
   render() {
     const showIndicator =
       (this.checked ?? false) || (this.indeterminate ?? false)
@@ -341,28 +353,38 @@ export class OrchestraCheckbox {
 
     return (
       <Host data-indeterminate={this.indeterminate} data-invalid={this.invalid}>
-        <input
-          id={this.htmlId}
-          class="orchestra-checkbox"
-          type="checkbox"
-          aria-label={this.ariaLabel}
-          aria-labelledby={this.ariaLabelledby}
-          aria-describedby={this.ariaDescribedby}
-          aria-invalid={this.invalid ? 'true' : undefined}
-          ref={this.#checkboxRef}
-          onChange={this.handleChange}
-        />
-        <span class="orchestra-checkbox-visual">
-          {showIndicator && (
-            <orchestra-icon
-              class="orchestra-checkbox-icon"
-              name={indicatorName}
-              library="orchestra-icons"
-              fill="currentcolor"
-              size="0.625rem"
-            ></orchestra-icon>
+        <div class="orchestra-checkbox-wrapper">
+          <input
+            id={this.htmlId}
+            class="orchestra-checkbox"
+            type="checkbox"
+            aria-label={this.ariaLabel}
+            aria-labelledby={this.ariaLabelledby}
+            aria-describedby={this.ariaDescribedby}
+            aria-invalid={this.invalid ? 'true' : undefined}
+            ref={this.#checkboxRef}
+            onChange={this.handleChange}
+          />
+          <span class="orchestra-checkbox-visual">
+            {showIndicator && (
+              <orchestra-icon
+                class="orchestra-checkbox-icon"
+                name={indicatorName}
+                library="orchestra-icons"
+                fill="currentcolor"
+                size="0.625rem"
+              ></orchestra-icon>
+            )}
+          </span>
+          {this.label && (
+            <label
+              class="orchestra-checkbox-label"
+              onClick={this.handleLabelClick}
+            >
+              {this.label}
+            </label>
           )}
-        </span>
+        </div>
         {this.invalid && (
           <div class="orchestra-checkbox-error-container">
             <slot name="error"></slot>

@@ -101,11 +101,6 @@ export const Default: Story = {
     label: 'Accept terms and conditions',
   },
   render: (args) => {
-    const container = document.createElement('div')
-    container.style.display = 'flex'
-    container.style.alignItems = 'center'
-    container.style.gap = '0.5rem'
-
     const checkbox = document.createElement(
       'orchestra-checkbox',
     ) as HTMLElement & {
@@ -115,16 +110,12 @@ export const Default: Story = {
       name?: string
       value?: string
       htmlId?: string
+      label?: string
       ariaLabel?: string
     }
 
-    const label = document.createElement('label')
-    const checkboxId = args.htmlId ?? 'checkbox-example'
-    label.htmlFor = checkboxId
-    label.textContent = args.label ?? 'Accept terms and conditions'
-    label.style.cursor = 'pointer'
-
-    checkbox.htmlId = checkboxId
+    checkbox.htmlId = args.htmlId ?? 'checkbox-example'
+    checkbox.label = args.label ?? 'Accept terms and conditions'
     checkbox.name = 'terms'
     checkbox.value = 'accept'
     checkbox.checked = args.checked ?? false
@@ -132,16 +123,7 @@ export const Default: Story = {
     checkbox.disabled = args.disabled ?? false
     checkbox.ariaLabel = args.label ?? 'Accept terms and conditions'
 
-    // Handle label click to toggle checkbox (web component shadow DOM)
-    label.addEventListener('click', (e) => {
-      e.preventDefault()
-      if (!checkbox.disabled) {
-        checkbox.checked = !checkbox.checked
-      }
-    })
-
-    container.append(checkbox, label)
-    return container
+    return checkbox
   },
   play: async ({ canvasElement, userEvent }) => {
     const checkbox = canvasElement.querySelector('orchestra-checkbox')
@@ -180,11 +162,6 @@ export const Indeterminate: Story = {
     label: 'Partially selected items',
   },
   render: (args) => {
-    const container = document.createElement('div')
-    container.style.display = 'flex'
-    container.style.alignItems = 'center'
-    container.style.gap = '0.5rem'
-
     const checkbox = document.createElement(
       'orchestra-checkbox',
     ) as HTMLElement & {
@@ -194,16 +171,12 @@ export const Indeterminate: Story = {
       name?: string
       value?: string
       htmlId?: string
+      label?: string
       ariaLabel?: string
     }
 
-    const label = document.createElement('label')
-    const checkboxId = args.htmlId ?? 'checkbox-indeterminate'
-    label.htmlFor = checkboxId
-    label.textContent = args.label ?? 'Partially selected items'
-    label.style.cursor = 'pointer'
-
-    checkbox.htmlId = checkboxId
+    checkbox.htmlId = args.htmlId ?? 'checkbox-indeterminate'
+    checkbox.label = args.label ?? 'Partially selected items'
     checkbox.name = 'items'
     checkbox.value = 'partial'
     checkbox.checked = args.checked ?? true
@@ -211,16 +184,7 @@ export const Indeterminate: Story = {
     checkbox.disabled = args.disabled ?? false
     checkbox.ariaLabel = args.label ?? 'Partially selected items'
 
-    // Handle label click to toggle checkbox (web component shadow DOM)
-    label.addEventListener('click', (e) => {
-      e.preventDefault()
-      if (!checkbox.disabled) {
-        checkbox.checked = !checkbox.checked
-      }
-    })
-
-    container.append(checkbox, label)
-    return container
+    return checkbox
   },
   play: async ({ canvasElement }) => {
     const checkbox = canvasElement.querySelector('orchestra-checkbox')
@@ -249,16 +213,6 @@ export const WithError: Story = {
     label: 'I agree to the terms',
   },
   render: (args) => {
-    const container = document.createElement('div')
-    container.style.display = 'flex'
-    container.style.flexDirection = 'column'
-    container.style.gap = '0.5rem'
-
-    const wrapper = document.createElement('div')
-    wrapper.style.display = 'flex'
-    wrapper.style.alignItems = 'flex-start'
-    wrapper.style.gap = '0.5rem'
-
     const checkbox = document.createElement(
       'orchestra-checkbox',
     ) as HTMLElement & {
@@ -268,17 +222,13 @@ export const WithError: Story = {
       name?: string
       value?: string
       htmlId?: string
+      label?: string
       ariaLabel?: string
       validationMessage?: string
     }
 
-    const label = document.createElement('label')
-    const checkboxId = args.htmlId ?? 'checkbox-agreement'
-    label.htmlFor = checkboxId
-    label.textContent = args.label ?? 'I agree to the terms'
-    label.style.cursor = 'pointer'
-
-    checkbox.htmlId = checkboxId
+    checkbox.htmlId = args.htmlId ?? 'checkbox-agreement'
+    checkbox.label = args.label ?? 'I agree to the terms'
     checkbox.name = 'agreement'
     checkbox.value = 'agreed'
     checkbox.checked = args.checked ?? false
@@ -291,18 +241,8 @@ export const WithError: Story = {
     errorMessage.slot = 'error'
     errorMessage.textContent = 'You must agree to continue'
 
-    // Handle label click to toggle checkbox (web component shadow DOM)
-    label.addEventListener('click', (e) => {
-      e.preventDefault()
-      if (!checkbox.disabled) {
-        checkbox.checked = !checkbox.checked
-      }
-    })
-
     checkbox.appendChild(errorMessage)
-    wrapper.append(checkbox, label)
-    container.appendChild(wrapper)
-    return container
+    return checkbox
   },
   play: async ({ canvasElement }) => {
     const checkbox = canvasElement.querySelector('orchestra-checkbox')

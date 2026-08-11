@@ -86,6 +86,10 @@ export namespace Components {
          */
         "indeterminate"?: boolean;
         /**
+          * Optional visible label text displayed next to the checkbox.
+         */
+        "label"?: string;
+        /**
           * A string representing the name of the checkbox for form submission.
           * @default ''
          */
@@ -266,6 +270,10 @@ declare namespace LocalJSX {
          */
         "indeterminate"?: boolean;
         /**
+          * Optional visible label text displayed next to the checkbox.
+         */
+        "label"?: string;
+        /**
           * A string representing the name of the checkbox for form submission.
           * @default ''
          */
@@ -335,6 +343,7 @@ declare namespace LocalJSX {
         "required": boolean;
         "validationMessage": string;
         "htmlId": string;
+        "label": string;
         "ariaLabel": string;
         "ariaLabelledby": string;
         "ariaDescribedby": string;
