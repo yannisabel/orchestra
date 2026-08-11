@@ -31,20 +31,20 @@ export class OrchestraCheckbox {
    * A boolean indicating the checked state of the checkbox.
    * @default false
    */
-  @Prop({ mutable: true }) checked?: boolean = false
+  @Prop({ mutable: true, reflect: true }) checked?: boolean = false
 
   /**
    * A boolean indicating the indeterminate state of the checkbox (shows a dash/minus sign).
    * This is part of the native HTML checkbox API for mixed/partial selection states.
    * @default false
    */
-  @Prop({ mutable: true }) indeterminate?: boolean = false
+  @Prop({ mutable: true, reflect: true }) indeterminate?: boolean = false
 
   /**
    * A boolean indicating the disable state of the checkbox.
    * @default false
    */
-  @Prop({ mutable: true }) disabled?: boolean = false
+  @Prop({ mutable: true, reflect: true }) disabled?: boolean = false
 
   /**
    * A string representing the name of the checkbox for form submission.
@@ -100,7 +100,7 @@ export class OrchestraCheckbox {
   @Event({ bubbles: true, composed: true })
   orchestraStateChange!: EventEmitter<CheckboxChangeDetail>
 
-  @Element() host!: HTMLInputElement
+  @Element() host!: HTMLElement
   @AttachInternals() internals!: ElementInternals
 
   #checkbox?: HTMLInputElement
@@ -363,6 +363,11 @@ export class OrchestraCheckbox {
             ></orchestra-icon>
           )}
         </span>
+        {this.invalid && (
+          <div class="orchestra-checkbox-error-container">
+            <slot name="error"></slot>
+          </div>
+        )}
       </Host>
     )
   }

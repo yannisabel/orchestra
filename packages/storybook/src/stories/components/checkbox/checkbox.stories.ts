@@ -223,3 +223,74 @@ export const Indeterminate: Story = {
     expect(input?.disabled).toBe(false)
   },
 }
+
+export const WithError: Story = {
+  args: {
+    checked: false,
+    indeterminate: false,
+    disabled: false,
+    htmlId: 'checkbox-error',
+    label: 'I agree to the terms',
+  },
+  render: (args) => {
+    const container = document.createElement('div')
+    container.style.display = 'flex'
+    container.style.flexDirection = 'column'
+    container.style.gap = '0.5rem'
+
+    const wrapper = document.createElement('div')
+    wrapper.style.display = 'flex'
+    wrapper.style.alignItems = 'flex-start'
+    wrapper.style.gap = '0.5rem'
+
+    const checkbox = document.createElement(
+      'orchestra-checkbox',
+    ) as HTMLElement & {
+      checked?: boolean
+      indeterminate?: boolean
+      disabled?: boolean
+      name?: string
+      value?: string
+      htmlId?: string
+      ariaLabel?: string
+      validationMessage?: string
+    }
+
+    const label = document.createElement('label')
+    const labelId = `${args.htmlId ?? 'checkbox-error'}-label`
+    label.id = labelId
+    label.textContent = args.label ?? 'I agree to the terms'
+    label.style.cursor = 'pointer'
+
+    checkbox.htmlId = args.htmlId ?? 'checkbox-error'
+    checkbox.name = 'agreement'
+    checkbox.value = 'agreed'
+    checkbox.checked = args.checked ?? false
+    checkbox.indeterminate = args.indeterminate ?? false
+    checkbox.disabled = args.disabled ?? false
+    checkbox.ariaLabel = args.label ?? 'I agree to the terms'
+    checkbox.validationMessage = 'You must agree to continue'
+
+    const errorMessage = document.createElement('span')
+    errorMessage.slot = 'error'
+    errorMessage.textContent = 'You must agree to continue'
+
+    checkbox.appendChild(errorMessage)
+    wrapper.append(checkbox, label)
+    container.appendChild(wrapper)
+    return container
+  },
+  play: async ({ canvasElement }) => {
+    const checkbox = canvasElement.querySelector('orchestra-checkbox')
+
+    expect(checkbox).toBeTruthy()
+    await waitFor(() => {
+      expect(checkbox?.shadowRoot?.querySelector('input')).toBeTruthy()
+    })
+
+    // Check that the error message is slotted in the component
+    const errorSlot = checkbox?.querySelector('[slot="error"]')
+    expect(errorSlot).toBeTruthy()
+    expect(errorSlot?.textContent).toContain('You must agree to continue')
+  },
+}

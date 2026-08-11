@@ -5,8 +5,9 @@
     0.25rem
   );
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--orchestra-spacing-action-primary-small, 0.25rem);
   padding: var(--checkbox-hit-area-padding);
   position: relative;
 }
@@ -214,4 +215,19 @@
     outline: 2px solid Highlight;
     outline-offset: 2px;
   }
+}
+
+/* Error slot styling */
+.orchestra-checkbox-error-container {
+  display: block;
+  width: 100%;
+  margin-top: -0.125rem;
+}
+
+.orchestra-checkbox-error-container::slotted(*) {
+  display: block;
+  color: var(--orchestra-color-action-error-text-default);
+  font-size: var(--orchestra-font-size-utility-small, 0.75rem);
+  font-family: var(--orchestra-font-family-default);
+  line-height: 1.5;
 }
