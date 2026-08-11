@@ -30,7 +30,7 @@
     "tar": "^7.5.16"
   },
   "scripts": {
-    "dev": "npx lerna run storybook:start --scope=@orchestra-design-system/storybook",
+    "dev": "npx lerna run build --scope=@orchestra-design-system/icons-library --scope=@orchestra-design-system/core && npx lerna run storybook:start --scope=@orchestra-design-system/storybook",
     "build": "npm run build:tokens && npx lerna run build",
     "build:tokens": "npx lerna run build --scope='@orchestra-design-system/themes'",
     "build:storybook": "npx lerna run build-storybook --scope=@orchestra-design-system/storybook",

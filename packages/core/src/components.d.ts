@@ -5,6 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { CheckboxChangeDetail } from "./components/checkbox/checkbox";
+export { CheckboxChangeDetail } from "./components/checkbox/checkbox";
 export namespace Components {
     interface OrchestraButton {
         /**
@@ -47,6 +49,75 @@ export namespace Components {
          */
         "variant"?: 'primary' | 'secondary' | 'tertiary';
     }
+    interface OrchestraCheckbox {
+        /**
+          * ID reference(s) to element(s) that describe this checkbox.
+         */
+        "ariaDescribedby"?: string;
+        /**
+          * Accessible label for screen readers when no visible label is associated.
+         */
+        "ariaLabel"?: string;
+        /**
+          * ID reference(s) to element(s) that label this checkbox.
+         */
+        "ariaLabelledby"?: string;
+        /**
+          * Checks whether the checkbox satisfies all constraints.
+         */
+        "checkValidity": () => Promise<boolean>;
+        /**
+          * A boolean indicating the checked state of the checkbox.
+          * @default false
+         */
+        "checked"?: boolean;
+        /**
+          * A boolean indicating the disable state of the checkbox.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * The unique identifier for the checkbox input. Used to associate with external label elements.
+         */
+        "htmlId"?: string;
+        /**
+          * A boolean indicating the indeterminate state of the checkbox (shows a dash/minus sign). This is part of the native HTML checkbox API for mixed/partial selection states.
+          * @default false
+         */
+        "indeterminate"?: boolean;
+        /**
+          * Optional visible label text displayed next to the checkbox.
+         */
+        "label"?: string;
+        /**
+          * A string representing the name of the checkbox for form submission.
+          * @default ''
+         */
+        "name"?: string;
+        /**
+          * Reports validity and prompts the browser to show the validation UI.
+         */
+        "reportValidity": () => Promise<boolean>;
+        /**
+          * A boolean indicating whether the field is required.
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * Sets a custom validity message. Pass an empty string to clear custom errors.
+         */
+        "setCustomValidity": (message: string) => Promise<void>;
+        /**
+          * Optional custom validity message. When set to a non-empty string, the field is invalid.
+          * @default ''
+         */
+        "validationMessage"?: string;
+        /**
+          * A string representing the value of the checkbox for form submission.
+          * @default 'on'
+         */
+        "value"?: string;
+    }
     interface OrchestraIcon {
         /**
           * Taking the currentcolor (inherited color of the font) by default, except if specified.
@@ -69,12 +140,34 @@ export namespace Components {
         "size"?: string | '100%';
     }
 }
+export interface OrchestraCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLOrchestraCheckboxElement;
+}
 declare global {
     interface HTMLOrchestraButtonElement extends Components.OrchestraButton, HTMLStencilElement {
     }
     var HTMLOrchestraButtonElement: {
         prototype: HTMLOrchestraButtonElement;
         new (): HTMLOrchestraButtonElement;
+    };
+    interface HTMLOrchestraCheckboxElementEventMap {
+        "orchestraChange": boolean;
+        "orchestraStateChange": CheckboxChangeDetail;
+    }
+    interface HTMLOrchestraCheckboxElement extends Components.OrchestraCheckbox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLOrchestraCheckboxElementEventMap>(type: K, listener: (this: HTMLOrchestraCheckboxElement, ev: OrchestraCheckboxCustomEvent<HTMLOrchestraCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLOrchestraCheckboxElementEventMap>(type: K, listener: (this: HTMLOrchestraCheckboxElement, ev: OrchestraCheckboxCustomEvent<HTMLOrchestraCheckboxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLOrchestraCheckboxElement: {
+        prototype: HTMLOrchestraCheckboxElement;
+        new (): HTMLOrchestraCheckboxElement;
     };
     interface HTMLOrchestraIconElement extends Components.OrchestraIcon, HTMLStencilElement {
     }
@@ -84,6 +177,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "orchestra-button": HTMLOrchestraButtonElement;
+        "orchestra-checkbox": HTMLOrchestraCheckboxElement;
         "orchestra-icon": HTMLOrchestraIconElement;
     }
 }
@@ -139,6 +233,75 @@ declare namespace LocalJSX {
          */
         "variant"?: 'primary' | 'secondary' | 'tertiary';
     }
+    interface OrchestraCheckbox {
+        /**
+          * ID reference(s) to element(s) that describe this checkbox.
+         */
+        "ariaDescribedby"?: string;
+        /**
+          * Accessible label for screen readers when no visible label is associated.
+         */
+        "ariaLabel"?: string;
+        /**
+          * ID reference(s) to element(s) that label this checkbox.
+         */
+        "ariaLabelledby"?: string;
+        /**
+          * A boolean indicating the checked state of the checkbox.
+          * @default false
+         */
+        "checked"?: boolean;
+        /**
+          * A boolean indicating the disable state of the checkbox.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
+          * The unique identifier for the checkbox input. Used to associate with external label elements.
+         */
+        "htmlId"?: string;
+        /**
+          * A boolean indicating the indeterminate state of the checkbox (shows a dash/minus sign). This is part of the native HTML checkbox API for mixed/partial selection states.
+          * @default false
+         */
+        "indeterminate"?: boolean;
+        /**
+          * Optional visible label text displayed next to the checkbox.
+         */
+        "label"?: string;
+        /**
+          * A string representing the name of the checkbox for form submission.
+          * @default ''
+         */
+        "name"?: string;
+        /**
+          * Native change event - emitted when checkbox state changes.
+         */
+        "onOrchestraChange"?: (event: OrchestraCheckboxCustomEvent<boolean>) => void;
+        /**
+          * Rich state change payload for consumers that need full checkbox context.
+         */
+        "onOrchestraStateChange"?: (event: OrchestraCheckboxCustomEvent<CheckboxChangeDetail>) => void;
+        /**
+          * A boolean indicating whether the field is required.
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * Optional custom validity message. When set to a non-empty string, the field is invalid.
+          * @default ''
+         */
+        "validationMessage"?: string;
+        /**
+          * A string representing the value of the checkbox for form submission.
+          * @default 'on'
+         */
+        "value"?: string;
+    }
     interface OrchestraIcon {
         /**
           * Taking the currentcolor (inherited color of the font) by default, except if specified.
@@ -171,6 +334,20 @@ declare namespace LocalJSX {
         "iconName": string;
         "iconLibrary": string;
     }
+    interface OrchestraCheckboxAttributes {
+        "checked": boolean;
+        "indeterminate": boolean;
+        "disabled": boolean;
+        "name": string;
+        "value": string;
+        "required": boolean;
+        "validationMessage": string;
+        "htmlId": string;
+        "label": string;
+        "ariaLabel": string;
+        "ariaLabelledby": string;
+        "ariaDescribedby": string;
+    }
     interface OrchestraIconAttributes {
         "name": string;
         "library": string;
@@ -180,6 +357,7 @@ declare namespace LocalJSX {
 
     interface IntrinsicElements {
         "orchestra-button": Omit<OrchestraButton, keyof OrchestraButtonAttributes> & { [K in keyof OrchestraButton & keyof OrchestraButtonAttributes]?: OrchestraButton[K] } & { [K in keyof OrchestraButton & keyof OrchestraButtonAttributes as `attr:${K}`]?: OrchestraButtonAttributes[K] } & { [K in keyof OrchestraButton & keyof OrchestraButtonAttributes as `prop:${K}`]?: OrchestraButton[K] } & OneOf<"text", OrchestraButton["text"], OrchestraButtonAttributes["text"]>;
+        "orchestra-checkbox": Omit<OrchestraCheckbox, keyof OrchestraCheckboxAttributes> & { [K in keyof OrchestraCheckbox & keyof OrchestraCheckboxAttributes]?: OrchestraCheckbox[K] } & { [K in keyof OrchestraCheckbox & keyof OrchestraCheckboxAttributes as `attr:${K}`]?: OrchestraCheckboxAttributes[K] } & { [K in keyof OrchestraCheckbox & keyof OrchestraCheckboxAttributes as `prop:${K}`]?: OrchestraCheckbox[K] };
         "orchestra-icon": Omit<OrchestraIcon, keyof OrchestraIconAttributes> & { [K in keyof OrchestraIcon & keyof OrchestraIconAttributes]?: OrchestraIcon[K] } & { [K in keyof OrchestraIcon & keyof OrchestraIconAttributes as `attr:${K}`]?: OrchestraIconAttributes[K] } & { [K in keyof OrchestraIcon & keyof OrchestraIconAttributes as `prop:${K}`]?: OrchestraIcon[K] } & OneOf<"name", OrchestraIcon["name"], OrchestraIconAttributes["name"]>;
     }
 }
@@ -188,6 +366,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "orchestra-button": LocalJSX.IntrinsicElements["orchestra-button"] & JSXBase.HTMLAttributes<HTMLOrchestraButtonElement>;
+            "orchestra-checkbox": LocalJSX.IntrinsicElements["orchestra-checkbox"] & JSXBase.HTMLAttributes<HTMLOrchestraCheckboxElement>;
             "orchestra-icon": LocalJSX.IntrinsicElements["orchestra-icon"] & JSXBase.HTMLAttributes<HTMLOrchestraIconElement>;
         }
     }

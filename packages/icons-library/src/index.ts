@@ -1,5 +1,7 @@
 export {
+  checkboxCheck,
+  checkboxIndeterminate,
   checked,
 } from './icons'
 
-export const iconNames = ['checked'] as const
+export const iconNames = ['checkboxCheck', 'checkboxIndeterminate', 'checked'] as const

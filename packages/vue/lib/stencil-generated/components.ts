@@ -20,6 +20,27 @@ export const OrchestraButton: StencilVueComponent<JSX.OrchestraButton> = /*@__PU
 ]);
 
 
+export const OrchestraCheckbox: StencilVueComponent<JSX.OrchestraCheckbox> = /*@__PURE__*/ defineContainer<JSX.OrchestraCheckbox>('orchestra-checkbox', undefined, [
+  'checked',
+  'indeterminate',
+  'disabled',
+  'name',
+  'value',
+  'required',
+  'validationMessage',
+  'htmlId',
+  'label',
+  'ariaLabel',
+  'ariaLabelledby',
+  'ariaDescribedby',
+  'orchestraChange',
+  'orchestraStateChange'
+], [
+  'orchestraChange',
+  'orchestraStateChange'
+]);
+
+
 export const OrchestraIcon: StencilVueComponent<JSX.OrchestraIcon> = /*@__PURE__*/ defineContainer<JSX.OrchestraIcon>('orchestra-icon', undefined, [
   'name',
   'library',

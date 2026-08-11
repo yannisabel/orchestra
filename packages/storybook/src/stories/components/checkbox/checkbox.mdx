@@ -1,0 +1,16 @@
+import StencilMd from '@orchestra-design-system/core/src/components/checkbox/readme.md?raw'
+import { Markdown } from '@storybook/addon-docs/blocks'
+import { Meta, Title, Canvas, Source } from '@storybook/addon-docs/blocks'
+import * as CheckboxStories from './checkbox.stories'
+
+<Meta of={CheckboxStories} />
+
+<Title />
+
+## Default
+
+<Canvas of={CheckboxStories.Default} />
+
+<div className="stencil-props">
+  <Markdown>{StencilMd}</Markdown>
+</div>

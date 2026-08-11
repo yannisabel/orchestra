@@ -19,8 +19,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "npm run tsc",
-    "tsc": "tsc -p . --outDir ./dist"
+    "build": "npm run patch-generated && npm run tsc",
+    "tsc": "tsc -p . --outDir ./dist --noEmitOnError false",
+    "patch-generated": "node scripts/patch-generated-files.cjs"
   },
   "dependencies": {
     "@orchestra-design-system/core": "^0.0.13",

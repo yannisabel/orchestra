@@ -51,6 +51,10 @@
       "types": "./dist/components/orchestra-button.d.ts",
       "import": "./dist/components/orchestra-button.js"
     },
+    "./dist/components/orchestra-checkbox.js": {
+      "types": "./dist/components/orchestra-checkbox.d.ts",
+      "import": "./dist/components/orchestra-checkbox.js"
+    },
     "./dist/components/orchestra-icon.js": {
       "types": "./dist/components/orchestra-icon.d.ts",
       "import": "./dist/components/orchestra-icon.js"

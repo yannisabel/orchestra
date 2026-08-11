@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* auto-generated angular directive proxies */
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, NgZone } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Output, NgZone } from '@angular/core';
 
 import { ProxyCmp } from './angular-component-lib/utils';
 
@@ -28,6 +28,45 @@ export class OrchestraButton {
 
 
 export declare interface OrchestraButton extends Components.OrchestraButton {}
+
+
+@ProxyCmp({
+  inputs: ['ariaDescribedby', 'ariaLabel', 'ariaLabelledby', 'checked', 'disabled', 'htmlId', 'indeterminate', 'label', 'name', 'required', 'validationMessage', 'value'],
+  methods: ['checkValidity', 'reportValidity', 'setCustomValidity']
+})
+@Component({
+  selector: 'orchestra-checkbox',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['ariaDescribedby', 'ariaLabel', 'ariaLabelledby', 'checked', 'disabled', 'htmlId', 'indeterminate', 'label', 'name', 'required', 'validationMessage', 'value'],
+  outputs: ['orchestraChange', 'orchestraStateChange'],
+  standalone: false
+})
+export class OrchestraCheckbox {
+  protected el: HTMLOrchestraCheckboxElement;
+  @Output() orchestraChange = new EventEmitter<OrchestraCheckboxCustomEvent<boolean>>();
+  @Output() orchestraStateChange = new EventEmitter<OrchestraCheckboxCustomEvent<IOrchestraCheckboxCheckboxChangeDetail>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { OrchestraCheckboxCustomEvent } from '@orchestra-design-system/core';
+import type { CheckboxChangeDetail as IOrchestraCheckboxCheckboxChangeDetail } from '@orchestra-design-system/core';
+
+export declare interface OrchestraCheckbox extends Components.OrchestraCheckbox {
+  /**
+   * Native change event - emitted when checkbox state changes.
+   */
+  orchestraChange: EventEmitter<OrchestraCheckboxCustomEvent<boolean>>;
+  /**
+   * Rich state change payload for consumers that need full checkbox context.
+   */
+  orchestraStateChange: EventEmitter<OrchestraCheckboxCustomEvent<IOrchestraCheckboxCheckboxChangeDetail>>;
+}
 
 
 @ProxyCmp({

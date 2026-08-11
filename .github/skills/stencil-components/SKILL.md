@@ -61,6 +61,48 @@ export class Orchestra[ComponentName] {
 
 ## Component Anatomy
 
+### Native Web API Compatibility
+
+**For form elements** (button, checkbox, radio, input), always:
+- ✅ Use `formAssociated: true` to participate in form submission
+- ✅ Proxy native element properties: `checked`, `value`, `disabled`, `required`, `name`
+- ✅ Emit events that align with native behavior (even if using custom names for framework compatibility)
+- ✅ Support standard HTML attributes and properties
+- ✅ Use light DOM or shadow DOM with `delegatesFocus: true` for form elements
+- ✅ Leverage native validation APIs when available
+
+**Event Naming**:
+- For better framework compatibility, use custom prefixed event names (e.g., `orchestraChange` instead of `change`)
+- The custom event wrapper still carries native event behavior and proper typing
+- Consumers can still react to standard input element events if needed
+
+**Example - Native Checkbox Pattern**:
+```typescript
+@Component({
+  tag: 'orchestra-checkbox',
+  styleUrl: 'checkbox.css',
+  formAssociated: true,
+  shadow: { delegatesFocus: true }  // Focus delegates to internal input
+})
+export class OrchestraCheckbox {
+  // Native checkbox properties
+  @Prop({ mutable: true }) checked?: boolean = false;
+  @Prop() value?: string = 'on';
+  @Prop({ mutable: true }) disabled?: boolean = false;
+  @Prop() required?: boolean = false;
+  @Prop() name?: string = '';
+
+  // Custom event for framework compatibility
+  @Event({ bubbles: true, composed: true }) orchestraChange!: EventEmitter<boolean>;
+
+  private handleChange(e: Event) {
+    const input = e.target as HTMLInputElement;
+    this.checked = input.checked;
+    this.orchestraChange.emit(this.checked);  // Emit event with clean payload
+  }
+}
+```
+
 ### Props (Inputs)
 
 Define component inputs with `@Prop()` decorator:

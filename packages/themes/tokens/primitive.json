@@ -1132,7 +1132,7 @@
     }
   },
   "number": {
-    ":4": {
+    "d4": {
       "$extensions": {
         "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
@@ -1220,7 +1220,7 @@
       "$type": "dimension",
       "$value": "5rem"
     },
-    ":2": {
+    "d2": {
       "$extensions": {
         "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
@@ -1292,13 +1292,13 @@
       "$type": "dimension",
       "$value": "8.5rem"
     },
-    "x18": {
+    "x17,5": {
       "$extensions": {
         "com.figma.scopes": ["ALL_SCOPES"],
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
-      "$value": "9rem"
+      "$value": "8.75rem"
     },
     "x19": {
       "$extensions": {
@@ -1323,14 +1323,6 @@
       },
       "$type": "dimension",
       "$value": "624.938rem"
-    },
-    "x17,5": {
-      "$extensions": {
-        "com.figma.scopes": ["ALL_SCOPES"],
-        "com.figma.hiddenFromPublishing": false
-      },
-      "$type": "dimension",
-      "$value": "8.75rem"
     },
     "x1,5": {
       "$extensions": {
@@ -1460,6 +1452,14 @@
       "$type": "dimension",
       "$value": "8.125rem"
     },
+    "x18": {
+      "$extensions": {
+        "com.figma.scopes": ["ALL_SCOPES"],
+        "com.figma.hiddenFromPublishing": false
+      },
+      "$type": "dimension",
+      "$value": "9rem"
+    },
     "x18,5": {
       "$extensions": {
         "com.figma.scopes": ["ALL_SCOPES"],
@@ -1483,6 +1483,112 @@
       },
       "$type": "dimension",
       "$value": "10rem"
+    }
+  },
+  "count": {
+    "zero": {
+      "$extensions": {
+        "com.figma.scopes": ["ALL_SCOPES"],
+        "com.figma.hiddenFromPublishing": false
+      },
+      "$type": "dimension",
+      "$value": "0rem"
+    },
+    "one": {
+      "$extensions": {
+        "com.figma.scopes": ["ALL_SCOPES"],
+        "com.figma.hiddenFromPublishing": false
+      },
+      "$type": "dimension",
+      "$value": "0.063rem"
+    },
+    "two": {
+      "$extensions": {
+        "com.figma.scopes": ["ALL_SCOPES"],
+        "com.figma.hiddenFromPublishing": false
+      },
+      "$type": "dimension",
+      "$value": "0.125rem"
+    },
+    "three": {
+      "$extensions": {
+        "com.figma.scopes": ["ALL_SCOPES"],
+        "com.figma.hiddenFromPublishing": false
+      },
+      "$type": "dimension",
+      "$value": "0.188rem"
+    },
+    "four": {
+      "$extensions": {
+        "com.figma.scopes": ["ALL_SCOPES"],
+        "com.figma.hiddenFromPublishing": false
+      },
+      "$type": "dimension",
+      "$value": "0.25rem"
+    },
+    "five": {
+      "$extensions": {
+        "com.figma.scopes": ["ALL_SCOPES"],
+        "com.figma.hiddenFromPublishing": false
+      },
+      "$type": "dimension",
+      "$value": "0.313rem"
+    },
+    "six": {
+      "$extensions": {
+        "com.figma.scopes": ["ALL_SCOPES"],
+        "com.figma.hiddenFromPublishing": false
+      },
+      "$type": "dimension",
+      "$value": "0.375rem"
+    },
+    "seven": {
+      "$extensions": {
+        "com.figma.scopes": ["ALL_SCOPES"],
+        "com.figma.hiddenFromPublishing": false
+      },
+      "$type": "dimension",
+      "$value": "0.438rem"
+    },
+    "eight": {
+      "$extensions": {
+        "com.figma.scopes": ["ALL_SCOPES"],
+        "com.figma.hiddenFromPublishing": false
+      },
+      "$type": "dimension",
+      "$value": "0.5rem"
+    },
+    "nine": {
+      "$extensions": {
+        "com.figma.scopes": ["ALL_SCOPES"],
+        "com.figma.hiddenFromPublishing": false
+      },
+      "$type": "dimension",
+      "$value": "0.563rem"
+    },
+    "ten": {
+      "$extensions": {
+        "com.figma.scopes": ["ALL_SCOPES"],
+        "com.figma.hiddenFromPublishing": false
+      },
+      "$type": "dimension",
+      "$value": "0.625rem"
+    },
+    "eleven": {
+      "$extensions": {
+        "com.figma.scopes": ["ALL_SCOPES"],
+        "com.figma.hiddenFromPublishing": false
+      },
+      "$type": "dimension",
+      "$value": "0.688rem"
+    },
+    "twelve": {
+      "$extensions": {
+        "com.figma.scopes": ["ALL_SCOPES"],
+        "com.figma.hiddenFromPublishing": false
+      },
+      "$type": "dimension",
+      "$value": "0.75rem"
     }
   }
 }

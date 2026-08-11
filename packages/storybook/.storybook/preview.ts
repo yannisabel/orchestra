@@ -7,6 +7,18 @@ import { registerIconLibrary } from '@orchestra-design-system/core'
 
 type ThemeMode = 'light' | 'dark' | 'system'
 
+const decodeHtmlEntities = (source: string): string => {
+  if (!source.includes('&')) {
+    return source
+  }
+
+  const parser = new DOMParser()
+  const decoded = parser.parseFromString(source, 'text/html').documentElement
+    .textContent
+
+  return decoded ?? source
+}
+
 const resolveTheme = (theme: ThemeMode): 'light' | 'dark' => {
   if (theme === 'system') {
     return window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -93,6 +105,9 @@ const preview: Preview = {
           return showTitle ? 'On this page' : ''
         })(),
         headingSelector: 'h2, h3',
+      },
+      source: {
+        transform: (source: string) => decodeHtmlEntities(source),
       },
     },
   },
