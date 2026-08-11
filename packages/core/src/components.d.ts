@@ -5,6 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { CheckboxChangeDetail } from "./components/checkbox/checkbox";
+export { CheckboxChangeDetail } from "./components/checkbox/checkbox";
 export namespace Components {
     interface OrchestraButton {
         /**
@@ -61,6 +63,10 @@ export namespace Components {
          */
         "ariaLabelledby"?: string;
         /**
+          * Checks whether the checkbox satisfies all constraints.
+         */
+        "checkValidity": () => Promise<boolean>;
+        /**
           * A boolean indicating the checked state of the checkbox.
           * @default false
          */
@@ -85,10 +91,23 @@ export namespace Components {
          */
         "name"?: string;
         /**
+          * Reports validity and prompts the browser to show the validation UI.
+         */
+        "reportValidity": () => Promise<boolean>;
+        /**
           * A boolean indicating whether the field is required.
           * @default false
          */
         "required"?: boolean;
+        /**
+          * Sets a custom validity message. Pass an empty string to clear custom errors.
+         */
+        "setCustomValidity": (message: string) => Promise<void>;
+        /**
+          * Optional custom validity message. When set to a non-empty string, the field is invalid.
+          * @default ''
+         */
+        "validationMessage"?: string;
         /**
           * A string representing the value of the checkbox for form submission.
           * @default 'on'
@@ -265,6 +284,11 @@ declare namespace LocalJSX {
          */
         "required"?: boolean;
         /**
+          * Optional custom validity message. When set to a non-empty string, the field is invalid.
+          * @default ''
+         */
+        "validationMessage"?: string;
+        /**
           * A string representing the value of the checkbox for form submission.
           * @default 'on'
          */
@@ -309,6 +333,7 @@ declare namespace LocalJSX {
         "name": string;
         "value": string;
         "required": boolean;
+        "validationMessage": string;
         "htmlId": string;
         "ariaLabel": string;
         "ariaLabelledby": string;

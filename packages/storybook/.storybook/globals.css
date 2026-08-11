@@ -1,8 +1,7 @@
-
 .orchestra-theme--dark {
-    --background-color: #000;
-    --color: #fff;
-    --border-color: #3c3c3c;
+  --background-color: #000;
+  --color: #fff;
+  --border-color: #3c3c3c;
 }
 
 .orchestra-theme--light {
@@ -22,6 +21,18 @@ body,
   background-color: var(--background-color);
 }
 
+.sbdocs,
+.sbdocs-content,
+.sbdocs-content p,
+.sbdocs-content li,
+.sbdocs-content span,
+.sbdocs-content div,
+.sbdocs-content blockquote,
+.sbdocs-content .docblock-argstable,
+.sbdocs-content .docblock-argstable-body {
+  color: var(--color);
+}
+
 .docblock-code-toggle,
 .sbdocs-content .docblock-source,
 .sbdocs-content h1,
@@ -36,6 +47,16 @@ body,
 .sbdocs-content code,
 .sbdocs-toc--custom .toc-list-item:not(.is-active-li) > a {
   color: var(--color) !important;
+}
+
+.sbdocs-content a {
+  color: var(--color);
+}
+
+/* Keep syntax-highlight token colors visible by avoiding blanket code overrides. */
+.sbdocs-content .docblock-source code,
+.sbdocs-content .docblock-source code span {
+  color: inherit !important;
 }
 
 .sbdocs-content th,

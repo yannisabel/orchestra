@@ -1,4 +1,5 @@
 import {
+  AttachInternals,
   Component,
   h,
   Prop,
@@ -7,10 +8,12 @@ import {
   Host,
   Event,
   EventEmitter,
+  Method,
+  State,
 } from '@stencil/core'
 import { invariant } from '../../helpers'
 
-interface CheckboxChangeDetail {
+export interface CheckboxChangeDetail {
   checked: boolean
   indeterminate: boolean
   name: string
@@ -61,6 +64,11 @@ export class OrchestraCheckbox {
   @Prop() required?: boolean = false
 
   /**
+   * Optional custom validity message. When set to a non-empty string, the field is invalid.
+   */
+  @Prop() validationMessage?: string = ''
+
+  /**
    * The unique identifier for the checkbox input. Used to associate with external label elements.
    */
   @Prop() htmlId?: string
@@ -93,9 +101,13 @@ export class OrchestraCheckbox {
   orchestraStateChange!: EventEmitter<CheckboxChangeDetail>
 
   @Element() host!: HTMLInputElement
+  @AttachInternals() internals!: ElementInternals
 
   #checkbox?: HTMLInputElement
   #hasWarnedMissingAccessibleName = false
+  #defaultChecked = false
+  #defaultIndeterminate = false
+  @State() invalid = false
 
   /**
    * Sync property changes to internal input.
@@ -104,35 +116,66 @@ export class OrchestraCheckbox {
   protected checkedChanged(): void {
     invariant(this.#checkbox)
     this.#checkbox.checked = this.checked ?? false
+    this.syncFormValue()
+    this.syncValidity()
   }
 
   @Watch('indeterminate')
   protected indeterminateChanged(): void {
     invariant(this.#checkbox)
+    if (this.indeterminate) {
+      // Indeterminate is a visual variant of the checked state.
+      this.checked = true
+    }
     this.#checkbox.indeterminate = this.indeterminate ?? false
+    this.syncFormValue()
   }
 
   @Watch('disabled')
   protected disabledChanged(): void {
     invariant(this.#checkbox)
     this.#checkbox.disabled = this.disabled ?? false
+    this.syncValidity()
   }
 
   @Watch('required')
   protected requiredChanged(): void {
     invariant(this.#checkbox)
     this.#checkbox.required = this.required ?? false
+    this.syncValidity()
+  }
+
+  @Watch('value')
+  protected valueChanged(): void {
+    invariant(this.#checkbox)
+    this.#checkbox.value = this.value ?? 'on'
+    this.syncFormValue()
+  }
+
+  @Watch('name')
+  protected nameChanged(): void {
+    invariant(this.#checkbox)
+    this.#checkbox.name = this.name ?? ''
+  }
+
+  @Watch('validationMessage')
+  protected validationMessageChanged(): void {
+    this.syncValidity()
   }
 
   public componentDidLoad(): void {
     invariant(this.#checkbox)
     this.#checkbox.type = 'checkbox'
-    this.#checkbox.name = this.name ?? ''
-    this.#checkbox.value = this.value ?? 'on'
+    this.#defaultChecked = this.checked ?? false
+    this.#defaultIndeterminate = this.indeterminate ?? false
+    this.nameChanged()
+    this.valueChanged()
     this.disabledChanged()
     this.requiredChanged()
     this.checkedChanged()
     this.indeterminateChanged()
+    this.syncFormValue()
+    this.syncValidity()
     this.warnIfMissingAccessibleName()
   }
 
@@ -140,13 +183,46 @@ export class OrchestraCheckbox {
     this.warnIfMissingAccessibleName()
   }
 
+  public formResetCallback(): void {
+    this.checked = this.#defaultChecked
+    this.indeterminate = this.#defaultIndeterminate
+  }
+
+  public formStateRestoreCallback(
+    state: string | File | FormData | null,
+  ): void {
+    if (typeof state !== 'string') {
+      return
+    }
+
+    try {
+      const parsed = JSON.parse(state) as {
+        checked?: boolean
+        indeterminate?: boolean
+      }
+      this.checked = Boolean(parsed.checked)
+      this.indeterminate = Boolean(parsed.indeterminate)
+    } catch {
+      // Keep defaults when restoration payload is not parseable.
+    }
+  }
+
   /**
    * Internal change handler - sync back to property and emit change event.
    */
   private handleChange = (e: Event): void => {
     const input = e.target as HTMLInputElement
-    this.checked = input.checked
-    this.indeterminate = input.indeterminate
+    const wasIndeterminate = this.indeterminate ?? false
+
+    // Keep a deterministic state cycle: mixed -> checked -> unchecked.
+    if (wasIndeterminate) {
+      this.checked = true
+      this.indeterminate = false
+    } else {
+      this.checked = input.checked
+      this.indeterminate = false
+    }
+
     this.orchestraChange.emit(this.checked ?? false)
     this.orchestraStateChange.emit({
       checked: this.checked ?? false,
@@ -154,6 +230,30 @@ export class OrchestraCheckbox {
       name: this.name ?? '',
       value: this.value ?? 'on',
     })
+  }
+
+  /**
+   * Checks whether the checkbox satisfies all constraints.
+   */
+  @Method()
+  public async checkValidity(): Promise<boolean> {
+    return this.internals.checkValidity()
+  }
+
+  /**
+   * Reports validity and prompts the browser to show the validation UI.
+   */
+  @Method()
+  public async reportValidity(): Promise<boolean> {
+    return this.internals.reportValidity()
+  }
+
+  /**
+   * Sets a custom validity message. Pass an empty string to clear custom errors.
+   */
+  @Method()
+  public async setCustomValidity(message: string): Promise<void> {
+    this.validationMessage = message
   }
 
   private warnIfMissingAccessibleName(): void {
@@ -194,6 +294,48 @@ export class OrchestraCheckbox {
     return document.querySelector(`label[for="${escapedId}"]`) !== null
   }
 
+  private syncFormValue(): void {
+    const shouldSubmitValue =
+      (this.checked ?? false) && !(this.disabled ?? false)
+    const submitValue = shouldSubmitValue ? (this.value ?? 'on') : null
+    const state = JSON.stringify({
+      checked: this.checked ?? false,
+      indeterminate: this.indeterminate ?? false,
+    })
+    this.internals.setFormValue(submitValue, state)
+  }
+
+  private syncValidity(): void {
+    const customMessage = this.validationMessage?.trim() ?? ''
+    const isRequiredMissing =
+      (this.required ?? false) &&
+      !(this.checked ?? false) &&
+      !(this.disabled ?? false)
+
+    if (customMessage) {
+      this.internals.setValidity(
+        { customError: true },
+        customMessage,
+        this.#checkbox,
+      )
+      this.invalid = true
+      return
+    }
+
+    if (isRequiredMissing) {
+      this.internals.setValidity(
+        { valueMissing: true },
+        'Please check this box if you want to proceed.',
+        this.#checkbox,
+      )
+      this.invalid = true
+      return
+    }
+
+    this.internals.setValidity({})
+    this.invalid = false
+  }
+
   render() {
     const showIndicator =
       (this.checked ?? false) || (this.indeterminate ?? false)
@@ -202,7 +344,7 @@ export class OrchestraCheckbox {
       : 'checkbox-check'
 
     return (
-      <Host data-indeterminate={this.indeterminate}>
+      <Host data-indeterminate={this.indeterminate} data-invalid={this.invalid}>
         <input
           id={this.htmlId}
           class="orchestra-checkbox"
@@ -210,6 +352,7 @@ export class OrchestraCheckbox {
           aria-label={this.ariaLabel}
           aria-labelledby={this.ariaLabelledby}
           aria-describedby={this.ariaDescribedby}
+          aria-invalid={this.invalid ? 'true' : undefined}
           ref={this.#checkboxRef}
           onChange={this.handleChange}
         />

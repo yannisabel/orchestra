@@ -11,7 +11,7 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import { type OrchestraCheckboxCustomEvent } from "@orchestra-design-system/core";
+import { type CheckboxChangeDetail, type OrchestraCheckboxCustomEvent } from "@orchestra-design-system/core";
 import type { Components } from "@orchestra-design-system/core/dist/components";
 import { OrchestraCheckbox as OrchestraCheckboxElement, defineCustomElement as defineOrchestraCheckbox } from "@orchestra-design-system/core/dist/components/orchestra-checkbox.js";
 

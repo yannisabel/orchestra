@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite'
+import { expect, waitFor } from 'storybook/test'
 
 interface CheckboxArgs {
   checked?: boolean
@@ -10,7 +11,7 @@ interface CheckboxArgs {
   label?: string
 }
 
-const meta = {
+const meta: Meta<CheckboxArgs> = {
   component: 'orchestra-checkbox',
   title: 'Components/orchestra-checkbox',
   parameters: {
@@ -86,10 +87,10 @@ const meta = {
         'Label text to associate with the checkbox (rendered as external label element).',
     },
   },
-} satisfies Meta<CheckboxArgs>
+}
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<CheckboxArgs>
 
 export const Default: Story = {
   args: {
@@ -99,67 +100,126 @@ export const Default: Story = {
     htmlId: 'checkbox-example',
     label: 'Accept terms and conditions',
   },
-  render: (args) => `
-    <div style="display: flex; align-items: center; gap: 0.5rem;">
-      <orchestra-checkbox
-        html-id="${args.htmlId}"
-        name="terms"
-        value="accept"
-        ${args.checked ? 'checked' : ''}
-        ${args.indeterminate ? 'indeterminate' : ''}
-        ${args.disabled ? 'disabled' : ''}
-      ></orchestra-checkbox>
-      <label for="${args.htmlId}" style="cursor: pointer;">
-        ${args.label}
-      </label>
-    </div>
-  `,
-}
+  render: (args) => {
+    const container = document.createElement('div')
+    container.style.display = 'flex'
+    container.style.alignItems = 'center'
+    container.style.gap = '0.5rem'
 
-export const Checked: Story = {
-  args: {
-    checked: true,
-    indeterminate: false,
-    disabled: false,
-    htmlId: 'checkbox-checked',
-    label: 'Terms accepted',
+    const checkbox = document.createElement(
+      'orchestra-checkbox',
+    ) as HTMLElement & {
+      checked?: boolean
+      indeterminate?: boolean
+      disabled?: boolean
+      name?: string
+      value?: string
+      htmlId?: string
+      ariaLabel?: string
+    }
+
+    const label = document.createElement('label')
+    const labelId = `${args.htmlId ?? 'checkbox-default'}-label`
+    label.id = labelId
+    label.textContent = args.label ?? 'Accept terms and conditions'
+    label.style.cursor = 'pointer'
+
+    checkbox.htmlId = args.htmlId ?? 'checkbox-example'
+    checkbox.name = 'terms'
+    checkbox.value = 'accept'
+    checkbox.checked = args.checked ?? false
+    checkbox.indeterminate = args.indeterminate ?? false
+    checkbox.disabled = args.disabled ?? false
+    checkbox.ariaLabel = args.label ?? 'Accept terms and conditions'
+
+    container.append(checkbox, label)
+    return container
   },
-  render: (args) => `
-    <div style="display: flex; align-items: center; gap: 0.5rem;">
-      <orchestra-checkbox
-        html-id="${args.htmlId}"
-        name="terms"
-        value="accept"
-        checked
-        ${args.disabled ? 'disabled' : ''}
-      ></orchestra-checkbox>
-      <label for="${args.htmlId}" style="cursor: pointer;">
-        ${args.label}
-      </label>
-    </div>
-  `,
+  play: async ({ canvasElement, userEvent }) => {
+    const checkbox = canvasElement.querySelector('orchestra-checkbox')
+
+    expect(checkbox).toBeTruthy()
+    await waitFor(() => {
+      expect(checkbox?.shadowRoot?.querySelector('input')).toBeTruthy()
+    })
+
+    const input = checkbox?.shadowRoot?.querySelector(
+      'input',
+    ) as HTMLInputElement | null
+
+    expect(input?.checked).toBe(false)
+    expect(input?.indeterminate).toBe(false)
+    expect(input?.disabled).toBe(false)
+
+    // Click the native input inside shadow DOM to assert state transitions.
+    if (input) {
+      await userEvent.click(input)
+    }
+
+    await waitFor(() => {
+      expect(input?.checked).toBe(true)
+      expect(input?.indeterminate).toBe(false)
+    })
+  },
 }
 
 export const Indeterminate: Story = {
   args: {
-    checked: false,
+    checked: true,
     indeterminate: true,
     disabled: false,
     htmlId: 'checkbox-indeterminate',
     label: 'Partially selected items',
   },
-  render: (args) => `
-    <div style="display: flex; align-items: center; gap: 0.5rem;">
-      <orchestra-checkbox
-        html-id="${args.htmlId}"
-        name="items"
-        value="partial"
-        indeterminate
-        ${args.disabled ? 'disabled' : ''}
-      ></orchestra-checkbox>
-      <label for="${args.htmlId}" style="cursor: pointer;">
-        ${args.label}
-      </label>
-    </div>
-  `,
+  render: (args) => {
+    const container = document.createElement('div')
+    container.style.display = 'flex'
+    container.style.alignItems = 'center'
+    container.style.gap = '0.5rem'
+
+    const checkbox = document.createElement(
+      'orchestra-checkbox',
+    ) as HTMLElement & {
+      checked?: boolean
+      indeterminate?: boolean
+      disabled?: boolean
+      name?: string
+      value?: string
+      htmlId?: string
+      ariaLabel?: string
+    }
+
+    const label = document.createElement('label')
+    const labelId = `${args.htmlId ?? 'checkbox-indeterminate'}-label`
+    label.id = labelId
+    label.textContent = args.label ?? 'Partially selected items'
+    label.style.cursor = 'pointer'
+
+    checkbox.htmlId = args.htmlId ?? 'checkbox-indeterminate'
+    checkbox.name = 'items'
+    checkbox.value = 'partial'
+    checkbox.checked = args.checked ?? true
+    checkbox.indeterminate = args.indeterminate ?? true
+    checkbox.disabled = args.disabled ?? false
+    checkbox.ariaLabel = args.label ?? 'Partially selected items'
+
+    container.append(checkbox, label)
+    return container
+  },
+  play: async ({ canvasElement }) => {
+    const checkbox = canvasElement.querySelector('orchestra-checkbox')
+
+    expect(checkbox).toBeTruthy()
+    await waitFor(() => {
+      expect(checkbox?.shadowRoot?.querySelector('input')).toBeTruthy()
+    })
+
+    const input = checkbox?.shadowRoot?.querySelector(
+      'input',
+    ) as HTMLInputElement | null
+
+    expect(input?.indeterminate).toBe(true)
+    expect(input?.checked).toBe(true)
+    expect(input?.disabled).toBe(false)
+  },
 }

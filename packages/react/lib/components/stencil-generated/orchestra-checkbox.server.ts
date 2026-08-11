@@ -20,19 +20,20 @@ export const serializeShadowRoot: SerializeShadowRootOptions = { default: "decla
 
 export type OrchestraCheckboxEvents = { onOrchestraChange: EventName<OrchestraCheckboxCustomEvent<boolean>> };
 
+// @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
 export const OrchestraCheckbox: StencilReactComponent<OrchestraCheckboxElement, OrchestraCheckboxEvents, Components.OrchestraCheckbox> = /*@__PURE__*/ createComponent<OrchestraCheckboxElement, OrchestraCheckboxEvents, Components.OrchestraCheckbox>({
-    tagName: 'orchestra-checkbox',
-    properties: {
-        variant: 'variant',
-        checked: 'checked',
-        disabled: 'disabled',
-        name: 'name',
-        value: 'value',
-        ariaLabel: 'aria-label',
-        ariaLabelledBy: 'aria-labelledby'
-    },
-    hydrateModule: typeof window === 'undefined' ? (import('@orchestra-design-system/core/hydrate') as Promise<HydrateModule>) : undefined,
-    // @ts-ignore - clientModule not available in current setup
-    clientModule: clientComponents.OrchestraCheckbox as StencilReactComponent<OrchestraCheckboxElement, OrchestraCheckboxEvents, Components.OrchestraCheckbox>,
-    serializeShadowRoot
+  tagName: 'orchestra-checkbox',
+  properties: {
+    variant: 'variant',
+    checked: 'checked',
+    disabled: 'disabled',
+    name: 'name',
+    value: 'value',
+    ariaLabel: 'aria-label',
+    ariaLabelledBy: 'aria-labelledby'
+  },
+  hydrateModule: typeof window === 'undefined' ? (import('@orchestra-design-system/core/hydrate') as Promise<HydrateModule>) : undefined,
+  // @ts-ignore - clientModule not available in current setup
+  clientModule: clientComponents.OrchestraCheckbox as StencilReactComponent<OrchestraCheckboxElement, OrchestraCheckboxEvents, Components.OrchestraCheckbox>,
+  serializeShadowRoot
 });
