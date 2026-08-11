@@ -63,6 +63,11 @@ export namespace Components {
          */
         "htmlId"?: string;
         /**
+          * A boolean indicating the indeterminate state of the checkbox (shows a dash/minus sign). This is part of the native HTML checkbox API for mixed/partial selection states.
+          * @default false
+         */
+        "indeterminate"?: boolean;
+        /**
           * A string representing the name of the checkbox for form submission.
           * @default ''
          */
@@ -77,11 +82,6 @@ export namespace Components {
           * @default 'on'
          */
         "value"?: string;
-        /**
-          * A string indicating the design variation of the checkbox based on the level of importance.
-          * @default 'primary'
-         */
-        "variant"?: 'primary' | 'secondary';
     }
     interface OrchestraIcon {
         /**
@@ -217,6 +217,11 @@ declare namespace LocalJSX {
          */
         "htmlId"?: string;
         /**
+          * A boolean indicating the indeterminate state of the checkbox (shows a dash/minus sign). This is part of the native HTML checkbox API for mixed/partial selection states.
+          * @default false
+         */
+        "indeterminate"?: boolean;
+        /**
           * A string representing the name of the checkbox for form submission.
           * @default ''
          */
@@ -235,11 +240,6 @@ declare namespace LocalJSX {
           * @default 'on'
          */
         "value"?: string;
-        /**
-          * A string indicating the design variation of the checkbox based on the level of importance.
-          * @default 'primary'
-         */
-        "variant"?: 'primary' | 'secondary';
     }
     interface OrchestraIcon {
         /**
@@ -274,8 +274,8 @@ declare namespace LocalJSX {
         "iconLibrary": string;
     }
     interface OrchestraCheckboxAttributes {
-        "variant": 'primary' | 'secondary';
         "checked": boolean;
+        "indeterminate": boolean;
         "disabled": boolean;
         "name": string;
         "value": string;

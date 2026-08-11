@@ -1,14 +1,13 @@
 :host {
-  --checkbox-size: 1.25rem;
-  --checkbox-gap: var(--orchestra-spacing-xs, 0.5rem);
+  --checkbox-size: var(--orchestra-size-action-common-content-small, 1rem);
   display: inline-flex;
   align-items: center;
-  gap: var(--checkbox-gap);
   position: relative;
 }
 
 .orchestra-checkbox {
   appearance: none;
+  box-sizing: border-box;
   width: var(--checkbox-size);
   height: var(--checkbox-size);
   padding: 0;
@@ -20,18 +19,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--orchestra-radius-action-primary-small, 0.25rem);
+  border-width: var(--orchestra-size-action-primary-border-width-default, 2px);
+  border-color: var(--orchestra-color-action-toggle-off-border-default);
+  background-color: var(--orchestra-color-action-toggle-off-container-default);
   font-size: 0;
   transition: all 150ms ease-in-out;
 }
 
 .orchestra-checkbox-visual {
   position: absolute;
+  top: 0;
+  left: 0;
   width: var(--checkbox-size);
   height: var(--checkbox-size);
   pointer-events: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
+}
+
+.orchestra-checkbox-icon {
+  display: block;
+  width: 0.625rem;
+  height: 0.625rem;
+  pointer-events: none;
 }
 
 .orchestra-checkbox:disabled {
@@ -39,135 +52,116 @@
 }
 
 .orchestra-checkbox:focus-visible {
-  box-shadow: 0 0 0 2px var(--orchestra-focus-outer-ring-color);
-  outline: 1px solid var(--orchestra-focus-inner-ring-color);
+  box-shadow: 0 0 0 4px var(--orchestra-focus-outer-ring-color);
+  outline: 2px solid var(--orchestra-focus-inner-ring-color);
   outline-offset: 0;
 }
 
-/* ========== PRIMARY VARIANT ========== */
-
-.orchestra-checkbox--primary {
-  border: 1px solid var(--orchestra-color-action-primary-container-default);
-  background-color: var(--orchestra-color-action-primary-container-default);
-  border-radius: var(--orchestra-checkbox-primary-container-radius, 0.25rem);
+/* Off state */
+.orchestra-checkbox:hover:not(:disabled) {
+  border-color: var(--orchestra-color-action-toggle-off-border-hover);
+  background-color: var(--orchestra-color-action-toggle-off-container-hover);
 }
 
-.orchestra-checkbox--primary:hover:not(:disabled) {
-  border-color: var(--orchestra-color-action-primary-container-hover);
-  background-color: var(--orchestra-color-action-primary-container-hover);
+.orchestra-checkbox:active:not(:disabled) {
+  border-color: var(--orchestra-color-action-toggle-off-border-active);
+  background-color: var(--orchestra-color-action-toggle-off-container-active);
 }
 
-.orchestra-checkbox--primary:active:not(:disabled) {
-  border-color: var(--orchestra-color-action-primary-container-active);
-  background-color: var(--orchestra-color-action-primary-container-active);
+.orchestra-checkbox:focus-visible {
+  border-color: var(--orchestra-color-action-toggle-off-border-focus);
+  background-color: var(--orchestra-color-action-toggle-off-container-focus);
 }
 
-.orchestra-checkbox--primary:focus-visible {
-  border-color: var(--orchestra-color-action-primary-container-focus);
-  background-color: var(--orchestra-color-action-primary-container-focus);
+.orchestra-checkbox:disabled {
+  border-color: var(--orchestra-color-action-toggle-off-border-disabled);
+  background-color: var(--orchestra-color-action-toggle-off-container-disabled);
 }
 
-.orchestra-checkbox--primary:disabled {
-  border-color: var(--orchestra-color-action-primary-container-disabled);
-  background-color: var(--orchestra-color-action-primary-container-disabled);
-  opacity: 0.6;
+/* On state (checked) */
+.orchestra-checkbox:checked {
+  border-color: var(--orchestra-color-action-toggle-on-border-default);
+  background-color: var(--orchestra-color-action-toggle-on-container-default);
 }
 
-/* Checked state - primary */
-.orchestra-checkbox--primary:checked {
-  background-color: var(--orchestra-color-action-primary-content-default);
-  border-color: var(--orchestra-color-action-primary-content-default);
+.orchestra-checkbox:checked:hover:not(:disabled) {
+  border-color: var(--orchestra-color-action-toggle-on-border-hover);
+  background-color: var(--orchestra-color-action-toggle-on-container-hover);
 }
 
-.orchestra-checkbox--primary:checked:hover:not(:disabled) {
-  background-color: var(--orchestra-color-action-primary-content-hover);
-  border-color: var(--orchestra-color-action-primary-content-hover);
+.orchestra-checkbox:checked:active:not(:disabled) {
+  border-color: var(--orchestra-color-action-toggle-on-border-active);
+  background-color: var(--orchestra-color-action-toggle-on-container-active);
 }
 
-.orchestra-checkbox--primary:checked:active:not(:disabled) {
-  background-color: var(--orchestra-color-action-primary-content-active);
-  border-color: var(--orchestra-color-action-primary-content-active);
+.orchestra-checkbox:checked:focus-visible {
+  border-color: var(--orchestra-color-action-toggle-on-border-focus);
+  background-color: var(--orchestra-color-action-toggle-on-container-focus);
 }
 
-.orchestra-checkbox--primary:checked:focus-visible {
-  background-color: var(--orchestra-color-action-primary-content-focus);
-  border-color: var(--orchestra-color-action-primary-content-focus);
+.orchestra-checkbox:checked:disabled {
+  border-color: var(--orchestra-color-action-toggle-on-border-disabled);
+  background-color: var(--orchestra-color-action-toggle-on-container-disabled);
 }
 
-.orchestra-checkbox--primary:checked:disabled {
-  background-color: var(--orchestra-color-action-primary-content-disabled);
-  border-color: var(--orchestra-color-action-primary-content-disabled);
+/* On state (indeterminate) */
+:host[data-indeterminate='true'] .orchestra-checkbox {
+  border-color: var(--orchestra-color-action-toggle-on-border-default);
+  background-color: var(--orchestra-color-action-toggle-on-container-default);
 }
 
-/* Checkmark - primary */
-.orchestra-checkbox--primary:checked + .orchestra-checkbox-visual::after {
-  content: '✓';
-  color: var(--orchestra-color-action-primary-container-default);
-  font-size: 0.875rem;
-  font-weight: 600;
-  line-height: 1;
+:host[data-indeterminate='true'] .orchestra-checkbox:hover:not(:disabled) {
+  border-color: var(--orchestra-color-action-toggle-on-border-hover);
+  background-color: var(--orchestra-color-action-toggle-on-container-hover);
 }
 
-/* ========== SECONDARY VARIANT ========== */
-
-.orchestra-checkbox--secondary {
-  border: 1px solid var(--orchestra-color-action-secondary-container-default);
-  background-color: var(--orchestra-color-action-secondary-container-default);
-  border-radius: var(--orchestra-checkbox-secondary-container-radius, 0.25rem);
+:host[data-indeterminate='true'] .orchestra-checkbox:active:not(:disabled) {
+  border-color: var(--orchestra-color-action-toggle-on-border-active);
+  background-color: var(--orchestra-color-action-toggle-on-container-active);
 }
 
-.orchestra-checkbox--secondary:hover:not(:disabled) {
-  border-color: var(--orchestra-color-action-secondary-container-hover);
-  background-color: var(--orchestra-color-action-secondary-container-hover);
+:host[data-indeterminate='true'] .orchestra-checkbox:focus-visible {
+  border-color: var(--orchestra-color-action-toggle-on-border-focus);
+  background-color: var(--orchestra-color-action-toggle-on-container-focus);
 }
 
-.orchestra-checkbox--secondary:active:not(:disabled) {
-  border-color: var(--orchestra-color-action-secondary-container-active);
-  background-color: var(--orchestra-color-action-secondary-container-active);
+:host[data-indeterminate='true'] .orchestra-checkbox:disabled {
+  border-color: var(--orchestra-color-action-toggle-on-border-disabled);
+  background-color: var(--orchestra-color-action-toggle-on-container-disabled);
 }
 
-.orchestra-checkbox--secondary:focus-visible {
-  border-color: var(--orchestra-color-action-secondary-container-focus);
-  background-color: var(--orchestra-color-action-secondary-container-focus);
+/* Indicator color */
+.orchestra-checkbox:checked ~ .orchestra-checkbox-visual,
+:host[data-indeterminate='true']
+  .orchestra-checkbox
+  ~ .orchestra-checkbox-visual {
+  color: var(--orchestra-color-action-toggle-on-content-default);
 }
 
-.orchestra-checkbox--secondary:disabled {
-  border-color: var(--orchestra-color-action-secondary-container-disabled);
-  background-color: var(--orchestra-color-action-secondary-container-disabled);
-  opacity: 0.6;
+.orchestra-checkbox:checked:hover:not(:disabled) ~ .orchestra-checkbox-visual,
+:host[data-indeterminate='true']
+  .orchestra-checkbox:hover:not(:disabled)
+  ~ .orchestra-checkbox-visual {
+  color: var(--orchestra-color-action-toggle-on-content-hover);
 }
 
-/* Checked state - secondary */
-.orchestra-checkbox--secondary:checked {
-  background-color: var(--orchestra-color-action-secondary-content-default);
-  border-color: var(--orchestra-color-action-secondary-content-default);
+.orchestra-checkbox:checked:active:not(:disabled) ~ .orchestra-checkbox-visual,
+:host[data-indeterminate='true']
+  .orchestra-checkbox:active:not(:disabled)
+  ~ .orchestra-checkbox-visual {
+  color: var(--orchestra-color-action-toggle-on-content-active);
 }
 
-.orchestra-checkbox--secondary:checked:hover:not(:disabled) {
-  background-color: var(--orchestra-color-action-secondary-content-hover);
-  border-color: var(--orchestra-color-action-secondary-content-hover);
+.orchestra-checkbox:checked:focus-visible ~ .orchestra-checkbox-visual,
+:host[data-indeterminate='true']
+  .orchestra-checkbox:focus-visible
+  ~ .orchestra-checkbox-visual {
+  color: var(--orchestra-color-action-toggle-on-content-focus);
 }
 
-.orchestra-checkbox--secondary:checked:active:not(:disabled) {
-  background-color: var(--orchestra-color-action-secondary-content-active);
-  border-color: var(--orchestra-color-action-secondary-content-active);
-}
-
-.orchestra-checkbox--secondary:checked:focus-visible {
-  background-color: var(--orchestra-color-action-secondary-content-focus);
-  border-color: var(--orchestra-color-action-secondary-content-focus);
-}
-
-.orchestra-checkbox--secondary:checked:disabled {
-  background-color: var(--orchestra-color-action-secondary-content-disabled);
-  border-color: var(--orchestra-color-action-secondary-content-disabled);
-}
-
-/* Checkmark - secondary */
-.orchestra-checkbox--secondary:checked + .orchestra-checkbox-visual::after {
-  content: '✓';
-  color: var(--orchestra-color-action-secondary-container-default);
-  font-size: 0.875rem;
-  font-weight: 600;
-  line-height: 1;
+.orchestra-checkbox:checked:disabled ~ .orchestra-checkbox-visual,
+:host[data-indeterminate='true']
+  .orchestra-checkbox:disabled
+  ~ .orchestra-checkbox-visual {
+  color: var(--orchestra-color-action-toggle-on-content-disabled);
 }

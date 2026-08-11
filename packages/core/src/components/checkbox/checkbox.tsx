@@ -1,4 +1,13 @@
-import { Component, h, Prop, Element, Listen, Watch, Host, Event, EventEmitter } from '@stencil/core'
+import {
+  Component,
+  h,
+  Prop,
+  Element,
+  Watch,
+  Host,
+  Event,
+  EventEmitter,
+} from '@stencil/core'
 import { invariant } from '../../helpers'
 
 @Component({
@@ -9,16 +18,17 @@ import { invariant } from '../../helpers'
 })
 export class OrchestraCheckbox {
   /**
-   * A string indicating the design variation of the checkbox based on the level of importance.
-   * @default 'primary'
-   */
-  @Prop() variant?: 'primary' | 'secondary' = 'primary'
-
-  /**
    * A boolean indicating the checked state of the checkbox.
    * @default false
    */
   @Prop({ mutable: true }) checked?: boolean = false
+
+  /**
+   * A boolean indicating the indeterminate state of the checkbox (shows a dash/minus sign).
+   * This is part of the native HTML checkbox API for mixed/partial selection states.
+   * @default false
+   */
+  @Prop({ mutable: true }) indeterminate?: boolean = false
 
   /**
    * A boolean indicating the disable state of the checkbox.
@@ -51,34 +61,12 @@ export class OrchestraCheckbox {
   /**
    * Native change event - emitted when checkbox state changes.
    */
-  @Event({ bubbles: true, composed: true }) orchestraChange!: EventEmitter<boolean>
+  @Event({ bubbles: true, composed: true })
+  orchestraChange!: EventEmitter<boolean>
 
   @Element() host!: HTMLInputElement
 
   #checkbox?: HTMLInputElement
-
-  /**
-   * Forward click events to the internal input.
-   */
-  @Listen('click')
-  protected onClick(event: MouseEvent): void {
-    if (this.disabled) {
-      event.stopImmediatePropagation()
-      return
-    }
-    if (this.#checkbox) {
-      this.#checkbox.click()
-    }
-  }
-
-  @Listen('keydown')
-  protected onKeydown(event: KeyboardEvent): void {
-    // Space toggles checkbox (browser handles this natively when input is focused)
-    if (event.key === ' ' && this.#checkbox) {
-      event.preventDefault()
-      this.#checkbox.click()
-    }
-  }
 
   /**
    * Sync property changes to internal input.
@@ -87,6 +75,12 @@ export class OrchestraCheckbox {
   protected checkedChanged(): void {
     invariant(this.#checkbox)
     this.#checkbox.checked = this.checked ?? false
+  }
+
+  @Watch('indeterminate')
+  protected indeterminateChanged(): void {
+    invariant(this.#checkbox)
+    this.#checkbox.indeterminate = this.indeterminate ?? false
   }
 
   @Watch('disabled')
@@ -109,6 +103,7 @@ export class OrchestraCheckbox {
     this.disabledChanged()
     this.requiredChanged()
     this.checkedChanged()
+    this.indeterminateChanged()
   }
 
   /**
@@ -117,20 +112,37 @@ export class OrchestraCheckbox {
   private handleChange = (e: Event): void => {
     const input = e.target as HTMLInputElement
     this.checked = input.checked
+    this.indeterminate = input.indeterminate
     this.orchestraChange.emit(this.checked ?? false)
   }
 
   render() {
+    const showIndicator =
+      (this.checked ?? false) || (this.indeterminate ?? false)
+    const indicatorName = this.indeterminate
+      ? 'checkbox-indeterminate'
+      : 'checkbox-check'
+
     return (
-      <Host>
+      <Host data-indeterminate={this.indeterminate}>
         <input
           id={this.htmlId}
-          class={`orchestra-checkbox orchestra-checkbox--${this.variant}`}
+          class="orchestra-checkbox"
           type="checkbox"
           ref={this.#checkboxRef}
           onChange={this.handleChange}
         />
-        <span class="orchestra-checkbox-visual"></span>
+        <span class="orchestra-checkbox-visual">
+          {showIndicator && (
+            <orchestra-icon
+              class="orchestra-checkbox-icon"
+              name={indicatorName}
+              library="orchestra-icons"
+              fill="currentcolor"
+              size="0.625rem"
+            ></orchestra-icon>
+          )}
+        </span>
       </Host>
     )
   }
