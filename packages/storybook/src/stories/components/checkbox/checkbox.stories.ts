@@ -150,6 +150,15 @@ export const Default: Story = {
       expect(input?.checked).toBe(true)
       expect(input?.indeterminate).toBe(false)
     })
+
+    // Click again to restore initial unchecked state for story display
+    if (input) {
+      await userEvent.click(input)
+    }
+
+    await waitFor(() => {
+      expect(input?.checked).toBe(false)
+    })
   },
 }
 
