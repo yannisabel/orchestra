@@ -1,28 +1,104 @@
 name: Post Storybook Link to PR
 
 on:
-  pull_request:
-    types: [opened, reopened, synchronize]
+  workflow_run:
+    workflows: [Deploy Storybook]
+    types: [completed]
 
 jobs:
   comment:
     runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success'
     permissions:
       pull-requests: write
     steps:
-      - name: Sanitize branch name
-        id: sanitize
-        run: |
-          SAFE_BRANCH="${{ github.head_ref }}"
-          SAFE_BRANCH="${SAFE_BRANCH//\//-}"
-          echo "branch=$SAFE_BRANCH" >> $GITHUB_OUTPUT
-      - name: Comment with Storybook URL
+      - name: Find PR number
+        id: pr
         uses: actions/github-script@v7
         with:
           script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
+            const branch = context.payload.workflow_run.head_branch;
+            console.log(`Looking for PR with branch: ${branch}`);
+
+            // Try finding by head reference
+            let pulls = await github.rest.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `📖 **Storybook Preview**\n\n🔗 https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branches/${{ steps.sanitize.outputs.branch }}/`
+              head: `${context.repo.owner}:${branch}`,
+              state: 'open'
             });
+
+            if (pulls.data.length > 0) {
+              core.setOutput('pr_number', pulls.data[0].number);
+              console.log(`✅ Found PR #${pulls.data[0].number} for branch ${branch}`);
+            } else {
+              console.log(`⚠️  No PR found with head filter, trying alternative search...`);
+              // Fallback: list all open PRs and filter
+              pulls = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'open',
+                per_page: 100
+              });
+              
+              const matching = pulls.data.find(pr => pr.head.ref === branch);
+              if (matching) {
+                core.setOutput('pr_number', matching.number);
+                console.log(`✅ Found PR #${matching.number} via fallback search`);
+              } else {
+                console.log(`❌ No open PR found for branch ${branch}`);
+                console.log(`Available branches: ${pulls.data.map(pr => pr.head.ref).join(', ')}`);
+              }
+            }
+      - name: Sanitize branch name
+        id: sanitize
+        run: |
+          SAFE_BRANCH="${{ github.event.workflow_run.head_branch }}"
+          SAFE_BRANCH="${SAFE_BRANCH//\//-}"
+          echo "branch=$SAFE_BRANCH" >> $GITHUB_OUTPUT
+      - name: Comment with Storybook URL
+        if: steps.pr.outputs.pr_number != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = ${{ steps.pr.outputs.pr_number }};
+            console.log(`🔍 Posting comment to PR #${prNumber}`);
+
+            const storyBookUrl = `📖 **Storybook Preview**\n\n🔗 https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branches/${{ steps.sanitize.outputs.branch }}/`;
+            const botMarker = '<!-- storybook-preview-link -->';
+            const body = `${botMarker}\n${storyBookUrl}`;
+
+            // Find existing comment
+            const { data: comments } = await github.rest.issues.listComments({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+
+            const existingComment = comments.find(comment => comment.body.includes(botMarker));
+
+            if (existingComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                comment_id: existingComment.id,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body,
+              });
+              console.log('✅ Updated existing Storybook link comment');
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                issue_number: prNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body,
+              });
+              console.log('✅ Created new Storybook link comment');
+            }
+      - name: Debug - PR not found
+        if: steps.pr.outputs.pr_number == ''
+        run: |
+          echo "❌ Could not find PR number - comment was not posted"
+          echo "This usually means there's no open PR for this branch"
+          echo "Check the workflow logs above for available branches"
