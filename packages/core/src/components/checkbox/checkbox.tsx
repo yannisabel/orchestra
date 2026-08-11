@@ -123,10 +123,6 @@ export class OrchestraCheckbox {
   @Watch('indeterminate')
   protected indeterminateChanged(): void {
     invariant(this.#checkbox)
-    if (this.indeterminate) {
-      // Indeterminate is a visual variant of the checked state.
-      this.checked = true
-    }
     this.#checkbox.indeterminate = this.indeterminate ?? false
     this.syncFormValue()
   }

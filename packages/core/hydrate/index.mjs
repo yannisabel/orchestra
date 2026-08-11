@@ -5573,10 +5573,6 @@ class OrchestraCheckbox {
     indeterminateChanged() {
         var _a;
         invariant(__classPrivateFieldGet(this, _OrchestraCheckbox_checkbox, "f"));
-        if (this.indeterminate) {
-            // Indeterminate is a visual variant of the checked state.
-            this.checked = true;
-        }
         __classPrivateFieldGet(this, _OrchestraCheckbox_checkbox, "f").indeterminate = (_a = this.indeterminate) !== null && _a !== void 0 ? _a : false;
         this.syncFormValue();
     }
