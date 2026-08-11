@@ -23,9 +23,34 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            github.rest.issues.createComment({
-              issue_number: ${{ steps.sanitize.outputs.pr_number }},
+            const prNumber = ${{ steps.sanitize.outputs.pr_number }};
+            const storyBookUrl = `📖 **Storybook Preview**\n\n🔗 https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branches/${{ steps.sanitize.outputs.branch }}/`;
+            const botMarker = '<!-- storybook-preview-link -->';
+            const body = `${botMarker}\n${storyBookUrl}`;
+
+            // Find existing comment
+            const { data: comments } = await github.rest.issues.listComments({
+              issue_number: prNumber,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `📖 **Storybook Preview**\n\n🔗 https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branches/${{ steps.sanitize.outputs.branch }}/`
             });
+
+            const existingComment = comments.find(comment => comment.body.includes(botMarker));
+
+            if (existingComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                comment_id: existingComment.id,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body,
+              });
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                issue_number: prNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body,
+              });
+            }
