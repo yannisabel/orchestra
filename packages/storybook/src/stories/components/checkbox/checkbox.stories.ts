@@ -119,12 +119,12 @@ export const Default: Story = {
     }
 
     const label = document.createElement('label')
-    const labelId = `${args.htmlId ?? 'checkbox-default'}-label`
-    label.id = labelId
+    const checkboxId = args.htmlId ?? 'checkbox-example'
+    label.htmlFor = checkboxId
     label.textContent = args.label ?? 'Accept terms and conditions'
     label.style.cursor = 'pointer'
 
-    checkbox.htmlId = args.htmlId ?? 'checkbox-example'
+    checkbox.htmlId = checkboxId
     checkbox.name = 'terms'
     checkbox.value = 'accept'
     checkbox.checked = args.checked ?? false
@@ -190,12 +190,12 @@ export const Indeterminate: Story = {
     }
 
     const label = document.createElement('label')
-    const labelId = `${args.htmlId ?? 'checkbox-indeterminate'}-label`
-    label.id = labelId
+    const checkboxId = args.htmlId ?? 'checkbox-indeterminate'
+    label.htmlFor = checkboxId
     label.textContent = args.label ?? 'Partially selected items'
     label.style.cursor = 'pointer'
 
-    checkbox.htmlId = args.htmlId ?? 'checkbox-indeterminate'
+    checkbox.htmlId = checkboxId
     checkbox.name = 'items'
     checkbox.value = 'partial'
     checkbox.checked = args.checked ?? true
@@ -257,12 +257,12 @@ export const WithError: Story = {
     }
 
     const label = document.createElement('label')
-    const labelId = `${args.htmlId ?? 'checkbox-agreement'}-label`
-    label.id = labelId
+    const checkboxId = args.htmlId ?? 'checkbox-agreement'
+    label.htmlFor = checkboxId
     label.textContent = args.label ?? 'I agree to the terms'
     label.style.cursor = 'pointer'
 
-    checkbox.htmlId = args.htmlId ?? 'checkbox-agreement'
+    checkbox.htmlId = checkboxId
     checkbox.name = 'agreement'
     checkbox.value = 'agreed'
     checkbox.checked = args.checked ?? false
