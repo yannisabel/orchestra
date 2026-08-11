@@ -24,7 +24,7 @@ jobs:
               head: `${context.repo.owner}:${branch}`,
               state: 'open'
             });
-            
+
             if (pulls.length > 0) {
               core.setOutput('pr_number', pulls[0].number);
               console.log(`Found PR #${pulls[0].number} for branch ${branch}`);
