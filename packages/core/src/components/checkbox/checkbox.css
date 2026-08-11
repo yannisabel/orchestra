@@ -157,6 +157,32 @@
 }
 
 /* On state (indeterminate) - same as checked */
+.orchestra-checkbox:indeterminate {
+  border-color: var(--orchestra-color-action-toggle-on-border-default);
+  background-color: var(--orchestra-color-action-toggle-on-container-default);
+}
+
+.orchestra-checkbox:indeterminate:hover:not(:disabled) {
+  border-color: var(--orchestra-color-action-toggle-on-border-hover);
+  background-color: var(--orchestra-color-action-toggle-on-container-hover);
+}
+
+.orchestra-checkbox:indeterminate:active:not(:disabled) {
+  border-color: var(--orchestra-color-action-toggle-on-border-active);
+  background-color: var(--orchestra-color-action-toggle-on-container-active);
+}
+
+.orchestra-checkbox:indeterminate:focus-visible {
+  border-color: var(--orchestra-color-action-toggle-on-border-focus);
+  background-color: var(--orchestra-color-action-toggle-on-container-focus);
+}
+
+.orchestra-checkbox:indeterminate:disabled {
+  border-color: var(--orchestra-color-action-toggle-on-border-disabled);
+  background-color: var(--orchestra-color-action-toggle-on-container-disabled);
+}
+
+/* Host attribute fallback for indeterminate */
 :host[data-indeterminate='true'] .orchestra-checkbox {
   border-color: var(--orchestra-color-action-toggle-on-border-default);
   background-color: var(--orchestra-color-action-toggle-on-container-default);
