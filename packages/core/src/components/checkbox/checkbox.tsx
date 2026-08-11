@@ -10,6 +10,13 @@ import {
 } from '@stencil/core'
 import { invariant } from '../../helpers'
 
+interface CheckboxChangeDetail {
+  checked: boolean
+  indeterminate: boolean
+  name: string
+  value: string
+}
+
 @Component({
   tag: 'orchestra-checkbox',
   styleUrl: 'checkbox.css',
@@ -59,14 +66,36 @@ export class OrchestraCheckbox {
   @Prop() htmlId?: string
 
   /**
+   * Accessible label for screen readers when no visible label is associated.
+   */
+  @Prop({ attribute: 'aria-label' }) ariaLabel?: string
+
+  /**
+   * ID reference(s) to element(s) that label this checkbox.
+   */
+  @Prop({ attribute: 'aria-labelledby' }) ariaLabelledby?: string
+
+  /**
+   * ID reference(s) to element(s) that describe this checkbox.
+   */
+  @Prop({ attribute: 'aria-describedby' }) ariaDescribedby?: string
+
+  /**
    * Native change event - emitted when checkbox state changes.
    */
   @Event({ bubbles: true, composed: true })
   orchestraChange!: EventEmitter<boolean>
 
+  /**
+   * Rich state change payload for consumers that need full checkbox context.
+   */
+  @Event({ bubbles: true, composed: true })
+  orchestraStateChange!: EventEmitter<CheckboxChangeDetail>
+
   @Element() host!: HTMLInputElement
 
   #checkbox?: HTMLInputElement
+  #hasWarnedMissingAccessibleName = false
 
   /**
    * Sync property changes to internal input.
@@ -104,6 +133,11 @@ export class OrchestraCheckbox {
     this.requiredChanged()
     this.checkedChanged()
     this.indeterminateChanged()
+    this.warnIfMissingAccessibleName()
+  }
+
+  public componentDidRender(): void {
+    this.warnIfMissingAccessibleName()
   }
 
   /**
@@ -114,6 +148,50 @@ export class OrchestraCheckbox {
     this.checked = input.checked
     this.indeterminate = input.indeterminate
     this.orchestraChange.emit(this.checked ?? false)
+    this.orchestraStateChange.emit({
+      checked: this.checked ?? false,
+      indeterminate: this.indeterminate ?? false,
+      name: this.name ?? '',
+      value: this.value ?? 'on',
+    })
+  }
+
+  private warnIfMissingAccessibleName(): void {
+    if (this.#hasWarnedMissingAccessibleName) {
+      return
+    }
+
+    if (this.hasAccessibleName()) {
+      return
+    }
+
+    console.warn(
+      '[orchestra-checkbox] Missing accessible name. Provide a linked <label>, aria-label, or aria-labelledby.',
+      this.host,
+    )
+    this.#hasWarnedMissingAccessibleName = true
+  }
+
+  private hasAccessibleName(): boolean {
+    if (this.ariaLabel?.trim() || this.ariaLabelledby?.trim()) {
+      return true
+    }
+
+    if (this.host.closest('label')) {
+      return true
+    }
+
+    const id = this.htmlId?.trim()
+    if (!id) {
+      return false
+    }
+
+    const escapedId =
+      typeof CSS !== 'undefined' && typeof CSS.escape === 'function'
+        ? CSS.escape(id)
+        : id.replace(/"/g, '\\"')
+
+    return document.querySelector(`label[for="${escapedId}"]`) !== null
   }
 
   render() {
@@ -129,6 +207,9 @@ export class OrchestraCheckbox {
           id={this.htmlId}
           class="orchestra-checkbox"
           type="checkbox"
+          aria-label={this.ariaLabel}
+          aria-labelledby={this.ariaLabelledby}
+          aria-describedby={this.ariaDescribedby}
           ref={this.#checkboxRef}
           onChange={this.handleChange}
         />

@@ -28,9 +28,14 @@ export const OrchestraCheckbox: StencilVueComponent<JSX.OrchestraCheckbox> = /*@
   'value',
   'required',
   'htmlId',
-  'orchestraChange'
+  'ariaLabel',
+  'ariaLabelledby',
+  'ariaDescribedby',
+  'orchestraChange',
+  'orchestraStateChange'
 ], [
-  'orchestraChange'
+  'orchestraChange',
+  'orchestraStateChange'
 ]);
 
 

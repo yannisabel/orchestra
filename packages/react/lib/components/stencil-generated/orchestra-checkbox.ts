@@ -15,13 +15,19 @@ import { type OrchestraCheckboxCustomEvent } from "@orchestra-design-system/core
 import type { Components } from "@orchestra-design-system/core/dist/components";
 import { OrchestraCheckbox as OrchestraCheckboxElement, defineCustomElement as defineOrchestraCheckbox } from "@orchestra-design-system/core/dist/components/orchestra-checkbox.js";
 
-export type OrchestraCheckboxEvents = { onOrchestraChange: EventName<OrchestraCheckboxCustomEvent<boolean>> };
+export type OrchestraCheckboxEvents = {
+    onOrchestraChange: EventName<OrchestraCheckboxCustomEvent<boolean>>,
+    onOrchestraStateChange: EventName<OrchestraCheckboxCustomEvent<CheckboxChangeDetail>>
+};
 
 export const OrchestraCheckbox: StencilReactComponent<OrchestraCheckboxElement, OrchestraCheckboxEvents, Components.OrchestraCheckbox> = /*@__PURE__*/ createComponent<OrchestraCheckboxElement, OrchestraCheckboxEvents, Components.OrchestraCheckbox>({
     tagName: 'orchestra-checkbox',
     elementClass: OrchestraCheckboxElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: { onOrchestraChange: 'orchestraChange' } as OrchestraCheckboxEvents,
+    events: {
+        onOrchestraChange: 'orchestraChange',
+        onOrchestraStateChange: 'orchestraStateChange'
+    } as OrchestraCheckboxEvents,
     defineCustomElement: defineOrchestraCheckbox
 });

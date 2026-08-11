@@ -1,7 +1,13 @@
 :host {
   --checkbox-size: var(--orchestra-size-action-common-content-small, 1rem);
+  --checkbox-hit-area-padding: var(
+    --orchestra-spacing-action-primary-small,
+    0.25rem
+  );
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  padding: var(--checkbox-hit-area-padding);
   position: relative;
 }
 
@@ -29,8 +35,9 @@
 
 .orchestra-checkbox-visual {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: var(--checkbox-size);
   height: var(--checkbox-size);
   pointer-events: none;

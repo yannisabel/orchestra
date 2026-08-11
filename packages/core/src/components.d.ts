@@ -49,6 +49,18 @@ export namespace Components {
     }
     interface OrchestraCheckbox {
         /**
+          * ID reference(s) to element(s) that describe this checkbox.
+         */
+        "ariaDescribedby"?: string;
+        /**
+          * Accessible label for screen readers when no visible label is associated.
+         */
+        "ariaLabel"?: string;
+        /**
+          * ID reference(s) to element(s) that label this checkbox.
+         */
+        "ariaLabelledby"?: string;
+        /**
           * A boolean indicating the checked state of the checkbox.
           * @default false
          */
@@ -118,6 +130,7 @@ declare global {
     };
     interface HTMLOrchestraCheckboxElementEventMap {
         "orchestraChange": boolean;
+        "orchestraStateChange": CheckboxChangeDetail;
     }
     interface HTMLOrchestraCheckboxElement extends Components.OrchestraCheckbox, HTMLStencilElement {
         addEventListener<K extends keyof HTMLOrchestraCheckboxElementEventMap>(type: K, listener: (this: HTMLOrchestraCheckboxElement, ev: OrchestraCheckboxCustomEvent<HTMLOrchestraCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -199,6 +212,18 @@ declare namespace LocalJSX {
     }
     interface OrchestraCheckbox {
         /**
+          * ID reference(s) to element(s) that describe this checkbox.
+         */
+        "ariaDescribedby"?: string;
+        /**
+          * Accessible label for screen readers when no visible label is associated.
+         */
+        "ariaLabel"?: string;
+        /**
+          * ID reference(s) to element(s) that label this checkbox.
+         */
+        "ariaLabelledby"?: string;
+        /**
           * A boolean indicating the checked state of the checkbox.
           * @default false
          */
@@ -230,6 +255,10 @@ declare namespace LocalJSX {
           * Native change event - emitted when checkbox state changes.
          */
         "onOrchestraChange"?: (event: OrchestraCheckboxCustomEvent<boolean>) => void;
+        /**
+          * Rich state change payload for consumers that need full checkbox context.
+         */
+        "onOrchestraStateChange"?: (event: OrchestraCheckboxCustomEvent<CheckboxChangeDetail>) => void;
         /**
           * A boolean indicating whether the field is required.
           * @default false
@@ -281,6 +310,9 @@ declare namespace LocalJSX {
         "value": string;
         "required": boolean;
         "htmlId": string;
+        "ariaLabel": string;
+        "ariaLabelledby": string;
+        "ariaDescribedby": string;
     }
     interface OrchestraIconAttributes {
         "name": string;

@@ -31,20 +31,21 @@ export declare interface OrchestraButton extends Components.OrchestraButton {}
 
 
 @ProxyCmp({
-  inputs: ['checked', 'disabled', 'htmlId', 'indeterminate', 'name', 'required', 'value']
+  inputs: ['ariaDescribedby', 'ariaLabel', 'ariaLabelledby', 'checked', 'disabled', 'htmlId', 'indeterminate', 'name', 'required', 'value']
 })
 @Component({
   selector: 'orchestra-checkbox',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'htmlId', 'indeterminate', 'name', 'required', 'value'],
-  outputs: ['orchestraChange'],
+  inputs: ['ariaDescribedby', 'ariaLabel', 'ariaLabelledby', 'checked', 'disabled', 'htmlId', 'indeterminate', 'name', 'required', 'value'],
+  outputs: ['orchestraChange', 'orchestraStateChange'],
   standalone: false
 })
 export class OrchestraCheckbox {
   protected el: HTMLOrchestraCheckboxElement;
   @Output() orchestraChange = new EventEmitter<OrchestraCheckboxCustomEvent<boolean>>();
+  @Output() orchestraStateChange = new EventEmitter<OrchestraCheckboxCustomEvent<CheckboxChangeDetail>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -59,6 +60,10 @@ export declare interface OrchestraCheckbox extends Components.OrchestraCheckbox 
    * Native change event - emitted when checkbox state changes.
    */
   orchestraChange: EventEmitter<OrchestraCheckboxCustomEvent<boolean>>;
+  /**
+   * Rich state change payload for consumers that need full checkbox context.
+   */
+  orchestraStateChange: EventEmitter<OrchestraCheckboxCustomEvent<CheckboxChangeDetail>>;
 }
 
 
