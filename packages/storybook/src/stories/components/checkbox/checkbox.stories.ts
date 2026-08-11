@@ -132,6 +132,14 @@ export const Default: Story = {
     checkbox.disabled = args.disabled ?? false
     checkbox.ariaLabel = args.label ?? 'Accept terms and conditions'
 
+    // Handle label click to toggle checkbox (web component shadow DOM)
+    label.addEventListener('click', (e) => {
+      e.preventDefault()
+      if (!checkbox.disabled) {
+        checkbox.checked = !checkbox.checked
+      }
+    })
+
     container.append(checkbox, label)
     return container
   },
@@ -202,6 +210,14 @@ export const Indeterminate: Story = {
     checkbox.indeterminate = args.indeterminate ?? true
     checkbox.disabled = args.disabled ?? false
     checkbox.ariaLabel = args.label ?? 'Partially selected items'
+
+    // Handle label click to toggle checkbox (web component shadow DOM)
+    label.addEventListener('click', (e) => {
+      e.preventDefault()
+      if (!checkbox.disabled) {
+        checkbox.checked = !checkbox.checked
+      }
+    })
 
     container.append(checkbox, label)
     return container
@@ -274,6 +290,14 @@ export const WithError: Story = {
     const errorMessage = document.createElement('span')
     errorMessage.slot = 'error'
     errorMessage.textContent = 'You must agree to continue'
+
+    // Handle label click to toggle checkbox (web component shadow DOM)
+    label.addEventListener('click', (e) => {
+      e.preventDefault()
+      if (!checkbox.disabled) {
+        checkbox.checked = !checkbox.checked
+      }
+    })
 
     checkbox.appendChild(errorMessage)
     wrapper.append(checkbox, label)
