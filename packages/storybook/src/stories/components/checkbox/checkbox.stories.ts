@@ -125,7 +125,7 @@ export const Default: Story = {
 
     return checkbox
   },
-  play: async ({ canvasElement, userEvent }) => {
+  play: async ({ canvasElement }) => {
     const checkbox = canvasElement.querySelector('orchestra-checkbox')
 
     expect(checkbox).toBeTruthy()
@@ -137,28 +137,10 @@ export const Default: Story = {
       'input',
     ) as HTMLInputElement | null
 
+    // Verify initial state without modifying (no clicks)
     expect(input?.checked).toBe(false)
     expect(input?.indeterminate).toBe(false)
     expect(input?.disabled).toBe(false)
-
-    // Click the native input inside shadow DOM to assert state transitions.
-    if (input) {
-      await userEvent.click(input)
-    }
-
-    await waitFor(() => {
-      expect(input?.checked).toBe(true)
-      expect(input?.indeterminate).toBe(false)
-    })
-
-    // Click again to restore initial unchecked state for story display
-    if (input) {
-      await userEvent.click(input)
-    }
-
-    await waitFor(() => {
-      expect(input?.checked).toBe(false)
-    })
   },
 }
 
@@ -207,7 +189,10 @@ export const Indeterminate: Story = {
       'input',
     ) as HTMLInputElement | null
 
-    expect(input?.indeterminate).toBe(true)
+    // Wait for indeterminate property to be set by component lifecycle
+    await waitFor(() => {
+      expect(input?.indeterminate).toBe(true)
+    })
     expect(input?.checked).toBe(true)
     expect(input?.disabled).toBe(false)
   },

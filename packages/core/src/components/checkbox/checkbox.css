@@ -218,7 +218,8 @@
 }
 
 .orchestra-checkbox:checked:hover:not(:disabled) ~ .orchestra-checkbox-visual,
-.orchestra-checkbox:indeterminate:hover:not(:disabled) ~ .orchestra-checkbox-visual,
+.orchestra-checkbox:indeterminate:hover:not(:disabled)
+  ~ .orchestra-checkbox-visual,
 :host[data-indeterminate='true']
   .orchestra-checkbox:hover:not(:disabled)
   ~ .orchestra-checkbox-visual {
@@ -226,7 +227,8 @@
 }
 
 .orchestra-checkbox:checked:active:not(:disabled) ~ .orchestra-checkbox-visual,
-.orchestra-checkbox:indeterminate:active:not(:disabled) ~ .orchestra-checkbox-visual,
+.orchestra-checkbox:indeterminate:active:not(:disabled)
+  ~ .orchestra-checkbox-visual,
 :host[data-indeterminate='true']
   .orchestra-checkbox:active:not(:disabled)
   ~ .orchestra-checkbox-visual {

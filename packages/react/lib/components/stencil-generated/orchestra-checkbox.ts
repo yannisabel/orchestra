@@ -20,8 +20,6 @@ export type OrchestraCheckboxEvents = {
     onOrchestraStateChange: EventName<OrchestraCheckboxCustomEvent<CheckboxChangeDetail>>
 };
 
-// @ts-ignore - ignore type constraint errors from auto-generated Stencil React Output Target
-
 export const OrchestraCheckbox: StencilReactComponent<OrchestraCheckboxElement, OrchestraCheckboxEvents, Components.OrchestraCheckbox> = /*@__PURE__*/ createComponent<OrchestraCheckboxElement, OrchestraCheckboxEvents, Components.OrchestraCheckbox>({
     tagName: 'orchestra-checkbox',
     elementClass: OrchestraCheckboxElement,
