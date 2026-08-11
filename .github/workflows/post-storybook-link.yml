@@ -18,18 +18,37 @@ jobs:
         with:
           script: |
             const branch = context.payload.workflow_run.head_branch;
-            const { data: pulls } = await github.rest.pulls.list({
+            console.log(`Looking for PR with branch: ${branch}`);
+
+            // Try finding by head reference
+            let pulls = await github.rest.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
               head: `${context.repo.owner}:${branch}`,
               state: 'open'
             });
 
-            if (pulls.length > 0) {
-              core.setOutput('pr_number', pulls[0].number);
-              console.log(`Found PR #${pulls[0].number} for branch ${branch}`);
+            if (pulls.data.length > 0) {
+              core.setOutput('pr_number', pulls.data[0].number);
+              console.log(`✅ Found PR #${pulls.data[0].number} for branch ${branch}`);
             } else {
-              console.log(`No open PR found for branch ${branch}`);
+              console.log(`⚠️  No PR found with head filter, trying alternative search...`);
+              // Fallback: list all open PRs and filter
+              pulls = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'open',
+                per_page: 100
+              });
+              
+              const matching = pulls.data.find(pr => pr.head.ref === branch);
+              if (matching) {
+                core.setOutput('pr_number', matching.number);
+                console.log(`✅ Found PR #${matching.number} via fallback search`);
+              } else {
+                console.log(`❌ No open PR found for branch ${branch}`);
+                console.log(`Available branches: ${pulls.data.map(pr => pr.head.ref).join(', ')}`);
+              }
             }
       - name: Sanitize branch name
         id: sanitize
@@ -43,6 +62,8 @@ jobs:
         with:
           script: |
             const prNumber = ${{ steps.pr.outputs.pr_number }};
+            console.log(`🔍 Posting comment to PR #${prNumber}`);
+
             const storyBookUrl = `📖 **Storybook Preview**\n\n🔗 https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branches/${{ steps.sanitize.outputs.branch }}/`;
             const botMarker = '<!-- storybook-preview-link -->';
             const body = `${botMarker}\n${storyBookUrl}`;
@@ -75,3 +96,9 @@ jobs:
               });
               console.log('✅ Created new Storybook link comment');
             }
+      - name: Debug - PR not found
+        if: steps.pr.outputs.pr_number == ''
+        run: |
+          echo "❌ Could not find PR number - comment was not posted"
+          echo "This usually means there's no open PR for this branch"
+          echo "Check the workflow logs above for available branches"
