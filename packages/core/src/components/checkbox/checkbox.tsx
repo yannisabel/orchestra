@@ -353,29 +353,31 @@ export class OrchestraCheckbox {
 
     return (
       <Host data-indeterminate={this.indeterminate} data-invalid={this.invalid}>
-        <div class="orchestra-checkbox-wrapper">
-          <input
-            id={this.htmlId}
-            class="orchestra-checkbox"
-            type="checkbox"
-            aria-label={this.ariaLabel}
-            aria-labelledby={this.ariaLabelledby}
-            aria-describedby={this.ariaDescribedby}
-            aria-invalid={this.invalid ? 'true' : undefined}
-            ref={this.#checkboxRef}
-            onChange={this.handleChange}
-          />
-          <span class="orchestra-checkbox-visual">
-            {showIndicator && (
-              <orchestra-icon
-                class="orchestra-checkbox-icon"
-                name={indicatorName}
-                library="orchestra-icons"
-                fill="currentcolor"
-                size="0.625rem"
-              ></orchestra-icon>
-            )}
-          </span>
+        <div class="orchestra-checkbox-row">
+          <div class="orchestra-checkbox-box">
+            <input
+              id={this.htmlId}
+              class="orchestra-checkbox"
+              type="checkbox"
+              aria-label={this.ariaLabel}
+              aria-labelledby={this.ariaLabelledby}
+              aria-describedby={this.ariaDescribedby}
+              aria-invalid={this.invalid ? 'true' : undefined}
+              ref={this.#checkboxRef}
+              onChange={this.handleChange}
+            />
+            <span class="orchestra-checkbox-visual">
+              {showIndicator && (
+                <orchestra-icon
+                  class="orchestra-checkbox-icon"
+                  name={indicatorName}
+                  library="orchestra-icons"
+                  fill="currentcolor"
+                  size="0.625rem"
+                ></orchestra-icon>
+              )}
+            </span>
+          </div>
           {this.label && (
             <label
               class="orchestra-checkbox-label"
