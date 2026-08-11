@@ -156,7 +156,7 @@
   border-color: var(--orchestra-color-action-toggle-on-border-highlight);
 }
 
-/* On state (indeterminate) */
+/* On state (indeterminate) - same as checked */
 :host[data-indeterminate='true'] .orchestra-checkbox {
   border-color: var(--orchestra-color-action-toggle-on-border-default);
   background-color: var(--orchestra-color-action-toggle-on-container-default);
@@ -184,6 +184,7 @@
 
 /* Indicator color */
 .orchestra-checkbox:checked ~ .orchestra-checkbox-visual,
+.orchestra-checkbox:indeterminate ~ .orchestra-checkbox-visual,
 :host[data-indeterminate='true']
   .orchestra-checkbox
   ~ .orchestra-checkbox-visual {
@@ -191,6 +192,7 @@
 }
 
 .orchestra-checkbox:checked:hover:not(:disabled) ~ .orchestra-checkbox-visual,
+.orchestra-checkbox:indeterminate:hover:not(:disabled) ~ .orchestra-checkbox-visual,
 :host[data-indeterminate='true']
   .orchestra-checkbox:hover:not(:disabled)
   ~ .orchestra-checkbox-visual {
@@ -198,6 +200,7 @@
 }
 
 .orchestra-checkbox:checked:active:not(:disabled) ~ .orchestra-checkbox-visual,
+.orchestra-checkbox:indeterminate:active:not(:disabled) ~ .orchestra-checkbox-visual,
 :host[data-indeterminate='true']
   .orchestra-checkbox:active:not(:disabled)
   ~ .orchestra-checkbox-visual {
@@ -205,6 +208,7 @@
 }
 
 .orchestra-checkbox:checked:focus-visible ~ .orchestra-checkbox-visual,
+.orchestra-checkbox:indeterminate:focus-visible ~ .orchestra-checkbox-visual,
 :host[data-indeterminate='true']
   .orchestra-checkbox:focus-visible
   ~ .orchestra-checkbox-visual {
@@ -212,6 +216,7 @@
 }
 
 .orchestra-checkbox:checked:disabled ~ .orchestra-checkbox-visual,
+.orchestra-checkbox:indeterminate:disabled ~ .orchestra-checkbox-visual,
 :host[data-indeterminate='true']
   .orchestra-checkbox:disabled
   ~ .orchestra-checkbox-visual {
@@ -226,12 +231,14 @@
   }
 
   .orchestra-checkbox:checked,
+  .orchestra-checkbox:indeterminate,
   :host[data-indeterminate='true'] .orchestra-checkbox {
     background-color: Highlight;
     border-color: Highlight;
   }
 
   .orchestra-checkbox:checked ~ .orchestra-checkbox-visual,
+  .orchestra-checkbox:indeterminate ~ .orchestra-checkbox-visual,
   :host[data-indeterminate='true']
     .orchestra-checkbox
     ~ .orchestra-checkbox-visual {
