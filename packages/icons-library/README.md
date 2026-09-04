@@ -1,14 +1,8 @@
 # @orchestra-design-system/icons-library
 
-SVG icon library for Orchestra components. Provides pre-built SVG icons as TypeScript exports for use with the Orchestra icon component.
+Generated SVG icon library for the Orchestra design system.
 
-## Features
-
-- ✅ SVGs embedded at build time (zero HTTP requests)
-- ✅ TypeScript support with full type definitions
-- ✅ ESM and CommonJS outputs
-- ✅ Works seamlessly with `@orchestra-design-system/core` icon component
-- ✅ Supports dynamic color and size customization
+This package bundles icon assets as TypeScript exports and exposes them to the core icon component through a registry-based runtime.
 
 ## Installation
 
@@ -18,206 +12,34 @@ npm install @orchestra-design-system/icons-library
 
 ## Usage
 
-### With Orchestra Icon Component (Recommended)
-
-The icon component automatically uses the `orchestra-icons` library (pre-registered, no setup needed):
-
-```jsx
-<orchestra-icon name="checked" size="24px" fill="currentcolor"></orchestra-icon>
+```tsx
+<orchestra-icon name="checked" size="24px" fill="currentColor"></orchestra-icon>
 ```
 
-**Customize appearance:**
+If you need to register a custom library at runtime, use the registry helpers from the core package.
 
-```jsx
-<!-- Change color -->
-<orchestra-icon name="checked" fill="#FF6B6B"></orchestra-icon>
-
-<!-- Change size -->
-<orchestra-icon name="checked" size="32px"></orchestra-icon>
-
-<!-- Custom color and size -->
-<orchestra-icon name="checked" fill="#4CAF50" size="48px"></orchestra-icon>
-```
-
-**Register as custom library (for consumers):**
-
-```typescript
-import { registerIconLibrary } from '@orchestra-design-system/core'
-import * as icons from '@orchestra-design-system/icons-library'
-
-registerIconLibrary('orchestra-icons', {
-  resolver: (name) => icons[name] ?? '',
-})
-```
-
-Then use:
-
-```jsx
-<orchestra-icon name="checked" library="orchestra-icons"></orchestra-icon>
-```
-
-> Compatibility note: `core` is still accepted as a legacy alias, but new code should use `orchestra-icons`.
-
-### Direct Import
-
-For non-component usage:
-
-```typescript
-// ESM
-import { checked } from '@orchestra-design-system/icons-library'
-
-// CommonJS
-const { checked } = require('@orchestra-design-system/icons-library')
-```
-
-## Available Icons
-
-All icons are automatically discovered from the `svg/` folder. Access the list programmatically:
-
-```typescript
-import { iconNames } from '@orchestra-design-system/icons-library'
-
-type IconName = (typeof iconNames)[number] // Type union of all available icons
-```
-
-Current icons: `checked`
-
-## Custom Icon Libraries
-
-You can register custom SVG icons at runtime using the `registerIconLibrary` function. This is useful for:
-
-- Application-specific icons
-- Theming icon variants
-- Testing in Storybook
-- Runtime icon customization
-
-### Registering a Custom Library
-
-```typescript
+```ts
 import { registerIconLibrary } from '@orchestra-design-system/core'
 
-// Define your custom icons as SVG strings
-const customIcons = {
-  'star': `<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87..."/></svg>`,
-  'heart': `<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32..."/></svg>`,
-}
-
-// Register the library
 registerIconLibrary('custom', {
-  resolver: (name) => customIcons[name] ?? ''
+  resolver: (name) => ({ star: '<svg>...</svg>' })[name] ?? '',
 })
-
-// Use in components
-<orchestra-icon name="star" library="custom"></orchestra-icon>
 ```
 
-### In Storybook Stories
-
-When testing custom icon libraries in Storybook, register them in the `play()` function (runs after component mounts):
-
-```typescript
-// packages/storybook/src/stories/components/icon/icon.stories.ts
-export const CustomLibrary = {
-  render: (args) =>
-    `<orchestra-icon name="${args.name}" library="custom"></orchestra-icon>`,
-  args: { name: 'star' },
-  play: async () => {
-    const customIcons = {
-      star: `<svg>...</svg>`,
-      heart: `<svg>...</svg>`,
-    }
-
-    // Register after component mounts
-    registerIconLibrary('custom', {
-      resolver: (name) => customIcons[name] ?? '',
-    })
-
-    // Trigger reload by toggling library property
-    const icon = document.querySelector('orchestra-icon')
-    icon.library = 'core'
-    await new Promise((resolve) => setTimeout(resolve, 100))
-    icon.library = 'custom'
-  },
-}
-```
-
-### SVG Requirements
-
-Custom SVG icons should:
-
-- Include `viewBox` attribute for responsive scaling
-- Use `fill="currentColor"` to inherit color from icon component
-- Keep markup clean and minimal
-- Avoid hardcoded dimensions (use `viewBox` instead)
-
-Example SVG:
-
-```xml
-<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/>
-</svg>
-```
-
-### Global Registry
-
-Icon libraries are stored in a global registry accessible to all components:
-
-- Uses `window.__orchestraIconRegistry` for browser environments
-- Uses `globalThis.__orchestraIconRegistry` for Node.js environments
-- Shared across all mounted components and modules
-
-This allows libraries registered in one location (e.g., Storybook preview) to be accessible everywhere.
-
-## Package Structure
-
-```
-packages/icons-library/
-├── svg/                    # SVG source files
-│   └── checked.svg
-├── src/
-│   ├── icons.ts           # Auto-generated icon string exports
-│   ├── index.ts           # Auto-generated entry point
-│   └── generate-icons.mjs # Icon generation script
-├── dist/                  # Build outputs
-│   ├── index.js           # ESM
-│   ├── index.cjs          # CommonJS
-│   └── index.d.ts         # TypeScript types
-├── tsconfig.json
-├── build.mjs              # ESM to CommonJS converter
-└── package.json
-```
-
-**Key files:**
-
-- `generate-icons.mjs` - Automatically generates `src/icons.ts` and `src/index.ts` from SVG files
-- `src/icons.ts` - Auto-generated; contains `export const iconName = \`<svg>...\`` for each icon
-- `src/index.ts` - Auto-generated; contains exports and `iconNames` constant array
-
-## Adding Icons
-
-### Automated Generation
-
-Icons are automatically generated from SVG files. The build process handles all exports and the `iconNames` array.
-
-### Step 1: Add SVG File
-
-Place your SVG in `svg/` folder:
-
-```
-svg/my-icon.svg
-```
-
-### Step 2: Build
+## Build
 
 ```bash
 npm run build
 ```
 
-The build process (`generate-icons.mjs`) automatically:
+The build process scans the SVG source folder and generates the exports used by the design system.
 
-- Scans `svg/` for all SVG files
-- Generates `src/icons.ts` with icon exports (as SVG strings)
-- Generates `src/index.ts` with imports and updated `iconNames` array
+## Notes
+
+- SVG sources live in the svg folder.
+- Generated exports are produced in src and exposed through the package entrypoint.
+- The default icon library is consumed by the core icon component without extra setup in most apps.
+- See [../core/readme.md](../core/readme.md) for the component runtime details.
 - Compiles TypeScript to ESM and CommonJS
 
 **Filename to export name:**

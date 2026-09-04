@@ -1,6 +1,8 @@
 # @orchestra-design-system/angular
 
-Angular wrapper package for Orchestra web components.
+Angular wrapper package for the Orchestra design system.
+
+This package exposes the Stencil web components through Angular-friendly generated components and module wiring.
 
 ## Installation
 
@@ -8,19 +10,13 @@ Angular wrapper package for Orchestra web components.
 npm install @orchestra-design-system/angular
 ```
 
-`@orchestra-design-system/core` is installed transitively by the Angular wrapper.
-
-Install core explicitly only if your app imports from core directly (for example `@orchestra-design-system/core/loader` or raw web component modules).
+The core package is installed transitively for the runtime loader and custom element registration.
 
 ## Usage
 
-Import the generated component module once.
-
-```typescript
-// app.module.ts
+```ts
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
-
 import { ComponentLibraryModule } from '@orchestra-design-system/angular'
 
 @NgModule({
@@ -29,9 +25,7 @@ import { ComponentLibraryModule } from '@orchestra-design-system/angular'
 export class AppModule {}
 ```
 
-The module registers custom elements via `defineCustomElements()` from `@orchestra-design-system/core/loader` using `APP_INITIALIZER`.
-
-Then use Orchestra components in templates:
+Then use the components in templates:
 
 ```html
 <orchestra-button text="Save"></orchestra-button> <orchestra-icon name="checked" size="20px"></orchestra-icon>
@@ -43,10 +37,10 @@ Then use Orchestra components in templates:
 npm run build
 ```
 
-Build output is generated to `dist/`.
+Build output is emitted to the package dist folder.
 
 ## Notes
 
-- Angular wrappers are generated from Stencil output targets.
-- Source proxies live under `projects/component-library/src/lib/stencil-generated/`.
-- For component API details, see [../core/README.md](../core/README.md).
+- Generated proxies are in projects/component-library/src/lib/stencil-generated.
+- Component behavior and styles originate from the core package.
+- See [../core/readme.md](../core/readme.md) for the underlying web component APIs.

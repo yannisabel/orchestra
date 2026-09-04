@@ -1,6 +1,8 @@
 # @orchestra-design-system/react
 
-React wrapper components for Orchestra web components.
+React wrapper package for the Orchestra design system.
+
+This package exposes the Stencil-based web components as React-friendly components for use in React applications.
 
 ## Installation
 
@@ -8,11 +10,7 @@ React wrapper components for Orchestra web components.
 npm install @orchestra-design-system/react
 ```
 
-`@orchestra-design-system/core` is installed transitively by the React wrapper.
-
-The wrapper expects `react` and `react-dom` as peer dependencies (`>=17 <20`). Most React apps already provide these.
-
-Install core explicitly only if your app imports from core directly (for example `@orchestra-design-system/core/loader` or raw web component modules).
+The package installs the core component runtime transitively. React and React DOM are peer dependencies and should already be present in most React apps.
 
 ## Usage
 
@@ -31,21 +29,21 @@ export function Example() {
 
 ## Available components
 
-- `OrchestraButton`
-- `OrchestraIcon`
+- OrchestraButton
+- OrchestraIcon
 
-These wrappers are generated from core Stencil components.
+These wrappers are generated from the Stencil source in the core package.
 
-## Scripts
+## Build
 
 ```bash
 npm run build
 ```
 
-Build output is emitted to `dist/`.
+Build output is emitted to the package dist folder.
 
-## Development notes
+## Notes
 
-- Source proxies are in `lib/components/stencil-generated/`.
-- Core component behavior and styles come from `@orchestra-design-system/core`.
-- For component API details, see [../core/README.md](../core/README.md).
+- Generated proxy code lives under lib/components/stencil-generated.
+- Component behavior and styles are sourced from the core package.
+- See [../core/readme.md](../core/readme.md) for the underlying component APIs.

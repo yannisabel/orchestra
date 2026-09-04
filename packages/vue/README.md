@@ -1,6 +1,8 @@
 # @orchestra-design-system/vue
 
-Vue wrapper components for Orchestra web components.
+Vue wrapper package for the Orchestra design system.
+
+This package exposes the Stencil-based components as Vue-friendly components and a plugin for app registration.
 
 ## Installation
 
@@ -8,11 +10,7 @@ Vue wrapper components for Orchestra web components.
 npm install @orchestra-design-system/vue vue
 ```
 
-`@orchestra-design-system/core` is installed transitively by the Vue wrapper.
-
-The wrapper expects `vue@^3` as a peer dependency.
-
-Install core explicitly only if your app imports from core directly.
+Vue 3 is expected as a peer dependency. The core package is installed transitively and can also be imported directly when needed.
 
 ## Register the plugin
 
@@ -26,7 +24,7 @@ app.use(ComponentLibrary)
 app.mount('#app')
 ```
 
-The plugin calls `defineCustomElements()` from `@orchestra-design-system/core/loader`.
+This plugin registers the custom elements by calling the Stencil loader from the core package.
 
 ## Usage
 
@@ -43,21 +41,21 @@ import { OrchestraButton, OrchestraIcon } from '@orchestra-design-system/vue'
 
 ## Available components
 
-- `OrchestraButton`
-- `OrchestraIcon`
+- OrchestraButton
+- OrchestraIcon
 
-These wrappers are generated from core Stencil components.
+These wrappers are generated from the Stencil source in the core package.
 
-## Scripts
+## Build
 
 ```bash
 npm run build
 ```
 
-Build output is emitted to `dist/`.
+Build output is emitted to the package dist folder.
 
-## Development notes
+## Notes
 
-- Generated Vue proxies are in `lib/stencil-generated/`.
-- Plugin definition is in `lib/plugin.ts`.
-- For component API details, see [../core/README.md](../core/README.md).
+- Generated proxies live under lib/stencil-generated.
+- Plugin registration is defined in lib/plugin.ts.
+- See [../core/readme.md](../core/readme.md) for the underlying component APIs.
