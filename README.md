@@ -48,6 +48,7 @@ The repo’s source-of-truth documentation is intentionally small and explicit:
 - [packages/themes/README.md](packages/themes/README.md) — token architecture and generated theme bundles
 - [packages/storybook/README.md](packages/storybook/README.md) — stories, testing, and examples
 - [.github/skills](.github/skills) — task-specific AI guidance for repo workflows
+- [AGENTS.md](AGENTS.md) — repo-wide AI operating rules
 
 If a package name, script, or package relationship changes, update the matching canonical docs in the same patch.
 
