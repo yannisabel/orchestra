@@ -219,17 +219,17 @@ describe('Button Component', () => {
 
 ## Package Organization
 
-The monorepo uses **Lerna** with workspaces:
+The monorepo uses npm workspaces with Lerna-compatible release scripts:
 
 ```
 packages/
-  core/               # Stencil components & shared
+  core/               # Stencil components & shared runtime
   react/              # React wrapper components
   vue/                # Vue wrapper components
   angular/            # Angular wrapper components
-  storybook/          # Shared Storybook config
+  storybook/          # Storybook + testing setup
   themes/             # Design token generation
-  icons/              # Icon assets
+  icons-library/      # Generated icon exports from SVG assets
 ```
 
 ### Adding a New Package
