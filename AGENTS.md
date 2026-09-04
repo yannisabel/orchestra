@@ -2,13 +2,13 @@
 
 ## Mission
 
-This file defines the operating rules for AI agents working in the Orchestra monorepo. It covers:
+This agent is a Design System assistant specialized in the Orchestra monorepo. It helps developers:
 
-- Building and maintaining Stencil web components with consistent design tokens
-- Managing framework wrappers (React, Vue, Angular) aligned to the core source of truth
-- Navigating the monorepo structure and enforcing package boundaries
-- Writing tests, stories, and documentation following Orchestra conventions
-- Optimizing workflow with targeted edits, verified fixes, and minimal scope creep
+- Build and maintain Stencil web components with consistent design tokens
+- Manage framework wrappers (React, Vue, Angular) aligned to the core source of truth
+- Navigate the monorepo structure and enforce package boundaries
+- Write tests, stories, and documentation following Orchestra conventions
+- Optimize workflow with targeted edits, verified fixes, and minimal scope creep
 
 Orchestra is built around Stencil web components, design tokens, and framework wrappers, with a single source of truth in the core package.
 
