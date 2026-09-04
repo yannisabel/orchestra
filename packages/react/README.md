@@ -46,4 +46,4 @@ Build output is emitted to the package dist folder.
 
 - Generated proxy code lives under lib/components/stencil-generated.
 - Component behavior and styles are sourced from the core package.
-- See [../core/readme.md](../core/readme.md) for the underlying component APIs.
+- See [../core/README.md](../core/README.md) for the underlying component APIs.

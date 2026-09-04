@@ -39,6 +39,18 @@ The repo follows a layered design-system model:
 
 This model is reflected in the package responsibilities: token ownership sits in the themes package, component implementation lives in the core package, and framework-specific wrappers are generated from the Stencil source.
 
+## Canonical repo references
+
+The repo’s source-of-truth documentation is intentionally small and explicit:
+
+- [README.md](README.md) — repo overview and package map
+- [packages/core/README.md](packages/core/README.md) — Stencil component runtime and implementation details
+- [packages/themes/README.md](packages/themes/README.md) — token architecture and generated theme bundles
+- [packages/storybook/README.md](packages/storybook/README.md) — stories, testing, and examples
+- [.github/skills](.github/skills) — task-specific AI guidance for repo workflows
+
+If a package name, script, or package relationship changes, update the matching canonical docs in the same patch.
+
 ## Requirements
 
 - Node.js 24+
@@ -59,13 +71,18 @@ npm run dev             # run Storybook + core watch tasks
 npm run build           # build tokens, then all workspaces
 npm run build:tokens    # build theme package only
 npm run lint            # run repo linting
+npm run check:docs      # verify docs and AI guidance stay aligned
 npm run test            # run Storybook/Vitest test project
 npm run release         # release-it workflow
 ```
 
+## Documentation sync check
+
+Run `npm run check:docs` before shipping documentation or instruction updates. The script verifies the repo’s main source-of-truth files still describe the same package names, structure, and workflow boundaries.
+
 ## Package docs
 
-- [packages/core/readme.md](packages/core/readme.md) — core Stencil components
+- [packages/core/README.md](packages/core/README.md) — core Stencil components
 - [packages/themes/README.md](packages/themes/README.md) — theme tokens and generated CSS bundles
 - [packages/icons-library/README.md](packages/icons-library/README.md) — generated icon exports
 - [packages/storybook/README.md](packages/storybook/README.md) — Storybook docs and interaction tests

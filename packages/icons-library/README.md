@@ -39,7 +39,7 @@ The build process scans the SVG source folder and generates the exports used by 
 - SVG sources live in the svg folder.
 - Generated exports are produced in src and exposed through the package entrypoint.
 - The default icon library is consumed by the core icon component without extra setup in most apps.
-- See [../core/readme.md](../core/readme.md) for the component runtime details.
+- See [../core/README.md](../core/README.md) for the component runtime details.
 - Compiles TypeScript to ESM and CommonJS
 
 **Filename to export name:**

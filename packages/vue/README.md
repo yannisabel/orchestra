@@ -58,4 +58,4 @@ Build output is emitted to the package dist folder.
 
 - Generated proxies live under lib/stencil-generated.
 - Plugin registration is defined in lib/plugin.ts.
-- See [../core/readme.md](../core/readme.md) for the underlying component APIs.
+- See [../core/README.md](../core/README.md) for the underlying component APIs.

@@ -43,4 +43,4 @@ Build output is emitted to the package dist folder.
 
 - Generated proxies are in projects/component-library/src/lib/stencil-generated.
 - Component behavior and styles originate from the core package.
-- See [../core/readme.md](../core/readme.md) for the underlying web component APIs.
+- See [../core/README.md](../core/README.md) for the underlying web component APIs.

@@ -14,6 +14,8 @@ artifact needs (diffs, generated files, tables) — only the surrounding reply.
 - Prioritize accuracy over speed; ensure correctness before brevity.
 - When in doubt, ask for clarification rather than assuming.
 - Maintain context awareness; consider previous interactions and instructions.
+- Treat the repo docs as the canonical source of truth: root README, package READMEs, and active skill files should agree on package names, scripts, and structure.
+- When package layout, scripts, or framework names change, update the matching README and skill docs in the same change.
 - When providing code, ensure it is syntactically correct and follows best practices.
 - Provide explanations only when necessary for understanding; avoid redundant commentary.
 - Use consistent terminology and style throughout the response.

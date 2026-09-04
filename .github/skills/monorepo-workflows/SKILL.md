@@ -96,6 +96,25 @@ This repo still uses Lerna-style release tooling in the root, but the active pac
 }
 ```
 
+## Canonical docs and validation
+
+The repo depends on a small set of source-of-truth files:
+
+- [README.md](../../README.md) — repo overview and package map
+- [packages/core/README.md](../../packages/core/README.md) — Stencil implementation and runtime
+- [packages/themes/README.md](../../packages/themes/README.md) — tokens and theme output
+- [packages/storybook/README.md](../../packages/storybook/README.md) — stories and testing coverage
+- [.github/instructions/copilot-instructions.md](../instructions/copilot-instructions.md) — repo-wide AI operating rules
+- [.github/skills](../) — task-specific workflow guidance
+
+Before merging documentation or toolchain changes, run:
+
+```bash
+npm run check:docs
+```
+
+This keeps the root docs, package docs, and AI guidance aligned with the real monorepo layout.
+
 ## Workspace Commands
 
 ### Running Commands in All Packages
