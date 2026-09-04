@@ -11,12 +11,19 @@ user-invocable: true
 
 Orchestra uses **Stencil** to build reusable web components with multiple output targets (React, Vue, Angular, vanilla JS). Components are token-driven (pulling values from [themes](../themes/SKILL.md)), support dark/light themes automatically, and are tested in Storybook (v10.4.6) with Vitest (v4.1.9).
 
-**Build Pipeline**:
+**Build Pipeline for this repo**:
 
-- **CSS**: Vite (`vite-style.config.js`) processes design tokens → CSS with variables
-- **JS**: Stencil CLI builds multiple targets (dist, dist-custom-elements, www, hydrate, framework bindings)
-- **Testing**: Storybook + Vitest with play functions
-- **Documentation**: MDX stories + Storybook docs addon
+- **CSS**: Vite-based styling and token compilation for the core package
+- **JS**: `packages/core/stencil.config.ts` builds the web component package plus framework output targets for React, Vue, and Angular
+- **Testing**: Storybook + Vitest with play functions under `packages/storybook`
+- **Documentation**: Storybook stories and generated readmes in the core package
+
+**Relevant repo paths**:
+
+- `packages/core/src/components` — Stencil component implementation
+- `packages/core/stencil.config.ts` — output target configuration and build pipeline
+- `packages/storybook` — stories and interaction tests
+- `packages/react`, `packages/vue`, `packages/angular` — generated wrapper packages
 
 **Key principle**: One component = One semantic element with variants, props for states, token-based styling, and full accessibility.
 
@@ -64,6 +71,7 @@ export class Orchestra[ComponentName] {
 ### Native Web API Compatibility
 
 **For form elements** (button, checkbox, radio, input), always:
+
 - ✅ Use `formAssociated: true` to participate in form submission
 - ✅ Proxy native element properties: `checked`, `value`, `disabled`, `required`, `name`
 - ✅ Emit events that align with native behavior (even if using custom names for framework compatibility)
@@ -72,33 +80,36 @@ export class Orchestra[ComponentName] {
 - ✅ Leverage native validation APIs when available
 
 **Event Naming**:
+
 - For better framework compatibility, use custom prefixed event names (e.g., `orchestraChange` instead of `change`)
 - The custom event wrapper still carries native event behavior and proper typing
 - Consumers can still react to standard input element events if needed
 
 **Example - Native Checkbox Pattern**:
+
 ```typescript
 @Component({
   tag: 'orchestra-checkbox',
   styleUrl: 'checkbox.css',
   formAssociated: true,
-  shadow: { delegatesFocus: true }  // Focus delegates to internal input
+  shadow: { delegatesFocus: true }, // Focus delegates to internal input
 })
 export class OrchestraCheckbox {
   // Native checkbox properties
-  @Prop({ mutable: true }) checked?: boolean = false;
-  @Prop() value?: string = 'on';
-  @Prop({ mutable: true }) disabled?: boolean = false;
-  @Prop() required?: boolean = false;
-  @Prop() name?: string = '';
+  @Prop({ mutable: true }) checked?: boolean = false
+  @Prop() value?: string = 'on'
+  @Prop({ mutable: true }) disabled?: boolean = false
+  @Prop() required?: boolean = false
+  @Prop() name?: string = ''
 
   // Custom event for framework compatibility
-  @Event({ bubbles: true, composed: true }) orchestraChange!: EventEmitter<boolean>;
+  @Event({ bubbles: true, composed: true })
+  orchestraChange!: EventEmitter<boolean>
 
   private handleChange(e: Event) {
-    const input = e.target as HTMLInputElement;
-    this.checked = input.checked;
-    this.orchestraChange.emit(this.checked);  // Emit event with clean payload
+    const input = e.target as HTMLInputElement
+    this.checked = input.checked
+    this.orchestraChange.emit(this.checked) // Emit event with clean payload
   }
 }
 ```

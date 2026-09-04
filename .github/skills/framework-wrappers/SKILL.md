@@ -15,23 +15,36 @@ Orchestra uses **Stencil output targets** to automatically generate framework-sp
 
 ## Architecture
 
-### One Source, Multiple Outputs
+### Repository-specific flow
+
+This repo uses the Stencil output targets defined in `packages/core/stencil.config.ts`.
 
 ```
-packages/core/src/components/button/
-└── button.tsx (Stencil source)
+packages/core/src/components/...           # Stencil source of truth
     ↓
-    ├─→ packages/react/lib/components/stencil-generated/ (React proxy)
-    ├─→ packages/vue/lib/stencil-generated/ (Vue proxy)
-    └─→ packages/angular/projects/component-library/src/lib/stencil-generated/ (Angular proxy)
+packages/core/stencil.config.ts          # outputTargets for React/Vue/Angular
+    ↓
+packages/react/lib/components/stencil-generated/   # React proxies
+packages/vue/lib/stencil-generated/                # Vue proxies
+packages/angular/projects/component-library/src/lib/stencil-generated/  # Angular proxies
 ```
+
+**Actual repo wiring**:
+
+- React output: `reactOutputTarget({ outDir: '../react/lib/components/stencil-generated/' })`
+- Vue output: `vueOutputTarget({ proxiesFile: '../vue/lib/stencil-generated/components.ts' })`
+- Angular output: `angularOutputTarget({ directivesProxyFile: '../angular/projects/component-library/src/lib/stencil-generated/components.ts' })`
 
 **Flow**:
 
-1. Write Stencil component (`button.tsx`)
-2. Build with `stencil build`
-3. Output targets generate framework proxies automatically
-4. Each framework package exports generated proxies
+1. Update the Stencil source under `packages/core/src/components`
+2. Rebuild the core package so Stencil regenerates framework bindings
+3. Review the generated files in the framework packages, not a manually duplicated wrapper layer
+4. Export the generated proxies from each framework package entry point
+
+### Important repo rule
+
+Do not hand-write a second implementation of the same component API in React/Vue/Angular when the Stencil output target can generate it. The generated proxies are the canonical wrapper layer for this monorepo.
 
 ### How It Works
 
@@ -65,24 +78,34 @@ export * from '@orchestra-design-system/core' // Import from core
 
 ```typescript
 export const config: Config = {
-  namespace: 'orchestra',
+  namespace: 'orchestra-design-system',
   outputTargets: [
-    {
-      type: 'react',
+    angularOutputTarget({
       componentCorePackage: '@orchestra-design-system/core',
-      proxiesFile: '../../react/lib/components/stencil-generated/index.ts',
-      includeDefineCustomElements: false, // Use loader instead
-    },
-    // ... other targets
+      directivesProxyFile:
+        '../angular/projects/component-library/src/lib/stencil-generated/components.ts',
+      directivesArrayFile:
+        '../angular/projects/component-library/src/lib/stencil-generated/index.ts',
+    }),
+    vueOutputTarget({
+      componentCorePackage: '@orchestra-design-system/core',
+      proxiesFile: '../vue/lib/stencil-generated/components.ts',
+    }),
+    reactOutputTarget({
+      outDir: '../react/lib/components/stencil-generated/',
+      esModules: true,
+    }),
   ],
 }
 ```
+
+This repo builds the generated proxies as part of the core package build, so wrapper changes should be treated as derivative artifacts of the Stencil source—not as custom implementations.
 
 ### Usage
 
 ```typescript
 // packages/react/lib/index.ts
-export * from './components/stencil-generated'
+export * from './components/stencil-generated/components.js'
 ```
 
 **In React apps**:
@@ -140,7 +163,8 @@ export const Button: React.FC<ButtonProps> = (props) => {
 
 ```typescript
 // packages/vue/lib/index.ts
-export * from './stencil-generated'
+export * from './stencil-generated/components'
+export * from './plugin'
 ```
 
 **In Vue apps**:

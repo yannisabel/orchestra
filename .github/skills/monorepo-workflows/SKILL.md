@@ -9,9 +9,9 @@ user-invocable: true
 
 ## Overview
 
-Orchestra is a **Lerna v9.0.1** monorepo with npm workspaces. All packages share configurations while maintaining independence. This enables efficient code sharing, unified builds, and coordinated testing across multiple frameworks (React, Vue, Angular) and the core Stencil component library.
+Orchestra is an npm workspace monorepo with Lerna-compatible release tooling at the root. The packages are organized around a single source of truth in the Stencil core package, with wrapper packages for React, Vue, and Angular plus a Storybook/testing package and token/icon packages.
 
-**Key principle**: Single source of truth (core) → shared configuration → framework-specific packages.
+**Key principle**: Single source of truth (core) → shared configuration → framework-specific wrappers and consumer packages.
 
 ## Monorepo Structure
 
@@ -20,87 +20,100 @@ Orchestra is a **Lerna v9.0.1** monorepo with npm workspaces. All packages share
 ```
 orchestra/
 ├── .github/
-│   ├── workflows/              # CI/CD pipelines
-│   └── skills/                 # LLM skills (this directory)
+│   ├── instructions/          # Repo instructions and coding guidance
+│   ├── skills/                # LLM skills (this directory)
+│   └── workflows/            # CI/CD pipelines
 ├── packages/
-│   ├── core/                   # Stencil components (source of truth)
-│   ├── react/                  # React wrapper (auto-generated proxies)
-│   ├── vue/                    # Vue wrapper (auto-generated proxies)
-│   ├── angular/                # Angular wrapper (auto-generated proxies)
-│   ├── storybook/              # Storybook & testing hub
-│   ├── themes/          # Design token generation
-│   └── icons/                  # Shared icon assets
-├── package.json                # Root workspace config
-├── lerna.json                  # Lerna configuration
-├── tsconfig.json               # Shared TypeScript config
-├── eslint.config.mjs           # Shared ESLint config
-└── README.md
+│   ├── angular/              # Angular wrapper package
+│   ├── core/                 # Stencil web components (source of truth)
+│   ├── icons-library/        # Icon package generated from SVG assets
+│   ├── react/                # React wrapper package
+│   ├── storybook/            # Storybook + Vitest/test setup
+│   ├── themes/               # Token generation and theme output
+│   └── vue/                  # Vue wrapper package
+├── package.json              # Root workspace config and scripts
+├── lerna.json                # Lerna config for release tooling
+├── tsconfig.json             # Shared TypeScript config
+├── eslint.config.mjs        # Shared ESLint config
+├── README.md
+└── HANDOFF.md
 ```
 
 ### Package Purposes
 
-| Package       | Purpose                                    | Dependencies |
-| ------------- | ------------------------------------------ | ------------ |
-| **core**      | Stencil components (web components)        | themes       |
-| **react**     | React proxy components                     | core         |
-| **vue**       | Vue proxy components                       | core         |
-| **angular**   | Angular proxy components                   | core         |
-| **storybook** | Interactive documentation & testing        | core, themes |
-| **themes**    | Design token generation (Style Dictionary) | (none)       |
-| **icons**     | Icon assets & SVGs                         | (none)       |
+| Package           | Purpose                                       | Dependencies                |
+| ----------------- | --------------------------------------------- | --------------------------- |
+| **core**          | Stencil components and web component runtime  | icons-library, themes       |
+| **react**         | React proxy components and typed wrappers     | core                        |
+| **vue**           | Vue proxy components                          | core                        |
+| **angular**       | Angular proxy components                      | core                        |
+| **storybook**     | Documentation, stories, and interactive tests | core, themes, icons-library |
+| **themes**        | Design token generation and CSS output        | none                        |
+| **icons-library** | Generated icon exports from SVG files         | none                        |
 
 ### Dependency Graph
 
 ```
 themes
     ↓
-core (depends on themes)
+icons-library
+    ↓
+core (depends on themes + icons-library)
     ↓
 ├→ react (depends on core)
 ├→ vue (depends on core)
 ├→ angular (depends on core)
-└→ storybook (depends on core + themes)
+└→ storybook (depends on core + themes + icons-library)
 ```
 
-## Lerna Configuration
+## Workspace Configuration
 
 ### `lerna.json`
 
 ```json
 {
-  "version": "0.0.1",
-  "npmClient": "npm",
-  "useWorkspaces": true,
-  "command": {
-    "version": {
-      "allowBranch": "main"
-    },
-    "publish": {
-      "registry": "https://registry.npmjs.org/",
-      "ignoreScripts": false
-    }
-  }
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "version": "0.0.0"
 }
 ```
+
+This repo still uses Lerna-style release tooling in the root, but the active package orchestration is driven primarily by npm workspaces and per-package scripts.
 
 ### Root `package.json` Workspaces
 
 ```json
 {
-  "name": "orchestra",
+  "name": "root",
   "private": true,
   "workspaces": ["packages/*"],
   "scripts": {
-    "dev": "npm run storybook:start --workspace=@orchestra-design-system/storybook",
-    "build": "npm run build:tokens && lerna run build",
-    "build:tokens": "npm run build --workspace=@orchestra-design-system/themes",
-    "test": "npm run test --workspaces",
-    "test:coverage": "npm run test:coverage --workspaces",
-    "lint": "eslint . --cache",
-    "clean": "lerna clean"
+    "dev": "npx lerna run build --scope=@orchestra-design-system/icons-library --scope=@orchestra-design-system/core && npx lerna run storybook:start --scope=@orchestra-design-system/storybook",
+    "build": "npm run build:tokens && npx lerna run build",
+    "build:tokens": "npx lerna run build --scope='@orchestra-design-system/themes'",
+    "test": "npx lerna run storybook:test --scope=@orchestra-design-system/storybook",
+    "lint": "npx oxlint . --fix --import-plugin --vitest-plugin --jest-plugin --node-plugin --vue-plugin"
   }
 }
 ```
+
+## Canonical docs and validation
+
+The repo depends on a small set of source-of-truth files:
+
+- [README.md](../../README.md) — repo overview and package map
+- [packages/core/README.md](../../packages/core/README.md) — Stencil implementation and runtime
+- [packages/themes/README.md](../../packages/themes/README.md) — tokens and theme output
+- [packages/storybook/README.md](../../packages/storybook/README.md) — stories and testing coverage
+- [.github/instructions/copilot-instructions.md](../instructions/copilot-instructions.md) — repo-wide AI operating rules
+- [.github/skills](../) — task-specific workflow guidance
+
+Before merging documentation or toolchain changes, run:
+
+```bash
+npm run check:docs
+```
+
+This keeps the root docs, package docs, and AI guidance aligned with the real monorepo layout.
 
 ## Workspace Commands
 
@@ -198,7 +211,7 @@ Local linking happens automatically with npm workspaces—no need for `npm link`
 // In packages/react/package.json
 {
   "dependencies": {
-    "@orchestra-design-system/core": "^0.0.1"  // Resolves to local packages/core/
+    "@orchestra-design-system/core": "^0.0.13" // Resolves to packages/core/
   }
 }
 ```
@@ -319,21 +332,17 @@ Frameworks specify peer dependencies (not required for user):
 ### Release Workflow
 
 ```bash
-# Update all package versions consistently
-lerna version --no-push
+# Build dependency-aware packages
+npm run build
 
-# This prompts for version (major/minor/patch) and:
-# 1. Updates all package.json files
-# 2. Creates git commits
-# 3. Tags releases
-
-# Then publish to npm
-lerna publish from-package
+# Then release a package from its directory
+cd packages/core && release-it
+cd packages/react && release-it
 ```
 
 ### Current Version
 
-All packages are at **v0.0.1** (pre-release, not published to npm yet).
+Current package versions are not a single repo-wide version; packages are versioned individually and currently sit around **0.0.13** for the main packages, e.g. core, react, vue, angular, themes, and icons-library.
 
 ## Clean & Maintenance
 

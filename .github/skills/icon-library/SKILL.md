@@ -9,29 +9,32 @@ argument-hint: Describe your icon requirement (e.g., "add icons from Font Awesom
 
 ## Overview
 
-Orchestra's icon system implements a **zero-HTTP, cache-first registry** that achieves microsecond icon lookups through in-memory caching. All SVGs are pre-loaded from local repositories and organized into semantic libraries (core, social, brand, etc.).
+Orchestra's icon system is packaged as `@orchestra-design-system/icons-library`. It bundles SVG assets from `packages/icons-library/svg`, generates TS exports, and lets the core icon component resolve them through a registry-based API. This keeps icon delivery zero-HTTP and framework-independent.
 
 **Performance Profile**:
 
-- ✅ **First icon render**: ~1-2ms (lookup + sanitize)
-- ✅ **Subsequent renders**: ~0.1ms (memory cache hit)
-- ✅ **No network overhead**: All SVGs bundled
-- ✅ **No re-fetching**: Aggressive caching across app lifecycle
+- ✅ **Build-time bundling**: no runtime fetch for the default library
+- ✅ **Simple registry lookups**: fast access by icon name
+- ✅ **Theme-safe rendering**: `fill="currentColor"` keeps color consistent
+- ✅ **Framework-neutral outputs**: works across the core component and wrapper packages
 
 ## Quick Start
 
-### 1. Organize Icons
+### 1. Add SVG Assets
 
 ```bash
-# Create library directories
-mkdir -p packages/icons/core
-mkdir -p packages/icons/social
-
-# Place SVG files
-cp my-icons/*.svg packages/icons/core/
+# Put new SVGs in the generated package source folder
+cp my-icons/*.svg packages/icons-library/svg/
 ```
 
-### 2. Initialize in App
+### 2. Build the library
+
+```bash
+cd packages/icons-library
+npm run build
+```
+
+### 3. Use in app code
 
 ```typescript
 import {
