@@ -1,0 +1,1 @@
+export{g as getIconLibrary,r as registerIconLibrary,u as unregisterIconLibrary}from"./p-CNKn0r8i.js";import"./p-BTXSEamB.js";function e(r,e,i){return(r||"")+(e?` ${e}`:"")+(i?` ${i}`:"")}export{e as format}
