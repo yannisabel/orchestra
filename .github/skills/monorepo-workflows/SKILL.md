@@ -104,7 +104,7 @@ The repo depends on a small set of source-of-truth files:
 - [packages/core/README.md](../../packages/core/README.md) — Stencil implementation and runtime
 - [packages/themes/README.md](../../packages/themes/README.md) — tokens and theme output
 - [packages/storybook/README.md](../../packages/storybook/README.md) — stories and testing coverage
-- [.github/instructions/copilot-instructions.md](../instructions/copilot-instructions.md) — repo-wide AI operating rules
+- [AGENTS.md](../../AGENTS.md) — repo-wide AI operating rules
 - [.github/skills](../) — task-specific workflow guidance
 
 Before merging documentation or toolchain changes, run:

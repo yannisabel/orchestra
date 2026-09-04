@@ -21,7 +21,7 @@ const docs = [
   'packages/vue/README.md',
   'packages/angular/README.md',
   'packages/icons-library/README.md',
-  '.github/instructions/copilot-instructions.md',
+  'AGENTS.md',
   ...fs
     .readdirSync(path.join(repoRoot, '.github/skills'), { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
@@ -74,10 +74,7 @@ if (
   issues.push('README.md is missing the canonical docs or checks guidance')
 }
 
-const instructions = fs.readFileSync(
-  path.join(repoRoot, '.github/instructions/copilot-instructions.md'),
-  'utf8',
-)
+const instructions = fs.readFileSync(path.join(repoRoot, 'AGENTS.md'), 'utf8')
 if (
   !instructions.includes('source of truth') &&
   !instructions.includes('canonical source of truth')
