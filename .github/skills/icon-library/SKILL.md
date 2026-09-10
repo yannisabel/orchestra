@@ -1,505 +1,126 @@
 ---
 name: icon-library
-description: Build high-performance icon systems with zero HTTP requests, multi-level caching, and library registration. Use when implementing icons with multiple libraries, optimizing icon delivery, or designing icon loading strategies. Covers registry pattern, SVG bundling, caching strategies, and performance monitoring.
+description: Work with Orchestra's icon system - registering icon libraries, adding icons, and using orchestra-icon. Use when implementing icons, adding a new icon library, or debugging icon resolution.
 user-invocable: true
-argument-hint: Describe your icon requirement (e.g., "add icons from Font Awesome", "register two icon libraries", "optimize icon loading")
+argument-hint: Describe your icon requirement (e.g., "add a new icon", "register a custom icon library", "debug why an icon isn't rendering")
 ---
 
 # Icon Library System
 
 ## Overview
 
-Orchestra's icon system is packaged as `@orchestra-design-system/icons-library`. It bundles SVG assets from `packages/icons-library/svg`, generates TS exports, and lets the core icon component resolve them through a registry-based API. This keeps icon delivery zero-HTTP and framework-independent.
+Orchestra icons are rendered by the `orchestra-icon` Stencil component
+([packages/core/src/components/icon/icon.tsx](../../../packages/core/src/components/icon/icon.tsx)).
+Icons are resolved through a small in-memory **library registry**
+([packages/core/src/components/icon/library.ts](../../../packages/core/src/components/icon/library.ts)),
+sanitized with DOMPurify, and cached in a module-level object.
 
-**Performance Profile**:
+**Key principle**: icons are looked up by `(library, name)` against a registry of
+`{ name, resolver }` objects. There is no build-time bundling step, no
+multi-library-loader API, and no separate "registry" package — it's one file.
 
-- ✅ **Build-time bundling**: no runtime fetch for the default library
-- ✅ **Simple registry lookups**: fast access by icon name
-- ✅ **Theme-safe rendering**: `fill="currentColor"` keeps color consistent
-- ✅ **Framework-neutral outputs**: works across the core component and wrapper packages
-
-## Quick Start
-
-### 1. Add SVG Assets
-
-```bash
-# Put new SVGs in the generated package source folder
-cp my-icons/*.svg packages/icons-library/svg/
-```
-
-### 2. Build the library
-
-```bash
-cd packages/icons-library
-npm run build
-```
-
-### 3. Use in app code
+## Real API (grounded in source)
 
 ```typescript
-import {
-  initializeIconRegistry,
-  loadIconLibraries,
-} from '@orchestra-design-system/core'
+// packages/core/src/components/icon/library.ts
+export interface IconLibrary {
+  name: string
+  resolver: (name: string) => string
+}
 
-// Run once at app startup
-const libraries = loadIconLibraries('./icons')
-initializeIconRegistry(libraries)
+// Look up a registered library by name
+getIconLibrary(name: string): IconLibrary | undefined
+
+// Register a new library (or override an existing one by name)
+registerIconLibrary(name: string, options: { resolver: (name: string) => string }): void
+
+// Remove a library from the registry
+unregisterIconLibrary(name: string): void
 ```
 
-### 3. Use in Components
+The registry is a plain array stored on `window.__orchestraIconRegistry`
+(or `globalThis` outside the browser), pre-populated with:
+
+- `'default'` ([default-library.ts](../../../packages/core/src/components/icon/default-library.ts)) - resolves via `getAssetPath('/icons/{name}.svg')` (Stencil asset path, can involve a network/file request)
+- `'orchestra-icons'` ([orchestra-library.ts](../../../packages/core/src/components/icon/orchestra-library.ts)) - resolves from SVG strings statically imported from `@orchestra-design-system/icons-library` (no HTTP request, bundled at build time)
+- `'core'` - an alias of `'orchestra-icons'`
+
+There is **no** `initializeIconRegistry`, `loadIconLibraries`, `getIconRegistry`,
+`createInlineIconLibrary`, or `optimizeSvg` export anywhere in the codebase.
+Do not invent these — always `grep_search` `packages/core/src/components/icon/`
+before documenting or using an icon API you haven't seen in source.
+
+## `orchestra-icon` Component
+
+```typescript
+@Prop({ mutable: true }) name!: string          // icon name passed to the resolver
+@Prop({ mutable: true }) library: string = 'orchestra-icons' // library name, not a "lib:name" prefix
+@Prop({ mutable: true }) fill?: string = 'currentcolor'
+@Prop({ mutable: true }) size?: string = '100%'
+```
+
+Usage:
 
 ```html
-<!-- Default library -->
-<orchestra-icon name="check"></orchestra-icon>
-
-<!-- Specific library -->
-<orchestra-icon name="social:twitter" size="24px"></orchestra-icon>
+<orchestra-icon name="checkbox-check"></orchestra-icon>
+<orchestra-icon name="settings" library="default"></orchestra-icon>
+<orchestra-icon
+  name="checkbox-check"
+  fill="#e53935"
+  size="24px"
+></orchestra-icon>
 ```
 
-## Architecture
+`fill`/`size` are applied as `--icon-color`/`--icon-size` CSS custom properties on
+the host element (see [icon.css](../../../packages/core/src/components/icon/icon.css)), not on the `<svg>` directly.
 
-### Three-Layer Caching
+## Adding a New Icon
 
-```
-Layer 1: Memory Cache ← O(1) microseconds
-  ↓ miss
-Layer 2: Registry (pre-loaded) ← O(1) lookup
-  ↓ first access
-Layer 3: File System / Build ← Bundled at build time
-```
+1. Add the source SVG under `packages/icons-library/svg/`.
+2. Run the icons-library build (`cd packages/icons-library && npm run build`) to generate the exported string constant.
+3. Import and map the new export in [orchestra-library.ts](../../../packages/core/src/components/icon/orchestra-library.ts) `icons` record (both a kebab-case and camelCase key are registered for existing icons - follow that convention).
+4. Use it via `<orchestra-icon name="your-icon-name">`.
 
-### Library Organization
-
-Icons organized by semantic library:
-
-```
-packages/icons/
-├── core/           → registry.getIcon('check')
-│   ├── check.svg
-│   └── close.svg
-└── social/         → registry.getIcon('twitter', 'social')
-    ├── twitter.svg
-    └── github.svg
-```
-
-## Implementation Details
-
-### Icon Registry
-
-Manages all icon libraries with O(1) lookups:
+## Registering a Custom/External Icon Library
 
 ```typescript
-import {
-  getIconRegistry,
-  initializeIconRegistry,
-} from '@orchestra-design-system/core'
+import { registerIconLibrary } from '@orchestra-design-system/core'
 
-const registry = getIconRegistry()
-
-// Register a library
-registry.registerLibrary({
-  id: 'core',
-  icons: { check: '<svg>...</svg>' },
-})
-
-// Fast lookup (O(1) - microseconds)
-const svg = registry.getIcon('check')
-const socialSvg = registry.getIcon('twitter', 'social')
-
-// List all libraries
-const libs = registry.getLibraries()
-
-// Clear cache if needed
-registry.clearCache()
-```
-
-### Icon Loader
-
-Load SVGs from file system or create inline:
-
-```typescript
-import {
-  loadIconLibrary,
-  loadIconLibraries,
-  createInlineIconLibrary,
-} from '@orchestra-design-system/core'
-
-// Load from disk (production)
-const coreLib = loadIconLibrary('core', './icons/core')
-
-// Load all subdirectories
-const allLibs = loadIconLibraries('./icons')
-
-// Create inline (Storybook)
-const inline = createInlineIconLibrary('core', {
-  check: '<svg>...</svg>',
-  close: '<svg>...</svg>',
+registerIconLibrary('social', {
+  resolver: (name) => socialIcons[name] ?? '',
 })
 ```
-
-### Icon Component
-
-Displays SVGs with sanitization and caching:
-
-```typescript
-@Component({
-  tag: 'orchestra-icon',
-  shadow: true,
-  styleUrl: 'icon.css',
-})
-export class OrchestraIcon {
-  @Prop() name!: string // "check" or "social:twitter"
-  @Prop() fill?: string = 'currentcolor' // SVG color
-  @Prop() size?: string = '100%' // SVG size
-
-  private loadIconSvg(name: string): void {
-    const registry = getIconRegistry()
-    const [lib, icon] = this.parseIconName(name)
-    const svg = lib ? registry.getIcon(icon, lib) : registry.getIcon(icon)
-    this.svg = svg || ''
-  }
-}
-```
-
-## Setup Examples
-
-### Storybook Setup
-
-```typescript
-// .storybook/preview.ts
-import {
-  initializeIconRegistry,
-  createInlineIconLibrary,
-} from '@orchestra-design-system/core'
-
-const coreIcons = createInlineIconLibrary('core', {
-  check: '<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12..."/></svg>',
-  close: '<svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5..."/></svg>',
-})
-
-initializeIconRegistry([coreIcons])
-```
-
-### React App Setup
-
-```typescript
-import { useEffect } from 'react'
-import { initializeIconRegistry, loadIconLibraries } from '@orchestra-design-system/core'
-
-export function App() {
-  useEffect(() => {
-    const libraries = loadIconLibraries('./icons')
-    initializeIconRegistry(libraries)
-  }, [])
-
-  return <OrchestraIcon name="check" />
-}
-```
-
-### Vue App Setup
-
-```typescript
-import { createApp } from 'vue'
-import { initializeIconRegistry, loadIconLibraries } from '@orchestra-design-system/core'
-
-const app = createApp({...})
-
-const libraries = loadIconLibraries('./icons')
-initializeIconRegistry(libraries)
-
-app.mount('#app')
-```
-
-### Angular App Setup
-
-```typescript
-import { Component, OnInit } from '@angular/core'
-import {
-  initializeIconRegistry,
-  loadIconLibraries,
-} from '@orchestra-design-system/core'
-
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [OrchestraIconComponent],
-})
-export class AppComponent implements OnInit {
-  ngOnInit() {
-    const libraries = loadIconLibraries('./icons')
-    initializeIconRegistry(libraries)
-  }
-}
-```
-
-## Performance Optimization
-
-### Memory Cache Lookup
-
-```typescript
-// O(1) lookup time after initialization
-// Key format: "libraryId:iconName"
-const start = performance.now()
-const svg = registry.getIcon('check') // ~0.05ms
-console.log(performance.now() - start)
-```
-
-### SVG Optimization
-
-Automatic optimization reduces bundle size:
-
-```typescript
-import { optimizeSvg } from '@orchestra-design-system/core'
-
-const raw = '<svg xmlns="..." id="icon" class="old">...</svg>'
-const optimized = optimizeSvg(raw)
-// Removes: xmlns, id, class, data-attributes
-// Result: 20-40% size reduction
-```
-
-### Lazy Loading Libraries
-
-Load less-common libraries on-demand:
-
-```typescript
-const registry = getIconRegistry()
-
-// Initial: core only
-let libs = [loadIconLibrary('core', './icons/core')]
-initializeIconRegistry(libs)
-
-// Later: add social icons when needed
-const socialLib = loadIconLibrary('social', './icons/social')
-registry.registerLibrary(socialLib)
-```
-
-### Cache Pre-Warming
-
-Pre-load frequently-used icons:
-
-```typescript
-const registry = getIconRegistry()
-
-// Touch each icon to populate cache
-registry.getIcon('check')
-registry.getIcon('close')
-registry.getIcon('social:twitter')
-// Subsequent: ~0.01ms per lookup
-```
-
-## Caching Strategy
-
-### Multi-Level Cache
-
-| Level | Type         | Lookup  | Lifetime      |
-| ----- | ------------ | ------- | ------------- |
-| 1     | Memory (Map) | O(1) μs | App session   |
-| 2     | Registry     | O(1) ms | App session   |
-| 3     | Build bundle | -       | Deployed code |
-
-### Cache Invalidation
-
-```typescript
-const registry = getIconRegistry()
-
-// Clear all caches
-registry.clearCache()
-
-// Unload specific library
-registry.unregisterLibrary('social')
-
-// Reload library
-const socialLib = loadIconLibrary('social', './icons/social')
-registry.registerLibrary(socialLib)
-```
-
-## Usage Examples
-
-### Basic HTML
 
 ```html
-<!-- Default library -->
-<orchestra-icon name="check"></orchestra-icon>
-
-<!-- Specific library -->
-<orchestra-icon name="social:twitter"></orchestra-icon>
-
-<!-- With styling -->
-<orchestra-icon name="close" fill="#e53935" size="24px"> </orchestra-icon>
+<orchestra-icon name="twitter" library="social"></orchestra-icon>
 ```
 
-### React
+Call this once, early (e.g. app bootstrap or a Storybook decorator), before any
+`orchestra-icon` using that library renders.
 
-```tsx
-import { OrchestraIcon } from '@orchestra-design-system/react'
+## Caching & Sanitization
 
-export function Button() {
-  return (
-    <button>
-      <OrchestraIcon name="check" />
-      Save
-    </button>
-  )
-}
-
-export function Share() {
-  return <OrchestraIcon name="social:twitter" size="24px" fill="#1DA1F2" />
-}
-```
-
-### Vue
-
-```vue
-<script setup lang="ts">
-import { OrchestraIcon } from '@orchestra-design-system/vue'
-</script>
-
-<template>
-  <!-- Default library -->
-  <OrchestraIcon name="check" />
-
-  <!-- Specific library -->
-  <OrchestraIcon name="social:twitter" />
-
-  <!-- With props -->
-  <OrchestraIcon name="close" fill="#e53935" size="24px" />
-</template>
-```
-
-### Angular
-
-```typescript
-import { Component } from '@angular/core'
-import { OrchestraIconComponent } from '@orchestra-design-system/angular'
-
-@Component({
-  selector: 'app-button',
-  standalone: true,
-  imports: [OrchestraIconComponent],
-  template: `
-    <button>
-      <orchestra-icon name="check"></orchestra-icon>
-      Save
-    </button>
-  `,
-})
-export class ButtonComponent {}
-```
-
-## File Structure
-
-```
-packages/icons/
-├── core/
-│   ├── check.svg
-│   ├── close.svg
-│   ├── arrow-left.svg
-│   ├── arrow-right.svg
-│   ├── menu.svg
-│   └── settings.svg
-├── social/
-│   ├── twitter.svg
-│   ├── github.svg
-│   ├── linkedin.svg
-│   └── facebook.svg
-└── brand/
-    ├── logo.svg
-    └── icon.svg
-```
+- `icon.tsx` keeps a single module-level `cache: Record<string, string>` keyed by
+  `${library}:${name}` - resolved SVGs are cached after first lookup, there is no
+  multi-tier/"L1/L2/L3" cache system.
+- Every resolved SVG is passed through `DOMPurify.sanitize(svg, { USE_PROFILES: { svg: true, svgFilters: true } })`
+  before being written to `shadowRoot.innerHTML`. Never bypass this when adding
+  custom resolvers.
+- Icons are marked `aria-hidden="true"` on the host by default (decorative);
+  add an accessible name on the consuming element (e.g. `aria-label` on the
+  wrapping button) when the icon conveys meaning.
 
 ## Troubleshooting
 
-### Icon Not Found
-
-```typescript
-// Check if icon exists
-const svg = registry.getIcon('nonexistent')
-if (svg === null) {
-  console.warn('Icon not found')
-}
-
-// Use library:name format
-const svg = registry.getIcon('twitter', 'social')
-
-// List available icons
-const libs = registry.getLibraries()
-libs.forEach((lib) => {
-  console.log(`${lib.id}:`, Object.keys(lib.icons))
-})
-```
-
-### Performance Issues
-
-```typescript
-// Debug: measure lookup time
-const start = performance.now()
-const svg = registry.getIcon('check')
-console.log(`Lookup: ${(performance.now() - start).toFixed(2)}ms`)
-
-// Check library sizes
-registry.getLibraries().forEach((lib) => {
-  const count = Object.keys(lib.icons).length
-  console.log(`${lib.id}: ${count} icons`)
-})
-```
-
-### Cache Problems
-
-```typescript
-// Reload all libraries
-registry.clearCache()
-const libraries = loadIconLibraries('./icons')
-initializeIconRegistry(libraries)
-
-// Or unload specific library
-registry.unregisterLibrary('social')
-```
-
-## Best Practices
-
-✅ **Do:**
-
-- Organize icons into semantic libraries (core, social, brand)
-- Initialize registry once at app startup
-- Use `library:name` format for non-default libraries
-- Pre-optimize SVGs with SVGO
-- Lazy-load less-common libraries
-- Monitor cache hit rates
-
-❌ **Don't:**
-
-- Fetch icons from external CDNs
-- Create multiple registry instances
-- Modify SVG content after registration
-- Store unoptimized SVGs
-- Ignore library organization
-- Hot-swap SVG files
-
-## Efficiency Tips
-
-When using LLMs to work on icon systems:
-
-- Reference specific libraries when asking for changes
-- Use [token-optimization](../token-optimization/SKILL.md) to avoid pasting large SVG strings
-- Store common icon definitions in `/memories/repo/`
-- Ask for performance metrics, not full dumps
-- Request specific icon format changes
+- **Icon not found**: check the console warning
+  `❌ Icon library "{library}" not found` (wrong `library` prop) or
+  `⚠️ No SVG to render... this icon may not exist in the {library} library`
+  (name not in that library's resolver map).
+- **Wrong icon after prop change**: confirm the `@Watch('name')`/`@Watch('library')`
+  handlers in `icon.tsx` are re-resolving - don't cache SVGs outside the
+  component's own `cache` object.
 
 ## References
 
-- **Related Skills**:
-  - [stencil-components](../stencil-components/SKILL.md) — Component architecture
-  - [themes](../themes/SKILL.md) — Token-based styling
-  - [token-optimization](../token-optimization/SKILL.md) — LLM efficiency
-
-- **Documentation**:
-  - [Icon Registry Setup Guide](../../packages/core/src/utils/ICON_REGISTRY_SETUP.md)
-  - [Production Setup Example](../../packages/core/src/utils/icon-registry-production-setup.ts)
-  - [Storybook Icon Example](../../packages/storybook/.storybook/icon-libraries.ts)
-
-- **Tools & Resources**:
-  - [SVGO](https://github.com/svg/svgo) — SVG optimization tool
-  - [SVG Best Practices](https://developer.mozilla.org/en-US/docs/Web/SVG)
-  - [Web Components Performance](https://web.dev/web-components/#performance)
-  - [Icon Systems Best Practices](https://www.smashingmagazine.com/2023/05/inline-svg-icon-systems-svelte/)
+- [stencil-components](../stencil-components/SKILL.md) - component architecture
+- [themes](../themes/SKILL.md) - token-based styling for `fill`/color

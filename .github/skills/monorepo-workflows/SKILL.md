@@ -81,20 +81,11 @@ This repo still uses Lerna-style release tooling in the root, but the active pac
 
 ### Root `package.json` Workspaces
 
-```json
-{
-  "name": "root",
-  "private": true,
-  "workspaces": ["packages/*"],
-  "scripts": {
-    "dev": "npx lerna run build --scope=@orchestra-design-system/icons-library --scope=@orchestra-design-system/core && npx lerna run storybook:start --scope=@orchestra-design-system/storybook",
-    "build": "npm run build:tokens && npx lerna run build",
-    "build:tokens": "npx lerna run build --scope='@orchestra-design-system/themes'",
-    "test": "npx lerna run storybook:test --scope=@orchestra-design-system/storybook",
-    "lint": "npx oxlint . --fix --import-plugin --vitest-plugin --jest-plugin --node-plugin --vue-plugin"
-  }
-}
-```
+Workspaces are declared via `"workspaces": ["packages/*"]`. For the actual
+script commands (`dev`, `build`, `build:tokens`, `test`, `lint`), see
+[README.md](../../../README.md#L64-L76) or `AGENTS.md` - don't duplicate that
+list here; this section is about workspace _wiring_, not the command
+reference.
 
 ## Canonical docs and validation
 
