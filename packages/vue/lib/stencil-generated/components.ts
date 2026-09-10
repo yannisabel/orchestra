@@ -8,6 +8,7 @@ import type { JSX } from '@orchestra-design-system/core';
 
 
 
+
 export const OrchestraButton: StencilVueComponent<JSX.OrchestraButton> = /*@__PURE__*/ defineContainer<JSX.OrchestraButton>('orchestra-button', undefined, [
   'text',
   'type',
@@ -47,4 +48,5 @@ export const OrchestraIcon: StencilVueComponent<JSX.OrchestraIcon> = /*@__PURE__
   'fill',
   'size'
 ]);
+
 
