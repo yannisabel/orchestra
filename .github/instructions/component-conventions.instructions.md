@@ -16,9 +16,11 @@ src/components/icon/
   ├── icon.css          # Scoped styles (shadow DOM)
   ├── readme.md         # Generated from JSDoc
   ├── library.ts        # Shared utilities (if needed)
-  ├── *.ts              # Helper modules
-  └── *.spec.ts         # Unit tests
+  └── *.ts              # Helper modules
 ```
+
+Tests are **not** colocated as `*.spec.ts` in the component folder - see
+[Testing Pattern](#testing-pattern) below.
 
 ## Stencil Component Pattern
 
@@ -177,26 +179,25 @@ this.host.setAttribute('aria-hidden', 'true')
 
 ## Testing Pattern
 
+Orchestra does **not** use Stencil's `newSpecPage`/colocated `*.spec.ts` pattern for
+component behavior, even though `packages/core/package.json` still exposes a
+`test:spec` script. The CI-enforced, canonical pattern is Storybook `play`
+functions with Vitest assertions, written under
+`packages/storybook/src/stories/components/{component}/`. See
+[story-testing](../skills/story-testing/SKILL.md) for the full pattern by
+component type.
+
 ```typescript
-// component.spec.ts
-describe('orchestra-component', () => {
-  let element: HTMLOrchestraComponentElement
-  let page: any
+// packages/storybook/src/stories/components/{component}/{component}.stories.ts
+import { expect } from '@storybook/test'
 
-  beforeEach(async () => {
-    page = await newSpecPage({
-      components: [OrchestraComponent],
-      html: `<orchestra-component></orchestra-component>`,
-    })
-    element = page.root
-  })
-
-  it('renders with correct prop', async () => {
-    element.propName = 'value'
-    await page.waitForChanges()
-    expect(element.shadowRoot.querySelector('svg')).toBeTruthy()
-  })
-})
+export const Primary: Story = {
+  args: {/* props */},
+  play: async ({ canvasElement }) => {
+    const el = canvasElement.querySelector('orchestra-component')
+    expect(el).toBeInTheDocument()
+  },
+}
 ```
 
 - Use `newSpecPage` for unit tests

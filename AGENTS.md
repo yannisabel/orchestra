@@ -47,23 +47,7 @@ Orchestra is built around Stencil web components, design tokens, and framework w
 
 ## Essential commands
 
-Run from repository root unless otherwise noted.
-
-```bash
-# Build
-npm run build                              # All packages
-npm run build --workspace=@orchestra/core  # Core only
-
-# Test & Lint
-npm run test                               # Storybook/Vitest tests
-npm run lint                               # Oxlint fix
-npm run lint:check                         # Oxlint check
-npm run check:docs                         # Validate docs-API sync
-
-# Development
-npm run dev                                # Storybook dev server
-cd packages/storybook && npm run dev       # Storybook dev server (alternative)
-```
+See [README.md](./README.md#L64-L76) for the full command list (build, dev, lint, test, check:docs). Don't duplicate that list here — if it changes, update README.md and reference it.
 
 ## Working rules
 
