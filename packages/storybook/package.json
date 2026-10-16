@@ -19,8 +19,9 @@
   "scripts": {
     "storybook:dev": "storybook dev -p 6006",
     "storybook:start": "concurrently \"(cd ../core/ && npm start)\" \"npm run storybook:dev\"",
-    "storybook:test": "vitest --project=storybook",
-    "storybook:test-coverage": "vitest --project=storybook --coverage",
+    "test:components": "vitest --project=storybook",
+    "test:integration": "playwright test",
+    "test:components:coverage": "vitest --project=storybook --coverage",
     "build-storybook": "storybook build",
     "build-storybook-ci": "BASE_PATH=/orchestra-design-system/ storybook build",
     "preview-storybook": "npx http-server storybook-static",

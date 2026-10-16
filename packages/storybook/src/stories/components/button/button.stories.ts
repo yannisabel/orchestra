@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite'
-import { fn, expect } from 'storybook/test'
+import { fn, expect, waitFor } from 'storybook/test'
 import { within } from 'shadow-dom-testing-library'
 
 interface ButtonArgs {
@@ -169,15 +169,16 @@ export const KeyboardEnter: Story = {
     disabled: false,
     variant: 'primary',
   },
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, userEvent }) => {
     const onClick = fn()
     canvasElement.addEventListener('click', () => onClick())
 
-    const host = canvasElement.querySelector('orchestra-button')
-    expect(host).toBeTruthy()
-    host?.dispatchEvent(
-      new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }),
-    )
+    const button = await within(canvasElement).findByShadowRole('button', {
+      name: 'Button',
+    })
+    await userEvent.click(button)
+    onClick.mockClear()
+    await userEvent.keyboard('{Enter}')
 
     expect(onClick).toHaveBeenCalledOnce()
   },
@@ -190,13 +191,16 @@ export const KeyboardSpace: Story = {
     disabled: false,
     variant: 'primary',
   },
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, userEvent }) => {
     const onClick = fn()
     canvasElement.addEventListener('click', () => onClick())
 
-    const host = canvasElement.querySelector('orchestra-button')
-    expect(host).toBeTruthy()
-    host?.dispatchEvent(new KeyboardEvent('keyup', { key: ' ', bubbles: true }))
+    const button = await within(canvasElement).findByShadowRole('button', {
+      name: 'Button',
+    })
+    await userEvent.click(button)
+    onClick.mockClear()
+    await userEvent.keyboard(' ')
 
     expect(onClick).toHaveBeenCalledOnce()
   },
@@ -284,17 +288,20 @@ export const CustomIconLibrary: Story = {
     disabled: false,
     variant: 'primary',
     icon: 'start',
-    iconName: 'checked',
+    iconName: 'star',
     iconLibrary: 'custom',
   },
   play: async ({ canvasElement }) => {
     const host = canvasElement.querySelector('orchestra-button')
     expect(host).toBeTruthy()
 
-    const icon = host?.shadowRoot?.querySelector('orchestra-icon') as
-      (HTMLElement & { library?: string }) | null
-    expect(icon).toBeTruthy()
-    expect(icon?.getAttribute('library') ?? icon?.library).toBe('custom')
+    await waitFor(() => {
+      const icon = host?.shadowRoot?.querySelector('orchestra-icon') as
+        (HTMLElement & { library?: string }) | null
+      expect(icon).toBeTruthy()
+      expect(icon?.getAttribute('library') ?? icon?.library).toBe('custom')
+      expect(icon?.shadowRoot?.querySelector('svg')).toBeInTheDocument()
+    })
   },
 }
 

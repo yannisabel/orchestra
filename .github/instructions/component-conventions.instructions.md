@@ -176,6 +176,9 @@ this.host.setAttribute('aria-hidden', 'true')
 - Mark decorative elements as hidden from screen readers
 - Prevents duplicate announcements
 - Use when icon is supplementary (fill color, visual indicator only)
+- `orchestra-icon` is decorative by default. Set its `label` property for a
+  standalone informative icon; it exposes `role="img"` and a matching
+  `aria-label` on the host. Keep the internal SVG hidden from assistive technology.
 
 ## Testing Pattern
 

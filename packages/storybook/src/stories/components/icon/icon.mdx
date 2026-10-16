@@ -18,6 +18,22 @@ import { hrefTo } from '@storybook/addon-links'
 <orchestra-icon name="checked" fill="currentcolor" size="60px"></orchestra-icon>
 ```
 
+### Informative Icons
+
+Icons are decorative by default. Set `label` when a standalone icon conveys
+information that is not already available as text.
+
+<Canvas of={IconStories.Informative} />
+
+```html
+<orchestra-icon name="checkbox-check" label="Completed"></orchestra-icon>
+```
+
+A non-empty label exposes the host as a named image, discoverable with
+`page.getByRole('img', { name: 'Completed' })`. Clearing the label restores
+decorative mode. Keep icons inside named buttons decorative to avoid duplicate
+announcements.
+
 ### Custom Library
 
 <Canvas of={IconStories.CustomLibrary} />

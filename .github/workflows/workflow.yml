@@ -35,6 +35,15 @@ jobs:
         run: npm run lint
 
   test:
+    name: Test (${{ matrix.suite }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - suite: Components (Storybook)
+            script: test:components
+          - suite: Consumer Integration (Playwright)
+            script: test:integration
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
@@ -49,4 +58,4 @@ jobs:
       - name: Build packages
         run: npm run build
       - name: Run tests
-        run: npm run test
+        run: npm run ${{ matrix.script }}

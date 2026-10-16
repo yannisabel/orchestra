@@ -28,6 +28,11 @@ export class OrchestraIcon {
    */
   @Prop({ mutable: true }) size?: string | '100%' = '100%'
 
+  /**
+   * Accessible name for an informative icon. Omit or leave blank for a decorative icon.
+   */
+  @Prop() label?: string
+
   @State() svg: string = ''
 
   @Element() host!: SVGElement
@@ -61,7 +66,6 @@ export class OrchestraIcon {
       this.sanitizeSVG()
       const isNotDefaultColor = this.fill !== 'currentcolor'
       const isNotDefaultSize = this.size !== '100%'
-      this.host.setAttribute('aria-hidden', 'true')
       // Set CSS variables on the host element, not the SVG
       if (isNotDefaultColor) {
         this.host.style.setProperty('--icon-color', `${this.fill}`)
@@ -121,7 +125,14 @@ export class OrchestraIcon {
   }
 
   public render() {
-    return <Host></Host>
+    const label = this.label?.trim()
+    return (
+      <Host
+        role={label ? 'img' : undefined}
+        aria-label={label || undefined}
+        aria-hidden={label ? undefined : 'true'}
+      ></Host>
+    )
   }
 
   /**
@@ -142,5 +153,9 @@ export class OrchestraIcon {
       USE_PROFILES: { svg: true, svgFilters: true },
     })
     this.host.shadowRoot.innerHTML = sanitized
+    this.host.shadowRoot.querySelectorAll('svg').forEach((svg) => {
+      svg.setAttribute('aria-hidden', 'true')
+      svg.setAttribute('focusable', 'false')
+    })
   }
 }

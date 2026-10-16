@@ -38,9 +38,39 @@ This generates the static Storybook site in the package output folder.
 ## Testing
 
 ```bash
-npm run storybook:test
-npm run storybook:test-coverage
+npm run test:components
+npm run test:components:coverage
+npm run test:integration
 ```
+
+From the repository root, `npm run test:components` (also `npm run test`)
+runs Storybook/Vitest once, `npm run test:integration` runs Playwright
+independently, and `npm run test:all` runs
+both sequentially. Build packages first with `npm run build`. CI runs the two
+suites as parallel matrix jobs, each with its own package build.
+
+### Consumer-facing browser tests
+
+From the repository root:
+
+```bash
+npm run build:js --workspace=@orchestra-design-system/core
+npm run test:integration
+```
+
+The Playwright suite starts Storybook on port 6007 and exercises the consumer
+interface story without competing play functions. It uses actual Playwright
+`getByRole()` and `getByLabel()` locators, pointer input, and Tab/Enter/Space
+keyboard input against the built components. Assertions cover accessible names,
+focus order, disabled state, checkbox state, and visible action results.
+
+The consumer-interface fixture is available during development and excluded
+from production Storybook builds by the story discovery configuration.
+
+Keep consumer-facing checks independent of shadow markup and CSS class names.
+Storybook play tests remain useful for individual states and implementation
+regressions; these browser tests verify the public interface. Neither replaces
+manual screen-reader or visual accessibility testing.
 
 ## Theming
 

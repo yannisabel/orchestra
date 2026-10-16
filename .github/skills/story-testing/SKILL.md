@@ -21,6 +21,32 @@ Tests in Orchestra live in **Storybook Play functions** using **Vitest v4.1.9**.
 
 **Key principle**: One story = one test scenario. Each story demonstrates a visual state AND verifies it behaves correctly.
 
+## Consumer-Facing Playwright Coverage
+
+For exact Playwright locator behavior and native browser input, use
+`packages/storybook/e2e/accessibility.spec.ts` with
+`packages/storybook/playwright.config.ts`. The consumer-interface story has no
+play function so the browser tests own all interactions. Run from the repo root:
+
+```bash
+npm run build:js --workspace=@orchestra-design-system/core
+npm run test:integration
+```
+
+Root `npm run test:components` (also `npm run test`) runs Storybook/Vitest
+once, `npm run test:integration` runs Playwright independently, and
+`npm run test:all` runs both sequentially. Root `test:coverage` delegates to
+the workspace `test:components:coverage` command in single-run mode.
+Build packages before testing. CI runs both suites in parallel matrix jobs,
+each building packages independently. The workspace `test:components` command
+still supports interactive watch mode.
+
+Prefer role/name or label locators, real pointer and keyboard actions, and
+visible outcomes. Do not dispatch synthetic host keyboard events or inspect
+shadow markup to prove user-facing behavior. Keep component-specific regression
+tests in Storybook play functions; `findByShadowRole()` is not the actual
+Playwright `getByRole()` API.
+
 ## Story Structure Template
 
 ```typescript

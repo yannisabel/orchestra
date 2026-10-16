@@ -17,11 +17,11 @@ function getAbsolutePath(value: string): string {
   return dirname(require.resolve(join(value, 'package.json')))
 }
 const config: StorybookConfig = {
-  stories: [
+  stories: async (_, { configType }) => [
     '../src/**/*.mdx',
-    '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-    '../src/stories/components/**/*.mdx',
-    '../src/stories/components/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    configType === 'PRODUCTION'
+      ? '../src/**/!(consumer-interface).stories.@(js|jsx|mjs|ts|tsx)'
+      : '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
   addons: [
     getAbsolutePath('@storybook/addon-links'),
