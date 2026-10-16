@@ -98,6 +98,9 @@ const preview: Preview = {
     },
 
     docs: {
+      story: {
+        autoplay: false,
+      },
       toc: {
         title: (async () => {
           const headingSelector = 'h2, h3'

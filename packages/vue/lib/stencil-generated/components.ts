@@ -50,3 +50,31 @@ export const OrchestraIcon: StencilVueComponent<JSX.OrchestraIcon> = /*@__PURE__
 ]);
 
 
+export const OrchestraInput: StencilVueComponent<JSX.OrchestraInput> = /*@__PURE__*/ defineContainer<JSX.OrchestraInput>('orchestra-input', undefined, [
+  'label',
+  'value',
+  'type',
+  'name',
+  'placeholder',
+  'disabled',
+  'readOnly',
+  'required',
+  'helperText',
+  'errorMessage',
+  'htmlId',
+  'autocomplete',
+  'inputMode',
+  'minLength',
+  'maxLength',
+  'pattern',
+  'ariaLabel',
+  'ariaLabelledby',
+  'ariaDescribedby',
+  'orchestraInput',
+  'orchestraChange'
+], [
+  'orchestraInput',
+  'orchestraChange'
+]);
+
+
