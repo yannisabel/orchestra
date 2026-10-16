@@ -57,6 +57,7 @@ before documenting or using an icon API you haven't seen in source.
 @Prop({ mutable: true }) library: string = 'orchestra-icons' // library name, not a "lib:name" prefix
 @Prop({ mutable: true }) fill?: string = 'currentcolor'
 @Prop({ mutable: true }) size?: string = '100%'
+@Prop() label?: string // non-empty accessible name enables informative mode
 ```
 
 Usage:
@@ -106,9 +107,13 @@ Call this once, early (e.g. app bootstrap or a Storybook decorator), before any
 - Every resolved SVG is passed through `DOMPurify.sanitize(svg, { USE_PROFILES: { svg: true, svgFilters: true } })`
   before being written to `shadowRoot.innerHTML`. Never bypass this when adding
   custom resolvers.
-- Icons are marked `aria-hidden="true"` on the host by default (decorative);
-  add an accessible name on the consuming element (e.g. `aria-label` on the
-  wrapping button) when the icon conveys meaning.
+- Icons are marked `aria-hidden="true"` on the host by default (decorative).
+  Set `label="Completed"` on a standalone informative icon to expose the host
+  with `role="img"` and `aria-label="Completed"`. A blank or whitespace-only
+  label restores decorative mode. The internal SVG remains hidden and non-focusable.
+- Keep icons inside named controls decorative and put the accessible name on
+  the containing control. Locate informative icons with Playwright's
+  `page.getByRole('img', { name: 'Completed' })`.
 
 ## Troubleshooting
 

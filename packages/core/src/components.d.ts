@@ -125,6 +125,10 @@ export namespace Components {
          */
         "fill"?: string | 'currentcolor';
         /**
+          * Accessible name for an informative icon. Omit or leave blank for a decorative icon.
+         */
+        "label"?: string;
+        /**
           * The name of the icon library to use. Defaults to 'orchestra-icons'.
           * @default 'orchestra-icons'
          */
@@ -309,6 +313,10 @@ declare namespace LocalJSX {
          */
         "fill"?: string | 'currentcolor';
         /**
+          * Accessible name for an informative icon. Omit or leave blank for a decorative icon.
+         */
+        "label"?: string;
+        /**
           * The name of the icon library to use. Defaults to 'orchestra-icons'.
           * @default 'orchestra-icons'
          */
@@ -353,6 +361,7 @@ declare namespace LocalJSX {
         "library": string;
         "fill": string | 'currentcolor';
         "size": string | '100%';
+        "label": string;
     }
 
     interface IntrinsicElements {

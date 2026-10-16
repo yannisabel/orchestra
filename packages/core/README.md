@@ -35,6 +35,71 @@ Then use the components in HTML:
 - Accessibility-oriented component APIs
 - TypeScript-first developer experience
 
+## Accessibility and testing
+
+Buttons and checkboxes expose their role, accessible name, and state through
+native controls inside open Shadow DOM. The internal control owns the semantics;
+the custom-element host is not a second button or checkbox.
+
+- Give `orchestra-button` a `text` value. For icon-only buttons, this value
+	becomes the internal button's `aria-label`.
+- Give `orchestra-checkbox` a visible `label`, or an `aria-label` when no
+	visible label is appropriate. The visible label is associated with the internal
+	input and activates it using native label behavior.
+- Use the component's `disabled`, `checked`, `indeterminate`, and `required`
+	properties where supported. Native control state is the source for accessibility
+	and testing; a mixed checkbox state is exposed through `input.indeterminate`.
+- Icons are decorative (`aria-hidden="true"`) by default. Supply `label` for a
+	standalone informative icon to expose `role="img"` and its accessible name.
+	For icons inside buttons or other controls, leave the icon decorative and
+	put the accessible name on the containing control.
+
+```html
+<orchestra-icon name="checkbox-check" label="Completed"></orchestra-icon>
+```
+
+This informative icon can be located with
+`page.getByRole('img', { name: 'Completed' })`. Updating `label` updates its
+accessible name; clearing it or setting only whitespace restores decorative mode.
+
+Playwright role locators traverse open Shadow DOM without special selectors:
+
+```ts
+const consent = page.getByRole('checkbox', { name: 'Accept privacy policy' })
+await consent.check()
+await expect(consent).toBeChecked()
+
+const save = page.getByRole('button', { name: 'Save changes' })
+await expect(save).toBeEnabled()
+await save.click()
+```
+
+Scope a locator with `page.locator('orchestra-checkbox')` when several controls
+have the same accessible name. Raw `querySelector` and XPath do not automatically
+traverse Shadow DOM; prefer role locators and native-state assertions over checking
+for `role` or `aria-checked` attributes on the host.
+
+### Shadow DOM reference limits
+
+An external `<label for="...">` cannot target the input inside a shadow root.
+The checkbox's `htmlId` identifies its internal input, not an input in the page's
+document. Similarly, forwarding `aria-labelledby` or `aria-describedby` ID strings
+to that input does not resolve references to elements outside its shadow root.
+The existing ID-reference props are not a supported cross-root labeling mechanism;
+use `label` or `aria-label` for reliable checkbox naming.
+
+### ElementInternals
+
+The checkbox uses `ElementInternals` for form values, validity, and form lifecycle
+callbacks. This does not require moving accessibility semantics onto the host.
+
+`ElementInternals.role` and its ARIA properties provide default semantics when a
+custom element itself owns an interaction. They do not reflect into HTML
+attributes, and setting a host attribute does not automatically forward it to a
+shadow control. Reflecting a duplicate role and state onto a native-backed
+control's host can expose two controls to assistive technology. Keep a single
+semantic owner rather than adding host ARIA solely for test selectors.
+
 ## Theming
 
 The core package consumes token values from the themes package. Import the public theme bundle in the consumer app or Storybook:

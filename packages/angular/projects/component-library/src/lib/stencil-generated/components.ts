@@ -70,14 +70,14 @@ export declare interface OrchestraCheckbox extends Components.OrchestraCheckbox 
 
 
 @ProxyCmp({
-  inputs: ['fill', 'library', 'name', 'size']
+  inputs: ['fill', 'label', 'library', 'name', 'size']
 })
 @Component({
   selector: 'orchestra-icon',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['fill', 'library', { name: 'name', required: true }, 'size'],
+  inputs: ['fill', 'label', 'library', { name: 'name', required: true }, 'size'],
   standalone: false
 })
 export class OrchestraIcon {

@@ -274,7 +274,11 @@ export class OrchestraCheckbox {
   }
 
   private hasAccessibleName(): boolean {
-    if (this.ariaLabel?.trim() || this.ariaLabelledby?.trim()) {
+    if (
+      this.label?.trim() ||
+      this.ariaLabel?.trim() ||
+      this.ariaLabelledby?.trim()
+    ) {
       return true
     }
 
@@ -337,13 +341,6 @@ export class OrchestraCheckbox {
     this.invalid = false
   }
 
-  private handleLabelClick = (e: Event): void => {
-    e.preventDefault()
-    if (!(this.disabled ?? false)) {
-      this.checked = !(this.checked ?? false)
-    }
-  }
-
   render() {
     const showIndicator =
       (this.checked ?? false) || (this.indeterminate ?? false)
@@ -356,7 +353,7 @@ export class OrchestraCheckbox {
         <div class="orchestra-checkbox-row">
           <div class="orchestra-checkbox-box">
             <input
-              id={this.htmlId}
+              id={this.htmlId ?? 'checkbox-input'}
               class="orchestra-checkbox"
               type="checkbox"
               aria-label={this.ariaLabel}
@@ -381,7 +378,7 @@ export class OrchestraCheckbox {
           {this.label && (
             <label
               class="orchestra-checkbox-label"
-              onClick={this.handleLabelClick}
+              htmlFor={this.htmlId ?? 'checkbox-input'}
             >
               {this.label}
             </label>

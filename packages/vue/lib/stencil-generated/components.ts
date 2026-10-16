@@ -46,7 +46,8 @@ export const OrchestraIcon: StencilVueComponent<JSX.OrchestraIcon> = /*@__PURE__
   'name',
   'library',
   'fill',
-  'size'
+  'size',
+  'label'
 ]);
 
 

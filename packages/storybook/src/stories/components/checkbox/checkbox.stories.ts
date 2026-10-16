@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite'
-import { expect, waitFor } from 'storybook/test'
+import type { Components } from '@orchestra-design-system/core'
+import { expect, fn, userEvent, waitFor } from 'storybook/test'
+import { within } from 'shadow-dom-testing-library'
 
 interface CheckboxArgs {
   checked?: boolean
@@ -91,6 +93,44 @@ const meta: Meta<CheckboxArgs> = {
 
 export default meta
 type Story = StoryObj<CheckboxArgs>
+
+export const AccessibleLabel: Story = {
+  args: {
+    label: 'Accept privacy policy',
+  },
+  render: (args) => {
+    const checkbox = document.createElement(
+      'orchestra-checkbox',
+    ) as HTMLElement & Components.OrchestraCheckbox
+    checkbox.label = args.label
+    return checkbox
+  },
+  play: async ({ canvasElement }) => {
+    const input = await within(canvasElement).findByShadowRole('checkbox', {
+      name: 'Accept privacy policy',
+    })
+    expect(input).toBeVisible()
+    expect(input).not.toBeChecked()
+
+    const checkbox = canvasElement.querySelector<
+      HTMLElement & Components.OrchestraCheckbox
+    >('orchestra-checkbox')
+    const onChange = fn()
+    checkbox?.addEventListener('orchestraChange', onChange)
+
+    const label = checkbox?.shadowRoot?.querySelector('label')
+    expect(label).toBeTruthy()
+    label?.click()
+    await waitFor(() => expect(input).toBeChecked())
+    await waitFor(() => expect(checkbox?.checked).toBe(true))
+    expect(onChange).toHaveBeenCalledTimes(1)
+
+    await userEvent.click(input)
+    await waitFor(() => expect(input).not.toBeChecked())
+    await waitFor(() => expect(checkbox?.checked).toBe(false))
+    expect(onChange).toHaveBeenCalledTimes(2)
+  },
+}
 
 export const Default: Story = {
   args: {

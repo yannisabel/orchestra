@@ -51,7 +51,7 @@ Before release:
 npm run check:docs
 npm run lint
 npm run build
-npm run test
+npm run test:all
 ```
 
 Important:

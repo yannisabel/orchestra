@@ -73,9 +73,17 @@ npm run build           # build tokens, then all workspaces
 npm run build:tokens    # build theme package only
 npm run lint            # run repo linting
 npm run check:docs      # verify docs and AI guidance stay aligned
-npm run test            # run Storybook/Vitest test project
+npm run test            # run Storybook/Vitest once
+npm run test:components # run Storybook component tests once
+npm run test:integration # run consumer-facing Playwright tests
+npm run test:all        # run Storybook tests, then Playwright tests
 npm run release         # release-it workflow
 ```
+
+Build packages with `npm run build` before running tests. CI builds packages
+in each test job and runs Storybook and Playwright suites in parallel, with
+independent results. For Storybook watch mode, run
+`npm run test:components --workspace=@orchestra-design-system/storybook`.
 
 ## Documentation sync check
 

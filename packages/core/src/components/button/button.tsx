@@ -67,29 +67,13 @@ export class OrchestraButton {
     event.preventDefault()
   }
 
-  @Listen('keydown')
-  protected onKeydown(event: KeyboardEvent): void {
-    invariant(this.#button)
-    if (event.key === 'Enter') {
-      this.#button.click()
-    }
-  }
-
-  @Listen('keyup')
-  protected onKeyup(event: KeyboardEvent): void {
-    invariant(this.#button)
-    if (event.key === ' ') this.#button.click()
-  }
-
   @Watch('disabled')
   protected disabledChanged(): void {
     invariant(this.#button)
 
-    if (this.disabled) {
-      this.#button.tabIndex = -1
-      this.#button.ariaDisabled = this.disabled ? 'true' : null
-      this.#button.disabled = this.disabled
-    }
+    this.#button.tabIndex = this.disabled ? -1 : 0
+    this.#button.ariaDisabled = this.disabled ? 'true' : null
+    this.#button.disabled = this.disabled ?? false
   }
 
   public componentDidLoad(): void {
