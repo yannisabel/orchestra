@@ -21,7 +21,7 @@
     "npm-check-updates": "^19.6.6",
     "oxlint": "^1.72.0",
     "prettier": "^3.9.4",
-    "release-it": "^20.2.1",
+    "release-it": "^21.0.2",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.62.1"
   },
