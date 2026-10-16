@@ -6,7 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CheckboxChangeDetail } from "./components/checkbox/checkbox";
+import { OrchestraInputType } from "./components/input/input";
 export { CheckboxChangeDetail } from "./components/checkbox/checkbox";
+export { OrchestraInputType } from "./components/input/input";
 export namespace Components {
     interface OrchestraButton {
         /**
@@ -139,10 +141,110 @@ export namespace Components {
          */
         "size"?: string | '100%';
     }
+    interface OrchestraInput {
+        /**
+          * Additional ID reference(s) describing the input.
+         */
+        "ariaDescribedby"?: string;
+        /**
+          * Accessible name used when no visible label is provided.
+         */
+        "ariaLabel"?: string;
+        /**
+          * ID reference(s) for an accessible label.
+         */
+        "ariaLabelledby"?: string;
+        /**
+          * Autofill hint forwarded to the native input.
+         */
+        "autocomplete"?: string;
+        /**
+          * Checks whether the input satisfies its constraints.
+         */
+        "checkValidity": () => Promise<boolean>;
+        /**
+          * Prevents interaction and excludes the value from form submission.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Custom validation error shown below the input and used for form validity.
+         */
+        "errorMessage"?: string;
+        /**
+          * Persistent supporting text shown below the input.
+         */
+        "helperText"?: string;
+        /**
+          * The input's id, useful when associating an external label.
+         */
+        "htmlId"?: string;
+        /**
+          * Virtual keyboard hint forwarded to the native input.
+         */
+        "inputMode"?: HTMLInputElement['inputMode'];
+        /**
+          * The visible label for the input.
+         */
+        "label"?: string;
+        /**
+          * Maximum number of characters accepted by the native input.
+         */
+        "maxLength"?: number;
+        /**
+          * Minimum number of characters accepted by the native input.
+         */
+        "minLength"?: number;
+        /**
+          * The name submitted with the input value.
+          * @default ''
+         */
+        "name"?: string;
+        /**
+          * Native pattern constraint applied to the input value.
+         */
+        "pattern"?: string;
+        /**
+          * A short hint shown when the input has no value.
+         */
+        "placeholder"?: string;
+        /**
+          * Prevents editing while keeping the value available to form submission.
+          * @default false
+         */
+        "readOnly"?: boolean;
+        /**
+          * Reports validity and prompts the browser to show its validation UI.
+         */
+        "reportValidity": () => Promise<boolean>;
+        /**
+          * Requires a value before the associated form can be submitted.
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * Sets a custom validation message. Pass an empty string to clear it.
+         */
+        "setCustomValidity": (message: string) => Promise<void>;
+        /**
+          * The kind of single-line text input to render.
+          * @default 'text'
+         */
+        "type"?: OrchestraInputType;
+        /**
+          * The current value of the input.
+          * @default ''
+         */
+        "value"?: string;
+    }
 }
 export interface OrchestraCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLOrchestraCheckboxElement;
+}
+export interface OrchestraInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLOrchestraInputElement;
 }
 declare global {
     interface HTMLOrchestraButtonElement extends Components.OrchestraButton, HTMLStencilElement {
@@ -175,10 +277,29 @@ declare global {
         prototype: HTMLOrchestraIconElement;
         new (): HTMLOrchestraIconElement;
     };
+    interface HTMLOrchestraInputElementEventMap {
+        "orchestraInput": string;
+        "orchestraChange": string;
+    }
+    interface HTMLOrchestraInputElement extends Components.OrchestraInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLOrchestraInputElementEventMap>(type: K, listener: (this: HTMLOrchestraInputElement, ev: OrchestraInputCustomEvent<HTMLOrchestraInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLOrchestraInputElementEventMap>(type: K, listener: (this: HTMLOrchestraInputElement, ev: OrchestraInputCustomEvent<HTMLOrchestraInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLOrchestraInputElement: {
+        prototype: HTMLOrchestraInputElement;
+        new (): HTMLOrchestraInputElement;
+    };
     interface HTMLElementTagNameMap {
         "orchestra-button": HTMLOrchestraButtonElement;
         "orchestra-checkbox": HTMLOrchestraCheckboxElement;
         "orchestra-icon": HTMLOrchestraIconElement;
+        "orchestra-input": HTMLOrchestraInputElement;
     }
 }
 declare namespace LocalJSX {
@@ -323,6 +444,102 @@ declare namespace LocalJSX {
          */
         "size"?: string | '100%';
     }
+    interface OrchestraInput {
+        /**
+          * Additional ID reference(s) describing the input.
+         */
+        "ariaDescribedby"?: string;
+        /**
+          * Accessible name used when no visible label is provided.
+         */
+        "ariaLabel"?: string;
+        /**
+          * ID reference(s) for an accessible label.
+         */
+        "ariaLabelledby"?: string;
+        /**
+          * Autofill hint forwarded to the native input.
+         */
+        "autocomplete"?: string;
+        /**
+          * Prevents interaction and excludes the value from form submission.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Custom validation error shown below the input and used for form validity.
+         */
+        "errorMessage"?: string;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
+          * Persistent supporting text shown below the input.
+         */
+        "helperText"?: string;
+        /**
+          * The input's id, useful when associating an external label.
+         */
+        "htmlId"?: string;
+        /**
+          * Virtual keyboard hint forwarded to the native input.
+         */
+        "inputMode"?: HTMLInputElement['inputMode'];
+        /**
+          * The visible label for the input.
+         */
+        "label"?: string;
+        /**
+          * Maximum number of characters accepted by the native input.
+         */
+        "maxLength"?: number;
+        /**
+          * Minimum number of characters accepted by the native input.
+         */
+        "minLength"?: number;
+        /**
+          * The name submitted with the input value.
+          * @default ''
+         */
+        "name"?: string;
+        /**
+          * Emitted when the user commits a value change. The event detail is the current value.
+         */
+        "onOrchestraChange"?: (event: OrchestraInputCustomEvent<string>) => void;
+        /**
+          * Emitted for each user edit. The event detail is the current value.
+         */
+        "onOrchestraInput"?: (event: OrchestraInputCustomEvent<string>) => void;
+        /**
+          * Native pattern constraint applied to the input value.
+         */
+        "pattern"?: string;
+        /**
+          * A short hint shown when the input has no value.
+         */
+        "placeholder"?: string;
+        /**
+          * Prevents editing while keeping the value available to form submission.
+          * @default false
+         */
+        "readOnly"?: boolean;
+        /**
+          * Requires a value before the associated form can be submitted.
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * The kind of single-line text input to render.
+          * @default 'text'
+         */
+        "type"?: OrchestraInputType;
+        /**
+          * The current value of the input.
+          * @default ''
+         */
+        "value"?: string;
+    }
 
     interface OrchestraButtonAttributes {
         "text": string;
@@ -354,11 +571,33 @@ declare namespace LocalJSX {
         "fill": string | 'currentcolor';
         "size": string | '100%';
     }
+    interface OrchestraInputAttributes {
+        "label": string;
+        "value": string;
+        "type": OrchestraInputType;
+        "name": string;
+        "placeholder": string;
+        "disabled": boolean;
+        "readOnly": boolean;
+        "required": boolean;
+        "helperText": string;
+        "errorMessage": string;
+        "htmlId": string;
+        "autocomplete": string;
+        "inputMode": HTMLInputElement['inputMode'];
+        "minLength": number;
+        "maxLength": number;
+        "pattern": string;
+        "ariaLabel": string;
+        "ariaLabelledby": string;
+        "ariaDescribedby": string;
+    }
 
     interface IntrinsicElements {
         "orchestra-button": Omit<OrchestraButton, keyof OrchestraButtonAttributes> & { [K in keyof OrchestraButton & keyof OrchestraButtonAttributes]?: OrchestraButton[K] } & { [K in keyof OrchestraButton & keyof OrchestraButtonAttributes as `attr:${K}`]?: OrchestraButtonAttributes[K] } & { [K in keyof OrchestraButton & keyof OrchestraButtonAttributes as `prop:${K}`]?: OrchestraButton[K] } & OneOf<"text", OrchestraButton["text"], OrchestraButtonAttributes["text"]>;
         "orchestra-checkbox": Omit<OrchestraCheckbox, keyof OrchestraCheckboxAttributes> & { [K in keyof OrchestraCheckbox & keyof OrchestraCheckboxAttributes]?: OrchestraCheckbox[K] } & { [K in keyof OrchestraCheckbox & keyof OrchestraCheckboxAttributes as `attr:${K}`]?: OrchestraCheckboxAttributes[K] } & { [K in keyof OrchestraCheckbox & keyof OrchestraCheckboxAttributes as `prop:${K}`]?: OrchestraCheckbox[K] };
         "orchestra-icon": Omit<OrchestraIcon, keyof OrchestraIconAttributes> & { [K in keyof OrchestraIcon & keyof OrchestraIconAttributes]?: OrchestraIcon[K] } & { [K in keyof OrchestraIcon & keyof OrchestraIconAttributes as `attr:${K}`]?: OrchestraIconAttributes[K] } & { [K in keyof OrchestraIcon & keyof OrchestraIconAttributes as `prop:${K}`]?: OrchestraIcon[K] } & OneOf<"name", OrchestraIcon["name"], OrchestraIconAttributes["name"]>;
+        "orchestra-input": Omit<OrchestraInput, keyof OrchestraInputAttributes> & { [K in keyof OrchestraInput & keyof OrchestraInputAttributes]?: OrchestraInput[K] } & { [K in keyof OrchestraInput & keyof OrchestraInputAttributes as `attr:${K}`]?: OrchestraInputAttributes[K] } & { [K in keyof OrchestraInput & keyof OrchestraInputAttributes as `prop:${K}`]?: OrchestraInput[K] };
     }
 }
 export { LocalJSX as JSX };
@@ -368,6 +607,7 @@ declare module "@stencil/core" {
             "orchestra-button": LocalJSX.IntrinsicElements["orchestra-button"] & JSXBase.HTMLAttributes<HTMLOrchestraButtonElement>;
             "orchestra-checkbox": LocalJSX.IntrinsicElements["orchestra-checkbox"] & JSXBase.HTMLAttributes<HTMLOrchestraCheckboxElement>;
             "orchestra-icon": LocalJSX.IntrinsicElements["orchestra-icon"] & JSXBase.HTMLAttributes<HTMLOrchestraIconElement>;
+            "orchestra-input": LocalJSX.IntrinsicElements["orchestra-input"] & JSXBase.HTMLAttributes<HTMLOrchestraInputElement>;
         }
     }
 }

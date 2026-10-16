@@ -4,5 +4,6 @@ import * as d from './components';
 export const DIRECTIVES = [
   d.OrchestraButton,
   d.OrchestraCheckbox,
-  d.OrchestraIcon
+  d.OrchestraIcon,
+  d.OrchestraInput
 ];
