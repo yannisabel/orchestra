@@ -94,8 +94,8 @@
 }
 
 .orchestra-checkbox:focus-visible {
-  box-shadow: 0 0 0 4px var(--orchestra-focus-outer-ring-color);
-  outline: 2px solid var(--orchestra-focus-inner-ring-color);
+  box-shadow: 0 0 0 4px var(--orchestra-color-action-outer-ring);
+  outline: 2px solid var(--orchestra-color-action-inner-ring);
   outline-offset: 0;
 }
 
