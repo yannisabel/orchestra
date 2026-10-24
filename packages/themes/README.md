@@ -26,13 +26,13 @@ A single value flows through all three tiers before it reaches a component:
 
 ```jsonc
 // 1. tokens/primitive.json — raw value
-"vibrant": { "purple": { "600": { "$value": "#7b55ad" } } }
+"color": { "purple": { "600": { "$value": "#7b55ad" } } }
 ```
 
 ```jsonc
 // 2. tokens/semantic.light.json — meaningful reference to the primitive
 "color": { "action": { "primary": { "container": {
-  "default": { "$value": "{vibrant.purple.600}" }
+  "default": { "$value": "{color.purple.600}" }
 }}}}
 ```
 
@@ -116,17 +116,18 @@ The naming convention is a direct expression of the token architecture: each seg
 **Semantic level**:
 
 ```text
---orchestra-{domain}-{variant}-{target}-{state}
+--orchestra-{category}-{domain}-{variant}-{target}-{state}
 ```
 
-| Segment   | Example value | Meaning                                    |
-| --------- | ------------- | ------------------------------------------ |
-| `domain`  | `action`      | functional area the token belongs to       |
-| `variant` | `primary`     | visual weight/importance within the domain |
-| `target`  | `container`   | part of the component the token styles     |
-| `state`   | `default`     | interaction state                          |
+| Segment    | Example value | Meaning                                                                |
+| ---------- | ------------- | ---------------------------------------------------------------------- |
+| `category` | `color`       | kind of value: `color`, `spacing`, `radius`, or `size`                 |
+| `domain`   | `action`      | functional area the token belongs to                                   |
+| `variant`  | `primary`     | visual weight/importance within the domain                             |
+| `target`   | `container`   | part of the component the token styles                                 |
+| `state`    | `default`     | interaction state; non-color tokens may end in a scale such as `large` |
 
-Example: `--orchestra-color-action-primary-container-default` → domain `action`, variant `primary`, target `container`, state `default`.
+Example: `--orchestra-color-action-primary-container-default` → category `color`, domain `action`, variant `primary`, target `container`, state `default`.
 
 **Component level**:
 
@@ -153,6 +154,18 @@ npm run build
 ```
 
 This generates the distributed CSS bundles used by the design system and apps that consume it.
+
+### Naming monitor
+
+Each build also writes `dist/naming-monitor.html`. The page has one section per level: Primitive, Semantic and Component. Each level has its own naming columns, so primitive names (`color.grey.200`, `scale.x1`) are not checked against the semantic convention. Each token name is split into words, and each word is placed in the column whose allowed words or pattern include it. Words with no matching column are listed in the Issues column as Not applicable words, with advice on how to fix each one. Each section has its own advice table, which lists Not applicable words and same-layer tokens in one table with a Type column. The table is not rendered when a section has no issues.
+
+- The Used by column lists the tokens that alias each token through a `{...}` reference, and the component folders in `packages/core/src/components` that reference it with `var(...)`, prefixed with `component:`. For primitives, this shows which semantic tokens use them.
+- A token whose value aliases another token in the same level through a `{...}` reference is listed in the Issues column as a same-layer token, with the advice "Avoid cannibalism, a design token should always never consume a design token from the same layer." Rows with no issues leave that column empty.
+- Primitives are not emitted to CSS, so they show a single raw value column.
+- Category and Component match the first word of a token name only.
+- Domain, Variant, Target, Property and State match any later word from their list.
+- Primitive Step matches numbers, `x` scale steps, `none`, `full` and `transparent`.
+- The allowed words are defined in `NAMING_COLUMNS` and `PRIMITIVE_COLUMNS` in `build.mjs`. Update those lists when the convention changes.
 
 ## Notes
 

@@ -1,26 +1,4 @@
 {
-  "focus": {
-    "outer-ring": {
-      "color": {
-        "$extensions": {
-          "com.figma.scopes": ["ALL_SCOPES"],
-          "com.figma.hiddenFromPublishing": false
-        },
-        "$type": "color",
-        "$value": "{color.outline}"
-      }
-    },
-    "inner-ring": {
-      "color": {
-        "$extensions": {
-          "com.figma.scopes": ["ALL_SCOPES"],
-          "com.figma.hiddenFromPublishing": false
-        },
-        "$type": "color",
-        "$value": "{color.action.primary.content.focus}"
-      }
-    }
-  },
   "button": {
     "primary": {
       "container": {

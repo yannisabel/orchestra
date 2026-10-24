@@ -22,7 +22,7 @@ Raw design values—colors, spacing, typography. **Not exported to CSS** (used a
 ```json
 // packages/themes/tokens/primitive.json
 {
-  "vibrant": {
+  "color": {
     "purple": {
       "50": { "$type": "color", "$value": "#feeaff" },
       "100": { "$type": "color", "$value": "#e8d1ff" },
@@ -57,24 +57,24 @@ Meaningful references tied to **states and actions**. These reference primitives
     "action": {
       "primary": {
         "container": {
-          "default": { "$type": "color", "$value": "{vibrant.purple.600}" },
-          "hover": { "$type": "color", "$value": "{vibrant.purple.700}" },
-          "active": { "$type": "color", "$value": "{vibrant.purple.800}" },
-          "disabled": { "$type": "color", "$value": "{vibrant.grey.800}" }
+          "default": { "$type": "color", "$value": "{color.purple.600}" },
+          "hover": { "$type": "color", "$value": "{color.purple.700}" },
+          "active": { "$type": "color", "$value": "{color.purple.800}" },
+          "disabled": { "$type": "color", "$value": "{color.grey.800}" }
         },
         "content": {
-          "default": { "$type": "color", "$value": "{vibrant.grey.50}" },
-          "hover": { "$type": "color", "$value": "{vibrant.grey.50}" },
-          "disabled": { "$type": "color", "$value": "{vibrant.grey.600}" }
+          "default": { "$type": "color", "$value": "{color.grey.50}" },
+          "hover": { "$type": "color", "$value": "{color.grey.50}" },
+          "disabled": { "$type": "color", "$value": "{color.grey.600}" }
         }
       },
       "secondary": {
         // Similar structure for secondary variant
       }
     },
-    "outline": { "$type": "color", "$value": "{vibrant.blue.500}" },
-    "background": { "$type": "color", "$value": "{vibrant.grey.50}" },
-    "text": { "$type": "color", "$value": "{vibrant.grey.950}" }
+    "outline": { "$type": "color", "$value": "{color.blue.500}" },
+    "background": { "$type": "color", "$value": "{color.grey.50}" },
+    "text": { "$type": "color", "$value": "{color.grey.950}" }
   },
   "spacing": {
     "action": {
@@ -193,13 +193,13 @@ Override only the tokens that differ in dark mode:
     action: {
       primary: {
         container: {
-          default: { $value: '{vibrant.purple.500}' }, // Lighter in dark
-          hover: { $value: '{vibrant.purple.600}' },
+          default: { $value: '{color.purple.500}' }, // Lighter in dark
+          hover: { $value: '{color.purple.600}' },
         },
       },
     },
-    background: { $value: '{vibrant.grey.950}' }, // Dark background
-    text: { $value: '{vibrant.grey.50}' }, // Light text
+    background: { $value: '{color.grey.950}' }, // Dark background
+    text: { $value: '{color.grey.50}' }, // Light text
   },
 }
 ```
@@ -334,7 +334,7 @@ Always reference lower levels:
 ```json
 {
   "color": {
-    "success": { "$value": "{vibrant.green.600}" } // ✅ Reference primitive
+    "success": { "$value": "{color.green.600}" } // ✅ Reference primitive
   }
 }
 ```
@@ -365,7 +365,7 @@ npm run build --workspace=@orchestra-design-system/themes
 
 ```json
 {
-  "vibrant": {
+  "color": {
     "amber": {
       "50": { "$type": "color", "$value": "#fffbeb" },
       "600": { "$type": "color", "$value": "#d97706" },
@@ -384,13 +384,13 @@ npm run build --workspace=@orchestra-design-system/themes
     "action": {
       "warning": {
         "container": {
-          "default": { "$type": "color", "$value": "{vibrant.amber.600}" },
-          "hover": { "$type": "color", "$value": "{vibrant.amber.700}" },
-          "active": { "$type": "color", "$value": "{vibrant.amber.800}" }
+          "default": { "$type": "color", "$value": "{color.amber.600}" },
+          "hover": { "$type": "color", "$value": "{color.amber.700}" },
+          "active": { "$type": "color", "$value": "{color.amber.800}" }
         },
         "content": {
-          "default": { "$type": "color", "$value": "{vibrant.grey.950}" },
-          "hover": { "$type": "color", "$value": "{vibrant.grey.950}" }
+          "default": { "$type": "color", "$value": "{color.grey.950}" },
+          "hover": { "$type": "color", "$value": "{color.grey.950}" }
         }
       }
     }
@@ -406,8 +406,8 @@ npm run build --workspace=@orchestra-design-system/themes
     action: {
       warning: {
         container: {
-          default: { $value: '{vibrant.amber.500}' }, // Lighter in dark mode
-          hover: { $value: '{vibrant.amber.600}' },
+          default: { $value: '{color.amber.500}' }, // Lighter in dark mode
+          hover: { $value: '{color.amber.600}' },
         },
       },
     },

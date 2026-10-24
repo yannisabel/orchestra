@@ -24,8 +24,8 @@
 
 .orchestra-button:focus-visible {
   box-shadow: 0 0 0 var(--outline-large-width)
-    var(--orchestra-focus-outer-ring-color);
-  outline: var(--outline-width) solid var(--orchestra-focus-inner-ring-color);
+    var(--orchestra-color-action-outer-ring);
+  outline: var(--outline-width) solid var(--orchestra-color-action-inner-ring);
   outline-offset: 0;
 }
 
