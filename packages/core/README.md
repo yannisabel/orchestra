@@ -145,6 +145,22 @@ packages/core/
 npm run build
 ```
 
+### Design token usage check
+
+From the monorepo root, run the `design-tokens-check` CLI to scan component stylesheets for raw color and dimension values that may need design tokens:
+
+```bash
+npm run design-tokens-check
+```
+
+The command writes `packages/core/design-tokens-check-report.md` and exits with status 1 when it finds potential issues. Use `npm run design-tokens-check -- --output path/to/report.md` to choose a different report path. CSS `var()` fallbacks, percentages, zero dimensions, unitless values, and transition durations are excluded.
+
+Run its focused tests with:
+
+```bash
+npm run test:design-tokens-check
+```
+
 ### Watch mode
 
 ```bash

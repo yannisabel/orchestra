@@ -41,6 +41,7 @@
     "lint:check": "npx oxlint . --import-plugin --vitest-plugin --jest-plugin --node-plugin --vue-plugin",
     "lint:eslint": "npx eslint --no-ignore eslint.config.mjs commitlint.config.cjs",
     "check:docs": "node scripts/check-docs-sync.mjs",
+    "design-tokens-check": "node packages/core/scripts/design-tokens-check.mjs",
     "prepare": "husky",
     "lint-staged": "lint-staged",
     "commitlint": "commitlint --edit",
