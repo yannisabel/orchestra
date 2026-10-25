@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{PAGE_TITLE}}</title>
+    <link rel="stylesheet" href="../dist/css/light.css" />
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: var(--orchestra-size-action-common-content-large);
+        color: var(--orchestra-color-action-secondary-content-default);
+        background: var(--orchestra-color-action-inner-ring);
+      }
+      h1 {
+        font-size: 20px;
+        margin: 0 0 var(--orchestra-spacing-action-primary-medium);
+        color: var(--orchestra-color-brand-active);
+      }
+      p.meta {
+        color: var(--orchestra-color-action-secondary-container-readonly);
+        margin: 0 0 var(--orchestra-spacing-action-primary-large);
+        font-size: 13px;
+      }
+      .table-wrap {
+        overflow: auto;
+        max-height: 80vh;
+      }
+      table {
+        border-collapse: collapse;
+        font-size: 12px;
+        width: 100%;
+      }
+      th,
+      td {
+        border: var(--orchestra-size-action-primary-border-width-default) solid
+          var(--orchestra-color-action-toggle-off-border-default);
+        padding: var(--orchestra-spacing-action-primary-small)
+          var(--orchestra-spacing-action-primary-medium);
+        text-align: left;
+        vertical-align: top;
+      }
+      thead th {
+        position: sticky;
+        top: 0;
+        background: var(--orchestra-color-action-secondary-container-default);
+        z-index: 1;
+      }
+      th small {
+        display: block;
+        font-weight: 400;
+        color: var(--orchestra-color-action-secondary-container-readonly);
+        margin-top: var(--orchestra-spacing-action-primary-small);
+      }
+      td.issue {
+        background: var(--orchestra-color-action-toggle-off-container-hover);
+      }
+      td.issue small {
+        display: block;
+        margin-top: var(--orchestra-spacing-action-primary-small);
+        color: var(--orchestra-color-brand-active);
+      }
+      td ul {
+        margin: 0;
+        padding-left: var(--orchestra-size-action-common-content-small);
+      }
+      code {
+        font-family: ui-monospace, monospace;
+      }
+      .swatch {
+        display: inline-block;
+        width: var(--orchestra-size-action-common-content-small);
+        height: var(--orchestra-size-action-common-content-small);
+        border: var(--orchestra-size-action-primary-border-width-default) solid
+          var(--orchestra-color-action-toggle-off-border-default);
+        border-radius: var(--orchestra-radius-action-primary-container);
+        margin-right: var(--orchestra-spacing-action-primary-medium);
+        vertical-align: middle;
+      }
+      .missing {
+        color: var(--orchestra-color-brand-active);
+      }
+      h2 {
+        font-size: 16px;
+        margin: var(--orchestra-size-action-common-content-large) 0
+          var(--orchestra-spacing-action-primary-medium);
+      }
+      h3 {
+        font-size: 14px;
+        margin: var(--orchestra-spacing-action-primary-large) 0
+          var(--orchestra-spacing-action-primary-medium);
+      }
+      section {
+        margin-bottom: var(--orchestra-size-action-common-container-small);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>{{PAGE_TITLE}}</h1>
+    <p class="meta">Generated {{GENERATED_AT}}.</p>
+    <p class="meta">
+      {{TOTAL_TOKENS}} tokens, {{TOTAL_ISSUES}} issues in total.
+    </p>
+    {{SECTIONS}}
+  </body>
+</html>

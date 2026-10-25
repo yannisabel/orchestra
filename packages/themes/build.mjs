@@ -13,6 +13,11 @@ import { formats, transformTypes, transforms } from 'style-dictionary/enums'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PREFIX = 'orchestra'
+const PAGE_TITLE = 'Orchestra design tokens monitoring'
+const TEMPLATE_PATH = resolve(
+  __dirname,
+  'monitoring/template/design-tokens-monitoring.template.html',
+)
 const { sizePxToRem } = transforms
 
 StyleDictionary.registerTransform({
@@ -98,19 +103,13 @@ for (const theme of themes) {
   await sd.buildAllPlatforms()
 }
 
-// Naming monitor: classifies every token name against the naming convention of
-// its level and writes a static HTML report to dist/.
+// Design tokens monitor: classifies every token name against the naming convention of
+// its level and writes a static HTML report to monitoring/.
 
 // `root` columns match the first word of a token name.
 // `words` columns match any later word, `pattern` columns match a regex.
 // Words that match no column are listed in the "Not applicable" column.
-const NAMING_COLUMNS = [
-  {
-    key: 'category',
-    label: 'Category',
-    root: ['color', 'spacing', 'radius', 'size'],
-  },
-  { key: 'component', label: 'Component', root: ['button', 'checkbox'] },
+const SEMANTIC_COMPONENT_COLUMNS = [
   {
     key: 'domain',
     label: 'Domain',
@@ -178,6 +177,20 @@ const NAMING_COLUMNS = [
   },
 ]
 
+const SEMANTIC_COLUMNS = [
+  {
+    key: 'category',
+    label: 'Category',
+    root: ['color', 'spacing', 'radius', 'size'],
+  },
+  ...SEMANTIC_COMPONENT_COLUMNS,
+]
+
+const COMPONENT_COLUMNS = [
+  { key: 'component', label: 'Component', root: ['button', 'checkbox'] },
+  ...SEMANTIC_COMPONENT_COLUMNS,
+]
+
 const PRIMITIVE_COLUMNS = [
   { key: 'category', label: 'Category', root: ['color', 'scale'] },
   {
@@ -188,17 +201,12 @@ const PRIMITIVE_COLUMNS = [
   {
     key: 'step',
     label: 'Step',
-    hint: 'number, x-scale, none, full, transparent',
     pattern: /^(\d+|x\d+(-\d+)?|none|full|transparent)$/,
   },
 ]
 
 const matchesWord = (column, word) =>
   Boolean(column.words?.includes(word) || column.pattern?.test(word))
-
-const columnHint = (column) =>
-  column.hint ??
-  (column.root ? `root: ${column.root.join(', ')}` : column.words.join(', '))
 
 const escapeHtml = (value) =>
   String(value).replace(
@@ -226,14 +234,14 @@ const NAMING_LEVELS = [
   },
   {
     title: 'Semantic',
-    columns: NAMING_COLUMNS,
+    columns: SEMANTIC_COLUMNS,
     sources: ['./tokens/semantic.light.json', './tokens/semantic.dark.json'],
     inCss: true,
     toName: toCssName,
   },
   {
     title: 'Component',
-    columns: NAMING_COLUMNS,
+    columns: COMPONENT_COLUMNS,
     sources: ['./tokens/component.light.json', './tokens/component.dark.json'],
     inCss: true,
     toName: toCssName,
@@ -379,7 +387,7 @@ const adviceFor = (word, root, columns) => {
     const owner = allowed.find((item) => item.value === word)
     return owner
       ? `Move it after the category or component. It is a ${owner.label} word.`
-      : 'Start the name with a category or component, or add this root to NAMING_COLUMNS.'
+      : 'Start the name with a valid root for this token level, or add this root to the corresponding naming columns.'
   }
 
   const parts = word.split('-')
@@ -398,11 +406,13 @@ const adviceFor = (word, root, columns) => {
     return `Did you mean ${closest.value} (${closest.label})? Rename the segment if so.`
   }
 
-  return 'Rename it to an allowed word, or add it to a column list in NAMING_COLUMNS if the convention should allow it.'
+  return 'Rename it to an allowed word, or add it to the corresponding naming columns if the convention should allow it.'
 }
 
 const SAME_LAYER_ADVICE =
   'Avoid cannibalism, a design token should always never consume a design token from the same layer.'
+const THEME_PAIR_ADVICE =
+  'A design token value in one theme should have its pair in other themes.'
 
 const renderAdvice = (rows, columns) => {
   const entries = new Map()
@@ -426,6 +436,14 @@ const renderAdvice = (rows, columns) => {
         issue: target,
         position: '-',
         advice: SAME_LAYER_ADVICE,
+      })
+    }
+    for (const theme of row.missingThemes) {
+      addEntry(`theme-pair:${theme}`, {
+        type: 'Missing theme pair',
+        issue: `Missing ${theme} value`,
+        position: 'Theme',
+        advice: THEME_PAIR_ADVICE,
       })
     }
   }
@@ -466,23 +484,20 @@ const renderValue = (value) => {
   return `${swatch}<code>${escaped}</code>`
 }
 
-const issueCount = (row) => row.notApplicable.length + row.sameLayer.length
+const issueCount = (row) =>
+  row.notApplicable.length + row.sameLayer.length + row.missingThemes.length
 
 const renderSection = ({ level, rows }) => {
   const isPrimitive = !level.inCss
   const issueTotal = rows.reduce((sum, row) => sum + issueCount(row), 0)
 
   const headers = level.columns
-    .map(
-      (column) =>
-        `<th scope="col">${escapeHtml(column.label)}<small>${escapeHtml(columnHint(column))}</small></th>`,
-    )
+    .map((column) => `<th scope="col">${escapeHtml(column.label)}</th>`)
     .join('')
-  const usedHeaders =
-    '<th scope="col">Used by<small>tokens and components that use this one</small></th>'
+  const usedHeaders = '<th scope="col">Used by</th>'
   const valueHeaders = isPrimitive
-    ? '<th scope="col">Value<small>raw token value</small></th>'
-    : '<th scope="col">Light<small>value</small></th><th scope="col">Dark<small>value</small></th>'
+    ? '<th scope="col">Value</th>'
+    : '<th scope="col">Light Theme</th><th scope="col">Dark Theme</th>'
 
   const body = rows
     .map((row) => {
@@ -499,13 +514,19 @@ const renderSection = ({ level, rows }) => {
       const sameLayerNote = row.sameLayer.length
         ? `<small>Same-layer token: ${escapeHtml(row.sameLayer.join(', '))}. ${escapeHtml(SAME_LAYER_ADVICE)}</small>`
         : ''
+      const missingThemeNote = row.missingThemes
+        .map(
+          (theme) =>
+            `<small>Missing ${escapeHtml(theme)} theme value. ${escapeHtml(THEME_PAIR_ADVICE)}</small>`,
+        )
+        .join('')
       const usedBy = row.usedBy.length
         ? `<ul>${row.usedBy.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`
         : 'Not used'
       const valueCells = isPrimitive
         ? `<td>${renderValue(row.value)}</td>`
         : `<td>${renderValue(row.light)}</td><td>${renderValue(row.dark)}</td>`
-      return `<tr><td><code>${escapeHtml(row.name)}</code></td>${cells}<td${issueClass}>${issueText}${sameLayerNote}</td><td>${usedBy}</td>${valueCells}</tr>`
+      return `<tr><td><code>${escapeHtml(row.name)}</code></td>${cells}<td${issueClass}>${issueText}${sameLayerNote}${missingThemeNote}</td><td>${usedBy}</td>${valueCells}</tr>`
     })
     .join('\n')
 
@@ -516,7 +537,7 @@ ${renderAdvice(rows, level.columns)}
 <div class="table-wrap">
 <table>
 <thead>
-<tr><th scope="col">Token<small>${isPrimitive ? 'dotted path' : 'CSS variable'}</small></th>${headers}<th scope="col">Issues<small>Not applicable words and same-layer tokens</small></th>${usedHeaders}${valueHeaders}</tr>
+<tr><th scope="col">Token</th>${headers}<th scope="col">Issues</th>${usedHeaders}${valueHeaders}</tr>
 </thead>
 <tbody>
 ${body}
@@ -533,40 +554,19 @@ const renderNamingMonitor = (sections) => {
       sum + rows.reduce((count, row) => count + issueCount(row), 0),
     0,
   )
-  return `<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Orchestra naming monitor</title>
-<style>
-body { font-family: system-ui, sans-serif; margin: 24px; color: #1d1d1f; }
-h1 { font-size: 20px; margin: 0 0 8px; }
-p.meta { color: #555; margin: 0 0 16px; font-size: 13px; }
-.table-wrap { overflow: auto; max-height: 80vh; }
-table { border-collapse: collapse; font-size: 12px; width: 100%; }
-th, td { border: 1px solid #d0d0d7; padding: 6px 8px; text-align: left; vertical-align: top; }
-thead th { position: sticky; top: 0; background: #f4f4f7; z-index: 1; }
-th small { display: block; font-weight: 400; color: #555; margin-top: 2px; }
-td.issue { background: #fff4e5; }
-td.issue small { display: block; margin-top: 4px; color: #8a1c1c; }
-td ul { margin: 0; padding-left: 16px; }
-code { font-family: ui-monospace, monospace; }
-.swatch { display: inline-block; width: 12px; height: 12px; border: 1px solid #888; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
-.missing { color: #a00; }
-h2 { font-size: 16px; margin: 24px 0 8px; }
-h3 { font-size: 14px; margin: 16px 0 8px; }
-section { margin-bottom: 32px; }
-</style>
-</head>
-<body>
-<h1>Orchestra naming monitor</h1>
-<p class="meta">Generated ${escapeHtml(new Date().toISOString())}.</p>
-<p class="meta">${tokenTotal} tokens, ${issueTotal} issues in total.</p>
-${sections.map(renderSection).join('\n')}
-</body>
-</html>
-`
+  const template = readFileSync(TEMPLATE_PATH, 'utf8')
+  return template.replace(/\{\{(\w+)\}\}/g, (_, key) => {
+    const values = {
+      PAGE_TITLE,
+      GENERATED_AT: escapeHtml(new Date().toISOString()),
+      TOTAL_TOKENS: tokenTotal,
+      TOTAL_ISSUES: issueTotal,
+      SECTIONS: sections.map(renderSection).join('\n'),
+    }
+    if (!(key in values))
+      throw new Error(`Unknown template placeholder: ${key}`)
+    return String(values[key])
+  })
 }
 
 const writeNamingMonitor = () => {
@@ -579,6 +579,11 @@ const writeNamingMonitor = () => {
     const rows = [...tokens]
       .map(([path, { parts, value, references }]) => {
         const cssName = toCssName(parts)
+        const missingThemes = level.inCss
+          ? ['light', 'dark'].filter(
+              (theme) => !(theme === 'light' ? light : dark).has(cssName),
+            )
+          : []
         const consumers = level.inCss
           ? [...(components.get(cssName) ?? [])].map(
               (name) => `component: ${name}`,
@@ -594,6 +599,7 @@ const writeNamingMonitor = () => {
             .toSorted(),
           light: light.get(cssName),
           dark: dark.get(cssName),
+          missingThemes,
           value,
         }
       })
@@ -601,9 +607,10 @@ const writeNamingMonitor = () => {
     return { level, rows }
   })
 
-  mkdirSync(resolve(__dirname, 'dist'), { recursive: true })
+  const monitoringDir = resolve(__dirname, 'monitoring')
+  mkdirSync(monitoringDir, { recursive: true })
   writeFileSync(
-    resolve(__dirname, 'dist/naming-monitor.html'),
+    resolve(monitoringDir, 'design-tokens-monitoring.html'),
     renderNamingMonitor(sections),
   )
 }

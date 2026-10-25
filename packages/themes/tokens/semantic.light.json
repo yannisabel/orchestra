@@ -17,6 +17,14 @@
         "$type": "color",
         "$value": "{color.blue.400}"
       },
+      "default": {
+        "$extensions": {
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{color.grey.transparent}"
+      },
       "tertiary": {
         "content": {
           "default": {
@@ -611,6 +619,56 @@
               },
               "$type": "color",
               "$value": "{color.grey.100}"
+            }
+          },
+          "border": {
+            "disabled": {
+              "$extensions": {
+                "com.figma.scopes": ["ALL_SCOPES"],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "color",
+              "$value": "{color.grey.500}"
+            },
+            "focus": {
+              "$extensions": {
+                "com.figma.scopes": ["ALL_SCOPES"],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "color",
+              "$value": "{color.grey.200}"
+            },
+            "highlight": {
+              "$extensions": {
+                "com.figma.scopes": ["ALL_SCOPES"],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "color",
+              "$value": "{color.purple.400}"
+            },
+            "active": {
+              "$extensions": {
+                "com.figma.scopes": ["ALL_SCOPES"],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "color",
+              "$value": "{color.grey.200}"
+            },
+            "hover": {
+              "$extensions": {
+                "com.figma.scopes": ["ALL_SCOPES"],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "color",
+              "$value": "{color.grey.200}"
+            },
+            "default": {
+              "$extensions": {
+                "com.figma.scopes": ["ALL_SCOPES"],
+                "com.figma.hiddenFromPublishing": false
+              },
+              "$type": "color",
+              "$value": "{color.grey.200}"
             }
           }
         }
