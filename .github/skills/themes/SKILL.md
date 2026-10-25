@@ -309,6 +309,29 @@ packages/themes/dist/
     └── tokens.dark.js
 ```
 
+## Token Design Rules
+
+Separate rules that the monitoring tool can check from decisions that need design judgment.
+
+### Rules the monitor can check
+
+The current monitor is implemented in `packages/themes/build.mjs`. It checks that:
+
+- Primitive, semantic, and component token names start with a root allowed for that tier, and later segments match configured words or patterns.
+- Semantic and component token paths are present in both light and dark theme outputs.
+- A token does not directly alias another token in the same tier.
+
+The monitor does not enforce the order of later name segments, require every naming column to be present, or decide whether a component token adds useful meaning. Update `PRIMITIVE_COLUMNS`, `SEMANTIC_COLUMNS`, or `COMPONENT_COLUMNS` in the build script when the allowed naming vocabulary changes.
+
+### Rules that need design judgment
+
+- Create a component token only when it expresses component-specific meaning or provides an intentional way to configure that component independently.
+- If a semantic token already expresses the needed meaning and supports the system's intended reuse, use it directly rather than adding a component token only as an alias.
+- Consider whether components need to vary independently. For example, a button may need different inline and block padding while a checkbox uses uniform padding. A component token is meaningful when it allows that real distinction to change without affecting another component.
+- Do not add component tokens only for a hypothetical future need. Keep a component token when its independent configuration is an actual design requirement.
+
+An alias from a component token to a semantic token is not, by itself, proof of redundancy. Review its purpose and use: it may be an intentional component-level override point. The monitor can report structure and usage, but this decision remains with a human reviewer.
+
 ## Adding New Tokens
 
 ### Step 1: Identify the Level
@@ -329,7 +352,7 @@ packages/themes/dist/
 
 ### Step 3: Reference Existing Tokens
 
-Always reference lower levels:
+Reference a lower-tier token when it expresses the intended meaning, rather than duplicating its raw value. A component token may use a direct value when it represents an intentional component-specific setting that needs to vary independently.
 
 ```json
 {
@@ -339,7 +362,7 @@ Always reference lower levels:
 }
 ```
 
-**Don't do this**:
+**Avoid duplicating a primitive value in a semantic token**:
 
 ```json
 {
