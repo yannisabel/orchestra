@@ -18,6 +18,7 @@
   ],
   "scripts": {
     "build": "node build.mjs",
+    "monitoring": "node monitoring.mjs",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
