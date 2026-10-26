@@ -11,12 +11,42 @@ const TEMPLATE_PATH = resolve(
   'monitoring/template/design-tokens-monitoring.template.html',
 )
 
-// Design tokens monitor: classifies every token name against the naming convention of
-// its level and writes a static HTML report to monitoring/.
+/**
+ * Classifies every design token name against the naming convention of its level
+ * and writes a static HTML report to monitoring/.
+ */
 
-// `root` columns match the first word of a token name.
-// `words` columns match any later word, `pattern` columns match a regex.
-// Words that match no column are listed in the "Not applicable" column.
+/**
+ * A naming column. `root` matches the first word of a token name, `words` matches
+ * later words, and `pattern` matches later words by regex. Unmatched words are reported.
+ * @typedef {{ key: string, label: string, root?: string[], words?: string[], pattern?: RegExp }} NamingColumn
+ */
+
+/**
+ * A naming level: its columns, source token files, whether it is exported to CSS, and how to build its name.
+ * @typedef {{ title: string, columns: NamingColumn[], sources: string[], inCss: boolean, toName: (parts: string[]) => string }} NamingLevel
+ */
+
+/**
+ * A classified token row. Theme values are undefined when the token is not in that theme.
+ * @typedef {{
+ *   name: string,
+ *   cells: Record<string, string[]>,
+ *   notApplicable: Array<{ word: string, root: boolean }>,
+ *   usedBy: string[],
+ *   sameLayer: string[],
+ *   light: string | undefined,
+ *   dark: string | undefined,
+ *   missingThemes: string[],
+ *   value: unknown,
+ * }} Row
+ */
+
+/**
+ * A naming level with its rows.
+ * @typedef {{ level: NamingLevel, rows: Row[] }} Section
+ */
+
 const SEMANTIC_COMPONENT_COLUMNS = [
   {
     key: 'domain',
@@ -113,9 +143,20 @@ const PRIMITIVE_COLUMNS = [
   },
 ]
 
+/**
+ * Checks whether a later token word belongs to a naming column.
+ * @param {NamingColumn} column
+ * @param {string} word
+ * @returns {boolean}
+ */
 const matchesWord = (column, word) =>
   Boolean(column.words?.includes(word) || column.pattern?.test(word))
 
+/**
+ * Escapes a value for safe insertion into HTML.
+ * @param {unknown} value
+ * @returns {string}
+ */
 const escapeHtml = (value) =>
   String(value).replace(
     /[&<>"']/g,
@@ -125,13 +166,25 @@ const escapeHtml = (value) =>
       ],
   )
 
-// Drops the alias and component wrapper segments from a token path.
+/**
+ * Drops the alias and component wrapper segments from a token path.
+ * @param {string[]} path
+ * @returns {string[]}
+ */
 const toTokenParts = (path) =>
   path.filter((part) => part !== 'alias' && part !== 'component')
 
+/**
+ * Builds the CSS custom property name for token parts.
+ * @param {string[]} parts
+ * @returns {string}
+ */
 const toCssName = (parts) => `--${[PREFIX, ...parts].join('-')}`
 
-// Each level has its own naming columns and source files.
+/**
+ * Naming levels with their columns, source files, and whether they are exported to CSS.
+ * @type {NamingLevel[]}
+ */
 const NAMING_LEVELS = [
   {
     title: 'Primitive',
@@ -156,25 +209,15 @@ const NAMING_LEVELS = [
   },
 ]
 
-// Returns a Map of dotted token path to { parts, value, references } (alias and component removed).
-const readTokens = (files) => {
-  const tokens = new Map()
+/**
+ * Calls `visit` with the raw path and `$value` of every token leaf in the given files.
+ * @param {string[]} files
+ * @param {(path: string[], value: unknown) => void} visit
+ */
+const forEachTokenLeaf = (files, visit) => {
   const walk = (node, path) => {
     if (!node || typeof node !== 'object') return
-    if ('$value' in node) {
-      const parts = toTokenParts(path)
-      const key = parts.join('.')
-      const token = tokens.get(key) ?? {
-        parts,
-        value: node.$value,
-        references: new Set(),
-      }
-      token.value = node.$value
-      const reference = String(node.$value).match(/^\{(.+)\}$/)
-      if (reference) token.references.add(reference[1])
-      tokens.set(key, token)
-      return
-    }
+    if ('$value' in node) return visit(path, node.$value)
     for (const [key, child] of Object.entries(node)) {
       if (!key.startsWith('$')) walk(child, [...path, key])
     }
@@ -182,33 +225,57 @@ const readTokens = (files) => {
   for (const file of files) {
     walk(JSON.parse(readFileSync(resolve(__dirname, file), 'utf8')), [])
   }
+}
+
+/**
+ * Returns the target path of a `{...}` alias value, or undefined.
+ * @param {unknown} value
+ * @returns {string | undefined}
+ */
+const referenceOf = (value) => String(value).match(/^\{(.+)\}$/)?.[1]
+
+/**
+ * Reads tokens keyed by dotted path, with alias and component segments removed.
+ * @param {string[]} files
+ * @returns {Map<string, { parts: string[], value: unknown, references: Set<string> }>}
+ */
+const readTokens = (files) => {
+  const tokens = new Map()
+  forEachTokenLeaf(files, (path, value) => {
+    const parts = toTokenParts(path)
+    const key = parts.join('.')
+    const token = tokens.get(key) ?? { parts, value, references: new Set() }
+    token.value = value
+    const reference = referenceOf(value)
+    if (reference) token.references.add(reference)
+    tokens.set(key, token)
+  })
   return tokens
 }
 
-// Returns a Map of dotted token path to the CSS variable names of tokens that alias it.
+/**
+ * Maps each referenced token path to the CSS variables of the tokens that alias it.
+ * @returns {Map<string, Set<string>>}
+ */
 const readTokenUsers = () => {
   const users = new Map()
-  const walk = (node, path) => {
-    if (!node || typeof node !== 'object') return
-    if ('$value' in node) {
-      const reference = String(node.$value).match(/^\{(.+)\}$/)
-      if (!reference) return
-      const target = reference[1]
+  forEachTokenLeaf(
+    NAMING_LEVELS.flatMap((level) => level.sources),
+    (path, value) => {
+      const target = referenceOf(value)
+      if (!target) return
       if (!users.has(target)) users.set(target, new Set())
       users.get(target).add(toCssName(toTokenParts(path)))
-      return
-    }
-    for (const [key, child] of Object.entries(node)) {
-      if (!key.startsWith('$')) walk(child, [...path, key])
-    }
-  }
-  for (const file of NAMING_LEVELS.flatMap((level) => level.sources)) {
-    walk(JSON.parse(readFileSync(resolve(__dirname, file), 'utf8')), [])
-  }
+    },
+  )
   return users
 }
 
-// Returns a Map of CSS variable name to value from a generated theme file.
+/**
+ * Reads CSS custom property declarations from a generated theme file.
+ * @param {string} file
+ * @returns {Map<string, string>}
+ */
 const readCssValues = (file) => {
   const values = new Map()
   for (const [, name, value] of readFileSync(file, 'utf8').matchAll(
@@ -221,7 +288,10 @@ const readCssValues = (file) => {
 
 const COMPONENTS_DIR = resolve(__dirname, '../core/src/components')
 
-// Returns a Map of CSS variable name to the component folders that reference it.
+/**
+ * Maps each CSS custom property to the component folders in core that reference it with `var(...)`.
+ * @returns {Map<string, Set<string>>}
+ */
 const readComponentUsage = () => {
   const usage = new Map()
   for (const component of readdirSync(COMPONENTS_DIR, {
@@ -241,6 +311,12 @@ const readComponentUsage = () => {
   return usage
 }
 
+/**
+ * Assigns each word of a token path to a naming column, collecting unmatched words.
+ * @param {string[]} path
+ * @param {NamingColumn[]} columns
+ * @returns {{ cells: Record<string, string[]>, notApplicable: Array<{ word: string, root: boolean }> }}
+ */
 const classifyName = (path, columns) => {
   const cells = Object.fromEntries(columns.map((column) => [column.key, []]))
   const notApplicable = []
@@ -259,6 +335,11 @@ const classifyName = (path, columns) => {
   return { cells, notApplicable }
 }
 
+/**
+ * Lists every allowed root and later word across the given columns.
+ * @param {NamingColumn[]} columns
+ * @returns {Array<{ value: string, label: string, root: boolean }>}
+ */
 const allowedWords = (columns) =>
   columns.flatMap((column) => [
     ...(column.root ?? []).map((value) => ({
@@ -273,6 +354,12 @@ const allowedWords = (columns) =>
     })),
   ])
 
+/**
+ * Computes the Levenshtein distance between two strings.
+ * @param {string} a
+ * @param {string} b
+ * @returns {number}
+ */
 const editDistance = (a, b) => {
   let row = Array.from({ length: b.length + 1 }, (_, j) => j)
   for (let i = 1; i <= a.length; i++) {
@@ -289,6 +376,13 @@ const editDistance = (a, b) => {
   return row[b.length]
 }
 
+/**
+ * Suggests a fix for a word that matches no naming column.
+ * @param {string} word
+ * @param {boolean} root Whether the word is the first segment of the name.
+ * @param {NamingColumn[]} columns
+ * @returns {string}
+ */
 const adviceFor = (word, root, columns) => {
   const allowed = allowedWords(columns)
   if (root) {
@@ -322,6 +416,12 @@ const SAME_LAYER_ADVICE =
 const THEME_PAIR_ADVICE =
   'A design token value in one theme should have its pair in other themes.'
 
+/**
+ * Renders the advice table for the issues found in a section, or an empty string.
+ * @param {Row[]} rows
+ * @param {NamingColumn[]} columns
+ * @returns {string}
+ */
 const renderAdvice = (rows, columns) => {
   const entries = new Map()
   const addEntry = (key, entry) => {
@@ -383,6 +483,11 @@ ${lines}
 </div>`
 }
 
+/**
+ * Renders a token value with a colour swatch when it is a colour.
+ * @param {string | undefined} value
+ * @returns {string}
+ */
 const renderValue = (value) => {
   if (value === undefined) return '<span class="missing">Not defined</span>'
   const escaped = escapeHtml(value)
@@ -392,12 +497,22 @@ const renderValue = (value) => {
   return `${swatch}<code>${escaped}</code>`
 }
 
+/**
+ * Counts the issues of a row.
+ * @param {Row} row
+ * @returns {number}
+ */
 const issueCount = (row) =>
   row.notApplicable.length + row.sameLayer.length + row.missingThemes.length
 
+/**
+ * Renders one level as an HTML section with its token table.
+ * @param {Section} section
+ * @returns {string}
+ */
 const renderSection = ({ level, rows }) => {
   const isPrimitive = !level.inCss
-  const issueTotal = rows.reduce((sum, row) => sum + issueCount(row), 0)
+  const { issues: issueTotal } = countRows(rows)
 
   const headers = level.columns
     .map((column) => `<th scope="col">${escapeHtml(column.label)}</th>`)
@@ -455,65 +570,94 @@ ${body}
 </section>`
 }
 
-const renderNamingMonitor = (sections) => {
-  const tokenTotal = sections.reduce((sum, { rows }) => sum + rows.length, 0)
-  const issueTotal = sections.reduce(
-    (sum, { rows }) =>
-      sum + rows.reduce((count, row) => count + issueCount(row), 0),
-    0,
+/**
+ * Counts tokens and issues for a list of rows.
+ * @param {Row[]} rows
+ * @returns {{ tokens: number, issues: number }}
+ */
+const countRows = (rows) => ({
+  tokens: rows.length,
+  issues: rows.reduce((sum, row) => sum + issueCount(row), 0),
+})
+
+/**
+ * Counts tokens and issues across all sections.
+ * @param {Section[]} sections
+ * @returns {{ tokens: number, issues: number }}
+ */
+const countSections = (sections) =>
+  sections.reduce(
+    (total, { rows }) => {
+      const counts = countRows(rows)
+      return {
+        tokens: total.tokens + counts.tokens,
+        issues: total.issues + counts.issues,
+      }
+    },
+    { tokens: 0, issues: 0 },
   )
+
+/**
+ * Renders the full HTML report from the template.
+ * @param {Section[]} sections
+ * @returns {string}
+ */
+const renderNamingMonitor = (sections) => {
+  const totals = countSections(sections)
   const template = readFileSync(TEMPLATE_PATH, 'utf8')
+  const values = {
+    PAGE_TITLE,
+    GENERATED_AT: escapeHtml(new Date().toISOString()),
+    TOTAL_TOKENS: totals.tokens,
+    TOTAL_ISSUES: totals.issues,
+    SECTIONS: sections.map(renderSection).join('\n'),
+  }
   return template.replace(/\{\{(\w+)\}\}/g, (_, key) => {
-    const values = {
-      PAGE_TITLE,
-      GENERATED_AT: escapeHtml(new Date().toISOString()),
-      TOTAL_TOKENS: tokenTotal,
-      TOTAL_ISSUES: issueTotal,
-      SECTIONS: sections.map(renderSection).join('\n'),
-    }
     if (!(key in values))
       throw new Error(`Unknown template placeholder: ${key}`)
     return String(values[key])
   })
 }
 
+/**
+ * Prints the totals per level and the path to the HTML report.
+ * @param {Section[]} sections
+ * @param {string} reportPath
+ */
 const printSummary = (sections, reportPath) => {
-  const countIssues = (rows) =>
-    rows.reduce((sum, row) => sum + issueCount(row), 0)
-  const tokenTotal = sections.reduce((sum, { rows }) => sum + rows.length, 0)
-  const issueTotal = sections.reduce(
-    (sum, { rows }) => sum + countIssues(rows),
-    0,
-  )
+  const totals = countSections(sections)
   const lines = [
     'Design tokens monitoring',
-    `Tokens: ${tokenTotal}`,
-    `Issues: ${issueTotal}`,
+    `Tokens: ${totals.tokens}`,
+    `Issues: ${totals.issues}`,
     '',
-    ...sections.map(
-      ({ level, rows }) =>
-        `${level.title}: ${rows.length} tokens, ${countIssues(rows)} issues`,
-    ),
+    ...sections.map(({ level, rows }) => {
+      const counts = countRows(rows)
+      return `${level.title}: ${counts.tokens} tokens, ${counts.issues} issues`
+    }),
     '',
     `For more infos check the design tokens monitoring report: ${reportPath}`,
   ]
   console.log(lines.join('\n'))
 }
 
-const writeNamingMonitor = () => {
-  const light = readCssValues(resolve(__dirname, 'dist/css/light.css'))
-  const dark = readCssValues(resolve(__dirname, 'dist/css/dark.css'))
+/**
+ * Builds the rows of every naming level, comparing light and dark theme values.
+ * @param {Map<string, string>} light
+ * @param {Map<string, string>} dark
+ * @returns {Section[]}
+ */
+const buildSections = (light, dark) => {
   const components = readComponentUsage()
   const users = readTokenUsers()
-  const sections = NAMING_LEVELS.map((level) => {
+  const themes = { light, dark }
+  return NAMING_LEVELS.map((level) => {
     const tokens = readTokens(level.sources)
     const rows = [...tokens]
       .map(([path, { parts, value, references }]) => {
         const cssName = toCssName(parts)
         const missingThemes = level.inCss
-          ? ['light', 'dark'].filter(
-              (theme) => !(theme === 'light' ? light : dark).has(cssName),
-            )
+          ? Object.keys(themes).filter((theme) => !themes[theme].has(cssName))
           : []
         const consumers = level.inCss
           ? [...(components.get(cssName) ?? [])].map(
@@ -537,7 +681,13 @@ const writeNamingMonitor = () => {
       .toSorted((a, b) => a.name.localeCompare(b.name))
     return { level, rows }
   })
+}
 
+/** Generates the HTML report and prints the CLI summary. */
+const writeNamingMonitor = () => {
+  const light = readCssValues(resolve(__dirname, 'dist/css/light.css'))
+  const dark = readCssValues(resolve(__dirname, 'dist/css/dark.css'))
+  const sections = buildSections(light, dark)
   const monitoringDir = resolve(__dirname, 'monitoring')
   const reportPath = resolve(monitoringDir, 'design-tokens-monitoring.html')
   mkdirSync(monitoringDir, { recursive: true })
