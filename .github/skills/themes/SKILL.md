@@ -315,13 +315,13 @@ Separate rules that the monitoring tool can check from decisions that need desig
 
 ### Rules the monitor can check
 
-The current monitor is implemented in `packages/themes/build.mjs`. It checks that:
+The current monitor is implemented in `packages/themes/monitoring.mjs` and runs with `npm run monitoring:themes` after the build. It checks that:
 
 - Primitive, semantic, and component token names start with a root allowed for that tier, and later segments match configured words or patterns.
 - Semantic and component token paths are present in both light and dark theme outputs.
 - A token does not directly alias another token in the same tier.
 
-The monitor does not enforce the order of later name segments, require every naming column to be present, or decide whether a component token adds useful meaning. Update `PRIMITIVE_COLUMNS`, `SEMANTIC_COLUMNS`, or `COMPONENT_COLUMNS` in the build script when the allowed naming vocabulary changes.
+The monitor does not enforce the order of later name segments, require every naming column to be present, or decide whether a component token adds useful meaning. Update `PRIMITIVE_COLUMNS`, `SEMANTIC_COLUMNS`, or `COMPONENT_COLUMNS` in `monitoring.mjs` when the allowed naming vocabulary changes.
 
 ### Rules that need design judgment
 

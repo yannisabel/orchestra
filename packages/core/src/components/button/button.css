@@ -1,8 +1,4 @@
 :host {
-  --border-width: 1px;
-  --outline-width: 1px;
-  --outline-offset: 2px;
-  --outline-large-width: 2px;
   display: inline-flex;
   border-radius: var(--orchestra-button-primary-container-radius);
 }
