@@ -68,3 +68,23 @@ npm run check:docs
 ```
 
 If the package graph, package names, output targets, or repo responsibilities changed, update the related docs in the same change.
+
+## 5. Breaking API changes (core)
+
+The core public API is tracked in `packages/core/custom-elements.json`, which is generated on every core build. The `api-compatibility` CI job fails a PR that removes or changes public API without declaring it.
+
+- Additions are non-breaking. Removing or changing a prop, attribute, type, default, method, event, slot, CSS property, or CSS part is breaking.
+- Exceptions: widening a union type (e.g. `'a' | 'b'` to `'a' | 'b' | 'c'`) keeps the previous default, and appending optional method parameters, are non-breaking. Changing a default, even from none to a value, is breaking.
+- For a breaking change, at least one commit in the PR range (`merge-base..HEAD`, merges excluded) must be a Conventional Commit with `!` in the header and a `BREAKING CHANGE:` footer explaining the change. It does not have to be the last commit:
+
+```text
+feat(core)!: replace button variant with kind
+
+BREAKING CHANGE: the variant prop is removed; use kind instead.
+```
+
+- A `!` or `BREAKING CHANGE` footer drives a major version bump on release (`release-it` with the conventional commits preset).
+
+- Commit the regenerated `custom-elements.json` with the change. The job fails if it is out of date.
+- The job is skipped when the base branch has no `packages/core/custom-elements.json` yet (for example, before the manifest was first merged).
+- To run the same check locally, use `npm run check:api` (see [scripts/README.md](./.github/scripts/README.md)).
