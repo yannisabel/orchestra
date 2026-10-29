@@ -31,7 +31,7 @@ jobs:
         if: github.ref_name == 'main'
         run: |
           echo "Skipping main deployment in this workflow."
-          echo "Main Storybook is deployed only from the Release workflow after a successful non-dry release."
+          echo "Main Storybook is deployed from the Release workflow after a successful non-dry release, or from the Deploy Main Storybook workflow."
       - name: Deploy Storybook to GitHub Pages (branch)
         if: github.ref_name != 'main'
         uses: peaceiris/actions-gh-pages@v3

@@ -6,7 +6,7 @@ This repository uses separate workflows for package releases and Storybook deplo
 
 - **Package Release Workflow**: manual, main branch only, publishes npm packages under `@orchestra-design-system/*`
 - **Storybook Branch Previews**: automatic on push, deploys non-main branches to branch paths in GitHub Pages
-- **Storybook Main Deployment**: runs only after a successful non-dry package release
+- **Storybook Main Deployment**: runs after a successful non-dry package release, or on demand via the manual Storybook workflow (no version bump or npm publish)
 
 ## Release Workflow
 
@@ -88,6 +88,15 @@ Each publishable package maintains its own `CHANGELOG.md` and is updated by rele
   - deploy to GitHub Pages root
 
 This ensures main Storybook is updated only after a successful real package release.
+
+### Manual Main Storybook Deployment
+
+**File**: `.github/workflows/storybook-main-deploy.yml` (workflow: "Deploy Main Storybook")
+
+- Trigger: `workflow_dispatch`, run from `main` only
+- Use it to publish documentation changes without bumping package versions or publishing to npm
+- Steps are the same as the post-release job: install, build packages, build Storybook, deploy to GitHub Pages root
+- Uses a concurrency group so it does not overlap with another main Pages deployment
 
 ## Required Secrets and Permissions
 

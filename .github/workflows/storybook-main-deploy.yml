@@ -1,0 +1,32 @@
+name: Deploy Main Storybook
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: storybook-main-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy-storybook-main:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: '.nvmrc'
+      - name: Install dependencies (retry)
+        uses: ./.github/actions/npm-ci-retry
+      - name: Build packages
+        run: npm run build
+      - name: Build Storybook
+        run: npm run build:storybook
+      - name: Deploy Storybook to GitHub Pages (main)
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./packages/storybook/storybook-static
+          keep_files: true
