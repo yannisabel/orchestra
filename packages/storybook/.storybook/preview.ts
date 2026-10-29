@@ -90,6 +90,12 @@ const preview: Preview = {
   parameters: {
     viewMode: 'docs',
 
+    options: {
+      storySort: {
+        order: ['Overview', ['Introduction', 'Changelog'], '*'],
+      },
+    },
+
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -100,11 +106,11 @@ const preview: Preview = {
     docs: {
       toc: {
         title: (async () => {
-          const headingSelector = 'h2, h3'
+          const headingSelector = 'h1, h2, h3'
           const showTitle = document.querySelector(headingSelector) !== null
           return showTitle ? 'On this page' : ''
         })(),
-        headingSelector: 'h2, h3',
+        headingSelector: 'h1, h2, h3',
       },
       source: {
         transform: (source: string) => decodeHtmlEntities(source),

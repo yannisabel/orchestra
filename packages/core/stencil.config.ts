@@ -6,6 +6,10 @@ import postcss from 'rollup-plugin-postcss'
 
 export const config: Config = {
   namespace: 'orchestra-design-system',
+  watchIgnoredRegex: [
+    /[\\/](dist|www|hydrate|stencil-generated)[\\/]/,
+    /custom-elements\.json$/,
+  ],
   outputTargets: [
     {
       type: 'dist',

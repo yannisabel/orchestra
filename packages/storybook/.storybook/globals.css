@@ -67,6 +67,11 @@ body,
   border-color: var(--border-color) !important;
 }
 
+.sbdocs-toc--custom > nav {
+  /* Mirror the canvas's left gap (1000px canvas, 13rem TOC + gap, 20px padding). */
+  right: max(20px, calc((100vw - 1000px - 13rem) / 2));
+}
+
 .source-code.hidden {
   display: none;
 }
