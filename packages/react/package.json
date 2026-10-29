@@ -24,7 +24,7 @@
     "patch:generated": "node scripts/patch-generated-files.cjs"
   },
   "dependencies": {
-    "@orchestra-design-system/core": "^0.0.13",
+    "@orchestra-design-system/core": "^0.1.0",
     "@stencil/react-output-target": "^1.6.0"
   },
   "repository": {
