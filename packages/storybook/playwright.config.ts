@@ -8,7 +8,7 @@ export default defineConfig({
   },
   webServer: {
     command:
-      'npm run storybook:dev -- --host 127.0.0.1 --port 6007 --ci --no-open',
+      'npm run dev:storybook -- --host 127.0.0.1 --port 6007 --ci --no-open',
     url: 'http://127.0.0.1:6007',
     reuseExistingServer: !process.env.CI,
   },

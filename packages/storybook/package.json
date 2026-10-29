@@ -17,14 +17,14 @@
   ],
   "type": "module",
   "scripts": {
-    "storybook:dev": "storybook dev -p 6006",
-    "storybook:start": "concurrently \"(cd ../core/ && npm start)\" \"npm run storybook:dev\"",
+    "dev:storybook": "storybook dev -p 6006",
+    "start:storybook": "concurrently \"(cd ../core/ && npm start)\" \"npm run dev:storybook\"",
     "test:components": "vitest --project=storybook",
     "test:integration": "playwright test",
     "test:components:coverage": "vitest --project=storybook --coverage",
-    "build-storybook": "storybook build",
-    "build-storybook-ci": "BASE_PATH=/orchestra-design-system/ storybook build",
-    "preview-storybook": "npx http-server storybook-static",
+    "build:storybook": "storybook build",
+    "build:storybook:ci": "BASE_PATH=/orchestra-design-system/ storybook build",
+    "preview:storybook": "npx http-server storybook-static",
     "update": "npx npm-check-updates -u"
   },
   "dependencies": {

@@ -86,8 +86,8 @@
     "test:watch": "stencil-test --watch",
     "test:e2e": "stencil-test --project browser",
     "test:spec": "stencil-test --project spec",
-    "test:design-tokens-check": "node --test scripts/design-tokens-check.test.mjs",
-    "design-tokens-check": "node scripts/design-tokens-check.mjs",
+    "test:design-tokens": "node --test scripts/design-tokens-check.test.mjs",
+    "check:design-tokens": "node scripts/design-tokens-check.mjs",
     "generate": "stencil generate",
     "update": "npx npm-check-updates -u",
     "preview": "npx http-server www"

@@ -14,7 +14,7 @@ Or run the Storybook package directly:
 
 ```bash
 cd packages/storybook
-npm run storybook:dev
+npm run dev:storybook
 ```
 
 The docs are served on http://localhost:6006.

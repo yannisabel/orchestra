@@ -71,7 +71,7 @@ See [README.md](./README.md#L64-L76) for the full command list (build, dev, lint
 Run the smallest relevant verification command after a change:
 
 - `npm run check:docs` when updating docs, package layout, or AI guidance
-- `npm run lint` or `npm run lint:check` for code quality checks
+- `npm run lint` for code quality checks
 - `npm run test` for Storybook/Vitest verification when changing UI behavior
 - `npm run build` only when the change affects build output or cross-package wiring
 

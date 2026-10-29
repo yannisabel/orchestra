@@ -390,7 +390,7 @@ ${rows}
 
 const showHelp = () => {
   console.log(
-    `Usage: npm run design-tokens-check [-- --output <path>]
+    `Usage: npm run check:design-tokens [-- --output <path>]
 
 Scans CSS files under src/components for raw colors and design dimensions,
 then writes a Markdown report. Exits with status 1 when findings are present.
