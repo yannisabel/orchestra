@@ -93,7 +93,7 @@ This ensures main Storybook is updated only after a successful real package rele
 
 ### Secrets
 
-- `NPM_TOKEN`: npm automation token with publish rights to `@orchestra-design-system`
+- `NPM_TOKEN`: npm automation token with publish rights to `@orchestra-design-system`. If the preflight fails with `E401`, the token is invalid, expired, or revoked: generate a new token on npmjs.com and replace the repository secret.
 - `GITHUB_TOKEN`: provided by GitHub Actions
 
 ### Job Permissions

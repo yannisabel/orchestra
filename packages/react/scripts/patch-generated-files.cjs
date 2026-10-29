@@ -27,7 +27,7 @@ function addTsIgnore(filePath) {
   // Find the line with: export const OrchestraCheckbox: StencilReactComponent
   // and add // @ts-ignore comment before it if not already there
   const checkboxExportRegex =
-    /^(\s*)export const OrchestraCheckbox: StencilReactComponent/m
+    /^([ \t]*)export const OrchestraCheckbox: StencilReactComponent/m
 
   if (checkboxExportRegex.test(content)) {
     // Check if @ts-ignore is already right before the export

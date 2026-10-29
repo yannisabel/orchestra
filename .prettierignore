@@ -6,5 +6,6 @@
 /packages/core/**/readme.md
 /packages/core/**/readme.md
 /packages/core/src/components.d.ts
+/packages/core/custom-elements.json
 
 

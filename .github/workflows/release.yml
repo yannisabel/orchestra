@@ -42,7 +42,11 @@ jobs:
 
           echo "::add-mask::${NODE_AUTH_TOKEN}"
           npm config delete always-auth --location=user || true
-          npm whoami >/dev/null
+          if ! npm whoami >/dev/null; then
+            echo "npm authentication failed (E401). The NPM_TOKEN secret is invalid, expired, or revoked."
+            echo "Create a new npm automation token with publish access to @orchestra-design-system and update the NPM_TOKEN repository secret."
+            exit 1
+          fi
 
           npm_scope=$(node -p "require('./packages/core/package.json').name.split('/')[0]")
           if [ -z "${npm_scope}" ] || [ "${npm_scope#@}" = "${npm_scope}" ]; then
