@@ -21,6 +21,10 @@ export const config: Config = {
       footer: '', // hide "Built with StencilJS"c
     },
     {
+      type: 'docs-custom-elements-manifest',
+      file: 'custom-elements.json',
+    },
+    {
       type: 'www',
       serviceWorker: null, // disable service workers
       copy: [{ src: '**/*.html' }],

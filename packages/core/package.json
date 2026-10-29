@@ -74,7 +74,8 @@
   "files": [
     "dist/",
     "loader/",
-    "hydrate/"
+    "hydrate/",
+    "custom-elements.json"
   ],
   "scripts": {
     "start": "npm run start:js",

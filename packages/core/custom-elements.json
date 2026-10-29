@@ -1,0 +1,671 @@
+{
+  "schemaVersion": "2.1.0",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button/button.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "customElement": true,
+          "tagName": "orchestra-button",
+          "name": "OrchestraButton",
+          "attributes": [
+            {
+              "name": "disabled",
+              "description": "A boolean indicating the disable state of the button. The `aria-disabled` attribute relies on this property.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "icon",
+              "description": "It allows to render the chosen icon.\n\nThe icon render only if `iconName` and `iconPosition` are defined.",
+              "type": {
+                "text": "\"end\" | \"none\" | \"only\" | \"start\""
+              },
+              "default": "'none'",
+              "fieldName": "icon"
+            },
+            {
+              "name": "icon-library",
+              "description": "The name of the icon library used by the button icons.",
+              "type": {
+                "text": "string"
+              },
+              "default": "'orchestra-icons'",
+              "fieldName": "iconLibrary"
+            },
+            {
+              "name": "icon-name",
+              "description": "The name of the icon library used by the button icon. Defaults to 'orchestra-icons'.\nConsumers can override this when they register another icon library.\n\nThe icon render only if `iconName` and `iconPosition` are defined.",
+              "type": {
+                "text": "string"
+              },
+              "default": "undefined",
+              "fieldName": "iconName"
+            },
+            {
+              "name": "size",
+              "description": "A string indicating the size variation of the button.",
+              "type": {
+                "text": "\"large\" | \"medium\" | \"small\""
+              },
+              "default": "'medium'",
+              "fieldName": "size"
+            },
+            {
+              "name": "text",
+              "description": "This is the text which appear inside the button. It is required.",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "text"
+            },
+            {
+              "name": "type",
+              "description": "A string indicating the behavior of the button. It relies on `HTMLButtonElement['type']`",
+              "type": {
+                "text": "\"button\" | \"reset\" | \"submit\"",
+                "references": [
+                  {
+                    "name": "HTMLButtonElement",
+                    "package": "global:"
+                  }
+                ]
+              },
+              "default": "'button'",
+              "fieldName": "type"
+            },
+            {
+              "name": "variant",
+              "description": "A string indicating the design variation of the button based on the level of importance.",
+              "type": {
+                "text": "\"primary\" | \"secondary\" | \"tertiary\""
+              },
+              "default": "'primary'",
+              "fieldName": "variant"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "disabled",
+              "description": "A boolean indicating the disable state of the button. The `aria-disabled` attribute relies on this property.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "icon",
+              "description": "It allows to render the chosen icon.\n\nThe icon render only if `iconName` and `iconPosition` are defined.",
+              "type": {
+                "text": "\"end\" | \"none\" | \"only\" | \"start\""
+              },
+              "default": "'none'",
+              "attribute": "icon"
+            },
+            {
+              "kind": "field",
+              "name": "iconLibrary",
+              "description": "The name of the icon library used by the button icons.",
+              "type": {
+                "text": "string"
+              },
+              "default": "'orchestra-icons'",
+              "attribute": "icon-library"
+            },
+            {
+              "kind": "field",
+              "name": "iconName",
+              "description": "The name of the icon library used by the button icon. Defaults to 'orchestra-icons'.\nConsumers can override this when they register another icon library.\n\nThe icon render only if `iconName` and `iconPosition` are defined.",
+              "type": {
+                "text": "string"
+              },
+              "default": "undefined",
+              "attribute": "icon-name"
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "description": "A string indicating the size variation of the button.",
+              "type": {
+                "text": "\"large\" | \"medium\" | \"small\""
+              },
+              "default": "'medium'",
+              "attribute": "size"
+            },
+            {
+              "kind": "field",
+              "name": "text",
+              "description": "This is the text which appear inside the button. It is required.",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true,
+              "attribute": "text"
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "description": "A string indicating the behavior of the button. It relies on `HTMLButtonElement['type']`",
+              "type": {
+                "text": "\"button\" | \"reset\" | \"submit\"",
+                "references": [
+                  {
+                    "name": "HTMLButtonElement",
+                    "package": "global:"
+                  }
+                ]
+              },
+              "default": "'button'",
+              "readonly": true,
+              "attribute": "type"
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "description": "A string indicating the design variation of the button based on the level of importance.",
+              "type": {
+                "text": "\"primary\" | \"secondary\" | \"tertiary\""
+              },
+              "default": "'primary'",
+              "readonly": true,
+              "attribute": "variant"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OrchestraButton",
+          "declaration": {
+            "name": "OrchestraButton"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "orchestra-button",
+          "declaration": {
+            "name": "OrchestraButton"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/checkbox/checkbox.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "customElement": true,
+          "tagName": "orchestra-checkbox",
+          "name": "OrchestraCheckbox",
+          "attributes": [
+            {
+              "name": "aria-describedby",
+              "description": "ID reference(s) to element(s) that describe this checkbox.",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "ariaDescribedby"
+            },
+            {
+              "name": "aria-label",
+              "description": "Accessible label for screen readers when no visible label is associated.",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "ariaLabel"
+            },
+            {
+              "name": "aria-labelledby",
+              "description": "ID reference(s) to element(s) that label this checkbox.",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "ariaLabelledby"
+            },
+            {
+              "name": "checked",
+              "description": "A boolean indicating the checked state of the checkbox.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "checked"
+            },
+            {
+              "name": "disabled",
+              "description": "A boolean indicating the disable state of the checkbox.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "html-id",
+              "description": "The unique identifier for the checkbox input. Used to associate with external label elements.",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "htmlId"
+            },
+            {
+              "name": "indeterminate",
+              "description": "A boolean indicating the indeterminate state of the checkbox (shows a dash/minus sign).\nThis is part of the native HTML checkbox API for mixed/partial selection states.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "indeterminate"
+            },
+            {
+              "name": "label",
+              "description": "Optional visible label text displayed next to the checkbox.",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "label"
+            },
+            {
+              "name": "name",
+              "description": "A string representing the name of the checkbox for form submission.",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "fieldName": "name"
+            },
+            {
+              "name": "required",
+              "description": "A boolean indicating whether the field is required.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "required"
+            },
+            {
+              "name": "validation-message",
+              "description": "Optional custom validity message. When set to a non-empty string, the field is invalid.",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "fieldName": "validationMessage"
+            },
+            {
+              "name": "value",
+              "description": "A string representing the value of the checkbox for form submission.",
+              "type": {
+                "text": "string"
+              },
+              "default": "'on'",
+              "fieldName": "value"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "ariaDescribedby",
+              "description": "ID reference(s) to element(s) that describe this checkbox.",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true,
+              "attribute": "aria-describedby"
+            },
+            {
+              "kind": "field",
+              "name": "ariaLabel",
+              "description": "Accessible label for screen readers when no visible label is associated.",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true,
+              "attribute": "aria-label"
+            },
+            {
+              "kind": "field",
+              "name": "ariaLabelledby",
+              "description": "ID reference(s) to element(s) that label this checkbox.",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true,
+              "attribute": "aria-labelledby"
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "description": "A boolean indicating the checked state of the checkbox.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "checked",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "description": "A boolean indicating the disable state of the checkbox.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "htmlId",
+              "description": "The unique identifier for the checkbox input. Used to associate with external label elements.",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true,
+              "attribute": "html-id"
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "description": "A boolean indicating the indeterminate state of the checkbox (shows a dash/minus sign).\nThis is part of the native HTML checkbox API for mixed/partial selection states.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "indeterminate",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "description": "Optional visible label text displayed next to the checkbox.",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true,
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "description": "A string representing the name of the checkbox for form submission.",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "readonly": true,
+              "attribute": "name"
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "description": "A boolean indicating whether the field is required.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "readonly": true,
+              "attribute": "required"
+            },
+            {
+              "kind": "field",
+              "name": "validationMessage",
+              "description": "Optional custom validity message. When set to a non-empty string, the field is invalid.",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "readonly": true,
+              "attribute": "validation-message"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "description": "A string representing the value of the checkbox for form submission.",
+              "type": {
+                "text": "string"
+              },
+              "default": "'on'",
+              "readonly": true,
+              "attribute": "value"
+            },
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "description": "Checks whether the checkbox satisfies all constraints.",
+              "return": {
+                "type": {
+                  "text": "Promise<boolean>",
+                  "references": [
+                    {
+                      "name": "Promise",
+                      "package": "global:"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity",
+              "description": "Reports validity and prompts the browser to show the validation UI.",
+              "return": {
+                "type": {
+                  "text": "Promise<boolean>",
+                  "references": [
+                    {
+                      "name": "Promise",
+                      "package": "global:"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "setCustomValidity",
+              "description": "Sets a custom validity message. Pass an empty string to clear custom errors.",
+              "parameters": [
+                {
+                  "name": "message",
+                  "type": {
+                    "text": "string",
+                    "references": [
+                      {
+                        "name": "Promise",
+                        "package": "global:"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "return": {
+                "type": {
+                  "text": "Promise<void>",
+                  "references": [
+                    {
+                      "name": "Promise",
+                      "package": "global:"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "orchestraChange",
+              "description": "Native change event - emitted when checkbox state changes.",
+              "type": {
+                "text": "CustomEvent<boolean>"
+              }
+            },
+            {
+              "name": "orchestraStateChange",
+              "description": "Rich state change payload for consumers that need full checkbox context.",
+              "type": {
+                "text": "CustomEvent<CheckboxChangeDetail>",
+                "references": [
+                  {
+                    "name": "CheckboxChangeDetail"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OrchestraCheckbox",
+          "declaration": {
+            "name": "OrchestraCheckbox"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "orchestra-checkbox",
+          "declaration": {
+            "name": "OrchestraCheckbox"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/icon/icon.tsx",
+      "declarations": [
+        {
+          "kind": "class",
+          "customElement": true,
+          "tagName": "orchestra-icon",
+          "name": "OrchestraIcon",
+          "attributes": [
+            {
+              "name": "fill",
+              "description": "Taking the currentcolor (inherited color of the font) by default, except if specified.",
+              "type": {
+                "text": "string"
+              },
+              "default": "'currentcolor'",
+              "fieldName": "fill"
+            },
+            {
+              "name": "label",
+              "description": "Accessible name for an informative icon. Omit or leave blank for a decorative icon.",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "label"
+            },
+            {
+              "name": "library",
+              "description": "The name of the icon library to use. Defaults to 'orchestra-icons'.",
+              "type": {
+                "text": "string"
+              },
+              "default": "'orchestra-icons'",
+              "fieldName": "library"
+            },
+            {
+              "name": "name",
+              "description": "The name of the icon to display. Resolves using registered icon libraries.",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "name"
+            },
+            {
+              "name": "size",
+              "description": "Taking the size of the parent element by default, except if specified.",
+              "type": {
+                "text": "string"
+              },
+              "default": "'100%'",
+              "fieldName": "size"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "fill",
+              "description": "Taking the currentcolor (inherited color of the font) by default, except if specified.",
+              "type": {
+                "text": "string"
+              },
+              "default": "'currentcolor'",
+              "attribute": "fill"
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "description": "Accessible name for an informative icon. Omit or leave blank for a decorative icon.",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true,
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "library",
+              "description": "The name of the icon library to use. Defaults to 'orchestra-icons'.",
+              "type": {
+                "text": "string"
+              },
+              "default": "'orchestra-icons'",
+              "attribute": "library"
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "description": "The name of the icon to display. Resolves using registered icon libraries.",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "name"
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "description": "Taking the size of the parent element by default, except if specified.",
+              "type": {
+                "text": "string"
+              },
+              "default": "'100%'",
+              "attribute": "size"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OrchestraIcon",
+          "declaration": {
+            "name": "OrchestraIcon"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "orchestra-icon",
+          "declaration": {
+            "name": "OrchestraIcon"
+          }
+        }
+      ]
+    }
+  ]
+}
