@@ -1,3 +1,15 @@
+/**
+ * Design token usage check for Orchestra component stylesheets.
+ *
+ * Scans every `.css` file under `packages/core/src/components` for raw color
+ * literals and dimensions that may need to be replaced by design tokens
+ * (`--orchestra-*`), then writes a Markdown report. Heuristic only: findings
+ * are candidates for review, not hard errors.
+ *
+ * Usage: `npm run check:design-tokens [-- --output <path>]`
+ *
+ * @module design-tokens-check
+ */
 import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { dirname, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -6,6 +18,22 @@ const CORE_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const COMPONENTS_ROOT = resolve(CORE_ROOT, 'src/components')
 const DEFAULT_REPORT_PATH = resolve(CORE_ROOT, 'design-tokens-check-report.md')
 
+/**
+ * A raw design value found in a stylesheet.
+ *
+ * @typedef {object} Finding
+ * @property {string} file Path relative to `packages/core`, using forward slashes.
+ * @property {number} line 1-based line of the declaration containing the value.
+ * @property {string} property Lowercased property name (`--*` for custom properties).
+ * @property {string} rawValue The literal that matched, as written in the source.
+ * @property {string} category `color`, `spacing`, `radius`, `typography`,
+ *   `border or outline`, `shadow`, or `size`.
+ */
+
+/**
+ * CSS properties whose values are checked for raw color literals.
+ * Custom properties (`--*`) are checked for dimensions only.
+ */
 const COLOR_PROPERTIES = new Set([
   'background',
   'background-color',
@@ -31,11 +59,18 @@ const COLOR_PROPERTIES = new Set([
   'text-shadow',
 ])
 
+/** Color functions (`rgb()`, `oklch()`, ...) with their arguments. */
 const COLOR_FUNCTION_PATTERN =
   /\b(?:color|hsl|hsla|hwb|lab|lch|oklab|oklch|rgb|rgba)\([^)]*\)/gi
+/** Hex colors with 3, 4, 6, or 8 digits. */
 const HEX_COLOR_PATTERN = /#(?:[\da-f]{8}|[\da-f]{6}|[\da-f]{4}|[\da-f]{3})\b/gi
+/** A number with a CSS length or percentage unit. Group 1 is the number, group 2 the unit. */
 const DIMENSION_PATTERN =
   /(-?(?:\d+(?:\.\d*)?|\.\d+))(px|rem|em|vw|vh|vmin|vmax|ch|ex|cm|mm|in|pt|pc|%)\b/gi
+/**
+ * Hand-maintained snapshot of CSS named colors (plus `transparent`).
+ * Update when CSS color keywords change.
+ */
 const COLOR_KEYWORDS = new Set(
   `aliceblue antiquewhite aqua aquamarine azure beige bisque black blanchedalmond
   blue blueviolet brown burlywood cadetblue chartreuse chocolate coral
@@ -59,12 +94,21 @@ const COLOR_KEYWORDS = new Set(
   wheat white whitesmoke yellow yellowgreen transparent`.split(/\s+/),
 )
 
+/**
+ * Color-like keywords that are not literal colors (system colors, CSS-wide
+ * keywords). Kept separate from {@link COLOR_KEYWORDS}; the two sets do not overlap.
+ */
 const NON_LITERAL_COLOR_KEYWORDS = new Set(
   `currentcolor inherit initial revert revert-layer unset windowtext
   canvas canvastext linktext visitedtext activetext buttonface buttontext
   field fieldtext highlight highlighttext mark marktext graytext`.split(/\s+/),
 )
 
+/**
+ * Properties whose dimension literals (`px`, `rem`, ...) are checked. Other
+ * properties, such as `line-height` or `z-index`, are structural and ignored.
+ * Custom properties (`--*`) are always checked.
+ */
 const TOKENIZABLE_DIMENSION_PROPERTIES = new Set([
   'border',
   'border-block',
@@ -141,6 +185,12 @@ const TOKENIZABLE_DIMENSION_PROPERTIES = new Set([
   'word-spacing',
 ])
 
+/**
+ * Maps a property name to the report category for its dimension values.
+ *
+ * @param {string} property Lowercased property name.
+ * @returns {string} The category label used in the report.
+ */
 const dimensionCategory = (property) => {
   if (property.includes('radius')) return 'radius'
   if (
@@ -163,11 +213,26 @@ const dimensionCategory = (property) => {
   return 'size'
 }
 
+/**
+ * Blanks out `/* ... *\/` comments while keeping newlines, so line numbers
+ * computed on the result still match the original source.
+ *
+ * @param {string} source CSS source text.
+ * @returns {string} Source with comment bodies replaced by spaces.
+ */
 const stripComments = (source) =>
   source.replace(/\/\*[\s\S]*?\*\//g, (comment) =>
     comment.replace(/[^\r\n]/g, ' '),
   )
 
+/**
+ * Replaces every `var(...)` call, including its fallback, with spaces. Literals
+ * inside `var()` fallbacks are therefore not reported. Quotes and escapes are
+ * respected when matching parentheses.
+ *
+ * @param {string} value Declaration value.
+ * @returns {string} Value with `var()` calls masked, same length as the input.
+ */
 const maskVarFunctions = (value) => {
   const masked = [...value]
   const varPattern = /\bvar\s*\(/gi
@@ -218,6 +283,13 @@ const maskVarFunctions = (value) => {
   return masked.join('')
 }
 
+/**
+ * Finds raw color literals in a value: hex colors, color functions, and
+ * named color keywords. Duplicates are removed.
+ *
+ * @param {string} value Declaration value.
+ * @returns {string[]} Matched literals as written in the source.
+ */
 const findColorLiterals = (value) => {
   const literals = new Set()
   const masked = maskVarFunctions(value)
@@ -242,6 +314,13 @@ const findColorLiterals = (value) => {
   return [...literals]
 }
 
+/**
+ * Finds raw dimension literals in a value. Zero values and percentages are
+ * skipped because they do not need a token. Duplicates are removed.
+ *
+ * @param {string} value Declaration value.
+ * @returns {string[]} Matched literals such as `1rem` or `2px`.
+ */
 const findDimensionLiterals = (value) => {
   const literals = new Set()
   const masked = maskVarFunctions(value)
@@ -254,6 +333,14 @@ const findDimensionLiterals = (value) => {
   return [...literals]
 }
 
+/**
+ * Splits CSS source into declarations. Semicolons inside parentheses or quotes
+ * do not end a declaration, and selectors and rule braces are skipped.
+ *
+ * @param {string} source CSS source with comments already stripped.
+ * @returns {{ property: string, value: string, index: number }[]}
+ *   Declarations, where `index` is the offset of the property name.
+ */
 const readDeclarations = (source) => {
   const declarations = []
   let segmentStart = 0
@@ -315,6 +402,13 @@ const readDeclarations = (source) => {
   return declarations
 }
 
+/**
+ * Finds raw color and dimension values in one stylesheet.
+ *
+ * @param {string} source Full CSS source text.
+ * @param {string} file File path recorded on each finding.
+ * @returns {Finding[]} Findings in source order. Empty when no raw values are found.
+ */
 export const findRawDesignValues = (source, file) => {
   const cleanSource = stripComments(source)
   const findings = []
@@ -349,6 +443,12 @@ export const findRawDesignValues = (source, file) => {
   return findings
 }
 
+/**
+ * Recursively lists `.css` files under a directory.
+ *
+ * @param {string} directory Absolute directory path.
+ * @returns {string[]} Sorted absolute file paths.
+ */
 const findCssFiles = (directory) => {
   const files = []
   for (const entry of readdirSync(directory, { withFileTypes: true })) {
@@ -359,9 +459,23 @@ const findCssFiles = (directory) => {
   return files.toSorted()
 }
 
+/**
+ * Escapes a value for use in a Markdown table cell.
+ *
+ * @param {unknown} value Value to escape.
+ * @returns {string} Text with pipes escaped and newlines replaced by `<br>`.
+ */
 const escapeMarkdownCell = (value) =>
   String(value).replaceAll('|', '\\|').replaceAll('\n', '<br>')
 
+/**
+ * Renders the Markdown report: a summary line and a table of findings, or a
+ * clean-report message when there are none.
+ *
+ * @param {Finding[]} findings Findings to render.
+ * @param {number} fileCount Number of stylesheets scanned.
+ * @returns {string} Markdown document.
+ */
 export const renderReport = (findings, fileCount) => {
   const summary = findings.length
     ? `Found ${findings.length} potential raw design value${findings.length === 1 ? '' : 's'} in ${fileCount} component stylesheet${fileCount === 1 ? '' : 's'}.`
@@ -388,6 +502,7 @@ ${rows}
 `
 }
 
+/** Prints usage information to stdout. */
 const showHelp = () => {
   console.log(
     `Usage: npm run check:design-tokens [-- --output <path>]
@@ -401,6 +516,13 @@ Options:
   )
 }
 
+/**
+ * Parses command-line arguments.
+ *
+ * @param {string[]} args Arguments after the script name.
+ * @returns {{ help: true } | { help: false, outputPath: string }} Parsed options.
+ * @throws {Error} When `--output` has no value or an unknown option is passed.
+ */
 const parseArgs = (args) => {
   let outputPath = DEFAULT_REPORT_PATH
   for (let index = 0; index < args.length; index++) {
@@ -419,6 +541,13 @@ const parseArgs = (args) => {
   return { help: false, outputPath }
 }
 
+/**
+ * Scans all component stylesheets, writes the Markdown report, and logs a summary.
+ *
+ * @param {{ outputPath?: string }} [options] Report destination. Defaults to
+ *   `packages/core/design-tokens-check-report.md`.
+ * @returns {number} Number of findings.
+ */
 export const runCheck = ({ outputPath = DEFAULT_REPORT_PATH } = {}) => {
   const files = findCssFiles(COMPONENTS_ROOT)
   const findings = files.flatMap((path) =>
@@ -437,6 +566,11 @@ export const runCheck = ({ outputPath = DEFAULT_REPORT_PATH } = {}) => {
   return findings.length
 }
 
+/**
+ * CLI entry point. Sets `process.exitCode` to 1 when findings exist.
+ *
+ * @throws {Error} When the components directory is empty or arguments are invalid.
+ */
 const main = () => {
   const options = parseArgs(process.argv.slice(2))
   if (options.help) {
