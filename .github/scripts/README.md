@@ -57,6 +57,26 @@ Usage:
 node .github/scripts/validate-internal-version-alignment.cjs
 ```
 
+### `check-api-breaking.cjs`
+
+Breaking-change guard for the core public API, run by the `api-compatibility` job in `.github/workflows/workflow.yml`.
+
+- Compares `packages/core/custom-elements.json` against the merge-base with the base branch.
+- Removed or changed entries (props, attributes, types, defaults, methods, events, slots, CSS properties and parts) are breaking. Additions are not.
+- Union types may be widened without a break when every previous member is kept and the default is unchanged. Any default change is breaking.
+- Methods: appending optional parameters is non-breaking. Changing a return type, making a parameter required, or changing its type (other than widening) is breaking.
+- If a breaking change is detected, at least one commit in `merge-base..HEAD` (merges excluded) must declare it: `!` after the type in the header and a `BREAKING CHANGE: <explanation>` footer. The commit does not need to be the last one.
+- A declared breaking change with no detected break only produces a warning.
+
+Usage (from the repo root, after `npm run build`):
+
+```bash
+npm run check:api
+npm run check:api -- --base-ref origin/main
+```
+
+`--base-ref` defaults to `origin/main`. The `api-compatibility` CI job runs the same npm script with the PR base branch.
+
 ## Notes
 
 - Scripts are intended to be run from repository root.

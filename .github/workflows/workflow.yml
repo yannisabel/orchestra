@@ -34,6 +34,53 @@ jobs:
       - name: Run linting
         run: npm run lint
 
+  api-compatibility-detect:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    outputs:
+      has-base-manifest: ${{ steps.detect.outputs.has-base-manifest }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Check whether the base branch has a custom elements manifest
+        id: detect
+        run: |
+          if git cat-file -e "origin/${{ github.base_ref }}:packages/core/custom-elements.json" 2>/dev/null; then
+            echo "has-base-manifest=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has-base-manifest=false" >> "$GITHUB_OUTPUT"
+            echo "No packages/core/custom-elements.json on origin/${{ github.base_ref }}; skipping API compatibility check."
+          fi
+
+  api-compatibility:
+    needs: api-compatibility-detect
+    if: needs.api-compatibility-detect.outputs.has-base-manifest == 'true'
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: '.nvmrc'
+      - name: Install dependencies (retry)
+        uses: ./.github/actions/npm-ci-retry
+      - name: Build packages
+        run: npm run build
+      - name: Verify committed custom elements manifest is up to date
+        run: |
+          if [ -n "$(git status --porcelain -- packages/core/custom-elements.json)" ]; then
+            echo "packages/core/custom-elements.json is out of date. Run 'npm run build' in packages/core and commit the result."
+            git --no-pager diff -- packages/core/custom-elements.json
+            exit 1
+          fi
+      - name: Check API changes against base branch
+        run: npm run check:api -- --base-ref "origin/${{ github.base_ref }}"
+
   test:
     name: Test (${{ matrix.suite }})
     strategy:
