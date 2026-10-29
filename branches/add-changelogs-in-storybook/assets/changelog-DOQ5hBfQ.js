@@ -1,0 +1,98 @@
+import{u as n,j as e,f as o}from"./blocks-B632L-eG.js";import{r as c}from"./markdown-file-BsQpKmsf.js";import"./preload-helper-PPVm8Dsz.js";import"./react-DkC3XXtW.js";import"./iframe-C9Unuf-1.js";import"./lit-X1EjRepF.js";import"./react-dom-CPA3uLtk.js";import"./react/jsx-runtime-DldvXD6N.js";const r=`# Changelog
+
+## [0.1.0](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.13...@orchestra-design-system/core@0.1.0) (2026-10-29)
+
+### Features
+
+- build monitoring token tools and fix related issues ([912e19f](https://github.com/yannisabel/orchestra/commit/912e19f5e390a9073e7bc1fc18db092efa951b7c))
+- create a design-tokens checker of the components ([5d1d258](https://github.com/yannisabel/orchestra/commit/5d1d258d993fb4cd245bf679e58fa4333ea6e9dd))
+- enforce a11y in components + add a11y tests with Playwright ([5f00509](https://github.com/yannisabel/orchestra/commit/5f00509c485db10257b73386ba44add2104d5c6d))
+- improve design tokens monitoring and renaming the tool ([29bb2d0](https://github.com/yannisabel/orchestra/commit/29bb2d0dd0ecc6d552406429ec061ab152e0981b))
+- **monitoring:** separate design tokens monitoring script from the build and add CLI output ([7510671](https://github.com/yannisabel/orchestra/commit/751067190ae60ee71242e1ed303028c24dcc4414))
+
+### Bug Fixes
+
+- align Angular toolchain and TypeScript to v22/v6 for ng-packagr ([aaf0ca6](https://github.com/yannisabel/orchestra/commit/aaf0ca6d24b9de01fc151576918197b28d14a8db))
+
+## [0.0.13](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.11...@orchestra-design-system/core@0.0.13) (2026-07-09)
+
+## [0.0.12](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.11...@orchestra-design-system/core@0.0.12) (2026-07-09)
+
+## [0.0.11](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.10...@orchestra-design-system/core@0.0.11) (2026-07-09)
+
+## [0.0.10](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.9...@orchestra-design-system/core@0.0.10) (2026-07-06)
+
+### Bug Fixes
+
+- **design-tokens:** add typesVersions fallback for css side-effect imports ([a3d6db6](https://github.com/yannisabel/orchestra/commit/a3d6db681256dca58008203c451c2e4c9faa4838))
+
+## [0.0.9](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.8...@orchestra-design-system/core@0.0.9) (2026-07-05)
+
+### Bug Fixes
+
+- **design-tokens:** adding explicit CSS subpath typings ([de30be1](https://github.com/yannisabel/orchestra/commit/de30be17a42ec1f7fb6ae1b58522e5ca5759a7c3))
+
+## [0.0.8](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.7...@orchestra-design-system/core@0.0.8) (2026-07-05)
+
+### Bug Fixes
+
+- allow design tokens to be consumed directly ([8d4f0ad](https://github.com/yannisabel/orchestra/commit/8d4f0adc4ce9e8044dbb332fca1a6baa3d913089))
+
+## [0.0.7](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.6...@orchestra-design-system/core@0.0.7) (2026-07-05)
+
+### Bug Fixes
+
+- resolve Node.js ESM resolution ([0389018](https://github.com/yannisabel/orchestra/commit/038901871cf72f9c770bf46ef95fd6b0c0a7d52c))
+
+## [0.0.6](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.5...@orchestra-design-system/core@0.0.6) (2026-07-05)
+
+### Bug Fixes
+
+- resolve exports in React and Vue packages ([f429627](https://github.com/yannisabel/orchestra/commit/f42962725e81684e4af768d5874c0d7c3f7c6fce))
+
+## [0.0.5](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.4...@orchestra-design-system/core@0.0.5) (2026-07-05)
+
+### Bug Fixes
+
+- **CI:** resolve ECONNRESET failure ([4f2d42a](https://github.com/yannisabel/orchestra/commit/4f2d42a2e7bc8893985eb8c7b2fd6829b8e430e9))
+- **release:** review how dry run release blocks release ([02caa6b](https://github.com/yannisabel/orchestra/commit/02caa6b4c5f9d2602ec3386c0ddd4b556f06353a))
+- resolve dependencies consumption ([47023f4](https://github.com/yannisabel/orchestra/commit/47023f4d5a4d2a081ce54f0df224f6f2815fbe60))
+
+## [0.0.4](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.3...@orchestra-design-system/core@0.0.4) (2026-07-03)
+
+## [0.0.3](https://github.com/yannisabel/orchestra/compare/@orchestra-design-system/core@0.0.2...@orchestra-design-system/core@0.0.3) (2026-07-03)
+
+### Bug Fixes
+
+- **release:** avoid early lockfile install before version bump ([037dd73](https://github.com/yannisabel/orchestra/commit/037dd73bdec688c330f6a10f6ef2ba85a5916bdd))
+- **release:** commit synced manifests before package releases ([38619b2](https://github.com/yannisabel/orchestra/commit/38619b2c19236d0158a762b9e5d0e30c536a17de))
+- **release:** disable package-lock updates during package publish ([f1efa5f](https://github.com/yannisabel/orchestra/commit/f1efa5fed11f489875aed5a2d9584ab409693e25))
+- **release:** pass target version as positional release-it arg ([7094f82](https://github.com/yannisabel/orchestra/commit/7094f823e2b7f5434d9eb4cc2df15cae44620ab4))
+- **release:** tolerate transient ETARGET when syncing lockfile ([e40b05f](https://github.com/yannisabel/orchestra/commit/e40b05f32f9154a325c18a39b7065c957aa06988))
+- resolve how changelog is displayed ([2942b93](https://github.com/yannisabel/orchestra/commit/2942b93c6cd6b1d209de071b082979b4224bec25))
+
+## [0.0.2](https://github.com/yannisabel/orchestra/compare/v0.0.1...@orchestra-design-system/core@0.0.2) (2026-07-03)
+
+### Bug Fixes
+
+- modify invalid npm command ([bc9473b](https://github.com/yannisabel/orchestra/commit/bc9473b36fde651dd9a530743b78c455845a25d6))
+- resolve CI failure ([a4614c3](https://github.com/yannisabel/orchestra/commit/a4614c321682b8bfb9e96ecd30ad67322541e396))
+
+## 0.0.1 (2026-07-03)
+
+### Bug Fixes
+
+- **button:** resolve rendering in storybook + icon display when icon only ([199d258](https://github.com/yannisabel/orchestra/commit/199d2580664ae997a220bcacb54cd76db6599fb1))
+- configure Storybook deployment to GitHub Pages with Stencil assets ([4eb5529](https://github.com/yannisabel/orchestra/commit/4eb5529ae0f371cfe984a3f7226f46b06b074c7f))
+- improve custom icon SVG format ([5057e2b](https://github.com/yannisabel/orchestra/commit/5057e2ba53d129cf770f760a96e8f146f5c9e79b))
+- making sure icons can be displayed in button component ([a04ef12](https://github.com/yannisabel/orchestra/commit/a04ef12f3e7c80c420768fbe77045989327d30f5))
+- register custom icon library before components load ([be755f4](https://github.com/yannisabel/orchestra/commit/be755f49496192b345e46ca8acd6285cf446a93e))
+- register custom library before component import ([1082dd4](https://github.com/yannisabel/orchestra/commit/1082dd436b3eee0db757c43a34f4fdd96e7eb80d))
+- register custom library in story decorator ([60d8bd5](https://github.com/yannisabel/orchestra/commit/60d8bd53bf2d5f1c586311eb57ab322a4224f65a))
+- register custom library synchronously in decorator before render ([fd377ff](https://github.com/yannisabel/orchestra/commit/fd377fffca234af97eebe44797858abb95d0db6a))
+- simplify release-it config for root package ([867f7d4](https://github.com/yannisabel/orchestra/commit/867f7d4ecacf7f57c0203d17447ae6b823e3f639))
+- use global window registry for icon library to fix module isolation ([611ba72](https://github.com/yannisabel/orchestra/commit/611ba7267e9cb78a30d574b84524edd848d6e4ab))
+- use play function to register library after component mounts ([ef33509](https://github.com/yannisabel/orchestra/commit/ef3350945da0df6a6716856d505ef29ffdfcf4a7))
+`;function a(t){return e.jsxs(e.Fragment,{children:[e.jsx(o,{title:"Overview/Changelog"}),`
+`,e.jsxs(e.Fragment,{children:[e.jsx("h1",{children:"Release Notes"}),e.jsx("div",{className:"markdown-body",dangerouslySetInnerHTML:{__html:c(r)}})]})]})}function p(t={}){const{wrapper:s}={...n(),...t.components};return s?e.jsx(s,{...t,children:e.jsx(a,{...t})}):a()}export{p as default};
+//# sourceMappingURL=changelog-DOQ5hBfQ.js.map
