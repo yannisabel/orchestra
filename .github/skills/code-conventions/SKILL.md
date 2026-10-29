@@ -116,6 +116,27 @@ function validateEmail(email: string) {}
 const MAX_RETRIES = 3 // Constants: UPPER_SNAKE_CASE
 ```
 
+### npm Scripts
+
+**Pattern**: `action:context` with a colon separating segments (action first, e.g. `build:`, `lint:`, `check:`); kebab-case within each segment
+
+✅ **Correct**:
+
+```json
+"check:design-tokens": "node packages/core/scripts/design-tokens-check.mjs",
+"build:tokens": "npx lerna run build --scope='@orchestra-design-system/themes'",
+"test:components": "npm run test:components --workspace=@orchestra-design-system/storybook -- --run"
+```
+
+❌ **Incorrect**:
+
+```json
+"design-tokens-check": "...",   # Hyphen instead of colon between segments
+"design-tokens:check": "...",   # Context before action
+"checkDesignTokens": "...",     # camelCase
+"design_tokens_check": "...",   # snake_case
+```
+
 ## Type Safety
 
 ### No `any` Type

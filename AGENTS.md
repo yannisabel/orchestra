@@ -55,6 +55,7 @@ See [README.md](./README.md#L64-L76) for the full command list (build, dev, lint
 - Keep package boundaries intact: logic belongs in `packages/core`, token work belongs in `packages/themes`, and wrapper changes belong in the relevant framework package.
 - Do not broaden scope without a clear reason.
 - Update the matching docs when package layout, scripts, or public APIs change.
+- Keep hand-maintained CSS value lists in sync with CSS: the color keyword and property lists in `packages/core/scripts/design-tokens-check.mjs` must be reviewed whenever CSS color keywords or the checked properties change. Do not add packages to do this; update the lists by hand.
 - Favor small, verifiable fixes over exploratory rewrites.
 - Use `grep_search`/`semantic_search` with specific patterns instead of reading entire files; parallelize independent reads.
 - Use `vscode_listCodeUsages()` to find symbol references without full file scans.
@@ -71,7 +72,7 @@ See [README.md](./README.md#L64-L76) for the full command list (build, dev, lint
 Run the smallest relevant verification command after a change:
 
 - `npm run check:docs` when updating docs, package layout, or AI guidance
-- `npm run lint` or `npm run lint:check` for code quality checks
+- `npm run lint` for code quality checks
 - `npm run test` for Storybook/Vitest verification when changing UI behavior
 - `npm run build` only when the change affects build output or cross-package wiring
 

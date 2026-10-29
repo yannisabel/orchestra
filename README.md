@@ -73,6 +73,7 @@ npm run build           # build tokens, then all workspaces
 npm run build:tokens    # build theme package only
 npm run lint            # run repo linting
 npm run check:docs      # verify docs and AI guidance stay aligned
+npm run check:design-tokens # check core component CSS for raw design values
 npm run test            # run Storybook/Vitest once
 npm run test:components # run Storybook component tests once
 npm run test:integration # run consumer-facing Playwright tests

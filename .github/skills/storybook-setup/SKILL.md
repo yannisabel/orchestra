@@ -212,7 +212,7 @@ export const DarkMode: Story = {
 npm run dev                    # Starts Storybook + Stencil dev (concurrent)
 
 # Or directly
-npm run storybook:start --workspace=@orchestra-design-system/storybook
+npm run start:storybook --workspace=@orchestra-design-system/storybook
 ```
 
 This runs:
@@ -228,7 +228,7 @@ This runs:
 npm run build                 # Builds design tokens, then all packages
 
 # Build Storybook static site
-npm run build-storybook-ci --workspace=@orchestra-design-system/storybook
+npm run build:storybook:ci --workspace=@orchestra-design-system/storybook
 # Output: `.storybook/dist/`
 ```
 
