@@ -1,0 +1,1 @@
+function r(r){if(!r)throw new Error("Invariant failed")}export{r as i}
