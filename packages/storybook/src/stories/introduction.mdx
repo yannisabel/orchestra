@@ -1,10 +1,6 @@
-import { Meta } from '@storybook/addon-docs/blocks'
+import { Markdown, Meta } from '@storybook/addon-docs/blocks'
 import coreReadme from '../../../../README.md?raw'
-import { renderMarkdown } from '../utils/markdown-file'
 
 <Meta title="Overview/Introduction" />
 
-<div
-  className="markdown-body"
-  dangerouslySetInnerHTML={{ __html: renderMarkdown(coreReadme) }}
-/>
+<Markdown>{coreReadme}</Markdown>
