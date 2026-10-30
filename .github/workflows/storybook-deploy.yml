@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    outputs:
+      branch: ${{ steps.sanitize.outputs.branch }}
+      started_at: ${{ steps.start.outputs.started_at }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -32,6 +35,9 @@ jobs:
         run: |
           echo "Skipping main deployment in this workflow."
           echo "Main Storybook is deployed from the Release workflow after a successful non-dry release, or from the Deploy Main Storybook workflow."
+      - name: Record deploy start time
+        id: start
+        run: echo "started_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_OUTPUT
       - name: Deploy Storybook to GitHub Pages (branch)
         if: github.ref_name != 'main'
         uses: peaceiris/actions-gh-pages@v3
@@ -40,8 +46,98 @@ jobs:
           publish_dir: ./packages/storybook/storybook-static
           destination_dir: branches/${{ steps.sanitize.outputs.branch }}
           keep_files: true
-      - name: Log Storybook URL (branch)
-        if: github.ref_name != 'main'
+  # Kept separate so a Pages timeout fails only this job, not the deploy job that already pushed the files.
+  wait-for-pages:
+    needs: deploy
+    if: github.ref_name != 'main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: read
+    steps:
+      - name: Wait for GitHub Pages to serve the branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          STARTED_AT: ${{ needs.deploy.outputs.started_at }}
+          SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branches/${{ needs.deploy.outputs.branch }}/
         run: |
-          echo "✅ Storybook deployed!"
-          echo "🔗 https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branches/${{ steps.sanitize.outputs.branch }}/"
+          for attempt in $(seq 1 60); do
+            read -r STATUS UPDATED < <(gh api "repos/$REPO/pages/builds/latest" --jq '[.status, .updated_at] | @tsv')
+            HTTP_CODE=$(curl -s -o /dev/null -w '%{http_code}' "$SITE_URL")
+            # Only builds finished after this run's deploy count; the URL check confirms this branch is actually served.
+            if [[ "$UPDATED" > "$STARTED_AT" || "$UPDATED" == "$STARTED_AT" ]]; then
+              if [ "$STATUS" = "built" ] && [ "$HTTP_CODE" = "200" ]; then
+                echo "✅ Storybook is live at $SITE_URL"
+                exit 0
+              fi
+              if [ "$STATUS" = "errored" ]; then
+                echo "::error::GitHub Pages build errored"
+                exit 1
+              fi
+            fi
+            echo "Attempt $attempt: build=$STATUS updated=$UPDATED url_http=$HTTP_CODE"
+            sleep 10
+          done
+          echo "::error::Timed out waiting for Storybook at $SITE_URL"
+          exit 1
+
+  # Lives in this workflow (not a workflow_run listener) so it runs from the branch's own file, not only after merge to main.
+  comment-pr:
+    needs: [deploy, wait-for-pages]
+    if: github.ref_name != 'main'
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Comment with Storybook URL
+        uses: actions/github-script@v7
+        env:
+          BRANCH_NAME: ${{ github.ref_name }}
+          SAFE_BRANCH: ${{ needs.deploy.outputs.branch }}
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const branchName = process.env.BRANCH_NAME;
+
+            const { data: pulls } = await github.rest.pulls.list({
+              owner,
+              repo,
+              state: 'open',
+              head: `${owner}:${branchName}`,
+            });
+            if (pulls.length === 0) {
+              console.log(`No open PR for ${branchName}, skipping comment`);
+              return;
+            }
+            const prNumber = pulls[0].number;
+            console.log(`🔍 Posting comment to PR #${prNumber}`);
+
+            const storyBookUrl = `📖 **Storybook Preview**\n\n🔗 https://${owner}.github.io/${repo}/branches/${process.env.SAFE_BRANCH}/`;
+            const botMarker = '<!-- storybook-preview-link -->';
+            const body = `${botMarker}\n${storyBookUrl}`;
+
+            const { data: comments } = await github.rest.issues.listComments({
+              issue_number: prNumber,
+              owner,
+              repo,
+            });
+
+            const existingComment = comments.find(comment => comment.body.includes(botMarker));
+
+            if (existingComment) {
+              await github.rest.issues.updateComment({
+                comment_id: existingComment.id,
+                owner,
+                repo,
+                body,
+              });
+              console.log('✅ Updated existing Storybook link comment');
+            } else {
+              await github.rest.issues.createComment({
+                issue_number: prNumber,
+                owner,
+                repo,
+                body,
+              });
+              console.log('✅ Created new Storybook link comment');
+            }
