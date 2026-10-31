@@ -8,8 +8,9 @@ This package is the public token layer for applications and Storybook. It owns t
 
 Orchestra uses a three-tier token structure:
 
-```text
-Primitive → Semantic → Component
+```mermaid
+flowchart LR
+  P["Primitive<br/>raw values"] --> S["Semantic<br/>global roles"] --> C["Component<br/>component overrides"] --> U["Component CSS<br/>var(--orchestra-...)"]
 ```
 
 | Tier      | Source file(s)                                       | Purpose                                                           | Exported to CSS?    |
@@ -129,41 +130,57 @@ Component styles should use generated custom properties rather than hardcoding d
 
 ### 4. Naming convention
 
-Each segment of a CSS variable name classifies what a token is for. The patterns below show common segments, not a required order: the monitor recognizes allowed roots and later segments but does not currently enforce later-segment order or require every segment.
+Each segment classifies what a token is for, so a name can be read without opening the source file. The patterns below show common segments, not a required order: the monitor recognizes allowed roots and later segments, but does not currently enforce later-segment order or require every segment.
 
-**Semantic level**:
+#### Categories
 
-```text
---orchestra-{category}-{recognized semantic segments...}
+| Tier      | Purpose                                     | Exported to CSS | Example                                              |
+| --------- | ------------------------------------------- | --------------- | ---------------------------------------------------- |
+| Primitive | Raw values that map directly to a value     | No              | `color-purple-500`                                   |
+| Semantic  | Global UI roles shared across components    | Yes             | `--orchestra-color-action-primary-container-default` |
+| Component | Values used only by one component's own CSS | Yes             | `--orchestra-button-primary-container-radius`        |
+
+#### Semantic anatomy
+
+```mermaid
+flowchart LR
+  A["--orchestra-"] --> B["category<br/>color"] --> C["domain<br/>action"] --> D["variant<br/>primary"] --> E["target<br/>container"] --> F["state<br/>default"]
 ```
 
-| Segment    | Example value | Meaning                                                                                              |
-| ---------- | ------------- | ---------------------------------------------------------------------------------------------------- |
-| `category` | `color`       | Classifies the kind of design value the token represents, rather than its semantic purpose or usage. |
-| `domain`   | `action`      | functional area the token belongs to                                                                 |
-| `variant`  | `primary`     | visual variant or role                                                                               |
-| `target`   | `container`   | part or target the token describes                                                                   |
-| `state`    | `default`     | interaction state or supported scale                                                                 |
+Example: `--orchestra-color-action-primary-container-default`. Other valid names may omit segments or arrange later segments differently.
 
-Example: `--orchestra-color-action-primary-container-default` → category `color`, domain `action`, variant `primary`, target `container`, state `default`. Other valid names may omit segments or arrange later segments differently.
+#### Component anatomy
 
-**Component level**:
-
-```text
---orchestra-{component}-{recognized component segments...}
+```mermaid
+flowchart LR
+  A["--orchestra-"] --> B["component<br/>button"] --> C["variant<br/>primary"] --> D["target<br/>container"] --> E["property<br/>radius"]
 ```
 
-| Segment     | Example value | Meaning                             |
-| ----------- | ------------- | ----------------------------------- |
-| `component` | `button`      | the component name                  |
-| `variant`   | `primary`     | visual variant within the component |
-| `target`    | `container`   | part or target the token describes  |
-| `property`  | `radius`      | property or value being configured  |
-| `state`     | `hover`       | interaction state, when applicable  |
+Example: `--orchestra-button-primary-container-radius`. Static properties do not need a state segment.
 
-Example: `--orchestra-button-primary-container-radius` → component `button`, variant `primary`, target `container`, property `radius`. Static properties do not need a state segment.
+#### Segments
 
-All segments are lowercase, kebab-case. Only semantic and component tokens are exported to CSS; primitives are referenced internally and filtered out during generation.
+| Segment     | Tier                | Meaning                                                 | Values                                                                                                                                                           |
+| ----------- | ------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `orchestra` | All exported tokens | Fixed prefix that namespaces every CSS variable         | Added during CSS generation                                                                                                                                      |
+| `category`  | Semantic            | Kind of design value                                    | `color`, `spacing`, `radius`, `size`                                                                                                                             |
+| `component` | Component           | Component the token belongs to                          | `button`, `checkbox`                                                                                                                                             |
+| `domain`    | Semantic            | Functional area                                         | `global`, `neutral`, `action`, `selection`, `edition`                                                                                                            |
+| `variant`   | Semantic, component | Visual variant or role; one per token                   | `primary`, `secondary`, `tertiary`, `brand`, `inline`, `common`, `toggle`                                                                                        |
+| `target`    | Semantic, component | Part of the component or pattern the token styles       | `container`, `content`, `border`, `size`, `inner-ring`, `outer-ring`                                                                                             |
+| `property`  | Semantic, component | Style being configured, usually matching a CSS property | `radius`, `border-width`, `padding`, `padding-inline-start`, `padding-inline-end`, `padding-block-start`, `padding-block-end`, `gap`, `width`, `height`, `color` |
+| `state`     | Semantic, component | Interaction state, or a size or toggle modifier         | `default`, `hover`, `active`, `focus`, `disabled`, `readonly`, `highlight`, `on`, `off`, `small`, `medium`, `large`                                              |
+
+The primitive tier uses `category` (`color` or `scale`), `family` (for example `purple`, `grey`, `blue`) and `step` (a number such as `500`, `x2`, `x2-5`, or `none`, `full`, `transparent`).
+
+#### Naming rules
+
+- Use lowercase kebab-case throughout. Separate segments with a dash, and join multi-word values with a dash too, as in `border-width` or `inner-ring`.
+- Use one variant per token.
+- Use `default` as the base state. Use `hover`, `active`, `focus` and `disabled` for interaction states, and `small`, `medium` or `large` for size modifiers at the end of the name.
+- Follow the order in the anatomy diagrams as the common pattern. The monitor does not enforce later-segment order or require every segment; allowed roots and segments are configured in `monitoring.mjs`.
+
+Only semantic and component tokens are exported to CSS; primitives are referenced internally and filtered out during generation.
 
 ### Design token rules
 

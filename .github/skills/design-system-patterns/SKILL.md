@@ -1,6 +1,6 @@
 ---
 name: design-system-patterns
-description: "External design-system reference (Atlassian, Carbon, Primer, Spectrum, etc.) for inspiration when designing new component APIs. Use only for pattern ideas - not a source of truth for Orchestra's actual implementation."
+description: "External design-system reference (Atlassian, Carbon, Spectrum, etc.) for inspiration when designing new component APIs. Use only for pattern ideas - not a source of truth for Orchestra's actual implementation."
 argument-hint: "Describe what you're designing (e.g., 'form inputs', 'dark theme strategy', 'button variants')"
 user-invocable: true
 ---
@@ -29,7 +29,6 @@ Do **not** use this to describe how Orchestra already works - check source first
 | ------------------------------------------------------------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | [Atlassian Design System](https://atlassian.design)                       | React                  | Token-first theming, compound components                                                                                   |
 | [IBM Carbon](https://carbondesignsystem.com)                              | Web Components + React | Closest architectural parallel to Orchestra (WC source, framework wrappers)                                                |
-| [GitHub Primer](https://primer.style)                                     | React                  | Compound components, developer ergonomics                                                                                  |
 | [Adobe Spectrum](https://spectrum.adobe.com)                              | React Aria             | Accessibility/keyboard interaction patterns, headless behavior separated from styling                                      |
 | [Shopify Polaris](https://polaris.shopify.com)                            | React                  | Form/validation UX patterns                                                                                                |
 | [Shoelace](https://shoelace.style) / [WebAwesome](https://webawesome.com) | Web Components (Lit)   | Pure web-component patterns: slots, `attributeChangedCallback`, shadow DOM styling - most directly transferable to Stencil |
