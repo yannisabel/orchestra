@@ -75,10 +75,8 @@ npm run lint            # run repo linting
 npm run check:docs      # verify docs and AI guidance stay aligned
 npm run check:api       # check core API changes against origin/main (after building core)
 npm run check:design-tokens # check core component CSS for raw design values
-npm run test            # run Storybook/Vitest once
+npm run test            # run all test suites (Storybook/Vitest, then a11y)
 npm run test:components # run Storybook component tests once
-npm run test:integration # run consumer-facing Playwright tests
-npm run test:all        # run Storybook tests, then Playwright tests
 npm run release         # release-it workflow
 ```
 
