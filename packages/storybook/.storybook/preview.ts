@@ -4,6 +4,7 @@ import './globals.css'
 
 import type { Preview } from '@storybook/web-components-vite'
 import { registerIconLibrary } from '@orchestra-design-system/core'
+import { addons } from 'storybook/preview-api'
 
 type ThemeMode = 'light' | 'dark' | 'system'
 
@@ -38,6 +39,13 @@ const applyThemeClass = (theme: ThemeMode) => {
       ? 'orchestra-theme--dark'
       : 'orchestra-theme--light',
   )
+}
+
+let activeTheme: ThemeMode = 'system'
+
+const setActiveTheme = (theme: ThemeMode) => {
+  activeTheme = theme
+  applyThemeClass(theme)
 }
 
 // Define custom icons FIRST
@@ -131,10 +139,21 @@ const preview: Preview = {
           ? context.globals.theme
           : 'system'
 
-      applyThemeClass(selectedTheme)
+      setActiveTheme(selectedTheme)
       return story()
     },
   ],
 }
+
+const systemQuery = window.matchMedia('(prefers-color-scheme: dark)')
+systemQuery.addEventListener('change', () => {
+  if (activeTheme === 'system') setActiveTheme('system')
+})
+
+setActiveTheme('system')
+
+addons.getChannel().on('updateGlobals', ({ globals }) => {
+  setActiveTheme(globals.theme as ThemeMode)
+})
 
 export default preview
