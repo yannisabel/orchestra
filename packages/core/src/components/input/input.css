@@ -1,0 +1,97 @@
+:host {
+  --orchestra-input-border-color: var(
+    --orchestra-color-action-toggle-off-border-default,
+    currentColor
+  );
+  display: block;
+  width: 100%;
+}
+
+.orchestra-input-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--orchestra-spacing-action-primary-small, 0.25rem);
+}
+
+.orchestra-input-label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--orchestra-spacing-action-primary-small, 0.25rem);
+  color: var(--orchestra-color-text-primary);
+  font-family: var(--orchestra-font-family-default);
+  font-size: var(--orchestra-font-size-body-default, 1rem);
+  line-height: 1.5;
+}
+
+.orchestra-input-control {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.625rem 0.75rem;
+  border: var(--orchestra-size-action-primary-border-width-default, 1px) solid
+    var(--orchestra-input-border-color);
+  border-radius: var(--orchestra-radius-action-primary-small, 0.25rem);
+  background: transparent;
+  color: var(--orchestra-color-text-primary);
+  font: inherit;
+}
+
+.orchestra-input-control::placeholder {
+  color: var(--orchestra-color-text-disabled);
+  opacity: 1;
+}
+
+.orchestra-input-control:hover:not(:disabled, :read-only) {
+  border-color: var(--orchestra-color-action-toggle-off-border-hover);
+}
+
+.orchestra-input-control:focus-visible {
+  border-color: var(--orchestra-color-action-toggle-off-border-focus);
+  box-shadow: 0 0 0 4px var(--orchestra-focus-outer-ring-color);
+  outline: 2px solid var(--orchestra-focus-inner-ring-color);
+  outline-offset: 0;
+}
+
+.orchestra-input-control:disabled {
+  border-color: var(--orchestra-color-action-toggle-off-border-disabled);
+  color: var(--orchestra-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.orchestra-input-control:read-only {
+  cursor: default;
+}
+
+:host([data-invalid='true'])
+  .orchestra-input-control:not(:disabled, :read-only) {
+  border-color: var(--orchestra-color-action-toggle-off-border-highlight);
+}
+
+.orchestra-input-description {
+  color: var(
+    --orchestra-color-text-secondary,
+    var(--orchestra-color-text-primary)
+  );
+  font-family: var(--orchestra-font-family-default);
+  font-size: var(--orchestra-font-size-body-small, 0.875rem);
+  line-height: 1.4;
+}
+
+.orchestra-input-description--error {
+  color: var(--orchestra-color-text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orchestra-input-control {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .orchestra-input-control {
+    forced-color-adjust: auto;
+    border-color: FieldText;
+    background: Field;
+    color: FieldText;
+  }
+}

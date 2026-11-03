@@ -109,6 +109,9 @@ const preview: Preview = {
     },
 
     docs: {
+      story: {
+        autoplay: false,
+      },
       toc: {
         title: (async () => {
           const headingSelector = 'h1, h2, h3'

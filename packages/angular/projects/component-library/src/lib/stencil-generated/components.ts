@@ -92,3 +92,41 @@ export class OrchestraIcon {
 export declare interface OrchestraIcon extends Components.OrchestraIcon {}
 
 
+@ProxyCmp({
+  inputs: ['ariaDescribedby', 'ariaLabel', 'ariaLabelledby', 'autocomplete', 'disabled', 'errorMessage', 'helperText', 'htmlId', 'inputMode', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readOnly', 'required', 'type', 'value'],
+  methods: ['checkValidity', 'reportValidity', 'setCustomValidity']
+})
+@Component({
+  selector: 'orchestra-input',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['ariaDescribedby', 'ariaLabel', 'ariaLabelledby', 'autocomplete', 'disabled', 'errorMessage', 'helperText', 'htmlId', 'inputMode', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readOnly', 'required', 'type', 'value'],
+  outputs: ['orchestraInput', 'orchestraChange'],
+  standalone: false
+})
+export class OrchestraInput {
+  protected el: HTMLOrchestraInputElement;
+  @Output() orchestraInput = new EventEmitter<OrchestraInputCustomEvent<string>>();
+  @Output() orchestraChange = new EventEmitter<OrchestraInputCustomEvent<string>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { OrchestraInputCustomEvent } from '@orchestra-design-system/core';
+
+export declare interface OrchestraInput extends Components.OrchestraInput {
+  /**
+   * Emitted for each user edit. The event detail is the current value.
+   */
+  orchestraInput: EventEmitter<OrchestraInputCustomEvent<string>>;
+  /**
+   * Emitted when the user commits a value change. The event detail is the current value.
+   */
+  orchestraChange: EventEmitter<OrchestraInputCustomEvent<string>>;
+}
+
+
