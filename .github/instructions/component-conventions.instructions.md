@@ -186,12 +186,12 @@ Orchestra does **not** use Stencil's `newSpecPage`/colocated `*.spec.ts` pattern
 component behavior, even though `packages/core/package.json` still exposes a
 `test:spec` script. The CI-enforced, canonical pattern is Storybook `play`
 functions with Vitest assertions, written under
-`packages/storybook/src/stories/components/{component}/`. See
+`packages/storybook/src/pages/components/{component}/`. See
 [story-testing](../skills/story-testing/SKILL.md) for the full pattern by
 component type.
 
 ```typescript
-// packages/storybook/src/stories/components/{component}/{component}.stories.ts
+// packages/storybook/src/pages/components/{component}/{component}.stories.ts
 import { expect } from '@storybook/test'
 
 export const Primary: Story = {

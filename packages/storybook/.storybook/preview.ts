@@ -107,7 +107,13 @@ const preview: Preview = {
 
     options: {
       storySort: {
-        order: ['Overview', ['Introduction', 'Changelog'], '*'],
+        order: [
+          'Overview',
+          ['Introduction', 'Changelog'],
+          'Foundations',
+          ['Themes'],
+          '*',
+        ],
       },
     },
 

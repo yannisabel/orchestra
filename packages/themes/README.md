@@ -4,7 +4,7 @@ Theme entry points for the Orchestra design system.
 
 This package is the public token layer for applications and Storybook. It owns the token source files and generates light and dark CSS bundles. Applications load a theme bundle, and core components consume the resulting CSS custom properties.
 
-## Token model
+## Design Tokens model
 
 Orchestra uses a three-tier token structure:
 

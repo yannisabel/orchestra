@@ -120,7 +120,7 @@ export class OrchestraButton {
 Tests for this component belong in Storybook, per [story-testing](../../story-testing/SKILL.md):
 
 ```typescript
-// packages/storybook/src/stories/components/button/button.stories.tsx
+// packages/storybook/src/pages/components/button/button.stories.tsx
 import { Meta, StoryObj } from '@storybook/react'
 import { expect } from '@storybook/test'
 import { OrchestraButton } from './button'
