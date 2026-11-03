@@ -191,4 +191,3 @@ import{c as r}from"./index-gaHCqlrM.js";const{fn:s,expect:a,waitFor:g}=__STORYBO
     expect(button).toHaveClass('orchestra-button--large');
   }
 }`,...v.parameters?.docs?.source}}};const w=["Default","Disabled","KeyboardEnter","KeyboardSpace","DisabledAttributes","SubmitType","EndIcon","IconOnly","CustomIconLibrary","VariantAndSizeClass"],x=Object.freeze(Object.defineProperty({__proto__:null,CustomIconLibrary:h,Default:i,Disabled:l,DisabledAttributes:y,EndIcon:p,IconOnly:b,KeyboardEnter:u,KeyboardSpace:d,SubmitType:m,VariantAndSizeClass:v,__namedExportsOrder:w,default:B},Symbol.toStringTag,{value:"Module"}));export{x as B,i as D};
-//# sourceMappingURL=button.stories-C4bj_YIb.js.map

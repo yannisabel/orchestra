@@ -58,4 +58,3 @@ import{c as s}from"./index-gaHCqlrM.js";const c=["checkboxCheck","checkboxIndete
     }
   }
 } satisfies Story`,...i.parameters?.docs?.source}}};const d=["Informative","Default","CustomLibrary"],m=Object.freeze(Object.defineProperty({__proto__:null,CustomLibrary:i,Default:n,Informative:r,__namedExportsOrder:d,default:l},Symbol.toStringTag,{value:"Module"}));export{i as C,n as D,m as I,r as a};
-//# sourceMappingURL=icon.stories-Bmd336IC.js.map

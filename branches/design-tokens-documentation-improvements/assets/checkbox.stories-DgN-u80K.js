@@ -169,4 +169,3 @@ import{c as h}from"./index-gaHCqlrM.js";const{expect:a,fn:b,userEvent:m,waitFor:
     expect(errorSlot?.textContent).toContain('You must agree to continue');
   }
 }`,...s.parameters?.docs?.source}}};const k=["AccessibleLabel","Default","Indeterminate","WithError"],x=Object.freeze(Object.defineProperty({__proto__:null,AccessibleLabel:o,Default:r,Indeterminate:l,WithError:s,__namedExportsOrder:k,default:u},Symbol.toStringTag,{value:"Module"}));export{x as C,r as D};
-//# sourceMappingURL=checkbox.stories-DgN-u80K.js.map
