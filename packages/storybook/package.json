@@ -20,7 +20,7 @@
     "dev:storybook": "storybook dev -p 6006",
     "start:storybook": "concurrently \"(cd ../core/ && npm start)\" \"npm run dev:storybook\"",
     "test:components": "vitest --project=storybook",
-    "test:integration": "playwright test",
+    "test:a11y": "vitest --project=storybook --run && playwright test e2e/a11y",
     "test:components:coverage": "vitest --project=storybook --coverage",
     "build:storybook": "storybook build",
     "build:storybook:ci": "BASE_PATH=/orchestra-design-system/ storybook build",
@@ -34,6 +34,7 @@
     "lit": "^3.3.3"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@stencil/storybook-plugin": "^0.6.1",
     "@storybook/addon-a11y": "^10.4.6",
     "@storybook/addon-coverage": "^3.0.1",

@@ -89,8 +89,8 @@ jobs:
         include:
           - suite: Components (Storybook)
             script: test:components
-          - suite: Consumer Integration (Playwright)
-            script: test:integration
+          - suite: Accessibility (Storybook + Playwright)
+            script: test:a11y
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:

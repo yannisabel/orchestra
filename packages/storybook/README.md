@@ -40,14 +40,13 @@ This generates the static Storybook site in the package output folder.
 ```bash
 npm run test:components
 npm run test:components:coverage
-npm run test:integration
+npm run test:a11y
 ```
 
-From the repository root, `npm run test:components` (also `npm run test`)
-runs Storybook/Vitest once, `npm run test:integration` runs Playwright
-independently, and `npm run test:all` runs
-both sequentially. Build packages first with `npm run build`. CI runs the two
-suites as parallel matrix jobs, each with its own package build.
+From the repository root, `npm run test` runs Storybook/Vitest once and then
+`npm run test:a11y`. `npm run test:components` runs only the Storybook/Vitest
+suite. Build packages first with `npm run build`. CI runs the two suites as
+parallel matrix jobs, each with its own package build.
 
 ### Consumer-facing browser tests
 
@@ -55,7 +54,7 @@ From the repository root:
 
 ```bash
 npm run build:js --workspace=@orchestra-design-system/core
-npm run test:integration
+npm run test:a11y
 ```
 
 The Playwright suite starts Storybook on port 6007 and exercises the consumer

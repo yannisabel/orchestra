@@ -90,6 +90,11 @@ const preview: Preview = {
   parameters: {
     viewMode: 'docs',
 
+    // Reports axe violations as warnings; the e2e gate enforces critical and serious.
+    a11y: {
+      test: 'todo',
+    },
+
     options: {
       storySort: {
         order: ['Overview', ['Introduction', 'Changelog'], '*'],

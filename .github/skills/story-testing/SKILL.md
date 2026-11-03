@@ -24,18 +24,18 @@ Tests in Orchestra live in **Storybook Play functions** using **Vitest v4.1.9**.
 ## Consumer-Facing Playwright Coverage
 
 For exact Playwright locator behavior and native browser input, use
-`packages/storybook/e2e/accessibility.spec.ts` with
+`packages/storybook/e2e/a11y/accessibility.spec.ts` with
 `packages/storybook/playwright.config.ts`. The consumer-interface story has no
 play function so the browser tests own all interactions. Run from the repo root:
 
 ```bash
 npm run build:js --workspace=@orchestra-design-system/core
-npm run test:integration
+npm run test:a11y
 ```
 
-Root `npm run test:components` (also `npm run test`) runs Storybook/Vitest
-once, `npm run test:integration` runs Playwright independently, and
-`npm run test:all` runs both sequentially. Root `test:coverage` delegates to
+Root `npm run test` runs Storybook/Vitest and then `npm run test:a11y`, which
+runs the Storybook a11y checks and Playwright accessibility specs. Root
+`npm run test:components` runs only the Storybook/Vitest suite. Root `test:coverage` delegates to
 the workspace `test:components:coverage` command in single-run mode.
 Build packages before testing. CI runs both suites in parallel matrix jobs,
 each building packages independently. The workspace `test:components` command
