@@ -5,6 +5,7 @@ import './globals.css'
 import type { Preview } from '@storybook/web-components-vite'
 import { registerIconLibrary } from '@orchestra-design-system/core'
 import { addons } from 'storybook/preview-api'
+import { initMermaid, refreshMermaidDiagrams } from './mermaid'
 
 type ThemeMode = 'light' | 'dark' | 'system'
 
@@ -46,6 +47,7 @@ let activeTheme: ThemeMode = 'system'
 const setActiveTheme = (theme: ThemeMode) => {
   activeTheme = theme
   applyThemeClass(theme)
+  refreshMermaidDiagrams()
 }
 
 // Define custom icons FIRST
@@ -151,6 +153,7 @@ systemQuery.addEventListener('change', () => {
 })
 
 setActiveTheme('system')
+initMermaid()
 
 addons.getChannel().on('updateGlobals', ({ globals }) => {
   setActiveTheme(globals.theme as ThemeMode)
