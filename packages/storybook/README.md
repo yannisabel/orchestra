@@ -77,6 +77,6 @@ Storybook consumes the public theme bundles from the themes package. This keeps 
 
 ## Notes
 
-- Story files live under src/stories.
+- Stories and MDX docs live under src/pages, grouped by section (accessibility, components, foundations, overview).
 - Global Storybook setup is configured in .storybook.
 - The package depends on the core component runtime, the theme bundle, and the generated icon library.

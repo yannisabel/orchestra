@@ -36,14 +36,16 @@ packages/storybook/
 ├── src/
 │   ├── index.css                    # Global Storybook styles
 │   ├── vite-env.d.ts                # Vite type definitions
-│   └── stories/
-│       ├── components/              # Component-grouped stories
+│   └── pages/                       # Stories and MDX docs, grouped by section
+│       ├── accessibility/           # Accessibility stories
+│       ├── components/              # Component-grouped docs and stories
 │       │   ├── button/
+│       │   │   ├── button.mdx
 │       │   │   └── button.stories.ts
-│       │   ├── form-input/
-│       │   │   └── form-input.stories.ts
-│       │   └── ...
-│       └── assets/                  # Shared story assets
+│       │   ├── checkbox/
+│       │   └── icon/
+│       ├── foundations/             # Foundations docs (themes)
+│       └── overview/                # Introduction and changelog
 ├── vitest.config.ts                 # Vitest configuration
 ├── vitest.shims.d.ts                # Vitest type stubs
 └── tsconfig.json                    # TypeScript config
@@ -57,7 +59,7 @@ packages/storybook/
 import { getViteConfig } from '@stencil/storybook-plugin'
 
 export default {
-  stories: ['../src/stories/**/*.stories.ts'], // Story files glob
+  stories: ['../src/**/*.stories.ts'], // Story files glob
   addons: [
     '@storybook/addon-onboarding',
     '@storybook/addon-links',
@@ -111,7 +113,7 @@ export default preview
 ### Story File Structure
 
 ```typescript
-// src/stories/components/button/button.stories.ts
+// src/pages/components/button/button.stories.ts
 import { Meta, StoryObj } from '@storybook/web-components'
 import { expect } from '@storybook/test'
 
@@ -355,7 +357,7 @@ A flexible button for user interactions.
 - ❌ Hardcoding theme/design token values in stories
 - ❌ Skipping accessibility testing
 - ❌ Stories with no `args` (always define component inputs)
-- ❌ Placing stories in component folders (use `stories/` directory)
+- ❌ Placing stories outside `src/pages/` (group them by section, e.g. `pages/components/{name}/`)
 
 ## Efficiency Tips
 
