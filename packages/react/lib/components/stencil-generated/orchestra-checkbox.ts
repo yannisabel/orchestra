@@ -7,27 +7,27 @@
 
 /* eslint-disable */
 
-import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
-import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
-
-import { type CheckboxChangeDetail, type OrchestraCheckboxCustomEvent } from "@orchestra-design-system/core";
-import type { Components } from "@orchestra-design-system/core/dist/components";
-import { OrchestraCheckbox as OrchestraCheckboxElement, defineCustomElement as defineOrchestraCheckbox } from "@orchestra-design-system/core/dist/components/orchestra-checkbox.js";
+import { createComponent } from '@stencil/react-output-target/runtime';
+import type { Components } from '@orchestra-design-system/core/dist/components';
+import { OrchestraCheckbox as OrchestraCheckboxElement, defineCustomElement as defineOrchestraCheckbox } from '@orchestra-design-system/core/dist/components/orchestra-checkbox.js';
+import type { CheckboxChangeDetail, OrchestraCheckboxCustomEvent } from '@orchestra-design-system/core';
+import type { StencilReactComponent, EventName } from '@stencil/react-output-target/runtime';
 
 export type OrchestraCheckboxEvents = {
-    onOrchestraChange: EventName<OrchestraCheckboxCustomEvent<boolean>>,
-    onOrchestraStateChange: EventName<OrchestraCheckboxCustomEvent<CheckboxChangeDetail>>
+  onOrchestraChange: EventName<OrchestraCheckboxCustomEvent<boolean>>,
+  onOrchestraStateChange: EventName<OrchestraCheckboxCustomEvent<CheckboxChangeDetail>>
 };
 
+// @ts-ignore - ignore type constraint errors from auto-generated Stencil React Output Target
 export const OrchestraCheckbox: StencilReactComponent<OrchestraCheckboxElement, OrchestraCheckboxEvents, Components.OrchestraCheckbox> = /*@__PURE__*/ createComponent<OrchestraCheckboxElement, OrchestraCheckboxEvents, Components.OrchestraCheckbox>({
     tagName: 'orchestra-checkbox',
     elementClass: OrchestraCheckboxElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-        onOrchestraChange: 'orchestraChange',
-        onOrchestraStateChange: 'orchestraStateChange'
+      onOrchestraChange: 'orchestraChange',
+      onOrchestraStateChange: 'orchestraStateChange'
     } as OrchestraCheckboxEvents,
-    defineCustomElement: defineOrchestraCheckbox
+    defineCustomElement: defineOrchestraCheckbox,
 });

@@ -22,12 +22,21 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "style-dictionary": "^5.5.0"
+    "style-dictionary": "^5.7.1"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/yannisabel/orchestra.git"
   },
   "author": "Yann Isabel",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@stencil/playwright": "^0.6.0",
+    "@storybook/addon-coverage": "^0.0.4",
+    "eslint": "^10.14.0",
+    "jest-cli": "25.1.0",
+    "lerna": "^10.1.1",
+    "release-it": "21.1.2",
+    "typescript-eslint": "^7.3.1"
+  }
 }

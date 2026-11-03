@@ -7,12 +7,11 @@
 
 /* eslint-disable */
 
-import type { StencilReactComponent } from '@stencil/react-output-target/runtime';
-import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
-
-import type { Components } from "@orchestra-design-system/core/dist/components";
-import { OrchestraButton as OrchestraButtonElement, defineCustomElement as defineOrchestraButton } from "@orchestra-design-system/core/dist/components/orchestra-button.js";
+import { createComponent } from '@stencil/react-output-target/runtime';
+import type { Components } from '@orchestra-design-system/core/dist/components';
+import { OrchestraButton as OrchestraButtonElement, defineCustomElement as defineOrchestraButton } from '@orchestra-design-system/core/dist/components/orchestra-button.js';
+import type { StencilReactComponent } from '@stencil/react-output-target/runtime';
 
 export type OrchestraButtonEvents = NonNullable<unknown>;
 
@@ -22,5 +21,5 @@ export const OrchestraButton: StencilReactComponent<OrchestraButtonElement, Orch
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as OrchestraButtonEvents,
-    defineCustomElement: defineOrchestraButton
+    defineCustomElement: defineOrchestraButton,
 });

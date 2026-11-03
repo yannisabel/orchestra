@@ -7,12 +7,11 @@
 
 /* eslint-disable */
 
-import type { StencilReactComponent } from '@stencil/react-output-target/runtime';
-import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
-
-import type { Components } from "@orchestra-design-system/core/dist/components";
-import { OrchestraIcon as OrchestraIconElement, defineCustomElement as defineOrchestraIcon } from "@orchestra-design-system/core/dist/components/orchestra-icon.js";
+import { createComponent } from '@stencil/react-output-target/runtime';
+import type { Components } from '@orchestra-design-system/core/dist/components';
+import { OrchestraIcon as OrchestraIconElement, defineCustomElement as defineOrchestraIcon } from '@orchestra-design-system/core/dist/components/orchestra-icon.js';
+import type { StencilReactComponent } from '@stencil/react-output-target/runtime';
 
 export type OrchestraIconEvents = NonNullable<unknown>;
 
@@ -22,5 +21,5 @@ export const OrchestraIcon: StencilReactComponent<OrchestraIconElement, Orchestr
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as OrchestraIconEvents,
-    defineCustomElement: defineOrchestraIcon
+    defineCustomElement: defineOrchestraIcon,
 });

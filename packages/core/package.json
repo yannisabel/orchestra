@@ -94,13 +94,20 @@
     "preview": "npx http-server www"
   },
   "dependencies": {
-    "@orchestra-design-system/icons-library": "^0.1.0"
+    "@orchestra-design-system/icons-library": "^0.1.0",
+    "@storybook/addon-coverage": "^0.0.4",
+    "eslint": "^10.14.0",
+    "eslint-plugin-storybook": "0.9.0",
+    "lerna": "^10.1.1",
+    "release-it": "21.1.2",
+    "style-dictionary": "^5.7.1",
+    "typescript-eslint": "^7.3.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.1",
     "@stencil/angular-output-target": "^1.4.0",
     "@stencil/core": "^4.43.5",
-    "@stencil/playwright": "^0.5.1",
+    "@stencil/playwright": "^0.6.0",
     "@stencil/react-output-target": "^1.6.0",
     "@stencil/sass": "3.2.3",
     "@stencil/utils": "^0.0.5",
@@ -109,8 +116,8 @@
     "concurrently": "^9.2.3",
     "dompurify": "^3.4.11",
     "http-server": "^14.1.1",
-    "jest": "^30.5.2",
-    "jest-cli": "^30.4.2",
+    "jest": "^25.1.0",
+    "jest-cli": "^25.1.0",
     "rollup-plugin-postcss": "^4.0.2",
     "vite": "^7.2.4"
   },
