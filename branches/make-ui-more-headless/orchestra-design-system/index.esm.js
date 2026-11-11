@@ -1,0 +1,1 @@
+export{g as getIconLibrary,r as registerIconLibrary,u as unregisterIconLibrary}from"./p-CkLo7J3i.js";import"./p-XWKWtPtI.js";function t(r,t,o){return(r||"")+(t?` ${t}`:"")+(o?` ${o}`:"")}export{t as format}
