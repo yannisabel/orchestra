@@ -9,15 +9,15 @@ user-invocable: true
 
 ## Quick Reference
 
-| Category       | Rule                           | Example                                      |
-| -------------- | ------------------------------ | -------------------------------------------- |
-| **Files**      | kebab-case                     | `button.ts`, `form-input.tsx`                |
-| **Classes**    | PascalCase                     | `ButtonComponent`, `FormHandler`             |
-| **Hooks**      | `use*` prefix                  | `useButtonState`, `useFormValidation`        |
-| **TypeScript** | Strict mode, no `any`          | Use `unknown` + type guards                  |
-| **Styling**    | Parts and `data-*`, no classes | `[part='label']`, `[data-variant='primary']` |
-| **Tests**      | Vitest (not Jest)              | `*.spec.ts` directly in component stories    |
-| **Node**       | >= 24                          | Always target modern Node                    |
+| Category       | Rule                                | Example                                      |
+| -------------- | ----------------------------------- | -------------------------------------------- |
+| **Files**      | kebab-case                          | `button.ts`, `form-input.tsx`                |
+| **Classes**    | PascalCase                          | `ButtonComponent`, `FormHandler`             |
+| **Hooks**      | `use*` prefix                       | `useButtonState`, `useFormValidation`        |
+| **TypeScript** | Strict mode, no `any`               | Use `unknown` + type guards                  |
+| **Styling**    | Parts and `data-*`, no classes      | `[part='label']`, `[data-variant='primary']` |
+| **Tests**      | Vitest via Storybook play functions | `play` in `*.stories.ts` files               |
+| **Node**       | >= 24                               | Always target modern Node                    |
 
 ## Environment & Setup
 
@@ -29,9 +29,9 @@ user-invocable: true
 
 ### TypeScript Configuration
 
-- All projects use **TypeScript strict mode**
-- `tsconfig.json` must include: `"strict": true`
-- No exceptions for `any` type — use `unknown` with type guards instead
+- Strict mode is the standard. `packages/angular`, `packages/icons-library`, and `packages/storybook` set `"strict": true` in `tsconfig.json`
+- `packages/react` currently sets `"strict": false`. Do not copy that setting into new code
+- No exceptions for `any` type - use `unknown` with type guards instead
 
 ## Naming Conventions
 
@@ -47,7 +47,7 @@ src/
     button/
       button.ts
       button.tsx
-      button.spec.ts
+      button.stories.ts
     form-input/
       form-input.tsx
   utils/
@@ -125,7 +125,7 @@ const MAX_RETRIES = 3 // Constants: UPPER_SNAKE_CASE
 
 ```json
 "check:design-tokens": "node packages/core/scripts/design-tokens-check.mjs",
-"build:tokens": "npx lerna run build --scope='@orchestra-design-system/themes'",
+"build:design-tokens": "npx lerna run build --scope='@orchestra-design-system/themes'",
 "test:components": "npm run test:components --workspace=@orchestra-design-system/storybook -- --run"
 ```
 
@@ -177,7 +177,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 function isButtonProps(value: unknown): value is ButtonProps {
-  return isRecord(value) && 'label' in value && typeof value.label === 'string';
+  return isRecord(value) && 'text' in value && typeof value.text === 'string';
 }
 
 // Usage
@@ -221,36 +221,36 @@ svg {
 
 ### Framework: Vitest (Not Jest)
 
-- Use **Vitest** for all unit tests
-- Tests run in Play functions within Storybook stories
+- Use **Vitest** for stories and play functions; the Storybook Vitest addon (`@storybook/addon-vitest`) runs them
+- Play functions import from `storybook/test` (`expect`, `userEvent`, `within`, `fn`)
 - No separate test files in `__tests__` folders (tests live in stories)
 
 ### Test File Structure
 
-Tests are embedded in Storybook story files:
+Tests are embedded in Storybook story files (`packages/storybook/src/pages/components/`):
 
 ```typescript
-// src/components/button/button.stories.tsx
-import { describe, it, expect, vi } from 'vitest';
+import type { Meta, StoryObj } from '@storybook/web-components-vite'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
-export const Primary = {
-  render: () => <Button label="Click me" />,
-  play: async ({ canvasElement }) => {
-    const button = canvasElement.querySelector('button');
-    expect(button).toHaveTextContent('Click me');
+const meta: Meta = { title: 'Components/Button', component: 'orchestra-button' }
+export default meta
+type Story = StoryObj
 
-    // Simulate user interaction
-    button?.click();
-    await expect(button).toHaveClass('active');
+export const Primary: Story = {
+  args: { text: 'Click me', variant: 'primary' },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement)
+    const button = canvas.getByRole('button', { name: 'Click me' })
+
+    await expect(button).toHaveAttribute('data-variant', 'primary')
+    await userEvent.click(button)
   },
-};
+}
 
-export const WithCallback = {
-  render: () => <Button label="Test" onClick={vi.fn()} />,
-  play: async () => {
-    // Test interaction and callback
-  },
-};
+export const WithCallback: Story = {
+  args: { text: 'Test', onClick: fn() },
+}
 ```
 
 ### Test Naming
@@ -263,7 +263,7 @@ export const WithCallback = {
 describe('Button Component', () => {
   it('renders with label', () => {})
   it('calls onClick when clicked', () => {})
-  it('applies disabled class when disabled', () => {})
+  it('applies data-disabled when disabled', () => {})
 })
 ```
 
@@ -286,54 +286,42 @@ packages/
 
 1. Create folder under `packages/`
 2. Name folder in kebab-case: `my-package`
-3. Create `package.json` with workspace name: `@orchestra/my-package`
+3. Create `package.json` with workspace name: `@orchestra-design-system/my-package`
 4. Update root `lerna.json` if needed
 
 ## Component Example
 
-**File**: `src/components/button/button.tsx`
+**File**: `packages/core/src/components/button/button.tsx` (Stencil, headless)
 
 ```typescript
-// ✅ Good: kebab-case file, PascalCase class, strict types
-import { FC } from 'react';
+// kebab-case file, PascalCase class, typed props, parts and data-* only
+@Component({ tag: 'orchestra-button', styleUrl: 'button.css', shadow: true })
+export class OrchestraButton {
+  @Prop() text!: string
+  @Prop() variant: 'primary' | 'secondary' | 'tertiary' = 'primary'
+  @Prop() disabled = false
 
-interface ButtonProps {
-  label: string;
-  onClick?: () => void;
-  disabled?: boolean;
+  render() {
+    return (
+      <button part="button" data-variant={this.variant} data-disabled={this.disabled ? '' : undefined} disabled={this.disabled}>
+        <span part="label">{this.text}</span>
+      </button>
+    )
+  }
 }
-
-export const Button: FC<ButtonProps> = ({ label, onClick, disabled }) => {
-  return (
-    <button onClick={onClick} disabled={disabled}>
-      {label}
-    </button>
-  );
-};
 ```
 
-**File**: `src/components/button/button.stories.tsx`
-
-```typescript
-import { describe, it, expect } from 'vitest';
-import { Button } from './button';
-
-export const Primary = {
-  render: () => <Button label="Click me" />,
-  play: async ({ canvasElement }) => {
-    const button = canvasElement.querySelector('button');
-    expect(button?.textContent).toBe('Click me');
-  },
-};
-
-export const Disabled = {
-  render: () => <Button label="Disabled" disabled />,
-  play: async ({ canvasElement }) => {
-    const button = canvasElement.querySelector('button');
-    expect(button).toBeDisabled();
-  },
-};
+```css
+/* button.css: select parts, read tokens */
+[part='button'] {
+  color: var(--orchestra-color-action-primary-content-default);
+}
+[part='button'][data-variant='secondary'] {
+  color: var(--orchestra-color-action-secondary-content-default);
+}
 ```
+
+See [stencil-components](../stencil-components/SKILL.md) for the full pattern.
 
 ## Hook Example
 
@@ -380,15 +368,13 @@ export function useFormState(initialValues: Record<string, unknown>) {
 
 ## ESLint & Formatting
 
-- ESLint config: `eslint.config.mjs` (root)
-- TypeScript strict checking enforced in all workspaces
-- Prettier for formatting (integrated with ESLint)
+- Linter: oxlint, run through `npm run lint` (root `package.json`)
+- Strict checking is set per package in `tsconfig.json` (see above)
 
 Run locally:
 
 ```bash
-npm run lint              # Check violations
-npm run lint -- --fix    # Auto-fix violations
+npm run lint              # oxlint; the script already passes --fix
 ```
 
 ## Efficiency Tips

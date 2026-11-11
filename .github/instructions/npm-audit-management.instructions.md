@@ -1,9 +1,9 @@
 ---
 name: npm-audit-management
-applyTo: "**/package.json"
+applyTo: '**/package.json'
 description:
-  "Monorepo npm audit and dependency update workflow. Prevents common npm
-  vulnerability management pitfalls in the Orchestra workspace."
+  'Monorepo npm audit and dependency update workflow. Prevents common npm
+  vulnerability management pitfalls in the Orchestra workspace.'
 ---
 
 # npm Audit Management for Orchestra Monorepo
@@ -16,18 +16,20 @@ When you see npm audit vulnerabilities:
 # ✅ CORRECT: Update each workspace individually
 cd packages/angular && npm up --save --legacy-peer-deps
 cd packages/core && npm up --save --legacy-peer-deps
+cd packages/icons-library && npm up --save --legacy-peer-deps
 cd packages/react && npm up --save --legacy-peer-deps
 cd packages/storybook && npm up --save --legacy-peer-deps
+cd packages/themes && npm up --save --legacy-peer-deps
 cd packages/vue && npm up --save --legacy-peer-deps
 
-# Then reinstall at root
-cd /repo/root && npm install
+# Then reinstall at the repo root
+npm install
 npm audit  # Verify results
 ```
 
 ## Why This Matters
 
-This monorepo uses Lerna workspaces with strong peer dependency requirements between Angular and its build tools. Direct `npm audit fix` commands fail due to conflicting peer dependencies.
+Root `package.json` declares `workspaces: ["packages/*"]`, so every package under `packages/` is a workspace. The root `overrides` block pins transitive `js-yaml` and `tar`.
 
 **Your `.npmrc` file requires `legacy-peer-deps=true`** to work around these structural conflicts.
 
@@ -69,9 +71,9 @@ This monorepo uses Lerna workspaces with strong peer dependency requirements bet
 
 ### Remaining High-Severity Vulnerabilities (Current Baseline)
 
-Current audit baseline shows 2 high-severity vulnerabilities, both from dev tooling:
+Snapshot in `audit.json` (repo root, last recorded run): 72 total vulnerabilities (28 high, 39 moderate, 5 low, 0 critical). Re-run `npm audit` for current numbers and treat the snapshot as a dated baseline, not a live count.
 
-- **http-proxy-middleware**: Used by Angular dev server toolchain via `@angular-devkit/build-angular`
+Most remaining findings come from dev tooling. Example:
 
 These cannot be resolved without breaking Angular's build toolchain. They are:
 
@@ -92,7 +94,7 @@ These cannot be resolved without breaking Angular's build toolchain. They are:
 ```bash
 cd /repo/root
 npm audit 2>&1 | grep vulnerabilities
-# Expected baseline after Wave 3: ~8 vulnerabilities (3 low, 3 moderate, 2 high)
+# Compare against the audit.json snapshot (72 total at last recording)
 ```
 
 ### When Vulnerabilities Increase
@@ -110,11 +112,10 @@ npm audit 2>&1 | grep vulnerabilities
 
 ### Proven Reduction Steps (Current Monorepo)
 
-- Add root `overrides` in `package.json` for:
-  - `js-yaml: ^4.3.0`
-  - `tar: ^7.5.16`
-- Remove unused `@storybook/test-runner` from `packages/core/package.json`
-- Re-run `npm install`, `npm audit`, and `npm run build`
+- Already applied:
+  - Root `overrides` in `package.json` for `js-yaml` (`^4.3.0`) and `tar` (`^7.5.16`)
+  - `@storybook/test-runner` is no longer in `packages/core/package.json`
+- After further changes, re-run `npm install`, `npm audit`, and `npm run build`
 
 ## Reference: Package Vulnerabilities by Workspace
 

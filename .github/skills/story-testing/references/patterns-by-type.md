@@ -2,44 +2,58 @@
 
 Full story code for the checklist in [the main skill](../SKILL.md#procedure-pick-the-right-pattern).
 
+> Only `orchestra-button`, `orchestra-checkbox`, and `orchestra-icon` exist in `packages/core/src/components` today. The Form Input, Modal, List, Select, and async sections below are illustrative patterns for future components, not verified APIs.
+
 ## Button Component
 
 **Testing checklist**: Label, click handler, disabled state, variants (primary, secondary)
 
 ```typescript
-import { expect } from '@storybook/test'
-import { Button } from './button'
+import type { Meta, StoryObj } from '@storybook/web-components-vite'
+import { expect, fn, userEvent } from 'storybook/test'
+
+const meta = {
+  title: 'Components/Button',
+  component: 'orchestra-button',
+} satisfies Meta
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
-  args: { label: 'Click me', variant: 'primary' },
+  args: { text: 'Click me', variant: 'primary' },
   play: async ({ canvasElement }) => {
-    const button = canvasElement.querySelector('button')
+    const host = canvasElement.querySelector('orchestra-button')!
+    const button = host.shadowRoot!.querySelector("[part='button']")!
 
-    // Verify rendering
-    expect(button).toBeInTheDocument()
-    expect(button).toHaveTextContent('Click me')
-    expect(button).toHaveClass('primary')
+    // Verify rendering and headless state hooks (no classes)
+    expect(button.textContent).toContain('Click me')
+    expect(button).toHaveAttribute('data-variant', 'primary')
   },
 }
 
 export const Disabled: Story = {
-  args: { label: 'Disabled', disabled: true },
+  args: { text: 'Disabled', disabled: true },
   play: async ({ canvasElement }) => {
-    const button = canvasElement.querySelector('button')
+    const host = canvasElement.querySelector('orchestra-button')!
+    const button =
+      host.shadowRoot!.querySelector<HTMLButtonElement>("[part='button']")!
     expect(button).toBeDisabled()
   },
 }
 
 export const WithClick: Story = {
-  args: { label: 'Click me', onClick: vi.fn() },
-  play: async ({ canvasElement, args }) => {
-    const button = canvasElement.querySelector('button')
+  args: { text: 'Click me' },
+  play: async ({ canvasElement }) => {
+    const host = canvasElement.querySelector('orchestra-button')!
+    const button = host.shadowRoot!.querySelector("[part='button']")!
 
-    // Simulate user interaction
-    await userEvent.click(button!)
+    // Native click is composed and bubbles to the host
+    const onClick = fn()
+    host.addEventListener('click', onClick)
 
-    // Verify callback was called
-    expect(args.onClick).toHaveBeenCalledOnce()
+    await userEvent.click(button)
+
+    expect(onClick).toHaveBeenCalledOnce()
   },
 }
 ```
@@ -49,7 +63,7 @@ export const WithClick: Story = {
 **Testing checklist**: Label, placeholder, value updates, validation, error states
 
 ```typescript
-import { userEvent } from '@storybook/test'
+import { userEvent } from 'storybook/test'
 import { FormInput } from './form-input'
 
 export const Default: Story = {
@@ -98,7 +112,7 @@ export const ValidationError: Story = {
     expect(errorMsg).toHaveTextContent('Invalid email format')
 
     const input = canvasElement.querySelector('input')
-    expect(input).toHaveClass('error')
+    expect(input).toHaveAttribute('data-invalid', '')
   },
 }
 ```
@@ -108,7 +122,7 @@ export const ValidationError: Story = {
 **Testing checklist**: Visibility, close button, overlay click, keyboard escape, focus trap
 
 ```typescript
-import { userEvent } from '@storybook/test'
+import { userEvent } from 'storybook/test'
 import { Modal } from './modal'
 
 export const Open: Story = {
@@ -213,7 +227,7 @@ export const Sortable: Story = {
 **Testing checklist**: Options render, selection, keyboard navigation, open/close
 
 ```typescript
-import { userEvent } from '@storybook/test'
+import { userEvent } from 'storybook/test'
 import { Select } from './select'
 
 export const Closed: Story = {
@@ -283,7 +297,7 @@ export const KeyboardNavigation: Story = {
 ### Waiting for Changes
 
 ```typescript
-import { waitFor } from '@storybook/test'
+import { waitFor } from 'storybook/test'
 
 export const AsyncData: Story = {
   args: { onFetch: vi.fn() },

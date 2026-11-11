@@ -1,6 +1,6 @@
 ---
 name: stencil-components
-description: 'Build flexible, token-driven Stencil components for Orchestra. Use when creating new UI components or extending existing ones. Covers component structure, props/variants, styling with design tokens, accessibility (ARIA), keyboard navigation, and Shadow/Light DOM decisions.'
+description: 'Build flexible, token-driven Stencil components for Orchestra. Use when creating new UI components or extending existing ones. Covers component structure, props/variants, styling with design tokens, accessibility (ARIA), keyboard navigation, and Shadow DOM decisions.'
 argument-hint: "Describe the component (e.g., 'button with variants', 'form input', 'dropdown')"
 user-invocable: true
 ---
@@ -9,14 +9,14 @@ user-invocable: true
 
 ## Overview
 
-Orchestra uses **Stencil** to build reusable web components with multiple output targets (React, Vue, Angular, vanilla JS). Components are token-driven (pulling values from [themes](../themes/SKILL.md)), support dark/light themes automatically, and are tested in Storybook (v10.4.6) with Vitest (v4.1.9).
+Orchestra uses **Stencil** to build reusable web components with multiple output targets (React, Vue, Angular). Components are headless: they carry structure and state, expose `part` and `data-*` attributes for customers to style, and read values from design tokens (see [themes](../themes/SKILL.md)). They are tested in Storybook (v10) with Vitest (v4) per [story-testing](../story-testing/SKILL.md).
 
 **Build Pipeline for this repo**:
 
-- **CSS**: Vite-based styling and token compilation for the core package
+- **CSS**: component CSS (`styleUrl`) is bundled by Stencil; there is no separate CSS build script
 - **JS**: `packages/core/stencil.config.ts` builds the web component package plus framework output targets for React, Vue, and Angular
 - **Testing**: Storybook + Vitest with play functions under `packages/storybook`
-- **Documentation**: Storybook stories and generated readmes in the core package
+- **Documentation**: Storybook stories and generated readmes from JSDoc (`stencil build --docs`)
 
 **Relevant repo paths**:
 
@@ -25,7 +25,7 @@ Orchestra uses **Stencil** to build reusable web components with multiple output
 - `packages/storybook` - stories and interaction tests
 - `packages/react`, `packages/vue`, `packages/angular` - generated wrapper packages
 
-**Key principle**: One component = One semantic element with variants, props for states, token-based styling, and full accessibility.
+**Key principle**: One component = One semantic element with `part` and `data-*` hooks, props for states, and token-based styling. No classes.
 
 ## File Structure
 
@@ -38,40 +38,45 @@ packages/core/src/components/[component-name]/
 
 Tests are **not** colocated as `*.spec.ts` here - see [story-testing](../story-testing/SKILL.md).
 
-## Shadow vs Light DOM
+## Shadow DOM and Form Association
 
-| Decision           | Use Shadow                | Use Light              |
-| ------------------ | ------------------------- | ---------------------- |
-| Isolated styles    | ✅ Default                | ❌ Global styles apply |
-| Form association   | ❌ Limited                | ✅ Full support        |
-| Content projection | ✅ Slots                  | ❌ Direct nesting      |
-| Focus delegation   | ✅ `delegatesFocus: true` | ✅ Natural             |
-| **When to use**    | Most components           | Form controls, buttons |
+All Orchestra components use Shadow DOM so that tokens, not page CSS, define their look. Verified patterns in `packages/core/src/components`:
+
+| Component  | Decorator options                                          | Why                                    |
+| ---------- | ---------------------------------------------------------- | -------------------------------------- |
+| `icon`     | `shadow: true`                                             | Renders an isolated SVG                |
+| `button`   | `shadow: { delegatesFocus: true }`                         | Focus goes to the inner `<button>`     |
+| `checkbox` | `formAssociated: true`, `shadow: { delegatesFocus: true }` | Participates in native forms and focus |
+
+- Use `formAssociated: true` for any form control that must submit or validate with a parent `<form>`
+- Use `delegatesFocus: true` when the inner control should receive focus from the host
 
 ## Procedure: Build a New Component
 
 1. Scaffold the file structure above under `packages/core/src/components/<name>/`.
-2. Add the `@Component({ tag: 'orchestra-<name>', styleUrl, shadow, formAssociated })` decorator - pick shadow vs light per the table above.
+2. Add the `@Component({ tag: 'orchestra-<name>', styleUrl, shadow, formAssociated })` decorator - use `shadow: true` (or `shadow: { delegatesFocus: true }`) and add `formAssociated: true` for form controls, per the table above.
 3. Define props/events/watchers/listeners - see [component-lifecycle](./references/component-lifecycle.md) for the native-form-element pattern and full API (`@Prop`, `@Event`, `@Watch`, `@Listen`).
 4. Style with design tokens - see [styling-tokens](./references/styling-tokens.md).
 5. Add ARIA attributes and keyboard support - see [accessibility-keyboard](./references/accessibility-keyboard.md).
 6. Write Storybook stories/tests per [story-testing](../story-testing/SKILL.md) - not colocated `*.spec.ts` (see [component-conventions](../../instructions/component-conventions.instructions.md)).
-7. Build: `npm run build --workspace=@orchestra-design-system/core` (or `build:js`/`build:css` individually).
+7. Build: `npm run build --workspace=@orchestra-design-system/core` (or `build:js` individually; use `start:js` for watch mode).
 
 See [complete-example](./references/complete-example.md) for a full button component wired end to end.
 
 ## Anti-Patterns
 
-| Problem                                   | Issue                     | Fix                                          |
-| ----------------------------------------- | ------------------------- | -------------------------------------------- |
-| Using hard-coded colors                   | No theme support          | Use design tokens only                       |
-| `@Prop` with complex objects              | TypeScript issues         | Use primitives (string, number, boolean)     |
-| No keyboard support                       | Inaccessible              | Use `@Listen()` for keyboard events          |
-| Missing ARIA attributes                   | Screen readers fail       | Add `aria-label`, `aria-described-by`, roles |
-| Shadow DOM for form controls              | Can't associate with form | Use `formAssociated: true, shadow: false`    |
-| No focus management                       | Tab order breaks          | Use `delegatesFocus: true` or manual focus   |
-| Inline JSX styles                         | Can't use tokens          | Move all styles to CSS file                  |
-| Creating new DOM elements with `document` | Breaks reactivity         | Use JSX `render()` method                    |
+| Problem                                   | Issue                     | Fix                                         |
+| ----------------------------------------- | ------------------------- | ------------------------------------------- |
+| Using hard-coded colors                   | No theme support          | Use design tokens only                      |
+| Classes for state or variants             | Breaks the headless API   | Use `part` and `data-*` attributes          |
+| Tag selectors in shadow CSS               | Brittle, not customizable | Select with `[part='...']`                  |
+| `@Prop` with complex objects              | TypeScript issues         | Use primitives (string, number, boolean)    |
+| No keyboard support                       | Inaccessible              | Use `@Listen()` for keyboard events         |
+| Missing ARIA attributes                   | Screen readers fail       | Add `aria-label`, `aria-describedby`, roles |
+| Missing `formAssociated` on form controls | No native form value      | Add `formAssociated: true`                  |
+| No focus management                       | Tab order breaks          | Use `delegatesFocus: true` or manual focus  |
+| Inline JSX styles                         | Can't use tokens          | Move all styles to CSS file                 |
+| Creating new DOM elements with `document` | Breaks reactivity         | Use JSX `render()` method                   |
 
 ## Efficiency Tips
 

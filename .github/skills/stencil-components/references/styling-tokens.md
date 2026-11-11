@@ -8,6 +8,7 @@ Use tokens in your component CSS:
 
 ```css
 /* packages/core/src/components/button/button.css */
+/* Parts for structure, data-* for state. No classes, no tag selectors. */
 
 :host {
   --button-padding: var(--orchestra-button-primary-container-padding);
@@ -15,7 +16,7 @@ Use tokens in your component CSS:
   display: inline-flex;
 }
 
-.orchestra-button {
+[part='button'] {
   border: 0;
   border-radius: var(--button-radius);
   padding: var(--button-padding);
@@ -25,68 +26,50 @@ Use tokens in your component CSS:
 }
 
 /* Variant: Primary */
-.orchestra-button--primary {
+[part='button'][data-variant='primary'] {
   background-color: var(--orchestra-color-action-primary-container-default);
   color: var(--orchestra-color-action-primary-content-default);
   border: 1px solid var(--orchestra-color-action-primary-border-default);
 }
 
-.orchestra-button--primary:hover:not(:disabled) {
+[part='button'][data-variant='primary']:hover:not(:disabled) {
   background-color: var(--orchestra-color-action-primary-container-hover);
   border-color: var(--orchestra-color-action-primary-border-hover);
 }
 
-.orchestra-button--primary:active:not(:disabled) {
+[part='button'][data-variant='primary']:active:not(:disabled) {
   background-color: var(--orchestra-color-action-primary-container-active);
 }
 
-.orchestra-button--primary:disabled {
-  background-color: var(--orchestra-color-action-primary-container-disabled);
-  color: var(--orchestra-color-action-primary-content-disabled);
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
 /* Variant: Secondary */
-.orchestra-button--secondary {
+[part='button'][data-variant='secondary'] {
   background-color: var(--orchestra-color-action-secondary-container-default);
   color: var(--orchestra-color-action-secondary-content-default);
 }
 
-.orchestra-button--secondary:hover:not(:disabled) {
+[part='button'][data-variant='secondary']:hover:not(:disabled) {
   background-color: var(--orchestra-color-action-secondary-container-hover);
 }
 
-/* Size: Small */
-.orchestra-button--small {
-  padding: var(--orchestra-button-primary-sizes-small-padding);
-  font-size: var(--orchestra-font-size-sm);
-}
-
-/* Size: Large */
-.orchestra-button--large {
-  padding: var(--orchestra-button-primary-sizes-large-padding);
-  font-size: var(--orchestra-font-size-lg);
+/* Disabled state: the host exposes data-disabled */
+[part='button'][data-disabled] {
+  background-color: var(--orchestra-color-action-primary-container-disabled);
+  color: var(--orchestra-color-action-primary-content-disabled);
+  cursor: not-allowed;
 }
 
 /* Focus styles (accessibility) */
-.orchestra-button:focus-visible {
-  outline: 2px solid var(--orchestra-color-outline);
+[part='button']:focus-visible {
+  outline: 2px solid var(--orchestra-color-action-inner-ring);
   outline-offset: 2px;
-}
-
-/* Disabled state */
-.orchestra-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
 }
 ```
 
 **Key patterns**:
 
-- ✅ Use `var(--orchestra-*)` for all colors, spacing, typography
-- ✅ Define variants with class names: `.orchestra-button--primary`, `.orchestra-button--secondary`
-- ✅ Use pseudo-classes for states: `:hover`, `:active`, `:disabled`, `:focus-visible`
-- ✅ Transitions for smooth interactions (150-300ms)
-- ❌ Don't hardcode colors or spacing
-- ❌ Don't forget focus/accessibility states
+- Use `var(--orchestra-*)` for all colors, spacing, typography
+- Select with `[part='...']` and style variants and states with `data-*` attribute selectors, e.g. `[part='button'][data-variant='primary']`
+- Use native pseudo-classes for states: `:hover`, `:active`, `:disabled`, `:focus-visible`
+- Transitions for smooth interactions (150-300ms)
+- Do not hardcode colors or spacing
+- Do not forget focus/accessibility states

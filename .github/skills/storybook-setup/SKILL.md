@@ -9,16 +9,15 @@ user-invocable: true
 
 ## Overview
 
-Orchestra uses **Storybook v10.4.6** with **Vite** and the **Stencil ESM plugin** for interactive component development and documentation. Storybook serves as the single source of truth for UI components, documentation, and automated testing (via Vitest + Playwright).
+Orchestra uses **Storybook v10** with **Vite** (`@storybook/web-components-vite`) and loads the Stencil-built core bundle for interactive component development and documentation. Storybook serves as the single source of truth for UI components, documentation, and automated testing (via Vitest + Playwright).
 
 **Stack**:
 
-- Storybook v10.4.6
+- Storybook v10.4.6 (`storybook`, `@storybook/web-components-vite`)
 - Vite dev server
-- @stencil/storybook-plugin (ESM loader)
-- Vitest v4.1.9 (integrated testing)
-- Playwright v1.61.0 (browser testing)
-- Dark-mode addon (theme switching)
+- Vitest v4 with `@storybook/addon-vitest` (play-function tests)
+- Playwright (browser and a11y e2e tests)
+- Theme toggle via the `theme` global (system, light, dark) in `.storybook/preview.ts`
 
 **Key principle**: Storybook is not separate from development—it's the hub where components are built, documented, and tested simultaneously.
 
@@ -53,56 +52,48 @@ packages/storybook/
 
 ### Configuration Files
 
-**`.storybook/main.ts`** — Core Storybook configuration:
+**`.storybook/main.ts`** - Core Storybook configuration (stories glob, addons resolved with `getAbsolutePath`, `@storybook/web-components-vite` framework, static dirs that serve `packages/core/dist/orchestra-design-system`, and Vite live reload for `www/build`):
 
 ```typescript
-import { getViteConfig } from '@stencil/storybook-plugin'
-
-export default {
-  stories: ['../src/**/*.stories.ts'], // Story files glob
+const config: StorybookConfig = {
+  stories: async (_, { configType }) => [
+    '../src/**/*.mdx',
+    configType === 'PRODUCTION'
+      ? '../src/**/!(consumer-interface).stories.@(js|jsx|mjs|ts|tsx)'
+      : '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+  ],
   addons: [
-    '@storybook/addon-onboarding',
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-a11y', // Accessibility
-    '@storybook/addon-interactions',
-    'storybook-dark-mode', // Dark/light themes
+    getAbsolutePath('@storybook/addon-links'),
+    getAbsolutePath('@storybook/addon-a11y'),
+    getAbsolutePath('@storybook/addon-docs'),
+    getAbsolutePath('@storybook/addon-vitest'),
+    getAbsolutePath('@storybook/addon-coverage'),
   ],
   framework: {
-    name: '@storybook/web-components-vite',
-    options: { builder: getViteConfig() }, // Stencil + Vite
-  },
-  docs: {
-    autodocs: 'tag', // Auto-generate docs from stories
+    name: getAbsolutePath('@storybook/web-components-vite'),
+    options: {},
   },
 }
 ```
 
-**`.storybook/preview.ts`** — Global preview configuration (themes, decorators):
+**`.storybook/preview.ts`** - Global preview configuration (theme global, token CSS, core registration):
 
 ```typescript
-import { Preview } from '@storybook/web-components'
-import { themes } from '@storybook/theming'
-import '../src/index.css'
+import '@orchestra-design-system/themes/light.css'
+import '@orchestra-design-system/themes/dark.css'
+import '@orchestra-design-system/core/dist/orchestra-design-system/orchestra-design-system.esm.js'
 
 const preview: Preview = {
-  parameters: {
-    layout: 'centered',
-    docs: {
-      theme: themes.light,
-    },
-    darkMode: {
-      classNameDark: 'orchestra-theme--dark', // Dark theme class
-      classNameLight: 'orchestra-theme--light', // Light theme class
-      stylePreview: true, // Preview theme in story list
+  globalTypes: {
+    theme: {
+      defaultValue: 'system',
+      toolbar: { items: ['system', 'light', 'dark'] },
     },
   },
-  decorators: [
-    (story) => {
-      // Global decorators (theme setup, providers, etc.)
-      return story()
-    },
-  ],
+  initialGlobals: { theme: 'system' },
+  parameters: {
+    a11y: { test: 'todo' },
+  },
 }
 
 export default preview
@@ -114,8 +105,8 @@ export default preview
 
 ```typescript
 // src/pages/components/button/button.stories.ts
-import { Meta, StoryObj } from '@storybook/web-components'
-import { expect } from '@storybook/test'
+import type { Meta, StoryObj } from '@storybook/web-components-vite'
+import { expect, fn } from 'storybook/test'
 
 const meta = {
   title: 'Components/Button', // Storybook sidebar location
@@ -146,7 +137,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
-  args: { variant: 'primary', label: 'Click me' },
+  args: { variant: 'primary', text: 'Click me' },
   play: async ({ canvasElement }) => {
     // Test in story-testing SKILL
   },
@@ -167,41 +158,13 @@ See [code-conventions](../code-conventions/SKILL.md) for full naming rules.
 
 ### Dark & Light Themes
 
-Storybook integrates with Orchestra's design tokens for automatic theme switching:
+The `theme` global (`system`, `light`, `dark`) in `.storybook/preview.ts` sets the `orchestra-theme--light` or `orchestra-theme--dark` class on `document.documentElement`. The token CSS from `@orchestra-design-system/themes` scopes its variables to those classes and to `:host`, so components follow the toolbar selection.
 
 ```typescript
-// .storybook/preview.ts
-darkMode: {
-  classNameDark: 'orchestra-theme--dark',     // Applied to root
-  classNameLight: 'orchestra-theme--light',   // Applied to root
-  stylePreview: true,                         // Theme button in toolbar
-}
-```
-
-**CSS Applied**:
-
-```css
-/* Light theme (default) */
-.orchestra-theme--light {
-  --orchestra-color-primary: #7b55ad;
-  /* ... all light tokens */
-}
-
-/* Dark theme */
-.orchestra-theme--dark {
-  --orchestra-color-primary: #9066d9;
-  /* ... all dark tokens */
-}
-```
-
-**In stories**:
-
-```typescript
-export const DarkMode: Story = {
-  args: { variant: 'primary' },
-  parameters: {
-    darkMode: { classNameDark: 'orchestra-theme--dark' }, // Force dark
-  },
+// Read the theme in a story via globals (set from the toolbar)
+export const Dark: Story = {
+  args: { variant: 'primary', text: 'Click me' },
+  globals: { theme: 'dark' },
 }
 ```
 
@@ -229,9 +192,8 @@ This runs:
 # From root
 npm run build                 # Builds design tokens, then all packages
 
-# Build Storybook static site
+# Build Storybook static site (output: packages/storybook/storybook-static/)
 npm run build:storybook:ci --workspace=@orchestra-design-system/storybook
-# Output: `.storybook/dist/`
 ```
 
 ## Testing in Storybook
@@ -241,19 +203,16 @@ npm run build:storybook:ci --workspace=@orchestra-design-system/storybook
 Tests run directly in story play functions (see [story-testing](../story-testing/SKILL.md)):
 
 ```typescript
+import { expect, userEvent, within } from 'storybook/test'
+
 export const Interactive: Story = {
-  args: { label: 'Click me' },
+  args: { text: 'Click me', onClick: fn() },
   play: async ({ canvasElement, args }) => {
-    const button = canvasElement.querySelector('orchestra-button')
+    const canvas = within(canvasElement)
+    const button = canvas.getByRole('button', { name: 'Click me' })
 
-    // Import test utilities
-    const { userEvent } = await import('@storybook/test')
-    const { expect } = await import('@storybook/test')
-
-    // Test
-    expect(button).toBeInTheDocument()
     await userEvent.click(button)
-    expect(args.onClick).toHaveBeenCalledOnce()
+    await expect(args.onClick).toHaveBeenCalledOnce()
   },
 }
 ```
@@ -261,13 +220,13 @@ export const Interactive: Story = {
 ### Run Tests
 
 ```bash
-# Run Vitest on all stories
-npm run test
+# Run Vitest story tests (root)
+npm run test:components
 
-# Run specific story
-npm run test -- button.stories.ts
+# Run a11y e2e tests (root)
+npm run test:a11y
 
-# Run with coverage
+# Run with coverage (root)
 npm run test:coverage
 ```
 
@@ -275,20 +234,20 @@ npm run test:coverage
 
 ### Essential Addons
 
-| Addon                           | Purpose                          | Config            |
-| ------------------------------- | -------------------------------- | ----------------- |
-| `@storybook/addon-a11y`         | Accessibility audit              | Auto-loaded       |
-| `@storybook/addon-docs`         | Auto-generated docs from stories | `autodocs: 'tag'` |
-| `@storybook/addon-essentials`   | Controls, actions, viewport      | Auto-loaded       |
-| `storybook-dark-mode`           | Dark/light theme toggle          | In preview.ts     |
-| `@storybook/addon-interactions` | Play function interactions       | Auto-loaded       |
+| Addon                       | Purpose                            | Config                  |
+| --------------------------- | ---------------------------------- | ----------------------- |
+| `@storybook/addon-a11y`     | Accessibility audit                | Reports axe violations  |
+| `@storybook/addon-docs`     | Auto-generated docs from stories   | `autodocs` in stories   |
+| `@storybook/addon-links`    | Links between stories              | Auto-loaded             |
+| `@storybook/addon-vitest`   | Run play functions as Vitest tests | `vitest.config.ts`      |
+| `@storybook/addon-coverage` | Coverage for story tests           | `npm run test:coverage` |
 
 ### Adding a New Addon
 
 1. **Install**:
 
 ```bash
-npm install --save-dev @storybook/addon-example
+npm install --save-dev --workspace=@orchestra-design-system/storybook @storybook/addon-example
 ```
 
 2. **Configure** in `.storybook/main.ts`:
@@ -308,13 +267,12 @@ export default {
 
 ### MDX Story Format
 
-Create `.stories.mdx` files for documentation:
+Create `.mdx` docs next to the stories (the `../src/**/*.mdx` glob in `main.ts` picks them up):
 
 ```mdx
-import { Canvas, Story, Meta } from '@storybook/blocks'
-import { Button } from '../button'
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
 
-<Meta title="Components/Button" component={Button} />
+<Meta title="Components/Button" />
 
 # Button Component
 
@@ -324,7 +282,7 @@ A flexible button for user interactions.
 
 <Canvas>
   <Story name="Primary">
-    <orchestra-button variant="primary">Click me</orchestra-button>
+    <orchestra-button text="Click me" variant="primary"></orchestra-button>
   </Story>
 </Canvas>
 
@@ -334,7 +292,7 @@ A flexible button for user interactions.
 
 <Canvas>
   <Story name="Secondary">
-    <orchestra-button variant="secondary">Click me</orchestra-button>
+    <orchestra-button text="Click me" variant="secondary"></orchestra-button>
   </Story>
 </Canvas>
 ```
@@ -374,5 +332,4 @@ When working with LLMs on Storybook:
 - [stencil-components](../stencil-components/SKILL.md) — Component implementation
 - [themes](../themes/SKILL.md) — Token theming
 - [Storybook Official Docs](https://storybook.js.org/)
-- [Stencil Storybook Plugin](https://github.com/ionic-team/stencil-storybook-plugin)
 - [Vitest + Storybook Integration](https://storybook.js.org/docs/writing-tests/vitest)

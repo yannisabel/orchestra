@@ -53,8 +53,10 @@ See [README.md](./README.md#L64-L76) for the full command list (build, dev, lint
 
 - Prefer targeted reads and narrow edits over broad sweeps.
 - Keep package boundaries intact: logic belongs in `packages/core`, token work belongs in `packages/themes`, and wrapper changes belong in the relevant framework package.
+- Components are headless: expose `part` and `data-*` attributes, do not use classes, and do not select by tag name in shadow CSS.
 - Do not broaden scope without a clear reason.
 - Update the matching docs when package layout, scripts, or public APIs change.
+- After any file change, grep for mentions of that file or path in docs (skills, instructions, AGENTS.md, READMEs) and update stale references in the same change (see the `monorepo-workflows` skill, Cross-file change check).
 - Keep hand-maintained CSS value lists in sync with CSS: the color keyword and property lists in `packages/core/scripts/design-tokens-check.mjs` must be reviewed whenever CSS color keywords or the checked properties change. Do not add packages to do this; update the lists by hand.
 - Favor small, verifiable fixes over exploratory rewrites.
 - Use `grep_search`/`semantic_search` with specific patterns instead of reading entire files; parallelize independent reads.
