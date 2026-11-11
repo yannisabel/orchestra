@@ -178,6 +178,20 @@
               "readonly": true,
               "attribute": "variant"
             }
+          ],
+          "cssParts": [
+            {
+              "name": "button",
+              "description": "The native button element. Carries `data-variant`, `data-size`, `data-icon` and `data-disabled` state hooks."
+            },
+            {
+              "name": "icon",
+              "description": "The icon rendered at the start or end of the button, or alone when `icon` is `only`."
+            },
+            {
+              "name": "label",
+              "description": "The text wrapper, not rendered for icon-only buttons."
+            }
           ]
         }
       ],
@@ -523,6 +537,36 @@
                 ]
               }
             }
+          ],
+          "cssParts": [
+            {
+              "name": "box",
+              "description": "The hit area around the control."
+            },
+            {
+              "name": "control",
+              "description": "The native checkbox input."
+            },
+            {
+              "name": "error",
+              "description": "The container of the `error` slot."
+            },
+            {
+              "name": "icon",
+              "description": "The icon inside the indicator."
+            },
+            {
+              "name": "indicator",
+              "description": "The check or dash drawn over the control."
+            },
+            {
+              "name": "label",
+              "description": "The visible label text."
+            },
+            {
+              "name": "row",
+              "description": "The wrapper of the control and the label."
+            }
           ]
         }
       ],
@@ -646,6 +690,12 @@
               },
               "default": "'100%'",
               "attribute": "size"
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "svg",
+              "description": "The rendered icon SVG element."
             }
           ]
         }

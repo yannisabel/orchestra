@@ -9,14 +9,15 @@ user-invocable: true
 
 ## Quick Reference
 
-| Category       | Rule                  | Example                                   |
-| -------------- | --------------------- | ----------------------------------------- |
-| **Files**      | kebab-case            | `button.ts`, `form-input.tsx`             |
-| **Classes**    | PascalCase            | `ButtonComponent`, `FormHandler`          |
-| **Hooks**      | `use*` prefix         | `useButtonState`, `useFormValidation`     |
-| **TypeScript** | Strict mode, no `any` | Use `unknown` + type guards               |
-| **Tests**      | Vitest (not Jest)     | `*.spec.ts` directly in component stories |
-| **Node**       | >= 24                 | Always target modern Node                 |
+| Category       | Rule                           | Example                                      |
+| -------------- | ------------------------------ | -------------------------------------------- |
+| **Files**      | kebab-case                     | `button.ts`, `form-input.tsx`                |
+| **Classes**    | PascalCase                     | `ButtonComponent`, `FormHandler`             |
+| **Hooks**      | `use*` prefix                  | `useButtonState`, `useFormValidation`        |
+| **TypeScript** | Strict mode, no `any`          | Use `unknown` + type guards                  |
+| **Styling**    | Parts and `data-*`, no classes | `[part='label']`, `[data-variant='primary']` |
+| **Tests**      | Vitest (not Jest)              | `*.spec.ts` directly in component stories    |
+| **Node**       | >= 24                          | Always target modern Node                    |
 
 ## Environment & Setup
 
@@ -186,6 +187,34 @@ function handleData(data: unknown) {
     return <Button {...data} />;
   }
 }
+```
+
+## Styling & Customization (Headless)
+
+Orchestra components are headless. They carry structure and state, and the theme comes only from design tokens.
+
+- Expose every visual part with `part="..."` and document it with a JSDoc `@part` tag on the component class
+- Expose state with `data-*` attributes (e.g. `data-variant`, `data-size`, `data-disabled`), not with classes
+- Do not add `class` attributes to rendered elements
+- In shadow CSS, select with `[part='...']` and attribute selectors. Never select by tag name (`svg`, `span`, `label`, `input`)
+- Keep native pseudo-classes (`:checked`, `:disabled`, `:focus-visible`) where the element already carries the state
+- Read values only from `--orchestra-*` design tokens in CSS
+
+✅ **Correct**:
+
+```css
+[part='control']:checked ~ [part='indicator'] {
+  color: var(--orchestra-color-action-toggle-on-content-default);
+}
+```
+
+❌ **Incorrect**:
+
+```css
+.orchestra-checkbox-visual {
+} /* class selector */
+svg {
+} /* tag selector */
 ```
 
 ## Testing

@@ -19,6 +19,15 @@
 | `variant`           | `variant`      | A string indicating the design variation of the button based on the level of importance.                                                                                                                                      | `"primary" \| "secondary" \| "tertiary"` | `'primary'`         |
 
 
+## Shadow Parts
+
+| Part       | Description                                                                                                  |
+| ---------- | ------------------------------------------------------------------------------------------------------------ |
+| `"button"` | The native button element. Carries `data-variant`, `data-size`, `data-icon` and `data-disabled` state hooks. |
+| `"icon"`   | The icon rendered at the start or end of the button, or alone when `icon` is `only`.                         |
+| `"label"`  | The text wrapper, not rendered for icon-only buttons.                                                        |
+
+
 ## Dependencies
 
 ### Depends on

@@ -8,13 +8,13 @@
   vertical-align: middle;
 }
 
-:host svg {
+:host [part='svg'] {
   display: block;
   fill: var(--icon-color);
   width: var(--icon-size);
   height: var(--icon-size);
 }
 
-:host svg * {
+:host [part='svg'] * {
   fill: inherit;
 }

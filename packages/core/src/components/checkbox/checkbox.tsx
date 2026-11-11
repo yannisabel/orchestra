@@ -20,6 +20,15 @@ export interface CheckboxChangeDetail {
   value: string
 }
 
+/**
+ * @part row - The wrapper of the control and the label.
+ * @part box - The hit area around the control.
+ * @part control - The native checkbox input.
+ * @part indicator - The check or dash drawn over the control.
+ * @part icon - The icon inside the indicator.
+ * @part label - The visible label text.
+ * @part error - The container of the `error` slot.
+ */
 @Component({
   tag: 'orchestra-checkbox',
   styleUrl: 'checkbox.css',
@@ -350,11 +359,11 @@ export class OrchestraCheckbox {
 
     return (
       <Host data-indeterminate={this.indeterminate} data-invalid={this.invalid}>
-        <div class="orchestra-checkbox-row">
-          <div class="orchestra-checkbox-box">
+        <div part="row">
+          <div part="box">
             <input
               id={this.htmlId ?? 'checkbox-input'}
-              class="orchestra-checkbox"
+              part="control"
               type="checkbox"
               aria-label={this.ariaLabel}
               aria-labelledby={this.ariaLabelledby}
@@ -363,10 +372,10 @@ export class OrchestraCheckbox {
               ref={this.#checkboxRef}
               onChange={this.handleChange}
             />
-            <span class="orchestra-checkbox-visual">
+            <span part="indicator">
               {showIndicator && (
                 <orchestra-icon
-                  class="orchestra-checkbox-icon"
+                  part="icon"
                   name={indicatorName}
                   library="orchestra-icons"
                   fill="currentcolor"
@@ -376,16 +385,13 @@ export class OrchestraCheckbox {
             </span>
           </div>
           {this.label && (
-            <label
-              class="orchestra-checkbox-label"
-              htmlFor={this.htmlId ?? 'checkbox-input'}
-            >
+            <label part="label" htmlFor={this.htmlId ?? 'checkbox-input'}>
               {this.label}
             </label>
           )}
         </div>
         {this.invalid && (
-          <div class="orchestra-checkbox-error-container">
+          <div part="error">
             <slot name="error"></slot>
           </div>
         )}

@@ -5,6 +5,9 @@ import { getIconLibrary } from './library'
 
 const cache: Record<string, string> = {}
 
+/**
+ * @part svg - The rendered icon SVG element.
+ */
 @Component({
   tag: 'orchestra-icon',
   shadow: true,
@@ -72,11 +75,6 @@ export class OrchestraIcon {
       }
       if (isNotDefaultSize) {
         this.host.style.setProperty('--icon-size', `${this.size}`)
-      }
-      if (this.host.shadowRoot) {
-        this.host.shadowRoot
-          .querySelector('svg')
-          ?.classList.add('orchestra-icon')
       }
     } catch (error) {
       console.error('Error loading SVG:', error)
@@ -156,6 +154,7 @@ export class OrchestraIcon {
     this.host.shadowRoot.querySelectorAll('svg').forEach((svg) => {
       svg.setAttribute('aria-hidden', 'true')
       svg.setAttribute('focusable', 'false')
+      svg.setAttribute('part', 'svg')
     })
   }
 }

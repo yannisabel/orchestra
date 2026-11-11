@@ -253,7 +253,7 @@ export const EndIcon: Story = {
     expect(host).toBeTruthy()
 
     const icon = host?.shadowRoot?.querySelector('orchestra-icon')
-    const text = host?.shadowRoot?.querySelector('span.orchestra-overflow')
+    const text = host?.shadowRoot?.querySelector('[part="label"]')
     expect(icon).toBeTruthy()
     expect(text).toBeTruthy()
   },
@@ -273,7 +273,7 @@ export const IconOnly: Story = {
     expect(host).toBeTruthy()
 
     const icon = host?.shadowRoot?.querySelector('orchestra-icon')
-    const text = host?.shadowRoot?.querySelector('span.orchestra-overflow')
+    const text = host?.shadowRoot?.querySelector('[part="label"]')
     const button = host?.shadowRoot?.querySelector('button')
     expect(icon).toBeTruthy()
     expect(text).toBeNull()
@@ -305,7 +305,7 @@ export const CustomIconLibrary: Story = {
   },
 }
 
-export const VariantAndSizeClass: Story = {
+export const VariantAndSizeAttributes: Story = {
   tags: ['!dev'],
   args: {
     text: 'Button',
@@ -317,7 +317,7 @@ export const VariantAndSizeClass: Story = {
     const canvas = within(canvasElement)
     const button = await canvas.findByShadowRole('button')
 
-    expect(button).toHaveClass('orchestra-button--secondary')
-    expect(button).toHaveClass('orchestra-button--large')
+    expect(button).toHaveAttribute('data-variant', 'secondary')
+    expect(button).toHaveAttribute('data-size', 'large')
   },
 }

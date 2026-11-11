@@ -5,6 +5,11 @@ const preventDefault = (event: KeyboardEvent | MouseEvent): void => {
   event.preventDefault()
 }
 
+/**
+ * @part button - The native button element. Carries `data-variant`, `data-size`, `data-icon` and `data-disabled` state hooks.
+ * @part label - The text wrapper, not rendered for icon-only buttons.
+ * @part icon - The icon rendered at the start or end of the button, or alone when `icon` is `only`.
+ */
 @Component({
   tag: 'orchestra-button',
   styleUrl: 'button.css',
@@ -86,25 +91,28 @@ export class OrchestraButton {
     return (
       <Host>
         <button
-          class={`orchestra-button orchestra-button--${this.variant} orchestra-button--${this.size}`}
+          part="button"
           type={this.type}
           ref={this.#buttonRef}
           disabled={this.disabled}
           aria-label={this.#getAriaLabel()}
+          data-variant={this.variant}
+          data-size={this.size}
           data-icon={this.icon}
+          data-disabled={this.disabled ? '' : undefined}
           onClick={this.#onClick}
         >
           {this.iconName && (this.icon === 'start' || this.icon === 'only') && (
             <orchestra-icon
+              part="icon"
               name={this.iconName}
               library={this.iconLibrary}
             ></orchestra-icon>
           )}
-          {this.#hasTextDisplayed() && (
-            <span class="orchestra-overflow">{this.text}</span>
-          )}
+          {this.#hasTextDisplayed() && <span part="label">{this.text}</span>}
           {this.iconName && this.icon === 'end' && (
             <orchestra-icon
+              part="icon"
               name={this.iconName}
               library={this.iconLibrary}
             ></orchestra-icon>

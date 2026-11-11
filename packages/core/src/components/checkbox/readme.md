@@ -70,6 +70,19 @@ Type: `Promise<void>`
 
 
 
+## Shadow Parts
+
+| Part          | Description                               |
+| ------------- | ----------------------------------------- |
+| `"box"`       | The hit area around the control.          |
+| `"control"`   | The native checkbox input.                |
+| `"error"`     | The container of the `error` slot.        |
+| `"icon"`      | The icon inside the indicator.            |
+| `"indicator"` | The check or dash drawn over the control. |
+| `"label"`     | The visible label text.                   |
+| `"row"`       | The wrapper of the control and the label. |
+
+
 ## Dependencies
 
 ### Depends on
