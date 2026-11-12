@@ -34,7 +34,10 @@ const config: StorybookConfig = {
     name: getAbsolutePath('@storybook/web-components-vite'),
     options: {},
   },
-  previewHead: (head) => `${head}`,
+  // Loaded as a static module, not bundled by Vite: Stencil resolves its lazy
+  // p-*.entry.js chunks relative to its own URL, which must stay in orchestra-design-system/.
+  previewHead: (head) =>
+    `${head}<script type="module" src="./orchestra-design-system/orchestra-design-system.esm.js"></script>`,
   previewBody: (body) => `${body}`,
   staticDirs: [
     '../public',

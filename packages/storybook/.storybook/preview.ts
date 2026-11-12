@@ -65,9 +65,6 @@ registerIconLibrary('custom', {
 })
 console.log('✅ Custom library registered')
 
-// Now import and auto-register components
-import '@orchestra-design-system/core/dist/orchestra-design-system/orchestra-design-system.esm.js'
-
 // Store icons globally and register after a delay to ensure components are ready
 Promise.resolve().then(() => {
   registerIconLibrary('custom', {
