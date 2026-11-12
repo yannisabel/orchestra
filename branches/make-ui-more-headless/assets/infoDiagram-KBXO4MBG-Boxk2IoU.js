@@ -1,0 +1,3 @@
+import{_ as e,l as s,S as n,d as i}from"./iframe-CBRleDs-.js";import{p}from"./cynefin-EF2NZ3EQ-B5JfhWki.js";import"./preload-helper-PPVm8Dsz.js";import"./lit-DiJmft_s.js";import"./react-xHK2vxEz.js";var g={parse:e(async r=>{const a=await p("info",r);s.debug(a)},"parse")},d={version:"12.3.0"},v=e(()=>d.version,"getVersion"),m={getVersion:v},c=e((r,a,o)=>{s.debug(`rendering info diagram
+`+r);const t=n(a);i(t,100,400,!0),t.append("g").append("text").attr("x",100).attr("y",40).attr("class","version").attr("font-size",32).style("text-anchor","middle").text(`v${o}`)},"draw"),l={draw:c},w={parser:g,db:m,renderer:l};export{w as diagram};
+//# sourceMappingURL=infoDiagram-KBXO4MBG-Boxk2IoU.js.map
