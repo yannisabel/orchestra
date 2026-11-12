@@ -9,8 +9,8 @@ const meta = {
       <orchestra-checkbox label="Accept privacy policy"></orchestra-checkbox>
       <orchestra-button>Save changes</orchestra-button>
       <orchestra-button disabled>Unavailable action</orchestra-button>
-      <orchestra-icon name="checkbox-check" size="24px" label="Completed"></orchestra-icon>
-      <orchestra-icon name="checkbox-check" size="24px"></orchestra-icon>
+      <orchestra-icon name="checkmark" size="24px" label="Completed"></orchestra-icon>
+      <orchestra-icon name="checkmark" size="24px"></orchestra-icon>
       <p role="status">Not saved</p>
     `
     let saveCount = 0

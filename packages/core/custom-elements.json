@@ -154,22 +154,6 @@
               "fieldName": "ariaDescribedby"
             },
             {
-              "name": "aria-label",
-              "description": "Accessible label for screen readers when no visible label is associated.",
-              "type": {
-                "text": "string"
-              },
-              "fieldName": "ariaLabel"
-            },
-            {
-              "name": "aria-labelledby",
-              "description": "ID reference(s) to element(s) that label this checkbox.",
-              "type": {
-                "text": "string"
-              },
-              "fieldName": "ariaLabelledby"
-            },
-            {
               "name": "checked",
               "description": "A boolean indicating the checked state of the checkbox.",
               "type": {
@@ -196,6 +180,24 @@
               "fieldName": "htmlId"
             },
             {
+              "name": "icon-library",
+              "description": "The icon library to use for the checkbox indicator.",
+              "type": {
+                "text": "string"
+              },
+              "default": "'orchestra-icons'",
+              "fieldName": "iconLibrary"
+            },
+            {
+              "name": "icon-names",
+              "description": "The icon names to use for the checkbox indicator. Accepts an array or a comma-separated string (for example `icon-names=\"cross,bar\"`).\nThe first name is for the checked state, the second for the indeterminate state.",
+              "type": {
+                "text": "string | string[]"
+              },
+              "default": "['checkmark', 'minus']",
+              "fieldName": "iconNames"
+            },
+            {
               "name": "indeterminate",
               "description": "A boolean indicating the indeterminate state of the checkbox (shows a dash/minus sign).\nThis is part of the native HTML checkbox API for mixed/partial selection states.",
               "type": {
@@ -206,7 +208,7 @@
             },
             {
               "name": "label",
-              "description": "Optional visible label text displayed next to the checkbox.",
+              "description": "Visible label text displayed next to the checkbox. It also provides the checkbox's accessible name.",
               "type": {
                 "text": "string"
               },
@@ -262,26 +264,6 @@
             },
             {
               "kind": "field",
-              "name": "ariaLabel",
-              "description": "Accessible label for screen readers when no visible label is associated.",
-              "type": {
-                "text": "string"
-              },
-              "readonly": true,
-              "attribute": "aria-label"
-            },
-            {
-              "kind": "field",
-              "name": "ariaLabelledby",
-              "description": "ID reference(s) to element(s) that label this checkbox.",
-              "type": {
-                "text": "string"
-              },
-              "readonly": true,
-              "attribute": "aria-labelledby"
-            },
-            {
-              "kind": "field",
               "name": "checked",
               "description": "A boolean indicating the checked state of the checkbox.",
               "type": {
@@ -314,6 +296,28 @@
             },
             {
               "kind": "field",
+              "name": "iconLibrary",
+              "description": "The icon library to use for the checkbox indicator.",
+              "type": {
+                "text": "string"
+              },
+              "default": "'orchestra-icons'",
+              "readonly": true,
+              "attribute": "icon-library"
+            },
+            {
+              "kind": "field",
+              "name": "iconNames",
+              "description": "The icon names to use for the checkbox indicator. Accepts an array or a comma-separated string (for example `icon-names=\"cross,bar\"`).\nThe first name is for the checked state, the second for the indeterminate state.",
+              "type": {
+                "text": "string | string[]"
+              },
+              "default": "['checkmark', 'minus']",
+              "readonly": true,
+              "attribute": "icon-names"
+            },
+            {
+              "kind": "field",
               "name": "indeterminate",
               "description": "A boolean indicating the indeterminate state of the checkbox (shows a dash/minus sign).\nThis is part of the native HTML checkbox API for mixed/partial selection states.",
               "type": {
@@ -326,7 +330,7 @@
             {
               "kind": "field",
               "name": "label",
-              "description": "Optional visible label text displayed next to the checkbox.",
+              "description": "Visible label text displayed next to the checkbox. It also provides the checkbox's accessible name.",
               "type": {
                 "text": "string"
               },

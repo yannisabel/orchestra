@@ -21,7 +21,7 @@ export type OrchestraCheckboxEvents = {
 };
 
 // @ts-ignore - ignore type constraint errors from auto-generated Stencil React Output Target
-export const OrchestraCheckbox: StencilReactComponent<OrchestraCheckboxElement, OrchestraCheckboxEvents, Components.OrchestraCheckbox> = /*@__PURE__*/ createComponent<OrchestraCheckboxElement, OrchestraCheckboxEvents, Components.OrchestraCheckbox>({
+export const OrchestraCheckbox: StencilReactComponent<OrchestraCheckboxElement, OrchestraCheckboxEvents, Components.OrchestraCheckbox, 'label'> = /*@__PURE__*/ createComponent<OrchestraCheckboxElement, OrchestraCheckboxEvents, Components.OrchestraCheckbox, 'label'>({
     tagName: 'orchestra-checkbox',
     elementClass: OrchestraCheckboxElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.

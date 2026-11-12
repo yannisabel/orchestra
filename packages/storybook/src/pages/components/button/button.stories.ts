@@ -289,10 +289,15 @@ export const VariantAndSizeAttributes: Story = {
     size: 'large',
   },
   play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-    const button = await canvas.findByShadowRole('button')
+    const host = canvasElement.querySelector('orchestra-button')
+    expect(host).toBeTruthy()
 
-    expect(button).toHaveAttribute('data-variant', 'secondary')
-    expect(button).toHaveAttribute('data-size', 'large')
+    await waitFor(() => {
+      expect(host).toHaveAttribute('data-variant', 'secondary')
+      expect(host).toHaveAttribute('data-size', 'large')
+    })
+
+    const button = await within(canvasElement).findByShadowRole('button')
+    expect(button).toBeTruthy()
   },
 }

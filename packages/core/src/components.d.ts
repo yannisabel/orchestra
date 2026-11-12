@@ -36,14 +36,6 @@ export namespace Components {
          */
         "ariaDescribedby"?: string;
         /**
-          * Accessible label for screen readers when no visible label is associated.
-         */
-        "ariaLabel"?: string;
-        /**
-          * ID reference(s) to element(s) that label this checkbox.
-         */
-        "ariaLabelledby"?: string;
-        /**
           * Checks whether the checkbox satisfies all constraints.
          */
         "checkValidity": () => Promise<boolean>;
@@ -62,14 +54,24 @@ export namespace Components {
          */
         "htmlId"?: string;
         /**
+          * The icon library to use for the checkbox indicator.
+          * @default 'orchestra-icons'
+         */
+        "iconLibrary"?: string;
+        /**
+          * The icon names to use for the checkbox indicator. Accepts an array or a comma-separated string (for example `icon-names="cross,bar"`). The first name is for the checked state, the second for the indeterminate state.
+          * @default ['checkmark', 'minus']
+         */
+        "iconNames"?: string[] | string;
+        /**
           * A boolean indicating the indeterminate state of the checkbox (shows a dash/minus sign). This is part of the native HTML checkbox API for mixed/partial selection states.
           * @default false
          */
         "indeterminate"?: boolean;
         /**
-          * Optional visible label text displayed next to the checkbox.
+          * Visible label text displayed next to the checkbox. It also provides the checkbox's accessible name.
          */
-        "label"?: string;
+        "label": string;
         /**
           * A string representing the name of the checkbox for form submission.
           * @default ''
@@ -205,14 +207,6 @@ declare namespace LocalJSX {
          */
         "ariaDescribedby"?: string;
         /**
-          * Accessible label for screen readers when no visible label is associated.
-         */
-        "ariaLabel"?: string;
-        /**
-          * ID reference(s) to element(s) that label this checkbox.
-         */
-        "ariaLabelledby"?: string;
-        /**
           * A boolean indicating the checked state of the checkbox.
           * @default false
          */
@@ -231,14 +225,24 @@ declare namespace LocalJSX {
          */
         "htmlId"?: string;
         /**
+          * The icon library to use for the checkbox indicator.
+          * @default 'orchestra-icons'
+         */
+        "iconLibrary"?: string;
+        /**
+          * The icon names to use for the checkbox indicator. Accepts an array or a comma-separated string (for example `icon-names="cross,bar"`). The first name is for the checked state, the second for the indeterminate state.
+          * @default ['checkmark', 'minus']
+         */
+        "iconNames"?: string[] | string;
+        /**
           * A boolean indicating the indeterminate state of the checkbox (shows a dash/minus sign). This is part of the native HTML checkbox API for mixed/partial selection states.
           * @default false
          */
         "indeterminate"?: boolean;
         /**
-          * Optional visible label text displayed next to the checkbox.
+          * Visible label text displayed next to the checkbox. It also provides the checkbox's accessible name.
          */
-        "label"?: string;
+        "label": string;
         /**
           * A string representing the name of the checkbox for form submission.
           * @default ''
@@ -310,9 +314,9 @@ declare namespace LocalJSX {
         "validationMessage": string;
         "htmlId": string;
         "label": string;
-        "ariaLabel": string;
-        "ariaLabelledby": string;
         "ariaDescribedby": string;
+        "iconLibrary": string;
+        "iconNames": string[] | string;
     }
     interface OrchestraIconAttributes {
         "name": string;
@@ -324,7 +328,7 @@ declare namespace LocalJSX {
 
     interface IntrinsicElements {
         "orchestra-button": Omit<OrchestraButton, keyof OrchestraButtonAttributes> & { [K in keyof OrchestraButton & keyof OrchestraButtonAttributes]?: OrchestraButton[K] } & { [K in keyof OrchestraButton & keyof OrchestraButtonAttributes as `attr:${K}`]?: OrchestraButtonAttributes[K] } & { [K in keyof OrchestraButton & keyof OrchestraButtonAttributes as `prop:${K}`]?: OrchestraButton[K] };
-        "orchestra-checkbox": Omit<OrchestraCheckbox, keyof OrchestraCheckboxAttributes> & { [K in keyof OrchestraCheckbox & keyof OrchestraCheckboxAttributes]?: OrchestraCheckbox[K] } & { [K in keyof OrchestraCheckbox & keyof OrchestraCheckboxAttributes as `attr:${K}`]?: OrchestraCheckboxAttributes[K] } & { [K in keyof OrchestraCheckbox & keyof OrchestraCheckboxAttributes as `prop:${K}`]?: OrchestraCheckbox[K] };
+        "orchestra-checkbox": Omit<OrchestraCheckbox, keyof OrchestraCheckboxAttributes> & { [K in keyof OrchestraCheckbox & keyof OrchestraCheckboxAttributes]?: OrchestraCheckbox[K] } & { [K in keyof OrchestraCheckbox & keyof OrchestraCheckboxAttributes as `attr:${K}`]?: OrchestraCheckboxAttributes[K] } & { [K in keyof OrchestraCheckbox & keyof OrchestraCheckboxAttributes as `prop:${K}`]?: OrchestraCheckbox[K] } & OneOf<"label", OrchestraCheckbox["label"], OrchestraCheckboxAttributes["label"]>;
         "orchestra-icon": Omit<OrchestraIcon, keyof OrchestraIconAttributes> & { [K in keyof OrchestraIcon & keyof OrchestraIconAttributes]?: OrchestraIcon[K] } & { [K in keyof OrchestraIcon & keyof OrchestraIconAttributes as `attr:${K}`]?: OrchestraIconAttributes[K] } & { [K in keyof OrchestraIcon & keyof OrchestraIconAttributes as `prop:${K}`]?: OrchestraIcon[K] } & OneOf<"name", OrchestraIcon["name"], OrchestraIconAttributes["name"]>;
     }
 }
