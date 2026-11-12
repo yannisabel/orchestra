@@ -1,0 +1,58 @@
+name: Prune Storybook Branch Previews
+
+on:
+  delete:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+# Shared with storybook-deploy so gh-pages pushes never race.
+concurrency:
+  group: storybook-gh-pages
+  cancel-in-progress: false
+
+jobs:
+  prune:
+    if: github.event_name != 'delete' || github.event.ref_type == 'branch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: gh-pages
+          path: pages
+          fetch-depth: 1
+      - name: Remove preview folders for branches that no longer exist
+        run: |
+          set -euo pipefail
+          cd pages
+
+          # Mirror storybook-deploy's sanitize step: '/' becomes '-'.
+          git ls-remote --heads origin | awk '{print $2}' | sed -e 's#^refs/heads/##' -e 's#/#-#g' | sort -u > "$RUNNER_TEMP/live.txt"
+          if [ ! -s "$RUNNER_TEMP/live.txt" ]; then
+            echo "::error::No remote branches returned; refusing to prune"
+            exit 1
+          fi
+
+          shopt -s nullglob
+          removed=()
+          for dir in branches/*/; do
+            name=$(basename "$dir")
+            if ! grep -Fxq -- "$name" "$RUNNER_TEMP/live.txt"; then
+              removed+=("$name")
+              rm -rf -- "branches/$name"
+            fi
+          done
+          echo "Pruned ${#removed[@]} folder(s): ${removed[*]:-none}"
+
+          git add -A branches
+          if git diff --cached --quiet; then
+            echo "Nothing to prune"
+            exit 0
+          fi
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -m "chore: prune storybook previews for deleted branches"
+          git push origin gh-pages
+          echo "gh-pages size after prune: $(du -sh . | cut -f1)"

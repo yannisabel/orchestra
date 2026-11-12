@@ -3,76 +3,36 @@
 End-to-end reference combining the decorator, props, events, watchers, listeners, and token-based styling described in [the main skill](../SKILL.md).
 
 ```typescript
-// packages/core/src/components/button/button.tsx
-import { Component, Prop, Event, EventEmitter, Listen, Watch, h } from '@stencil/core';
+// packages/core/src/components/button/button.tsx (abridged; see the real file for icons and full props)
+import { Component, Prop, Event, EventEmitter, h } from '@stencil/core';
 
 @Component({
   tag: 'orchestra-button',
   styleUrl: 'button.css',
-  formAssociated: true,
-  shadow: { delegatesFocus: true }
+  shadow: { delegatesFocus: true },
 })
 export class OrchestraButton {
-  // Props
+  /** Button label */
   @Prop() text!: string;
-  @Prop() variant?: 'primary' | 'secondary' | 'tertiary' = 'primary';
-  @Prop() size?: 'small' | 'medium' | 'large' = 'medium';
-  @Prop() type?: 'button' | 'submit' | 'reset' = 'button';
-  @Prop({ mutable: true }) disabled?: boolean = false;
-  @Prop() ariaLabel?: string;
-  @Prop() ariaDescribedBy?: string;
+  @Prop() type: 'button' | 'submit' | 'reset' = 'button';
+  @Prop() variant: 'primary' | 'secondary' | 'tertiary' = 'primary';
+  @Prop() size: 'small' | 'medium' | 'large' = 'medium';
+  @Prop({ reflect: true }) disabled = false;
 
-  // Events
   @Event({ bubbles: true, composed: true }) orchestraClick!: EventEmitter<MouseEvent>;
-
-  // Watchers
-  @Watch('disabled')
-  disabledChanged(newValue: boolean) {
-    if (newValue) {
-      // Update internal state
-    }
-  }
-
-  // Listeners
-  @Listen('click')
-  handleClick(e: MouseEvent) {
-    if (this.disabled) {
-      e.stopImmediatePropagation();
-      return;
-    }
-    this.orchestraClick.emit(e);
-  }
-
-  @Listen('keydown')
-  handleKeyDown(e: KeyboardEvent) {
-    if ((e.key === 'Enter' || e.key === ' ') && !this.disabled) {
-      e.preventDefault();
-      this.orchestraClick.emit(new MouseEvent('click'));
-    }
-  }
-
-  // Computed
-  private get buttonClass(): string {
-    return [
-      'orchestra-button',
-      `orchestra-button--${this.variant}`,
-      `orchestra-button--${this.size}`,
-      this.disabled && 'is-disabled'
-    ]
-      .filter(Boolean)
-      .join(' ');
-  }
 
   render() {
     return (
       <button
-        class={this.buttonClass}
+        part="button"
         type={this.type}
         disabled={this.disabled}
-        aria-label={this.ariaLabel}
-        aria-described-by={this.ariaDescribedBy}
+        data-variant={this.variant}
+        data-size={this.size}
+        data-disabled={this.disabled ? '' : undefined}
+        onClick={(e) => this.orchestraClick.emit(e)}
       >
-        {this.text}
+        <span part="label">{this.text}</span>
       </button>
     );
   }
@@ -81,38 +41,45 @@ export class OrchestraButton {
 
 ```css
 /* packages/core/src/components/button/button.css */
+/* Select parts and data-* attributes. No classes, no tag selectors. */
 :host {
   display: inline-flex;
-  --button-padding: var(--orchestra-button-primary-container-padding);
-  --button-radius: var(--orchestra-button-primary-container-radius);
 }
 
-.orchestra-button {
-  padding: var(--button-padding);
-  border-radius: var(--button-radius);
+[part='button'] {
+  padding: var(--orchestra-button-primary-container-padding);
+  border-radius: var(--orchestra-button-primary-container-radius);
   border: 1px solid transparent;
   font-weight: 600;
   cursor: pointer;
   transition: all 150ms ease-in-out;
 }
 
-.orchestra-button--primary {
+[part='button'][data-variant='primary'] {
   background-color: var(--orchestra-color-action-primary-container-default);
   color: var(--orchestra-color-action-primary-content-default);
+  border-color: var(--orchestra-color-action-primary-border-default);
 }
 
-.orchestra-button--primary:hover:not(:disabled) {
+[part='button'][data-variant='primary']:hover:not(:disabled) {
   background-color: var(--orchestra-color-action-primary-container-hover);
+  border-color: var(--orchestra-color-action-primary-border-hover);
 }
 
-.orchestra-button--primary:disabled {
+[part='button'][data-variant='secondary'] {
+  background-color: var(--orchestra-color-action-secondary-container-default);
+  color: var(--orchestra-color-action-secondary-content-default);
+  border-color: var(--orchestra-color-action-secondary-border-default);
+}
+
+[part='button'][data-disabled] {
   background-color: var(--orchestra-color-action-primary-container-disabled);
+  color: var(--orchestra-color-action-primary-content-disabled);
   cursor: not-allowed;
-  opacity: 0.6;
 }
 
-.orchestra-button:focus-visible {
-  outline: 2px solid var(--orchestra-color-outline);
+[part='button']:focus-visible {
+  outline: 2px solid var(--orchestra-color-action-inner-ring);
   outline-offset: 2px;
 }
 ```
@@ -120,23 +87,27 @@ export class OrchestraButton {
 Tests for this component belong in Storybook, per [story-testing](../../story-testing/SKILL.md):
 
 ```typescript
-// packages/storybook/src/pages/components/button/button.stories.tsx
-import { Meta, StoryObj } from '@storybook/react'
-import { expect } from '@storybook/test'
-import { OrchestraButton } from './button'
+// packages/storybook/src/pages/components/button/button.stories.ts
+import type { Meta, StoryObj } from '@storybook/web-components-vite'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
 const meta = {
   title: 'Components/Button',
-  component: OrchestraButton,
-} satisfies Meta<typeof OrchestraButton>
+  component: 'orchestra-button',
+} satisfies Meta
 
 export default meta
+type Story = StoryObj<typeof meta>
 
-export const Primary: StoryObj = {
-  args: { text: 'Click me', variant: 'primary' },
-  play: async ({ canvasElement }) => {
-    const button = canvasElement.querySelector('orchestra-button')
-    expect(button).toBeInTheDocument()
+export const Primary: Story = {
+  args: { text: 'Click me', variant: 'primary', onOrchestraClick: fn() },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement)
+    const button = canvas.getByRole('button', { name: 'Click me' })
+
+    await expect(button).toHaveAttribute('data-variant', 'primary')
+    await userEvent.click(button)
+    await expect(args.onOrchestraClick).toHaveBeenCalledOnce()
   },
 }
 ```

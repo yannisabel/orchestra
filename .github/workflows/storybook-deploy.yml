@@ -5,6 +5,11 @@ on:
     branches:
       - '**'
 
+# Shared with storybook-branch-cleanup so gh-pages pushes never race.
+concurrency:
+  group: storybook-gh-pages
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -24,6 +29,9 @@ jobs:
         run: npm run build
       - name: Build Storybook
         run: npm run build:storybook
+      - name: Strip source maps from branch previews
+        # The addon-coverage preset forces build.sourcemap=true, so maps are stripped here; they are ~60% of gh-pages size.
+        run: find packages/storybook/storybook-static -name '*.map' -delete
       - name: Sanitize branch name
         id: sanitize
         run: |

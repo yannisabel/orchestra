@@ -9,7 +9,7 @@ user-invocable: true
 
 ## Overview
 
-Orchestra uses **Style Dictionary v5.1.1** to manage design tokens in a hierarchical, maintainable structure. Tokens flow through three levels (Primitive → Semantic → Component) and are transformed into CSS variables, JSON, and JS exports for use in components.
+Orchestra uses **Style Dictionary v5** to manage design tokens in a hierarchical, maintainable structure. Tokens flow through three levels (Primitive → Semantic → Component) and are transformed into CSS custom properties (`light.css` and `dark.css`) for use in components.
 
 **Key principle**: Tokens are declarative DTCG format (Design Token Community Group) that generates theme-aware CSS variables automatically.
 
@@ -51,7 +51,7 @@ Raw design values—colors, spacing, typography. **Not exported to CSS** (used a
 Meaningful references tied to **states and actions**. These reference primitives and are exported to CSS.
 
 ```json
-// packages/themes/tokens/semantic.json
+// packages/themes/tokens/semantic.light.json (dark values live in semantic.dark.json)
 {
   "color": {
     "action": {
@@ -101,7 +101,7 @@ Meaningful references tied to **states and actions**. These reference primitives
 Component-specific overrides and compositions. Reference semantic tokens and define component-level defaults.
 
 ```json
-// packages/themes/tokens/component.json
+// packages/themes/tokens/component.light.json (dark values live in component.dark.json)
 {
   "button": {
     "primary": {
@@ -161,9 +161,9 @@ Generated CSS variables follow this pattern:
 
 ### Light Theme (Default)
 
-**File**: `packages/themes/tokens/primitive.json` + `packages/themes/tokens/semantic.json`
+**Files**: `packages/themes/tokens/primitive.json` + `semantic.light.json` + `component.light.json`
 
-Generated to: `dist/css/variables.light.css`
+Generated to: `packages/themes/dist/css/light.css`
 
 Scoped to:
 
@@ -183,28 +183,26 @@ Scoped to:
 
 ### Dark Theme
 
-**File**: `packages/themes/tokens/gen-tokens.dark.json5`
+**Files**: `packages/themes/tokens/primitive.json` + `semantic.dark.json` + `component.dark.json`
 
-Override only the tokens that differ in dark mode:
+Define only the tokens that differ in dark mode. Values use the same DTCG format and reference primitives:
 
-```json5
+```json
 {
-  color: {
-    action: {
-      primary: {
-        container: {
-          default: { $value: '{color.purple.500}' }, // Lighter in dark
-          hover: { $value: '{color.purple.600}' },
-        },
-      },
+  "color": {
+    "action": {
+      "primary": {
+        "container": {
+          "default": { "$type": "color", "$value": "{color.purple.500}" }
+        }
+      }
     },
-    background: { $value: '{color.grey.950}' }, // Dark background
-    text: { $value: '{color.grey.50}' }, // Light text
-  },
+    "background": { "$type": "color", "$value": "{color.grey.950}" }
+  }
 }
 ```
 
-Generated to: `dist/css/variables.dark.css`
+Generated to: `packages/themes/dist/css/dark.css`
 
 Scoped to:
 
@@ -231,83 +229,32 @@ Scoped to:
 
 ## Build & Generation
 
-### Style Dictionary Configuration
+### Build Script
 
-**File**: `packages/themes/sd.config.js`
+**File**: `packages/themes/build.mjs` (run by `npm run build` in `packages/themes`)
 
-```javascript
-const StyleDictionary = require('style-dictionary')
-const fs = require('fs')
-
-// Define transformers (px → rem, custom naming)
-StyleDictionary.registerTransform({
-  name: 'name/kebab-no-alias-no-component',
-  type: 'name',
-  transformer: (token) => {
-    // Filters out alias & component levels, converts to kebab-case
-    const path = token.path
-      .filter((p) => p !== 'alias' && p !== 'component')
-      .join('-')
-      .toLowerCase()
-    return `orchestra-${path}`
-  },
-})
-
-// Build light theme
-const lightConfig = {
-  source: [
-    'tokens/primitive.json',
-    'tokens/semantic.json',
-    'tokens/component.json',
-  ],
-  platforms: {
-    css: {
-      transformGroup: 'css',
-      files: [{ destination: 'dist/css/variables.light.css' }],
-    },
-  },
-}
-
-// Build dark theme (merge with primitives)
-const darkConfig = {
-  source: [
-    'tokens/primitive.json',
-    'tokens/semantic.json',
-    'tokens/gen-tokens.dark.json5',
-  ],
-  platforms: {
-    css: { files: [{ destination: 'dist/css/variables.dark.css' }] },
-  },
-}
-
-new StyleDictionary(lightConfig).buildAllPlatforms()
-new StyleDictionary(darkConfig).buildAllPlatforms()
-```
+It registers the `name/kebab-no-alias-no-component` and `sizePxToRem` transforms, then emits one CSS file per theme. Primitives are filtered out of the output.
 
 ### Build Commands
 
 ```bash
-# Full build (light + dark)
-npm run build --workspace=@orchestra-design-system/themes
+# Full build (light + dark), from the repo root
+npm run build:design-tokens
 
-# Watch mode
-npm run watch --workspace=@orchestra-design-system/themes
+# Monitor token naming and light/dark parity after the build
+npm run monitoring:themes
 ```
 
 **Output**:
 
 ```
 packages/themes/dist/
-├── css/
-│   ├── variables.light.css
-│   └── variables.dark.css
-├── json/
-│   ├── tokens.light.json
-│   └── tokens.dark.json
-└── js/
-    ├── tokens.light.js
-    └── tokens.dark.js
+└── css/
+    ├── light.css
+    └── dark.css
 ```
+
+Package entry points: `@orchestra-design-system/themes/light.css` and `@orchestra-design-system/themes/dark.css`.
 
 ## Token Design Rules
 
@@ -337,8 +284,8 @@ An alias from a component token to a semantic token is not, by itself, proof of 
 ### Step 1: Identify the Level
 
 - **Primitive**: Raw colors, spacing, typography values → Add to `primitive.json`
-- **Semantic**: Actions, states, semantic meaning → Add to `semantic.json`
-- **Component**: Component-specific → Add to `component.json`
+- **Semantic**: Actions, states, semantic meaning → Add to `semantic.light.json` and `semantic.dark.json`
+- **Component**: Component-specific → Add to `component.light.json` and `component.dark.json`
 
 ### Step 2: Use DTCG Format
 
@@ -375,11 +322,11 @@ Reference a lower-tier token when it expresses the intended meaning, rather than
 ### Step 4: Rebuild & Test
 
 ```bash
-npm run build --workspace=@orchestra-design-system/themes
+npm run build:design-tokens
 
-# Verify output in packages/core/src/themes/
-# Light: <link rel="stylesheet" href="light.css" />
-# Dark: <link rel="stylesheet" href="dark.css" />
+# Verify output in packages/themes/dist/css/
+# Light: <link rel="stylesheet" href="@orchestra-design-system/themes/light.css" />
+# Dark: <link rel="stylesheet" href="@orchestra-design-system/themes/dark.css" />
 ```
 
 ## Complete Example: Adding a "Warning" Color
@@ -399,7 +346,7 @@ npm run build --workspace=@orchestra-design-system/themes
 }
 ```
 
-### 2. Add to Semantic (`semantic.json`)
+### 2. Add to Semantic (`semantic.light.json` and `semantic.dark.json`)
 
 ```json
 {
@@ -421,20 +368,20 @@ npm run build --workspace=@orchestra-design-system/themes
 }
 ```
 
-### 3. Add Dark Override (`gen-tokens.dark.json5`)
+### 3. Add Dark Override (`semantic.dark.json`)
 
-```json5
+```json
 {
-  color: {
-    action: {
-      warning: {
-        container: {
-          default: { $value: '{color.amber.500}' }, // Lighter in dark mode
-          hover: { $value: '{color.amber.600}' },
-        },
-      },
-    },
-  },
+  "color": {
+    "action": {
+      "warning": {
+        "container": {
+          "default": { "$type": "color", "$value": "{color.amber.500}" },
+          "hover": { "$type": "color", "$value": "{color.amber.600}" }
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -484,7 +431,7 @@ var(--orchestra-color-action-warning-content-default)
 **Usage in Stencil component** (see [stencil-components](../stencil-components/SKILL.md)):
 
 ```css
-.button--primary.button--small {
+[part='button'][data-size='small'] {
   padding: var(--orchestra-button-primary-sizes-small-padding);
 }
 ```
@@ -502,5 +449,5 @@ When working with LLMs, be specific about token-related tasks:
 - [token-optimization](../token-optimization/SKILL.md) — Efficient token exploration
 - [Design Token Community Group](https://tr.designtokens.org/)
 - [Style Dictionary v5 Documentation](https://styledictionary.com/)
-- [Orchestra Token Generator](../../packages/themes/sd.config.js)
+- [Theme build script](../../../packages/themes/build.mjs)
 - [stencil-components](../stencil-components/SKILL.md) — How to use tokens in components

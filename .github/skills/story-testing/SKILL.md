@@ -9,15 +9,14 @@ user-invocable: true
 
 ## Overview
 
-Tests in Orchestra live in **Storybook Play functions** using **Vitest v4.1.9**. This is not Jest-it's Vitest running test code inside interactive stories. See [code-conventions](../code-conventions/SKILL.md) for naming and TypeScript rules.
+Tests in Orchestra live in **Storybook Play functions** and run with **Vitest v4** through `@storybook/addon-vitest`. This is not Jest - it is Vitest running test code inside interactive stories. See [code-conventions](../code-conventions/SKILL.md) for naming and TypeScript rules.
 
 **Stack**:
 
-- Vitest v4.1.9 (test runner)
-- Storybook v10.4.6 (story framework + addon-vitest)
-- Playwright v1.61.0 (browser automation)
-- shadow-dom-testing-library v1.14.0 (DOM queries)
-- userEvent for realistic user interactions
+- Vitest v4 (test runner, via `@storybook/addon-vitest`)
+- Storybook v10.4.6 (`@storybook/web-components-vite`)
+- Playwright (browser automation and a11y e2e)
+- `storybook/test` (`expect`, `fn`, `userEvent`, `within`, `waitFor`)
 
 **Key principle**: One story = one test scenario. Each story demonstrates a visual state AND verifies it behaves correctly.
 
@@ -50,21 +49,20 @@ Playwright `getByRole()` API.
 ## Story Structure Template
 
 ```typescript
-// src/components/[component]/[component].stories.tsx
-import { Meta, StoryObj } from '@storybook/react';
-import { expect } from '@storybook/test';
-import { [Component] } from './[component]';
+// packages/storybook/src/pages/components/[component]/[component].stories.ts
+import type { Meta, StoryObj } from '@storybook/web-components-vite'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
 const meta = {
   title: 'Components/[ComponentName]',
-  component: [Component],
+  component: 'orchestra-[component]',
   parameters: {
     layout: 'centered',
   },
-} satisfies Meta<typeof [Component]>;
+} satisfies Meta
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 // Story with play function (test)
 export const Primary: Story = {
@@ -74,7 +72,7 @@ export const Primary: Story = {
   play: async ({ canvasElement }) => {
     // Test here
   },
-};
+}
 ```
 
 ## Procedure: Pick the Right Pattern
@@ -93,21 +91,31 @@ Match the component type below, then open the linked section in [patterns-by-typ
 
 ## Querying Best Practices
 
+Orchestra components use Shadow DOM. Query the host first, then its `shadowRoot`. `canvasElement.querySelector` and `within(canvasElement)` do not reach inside a shadow root.
+
+```typescript
+const host = canvasElement.querySelector('orchestra-button')!
+const button =
+  host.shadowRoot!.querySelector<HTMLButtonElement>("[part='button']")!
+
+// Preferred: stable parts and data-* hooks
+host.shadowRoot!.querySelector("[part='label']")
+host.shadowRoot!.querySelector("[data-variant='primary']")
+
+// Role/name queries work on the shadow root's elements
+within(host.shadowRoot!).getByRole('button', { name: 'Click me' })
+```
+
 Prefer semantic queries, in order:
 
 ```typescript
 // ✅ Best: By role (accessible to users)
-canvasElement.querySelector('[role="button"]')
-canvasElement.querySelector('button')
+within(host.shadowRoot!).getByRole('button', { name: 'Click me' })
 
-// ✅ Good: By label text
-canvasElement.querySelector('label[for="email"]')
-screen.getByLabelText('Email')
+// ✅ Good: By part or data-* hook (the headless API)
+host.shadowRoot!.querySelector("[part='button']")
 
-// ✅ Okay: By placeholder
-canvasElement.querySelector('input[placeholder="Search"]')
-
-// ❌ Avoid: By className (brittle, breaks with refactoring)
+// ❌ Avoid: By class name (Orchestra does not use classes)
 canvasElement.querySelector('.my-button-class')
 
 // ❌ Avoid: By test ID (use only as last resort)
@@ -117,10 +125,12 @@ canvasElement.querySelector('[data-testid="submit"]')
 Always guard queries - use optional chaining or check existence before asserting:
 
 ```typescript
-const button = canvasElement.querySelector('button')
-await userEvent.click(button!) // non-null assertion only if you know it exists
+const button =
+  host.shadowRoot?.querySelector<HTMLButtonElement>("[part='button']")
+if (!button) throw new Error('button part not rendered')
+await userEvent.click(button)
 
-const options = canvasElement.querySelectorAll('[role="option"]')
+const options = host.shadowRoot!.querySelectorAll("[part='option']")
 expect(options).toHaveLength(3)
 ```
 
@@ -134,9 +144,9 @@ expect(element).toHaveTextContent('Expected text')
 expect(element).not.toBeVisible()
 expect(element).not.toBeInTheDocument()
 
-// Attributes & classes
-expect(input).toHaveAttribute('type', 'email')
-expect(button).toHaveClass('primary', 'large')
+// Attributes & parts (headless hooks; no classes)
+expect(button).toHaveAttribute('data-variant', 'primary')
+expect(button).toHaveAttribute('data-size', 'large')
 expect(input).toHaveValue('test@example.com')
 
 // Interactions & callbacks
@@ -158,6 +168,7 @@ expect(input).toHaveFocus()
 | Multiple assertions, no context           | Hard to debug       | Group related assertions with comments       |
 | Testing implementation details            | Brittle             | Test user-visible behavior                   |
 | `.innerHTML` checks                       | Fragile             | Use semantic queries + `toHaveTextContent()` |
+| Class assertions (`toHaveClass`)          | Breaks headless API | Assert `data-*` attributes or behavior       |
 | Bare `querySelector()` without null check | Runtime error risk  | Use optional chaining or null checks         |
 | No story args                             | Hard to reuse story | Always define `args` for flexibility         |
 | Testing in wrong story                    | Confusing           | One story = one scenario                     |

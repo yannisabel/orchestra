@@ -34,7 +34,10 @@ const config: StorybookConfig = {
     name: getAbsolutePath('@storybook/web-components-vite'),
     options: {},
   },
-  previewHead: (head) => `${head}`,
+  // Loaded as a static module, not bundled by Vite: Stencil resolves its lazy
+  // p-*.entry.js chunks relative to its own URL, which must stay in orchestra-design-system/.
+  previewHead: (head) =>
+    `${head}<script type="module" src="./orchestra-design-system/orchestra-design-system.esm.js"></script>`,
   previewBody: (body) => `${body}`,
   staticDirs: [
     '../public',
@@ -51,6 +54,17 @@ const config: StorybookConfig = {
 
     return mergeConfig(config, {
       plugins: [
+        {
+          // Stencil rewrites core dist on each rebuild; partial HMR re-registers
+          // custom elements and breaks rendering, so force a full reload instead.
+          name: 'orchestra-core-dist-full-reload',
+          handleHotUpdate({ file, server }) {
+            if (/[\\/]core[\\/]dist[\\/]/.test(file)) {
+              server.ws.send({ type: 'full-reload' })
+              return []
+            }
+          },
+        },
         liveReload([
           'www/build/orchestra-design-system.esm.js',
           'www/build/orchestra-design-system.js',
@@ -63,6 +77,11 @@ const config: StorybookConfig = {
         },
       },
       build: {
+        // Stencil's runtime loads lazy chunks via variable import(); Vite's
+        // transform-time map goes stale on each rebuild, so keep them native.
+        dynamicImportVarsOptions: {
+          exclude: [/[\\/]core[\\/]dist[\\/]/],
+        },
         chunkSizeWarningLimit: 1000,
         rollupOptions: {
           output: {

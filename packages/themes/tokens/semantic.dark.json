@@ -171,7 +171,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{color.purple.600}"
+            "$value": "{color.purple.700}"
           },
           "active": {
             "$extensions": {
@@ -179,7 +179,7 @@
               "com.figma.hiddenFromPublishing": false
             },
             "$type": "color",
-            "$value": "{color.purple.700}"
+            "$value": "{color.purple.800}"
           },
           "disabled": {
             "$extensions": {
@@ -872,7 +872,7 @@
             "com.figma.hiddenFromPublishing": false
           },
           "$type": "dimension",
-          "$value": "{scale.x0-5}"
+          "$value": "{scale.x1}"
         }
       },
       "secondary": {

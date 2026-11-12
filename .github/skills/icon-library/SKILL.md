@@ -63,13 +63,9 @@ before documenting or using an icon API you haven't seen in source.
 Usage:
 
 ```html
-<orchestra-icon name="checkbox-check"></orchestra-icon>
+<orchestra-icon name="checkmark"></orchestra-icon>
 <orchestra-icon name="settings" library="default"></orchestra-icon>
-<orchestra-icon
-  name="checkbox-check"
-  fill="#e53935"
-  size="24px"
-></orchestra-icon>
+<orchestra-icon name="checkmark" fill="#e53935" size="24px"></orchestra-icon>
 ```
 
 `fill`/`size` are applied as `--icon-color`/`--icon-size` CSS custom properties on

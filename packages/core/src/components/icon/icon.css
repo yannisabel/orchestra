@@ -1,20 +1,16 @@
 :host {
   --icon-color: currentcolor;
   --icon-size: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 0;
-  vertical-align: middle;
+  display: inline-block;
 }
 
-:host svg {
+:host [part='svg'] {
   display: block;
   fill: var(--icon-color);
   width: var(--icon-size);
   height: var(--icon-size);
 }
 
-:host svg * {
+:host [part='svg'] * {
   fill: inherit;
 }

@@ -8,14 +8,14 @@ import { Components } from '@orchestra-design-system/core';
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'icon', 'iconLibrary', 'iconName', 'size', 'text', 'type', 'variant']
+  inputs: ['disabled', 'size', 'type', 'variant']
 })
 @Component({
   selector: 'orchestra-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'icon', 'iconLibrary', 'iconName', 'size', { name: 'text', required: true }, 'type', 'variant'],
+  inputs: ['disabled', 'size', 'type', 'variant'],
   standalone: false
 })
 export class OrchestraButton {
@@ -31,7 +31,7 @@ export declare interface OrchestraButton extends Components.OrchestraButton {}
 
 
 @ProxyCmp({
-  inputs: ['ariaDescribedby', 'ariaLabel', 'ariaLabelledby', 'checked', 'disabled', 'htmlId', 'indeterminate', 'label', 'name', 'required', 'validationMessage', 'value'],
+  inputs: ['ariaDescribedby', 'checked', 'disabled', 'htmlId', 'iconLibrary', 'iconNames', 'indeterminate', 'label', 'name', 'required', 'validationMessage', 'value'],
   methods: ['checkValidity', 'reportValidity', 'setCustomValidity']
 })
 @Component({
@@ -39,7 +39,7 @@ export declare interface OrchestraButton extends Components.OrchestraButton {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaDescribedby', 'ariaLabel', 'ariaLabelledby', 'checked', 'disabled', 'htmlId', 'indeterminate', 'label', 'name', 'required', 'validationMessage', 'value'],
+  inputs: ['ariaDescribedby', 'checked', 'disabled', 'htmlId', 'iconLibrary', 'iconNames', 'indeterminate', { name: 'label', required: true }, 'name', 'required', 'validationMessage', 'value'],
   outputs: ['orchestraChange', 'orchestraStateChange'],
   standalone: false
 })

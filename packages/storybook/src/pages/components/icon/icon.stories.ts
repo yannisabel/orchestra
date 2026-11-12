@@ -66,7 +66,7 @@ type Story = StoryObj<OrchestraIconArgs>
 
 export const Informative: Story = {
   args: {
-    name: 'checkbox-check',
+    name: 'checkmark',
     label: 'Completed',
   },
   play: async ({ canvasElement }) => {
@@ -106,7 +106,7 @@ export const Informative: Story = {
 
 export const Default = {
   args: {
-    name: 'checked',
+    name: 'checkmark',
     fill: 'currentcolor',
     size: '60px',
   } as OrchestraIconArgs,

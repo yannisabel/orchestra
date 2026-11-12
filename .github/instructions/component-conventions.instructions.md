@@ -19,6 +19,8 @@ src/components/icon/
   └── *.ts              # Helper modules
 ```
 
+When a component file is renamed, moved, or its API changes, grep `.github/` and package READMEs for its name and update each mention.
+
 Tests are **not** colocated as `*.spec.ts` in the component folder - see
 [Testing Pattern](#testing-pattern) below.
 
@@ -31,14 +33,11 @@ import { Component, Element, Host, Prop, State, Watch, h } from '@stencil/core'
 import DOMPurify from 'dompurify'
 
 @Component({
-  tag: 'orchestra-{name}',
+  tag: 'orchestra-name',
   shadow: true,
-  styleUrl: '{name}.css',
+  styleUrl: 'name.css',
 })
-export class Orchestra {
-  Name
-}
-{
+export class OrchestraName {
   // implementation
 }
 ```
@@ -121,6 +120,14 @@ public render() {
 
 ## Styling Pattern
 
+### Headless Styling
+
+- Expose each visual element with `part="..."` and document it with a JSDoc `@part` tag on the class
+- Expose state with `data-*` attributes, never with classes
+- Do not add `class` attributes to rendered elements
+- In shadow CSS, select with `[part]` and attribute selectors, never by tag name
+- Read values only from `--orchestra-*` design tokens
+
 ### CSS Variables
 
 ```css
@@ -130,7 +137,7 @@ public render() {
   display: flex;
 }
 
-:host svg {
+:host [part='svg'] {
   fill: var(--component-color);
   width: var(--component-size);
   height: var(--component-size);
@@ -143,7 +150,7 @@ public render() {
 
 ```typescript
 this.host.shadowRoot
-  .querySelector('svg')
+  .querySelector("[part='svg']")
   ?.style.setProperty('--icon-color', color)
 ```
 
@@ -182,17 +189,14 @@ this.host.setAttribute('aria-hidden', 'true')
 
 ## Testing Pattern
 
-Orchestra does **not** use Stencil's `newSpecPage`/colocated `*.spec.ts` pattern for
-component behavior, even though `packages/core/package.json` still exposes a
-`test:spec` script. The CI-enforced, canonical pattern is Storybook `play`
-functions with Vitest assertions, written under
-`packages/storybook/src/pages/components/{component}/`. See
-[story-testing](../skills/story-testing/SKILL.md) for the full pattern by
-component type.
+Two test layers exist:
+
+- **Storybook play functions** (Vitest via `@storybook/addon-vitest`) cover component behavior, interactions, and a11y. Write them under `packages/storybook/src/pages/components/{component}/`. See [story-testing](../skills/story-testing/SKILL.md) for patterns by component type.
+- **Stencil spec tests** (`npm run test:spec` in `packages/core`) can use `newSpecPage` for isolated render checks. `npm run test:e2e` runs browser tests.
 
 ```typescript
 // packages/storybook/src/pages/components/{component}/{component}.stories.ts
-import { expect } from '@storybook/test'
+import { expect } from 'storybook/test'
 
 export const Primary: Story = {
   args: {/* props */},
@@ -203,9 +207,8 @@ export const Primary: Story = {
 }
 ```
 
-- Use `newSpecPage` for unit tests
-- Test prop changes with `waitForChanges()`
-- Test shadow DOM content
+- Query inside the shadow root (`el.shadowRoot`) and select by `part` or `data-*`
+- Use `waitForChanges()` in Stencil spec tests after prop changes
 
 ## Build Configuration
 
@@ -234,16 +237,17 @@ export const config: Config = {
 ```json
 {
   "scripts": {
-    "build:css": "vite build --config vite-style.config.js",
     "build:js": "stencil build --docs",
-    "start:js": "stencil build --docs --watch"
+    "start:js": "stencil build --docs --watch",
+    "test:spec": "stencil-test --project spec",
+    "test:e2e": "stencil-test --project browser"
   }
 }
 ```
 
 - `build:js` compiles Stencil components
-- `build:css` compiles CSS variables
-- Both run in build, watch available for dev
+- `start:js` runs the build in watch mode for development
+- Run `npm run build:js` inside `packages/core` (`npm run build` is an alias)
 
 ## Module System
 
@@ -251,10 +255,15 @@ export const config: Config = {
 
 ```typescript
 // packages/core/src/index.ts
-export { OrchestraIcon } from './components/icon/icon'
+export {
+  registerIconLibrary,
+  unregisterIconLibrary,
+  getIconLibrary,
+} from './components/icon/library'
 ```
 
-- Export components for library consumers
+- `src/index.ts` exports utilities and the icon library API, not components
+- Components are registered by the Stencil build (`dist`, `loader`, and framework wrappers); do not add component exports to `index.ts`
 - Keep public API clean
 
 ### Imports
@@ -315,4 +324,4 @@ export const Default: Story = {
 
 - Show primary use case
 - Include prop variations
-- Link to component docs via MDX
+- Stories live in `packages/storybook/src/pages/components/{component}/` as `.stories.ts`

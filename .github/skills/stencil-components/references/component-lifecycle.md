@@ -10,7 +10,7 @@ Reference detail for step 3 of [the build procedure](../SKILL.md#procedure-build
 - ✅ Proxy native element properties: `checked`, `value`, `disabled`, `required`, `name`
 - ✅ Emit events that align with native behavior (even if using custom names for framework compatibility)
 - ✅ Support standard HTML attributes and properties
-- ✅ Use light DOM or shadow DOM with `delegatesFocus: true` for form elements
+- ✅ Use shadow DOM with `delegatesFocus: true` for form elements (see the checkbox component)
 - ✅ Leverage native validation APIs when available
 
 **Event Naming**:
@@ -61,54 +61,39 @@ Define component inputs with `@Prop()` decorator:
 })
 export class OrchestraButton {
   // Variant props
-  @Prop() variant?: 'primary' | 'secondary' | 'tertiary' = 'primary';
-  @Prop() size?: 'small' | 'medium' | 'large' = 'medium';
+  @Prop() variant: 'primary' | 'secondary' | 'tertiary' = 'primary';
+  @Prop() size: 'small' | 'medium' | 'large' = 'medium';
 
   // Content
   @Prop() text!: string;
+  @Prop() icon: 'only' | 'start' | 'end' | 'none' = 'none';
   @Prop() iconName?: string;
-  @Prop() iconPosition?: 'start' | 'end' = 'start';
+  @Prop() iconLibrary: string = 'orchestra-icons';
 
   // State
-  @Prop({ mutable: true }) disabled?: boolean = false;
-  @Prop({ mutable: true }) loading?: boolean = false;
-  @Prop() type?: 'button' | 'submit' | 'reset' = 'button';
+  @Prop({ mutable: true }) disabled: boolean = false;
+  @Prop() type: 'button' | 'submit' | 'reset' = 'button';
 
-  // Callbacks (passed as functions, not events)
-  @Prop() onClick?: (event: MouseEvent) => void;
-  @Prop() onFocus?: (event: FocusEvent) => void;
-
-  // Attributes for ARIA
-  @Prop() ariaLabel?: string;
-  @Prop() ariaDescribedBy?: string;
-
-  // Computed properties for CSS
-  private get buttonClass(): string {
-    return [
-      'orchestra-button',
-      `orchestra-button--${this.variant}`,
-      `orchestra-button--${this.size}`,
-      { 'is-disabled': this.disabled },
-      { 'is-loading': this.loading }
-    ]
-      .filter(Boolean)
-      .join(' ');
-  }
-
+  // Headless hooks: parts for structure, data-* for state. No classes.
   render() {
     return (
       <button
-        class={this.buttonClass}
+        part="button"
         type={this.type}
         disabled={this.disabled}
-        aria-label={this.ariaLabel}
+        data-variant={this.variant}
+        data-size={this.size}
+        data-icon={this.icon}
+        data-disabled={this.disabled ? '' : undefined}
       >
-        {this.text}
+        <span part="label">{this.text}</span>
       </button>
     );
   }
 }
 ```
+
+For customer-facing states, emit events (see Events below) instead of callback props. Consumers style with `orchestra-button::part(button)` and `[data-variant]`.
 
 ## Events (Outputs)
 

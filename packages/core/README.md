@@ -55,7 +55,7 @@ the custom-element host is not a second button or checkbox.
 	put the accessible name on the containing control.
 
 ```html
-<orchestra-icon name="checkbox-check" label="Completed"></orchestra-icon>
+<orchestra-icon name="checkmark" label="Completed"></orchestra-icon>
 ```
 
 This informative icon can be located with
@@ -83,10 +83,9 @@ for `role` or `aria-checked` attributes on the host.
 
 An external `<label for="...">` cannot target the input inside a shadow root.
 The checkbox's `htmlId` identifies its internal input, not an input in the page's
-document. Similarly, forwarding `aria-labelledby` or `aria-describedby` ID strings
-to that input does not resolve references to elements outside its shadow root.
-The existing ID-reference props are not a supported cross-root labeling mechanism;
-use `label` or `aria-label` for reliable checkbox naming.
+document. Similarly, forwarding `aria-describedby` ID strings to that input does
+not resolve references to elements outside its shadow root. Use the required
+`label` prop for the checkbox's accessible name.
 
 ### ElementInternals
 

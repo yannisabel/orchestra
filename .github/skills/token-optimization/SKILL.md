@@ -98,12 +98,12 @@ Use agent: runSubagent("Explore", "Find all custom React hooks in lib/")
 ```markdown
 # Build Commands
 
-- Build core: `npm run build --workspace=@orchestra/core`
+- Build core: `npm run build --workspace=@orchestra-design-system/core`
 - Run tests: `npm run test -- packages/core`
 - Dev server: `npm run dev`
 ```
 
-Then reference it: "Building uses `npm run build --workspace=@orchestra/core` (see /memories/repo/build.md)"
+Then reference it: "Building uses `npm run build --workspace=@orchestra-design-system/core` (see /memories/repo/build.md)"
 
 ### 5. Structured Responses
 

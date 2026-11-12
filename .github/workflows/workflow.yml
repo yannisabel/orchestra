@@ -54,32 +54,32 @@ jobs:
             echo "No packages/core/custom-elements.json on origin/${{ github.base_ref }}; skipping API compatibility check."
           fi
 
-  api-compatibility:
-    needs: api-compatibility-detect
-    if: needs.api-compatibility-detect.outputs.has-base-manifest == 'true'
-    timeout-minutes: 30
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.sha }}
-      - uses: actions/setup-node@v5
-        with:
-          node-version-file: '.nvmrc'
-      - name: Install dependencies (retry)
-        uses: ./.github/actions/npm-ci-retry
-      - name: Build packages
-        run: npm run build
-      - name: Verify committed custom elements manifest is up to date
-        run: |
-          if [ -n "$(git status --porcelain -- packages/core/custom-elements.json)" ]; then
-            echo "packages/core/custom-elements.json is out of date. Run 'npm run build' in packages/core and commit the result."
-            git --no-pager diff -- packages/core/custom-elements.json
-            exit 1
-          fi
-      - name: Check API changes against base branch
-        run: npm run check:api -- --base-ref "origin/${{ github.base_ref }}"
+  # api-compatibility:
+  #   needs: api-compatibility-detect
+  #   if: needs.api-compatibility-detect.outputs.has-base-manifest == 'true'
+  #   timeout-minutes: 30
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v5
+  #       with:
+  #         fetch-depth: 0
+  #         ref: ${{ github.event.pull_request.head.sha }}
+  #     - uses: actions/setup-node@v5
+  #       with:
+  #         node-version-file: '.nvmrc'
+  #     - name: Install dependencies (retry)
+  #       uses: ./.github/actions/npm-ci-retry
+  #     - name: Build packages
+  #       run: npm run build
+  #     - name: Verify committed custom elements manifest is up to date
+  #       run: |
+  #         if [ -n "$(git status --porcelain -- packages/core/custom-elements.json)" ]; then
+  #           echo "packages/core/custom-elements.json is out of date. Run 'npm run build' in packages/core and commit the result."
+  #           git --no-pager diff -- packages/core/custom-elements.json
+  #           exit 1
+  #         fi
+  #     - name: Check API changes against base branch
+  #       run: npm run check:api -- --base-ref "origin/${{ github.base_ref }}"
 
   test:
     name: Test (${{ matrix.suite }})

@@ -1,17 +1,10 @@
-import {
-  checkboxCheck,
-  checkboxIndeterminate,
-  checked,
-} from '@orchestra-design-system/icons-library'
+import { checkmark, minus } from '@orchestra-design-system/icons-library'
 
 import type { IconLibrary } from './library'
 
 const icons: Record<string, string | undefined> = {
-  'checkbox-check': checkboxCheck,
-  checkboxCheck,
-  'checkbox-indeterminate': checkboxIndeterminate,
-  checkboxIndeterminate,
-  checked,
+  checkmark,
+  minus,
 }
 
 const orchestraLibrary: IconLibrary = {

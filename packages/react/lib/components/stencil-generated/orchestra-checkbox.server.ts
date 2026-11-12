@@ -28,9 +28,7 @@ export const OrchestraCheckbox: StencilReactComponent<OrchestraCheckboxElement, 
     checked: 'checked',
     disabled: 'disabled',
     name: 'name',
-    value: 'value',
-    ariaLabel: 'aria-label',
-    ariaLabelledBy: 'aria-labelledby'
+    value: 'value'
   },
   hydrateModule: typeof window === 'undefined' ? (import('@orchestra-design-system/core/hydrate') as Promise<HydrateModule>) : undefined,
   // @ts-ignore - clientModule not available in current setup

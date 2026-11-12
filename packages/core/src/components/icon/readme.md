@@ -16,17 +16,23 @@
 | `size`              | `size`    | Taking the size of the parent element by default, except if specified.                 | `string` | `'100%'`            |
 
 
+## Shadow Parts
+
+| Part     | Description                    |
+| -------- | ------------------------------ |
+| `"icon"` |                                |
+| `"svg"`  | The rendered icon SVG element. |
+
+
 ## Dependencies
 
 ### Used by
 
- - [orchestra-button](../button)
  - [orchestra-checkbox](../checkbox)
 
 ### Graph
 ```mermaid
 graph TD;
-  orchestra-button --> orchestra-icon
   orchestra-checkbox --> orchestra-icon
   style orchestra-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```

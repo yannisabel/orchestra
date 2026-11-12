@@ -43,7 +43,7 @@ orchestra/
 
 | Package           | Purpose                                       | Dependencies                |
 | ----------------- | --------------------------------------------- | --------------------------- |
-| **core**          | Stencil components and web component runtime  | icons-library, themes       |
+| **core**          | Stencil components and web component runtime  | icons-library               |
 | **react**         | React proxy components and typed wrappers     | core                        |
 | **vue**           | Vue proxy components                          | core                        |
 | **angular**       | Angular proxy components                      | core                        |
@@ -54,16 +54,16 @@ orchestra/
 ### Dependency Graph
 
 ```
-themes
-    ↓
 icons-library
     ↓
-core (depends on themes + icons-library)
+core (depends on icons-library)
     ↓
 ├→ react (depends on core)
 ├→ vue (depends on core)
 ├→ angular (depends on core)
 └→ storybook (depends on core + themes + icons-library)
+
+themes (independent; builds the CSS entry points consumed by storybook)
 ```
 
 ## Workspace Configuration
@@ -82,7 +82,7 @@ This repo still uses Lerna-style release tooling in the root, but the active pac
 ### Root `package.json` Workspaces
 
 Workspaces are declared via `"workspaces": ["packages/*"]`. For the actual
-script commands (`dev`, `build`, `build:tokens`, `test`, `lint`), see
+script commands (`dev`, `build`, `build:design-tokens`, `test`, `lint`), see
 [README.md](../../../README.md#L64-L76) or `AGENTS.md` - don't duplicate that
 list here; this section is about workspace _wiring_, not the command
 reference.
@@ -91,12 +91,12 @@ reference.
 
 The repo depends on a small set of source-of-truth files:
 
-- [README.md](../../README.md) — repo overview and package map
-- [packages/core/README.md](../../packages/core/README.md) — Stencil implementation and runtime
-- [packages/themes/README.md](../../packages/themes/README.md) — tokens and theme output
-- [packages/storybook/README.md](../../packages/storybook/README.md) — stories and testing coverage
-- [AGENTS.md](../../AGENTS.md) — repo-wide AI operating rules
-- [.github/skills](../) — task-specific workflow guidance
+- [README.md](../../../README.md) - repo overview and package map
+- [packages/core/README.md](../../../packages/core/README.md) - Stencil implementation and runtime
+- [packages/themes/README.md](../../../packages/themes/README.md) - tokens and theme output
+- [packages/storybook/README.md](../../../packages/storybook/README.md) - stories and testing coverage
+- [AGENTS.md](../../../AGENTS.md) - repo-wide AI operating rules
+- [.github/skills](../) - task-specific workflow guidance
 
 Before merging documentation or toolchain changes, run:
 
@@ -105,6 +105,18 @@ npm run check:docs
 ```
 
 This keeps the root docs, package docs, and AI guidance aligned with the real monorepo layout.
+
+## Cross-file change check
+
+After changing any file (source, script, token, story, package.json, or doc), search the repo for mentions of that file before finishing:
+
+```bash
+grep -rn "<file-name-or-path>" --include="*.md" --include="*.mdx" --include="*.json" --include="*.ts" --include="*.mjs" . --exclude-dir=node_modules --exclude-dir=dist --exclude-dir=storybook-static
+```
+
+- Check skills, instructions, AGENTS.md, README files, and CHANGELOGs that mention the file, its path, or its script or export name
+- Update each stale mention in the same change
+- Run `npm run check:docs` after any doc or AI guidance update
 
 ## Workspace Commands
 
@@ -156,7 +168,7 @@ lerna run build --since origin/main
 npm run build
 
 # This runs:
-# 1. npm run build:tokens
+# 1. npm run build:design-tokens
 # 2. lerna run build (all packages in dependency order)
 ```
 
@@ -220,8 +232,8 @@ npm init -y
 # Update name to workspace convention
 # "name": "@orchestra-design-system/[new-package]"
 
-# Add to Lerna tracking (automatically detected via lerna.json)
-lerna bootstrap
+# Workspaces pick up packages/* automatically; refresh links
+npm install
 ```
 
 ## Package Configuration Files
@@ -245,25 +257,17 @@ Each package can have:
 ### Example: Package-Specific Override
 
 ```json
-// packages/core/package.json
+// packages/core/package.json (scripts excerpt)
 {
   "name": "@orchestra-design-system/core",
-  "version": "0.0.1",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs.js"
-    }
-  },
   "scripts": {
-    "build": "npm run build:css && npm run build:js",
-    "build:css": "vite build --config vite-style.config.js",
+    "build": "npm run build:js",
     "build:js": "stencil build --docs",
-    "test": "vitest",
-    "dev": "concurrently 'npm run start:css' 'npm run start:js'"
+    "start": "npm run start:js",
+    "start:js": "stencil build --docs --watch",
+    "test": "stencil-test",
+    "test:spec": "stencil-test --project spec",
+    "test:e2e": "stencil-test --project browser"
   }
 }
 ```
@@ -278,13 +282,13 @@ Each package can have:
 { "name": "@orchestra-design-system/themes", "dependencies": {} }
 ```
 
-**Core** (depends on Design Tokens):
+**Core** (depends on Icons Library):
 
 ```json
 {
   "name": "@orchestra-design-system/core",
   "dependencies": {
-    "@orchestra-design-system/themes": "^0.0.1"
+    "@orchestra-design-system/icons-library": "^0.1.0"
   }
 }
 ```
@@ -333,20 +337,18 @@ cd packages/react && release-it
 
 ### Current Version
 
-Current package versions are not a single repo-wide version; packages are versioned individually and currently sit around **0.0.13** for the main packages, e.g. core, react, vue, angular, themes, and icons-library.
+Package versions are set individually in each `package.json` (not a single repo-wide version). Check the current `version` field before assuming a number; cross-package ranges such as `^0.1.0` for `@orchestra-design-system/core` show the expected pairing.
 
 ## Clean & Maintenance
 
 ### Clear Build Artifacts
 
+There is no root `clean` script. To remove Lerna-managed build output, use Lerna directly (Lerna v9 is a root devDependency):
+
 ```bash
-# Remove all dist/ and node_modules/
-npm run clean
+npx lerna clean --yes
 
-# Equivalent to:
-lerna clean --yes
-
-# Reinstall
+# Reinstall if node_modules is also removed
 npm install
 ```
 

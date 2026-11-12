@@ -1,17 +1,18 @@
-# Complete Example: Form Component
+# Complete Example: Form Component (illustrative)
 
 End-to-end multi-field form story combining args, user interaction, and validation assertions from [the main skill](../SKILL.md).
 
+> No form component exists in `packages/core/src/components` yet. This is an illustrative pattern. Use `fn()` from `storybook/test` in place of `vi.fn()` shown below, and query inside shadow roots (see [the main skill](../SKILL.md#querying-best-practices)).
+
 ```typescript
-// src/components/form/form.stories.tsx
-import { Meta, StoryObj } from '@storybook/react'
-import { expect, userEvent } from '@storybook/test'
-import { Form } from './form'
+// packages/storybook/src/pages/components/form/form.stories.ts
+import type { Meta, StoryObj } from '@storybook/web-components-vite'
+import { expect, userEvent } from 'storybook/test'
 
 const meta = {
   title: 'Components/Form',
-  component: Form,
-} satisfies Meta<typeof Form>
+  component: 'orchestra-form',
+} satisfies Meta
 
 export default meta
 type Story = StoryObj<typeof meta>

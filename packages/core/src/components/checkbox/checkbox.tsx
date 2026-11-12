@@ -20,6 +20,15 @@ export interface CheckboxChangeDetail {
   value: string
 }
 
+/**
+ * @part row - The wrapper of the control and the label.
+ * @part box - The hit area around the control.
+ * @part control - The native checkbox input.
+ * @part indicator - The check or dash drawn over the control.
+ * @part icon - The icon inside the indicator.
+ * @part label - The visible label text.
+ * @part error - The container of the `error` slot.
+ */
 @Component({
   tag: 'orchestra-checkbox',
   styleUrl: 'checkbox.css',
@@ -74,24 +83,27 @@ export class OrchestraCheckbox {
   @Prop() htmlId?: string
 
   /**
-   * Optional visible label text displayed next to the checkbox.
+   * Visible label text displayed next to the checkbox. It also provides the checkbox's accessible name.
    */
-  @Prop() label?: string
-
-  /**
-   * Accessible label for screen readers when no visible label is associated.
-   */
-  @Prop({ attribute: 'aria-label' }) ariaLabel?: string
-
-  /**
-   * ID reference(s) to element(s) that label this checkbox.
-   */
-  @Prop({ attribute: 'aria-labelledby' }) ariaLabelledby?: string
+  @Prop() label!: string
 
   /**
    * ID reference(s) to element(s) that describe this checkbox.
    */
   @Prop({ attribute: 'aria-describedby' }) ariaDescribedby?: string
+
+  /**
+   * The icon library to use for the checkbox indicator.
+   * @default 'orchestra-icons'
+   */
+  @Prop() iconLibrary?: string = 'orchestra-icons'
+
+  /**
+   * The icon names to use for the checkbox indicator. Accepts an array or a comma-separated string (for example `icon-names="cross,bar"`).
+   * The first name is for the checked state, the second for the indeterminate state.
+   * @default ['checkmark', 'minus']
+   */
+  @Prop() iconNames?: string[] | string = ['checkmark', 'minus']
 
   /**
    * Native change event - emitted when checkbox state changes.
@@ -109,7 +121,6 @@ export class OrchestraCheckbox {
   @AttachInternals() internals!: ElementInternals
 
   #checkbox?: HTMLInputElement
-  #hasWarnedMissingAccessibleName = false
   #defaultChecked = false
   #defaultIndeterminate = false
   @State() invalid = false
@@ -177,11 +188,6 @@ export class OrchestraCheckbox {
     this.indeterminateChanged()
     this.syncFormValue()
     this.syncValidity()
-    this.warnIfMissingAccessibleName()
-  }
-
-  public componentDidRender(): void {
-    this.warnIfMissingAccessibleName()
   }
 
   public formResetCallback(): void {
@@ -257,48 +263,6 @@ export class OrchestraCheckbox {
     this.validationMessage = message
   }
 
-  private warnIfMissingAccessibleName(): void {
-    if (this.#hasWarnedMissingAccessibleName) {
-      return
-    }
-
-    if (this.hasAccessibleName()) {
-      return
-    }
-
-    console.warn(
-      '[orchestra-checkbox] Missing accessible name. Provide a linked <label>, aria-label, or aria-labelledby.',
-      this.host,
-    )
-    this.#hasWarnedMissingAccessibleName = true
-  }
-
-  private hasAccessibleName(): boolean {
-    if (
-      this.label?.trim() ||
-      this.ariaLabel?.trim() ||
-      this.ariaLabelledby?.trim()
-    ) {
-      return true
-    }
-
-    if (this.host.closest('label')) {
-      return true
-    }
-
-    const id = this.htmlId?.trim()
-    if (!id) {
-      return false
-    }
-
-    const escapedId =
-      typeof CSS !== 'undefined' && typeof CSS.escape === 'function'
-        ? CSS.escape(id)
-        : id.replace(/"/g, '\\"')
-
-    return document.querySelector(`label[for="${escapedId}"]`) !== null
-  }
-
   private syncFormValue(): void {
     const shouldSubmitValue =
       (this.checked ?? false) && !(this.disabled ?? false)
@@ -341,51 +305,51 @@ export class OrchestraCheckbox {
     this.invalid = false
   }
 
+  #resolveIconNames(): string[] {
+    const iconNames = this.iconNames ?? ['checkmark', 'minus']
+    return typeof iconNames === 'string'
+      ? iconNames.split(',').map((name) => name.trim())
+      : iconNames
+  }
+
   render() {
     const showIndicator =
       (this.checked ?? false) || (this.indeterminate ?? false)
+    const iconNames = this.#resolveIconNames()
     const indicatorName = this.indeterminate
-      ? 'checkbox-indeterminate'
-      : 'checkbox-check'
+      ? (iconNames[1] ?? '')
+      : (iconNames[0] ?? 'checkmark')
 
     return (
       <Host data-indeterminate={this.indeterminate} data-invalid={this.invalid}>
-        <div class="orchestra-checkbox-row">
-          <div class="orchestra-checkbox-box">
+        <div part="row">
+          <div part="box">
             <input
               id={this.htmlId ?? 'checkbox-input'}
-              class="orchestra-checkbox"
+              part="control"
               type="checkbox"
-              aria-label={this.ariaLabel}
-              aria-labelledby={this.ariaLabelledby}
               aria-describedby={this.ariaDescribedby}
               aria-invalid={this.invalid ? 'true' : undefined}
               ref={this.#checkboxRef}
               onChange={this.handleChange}
             />
-            <span class="orchestra-checkbox-visual">
+            <span part="indicator">
               {showIndicator && (
                 <orchestra-icon
-                  class="orchestra-checkbox-icon"
+                  part="icon"
                   name={indicatorName}
-                  library="orchestra-icons"
+                  library={this.iconLibrary ?? 'orchestra-icons'}
                   fill="currentcolor"
-                  size="0.625rem"
                 ></orchestra-icon>
               )}
             </span>
           </div>
-          {this.label && (
-            <label
-              class="orchestra-checkbox-label"
-              htmlFor={this.htmlId ?? 'checkbox-input'}
-            >
-              {this.label}
-            </label>
-          )}
+          <label part="label" htmlFor={this.htmlId ?? 'checkbox-input'}>
+            {this.label}
+          </label>
         </div>
         {this.invalid && (
-          <div class="orchestra-checkbox-error-container">
+          <div part="error">
             <slot name="error"></slot>
           </div>
         )}

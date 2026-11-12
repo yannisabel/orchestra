@@ -6,23 +6,11 @@
 
 import type { Components } from '@orchestra-design-system/core/dist/components';
 
-// Make ariaLabel required to satisfy HTMLElement constraints
+// Stencil's JSX typings for orchestra-checkbox are loosened here.
 declare global {
   namespace JSX {
     interface IntrinsicElements {
       'orchestra-checkbox': any;
-    }
-  }
-}
-
-// Override the Components interface for checkbox
-declare module '@orchestra-design-system/core/dist/components' {
-  namespace Components {
-    interface OrchestraCheckbox {
-      /**
-       * Accessible label for screen readers when no visible label is associated.
-       */
-      ariaLabel: string;
     }
   }
 }
