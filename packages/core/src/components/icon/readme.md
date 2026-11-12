@@ -18,22 +18,21 @@
 
 ## Shadow Parts
 
-| Part    | Description                    |
-| ------- | ------------------------------ |
-| `"svg"` | The rendered icon SVG element. |
+| Part     | Description                    |
+| -------- | ------------------------------ |
+| `"icon"` |                                |
+| `"svg"`  | The rendered icon SVG element. |
 
 
 ## Dependencies
 
 ### Used by
 
- - [orchestra-button](../button)
  - [orchestra-checkbox](../checkbox)
 
 ### Graph
 ```mermaid
 graph TD;
-  orchestra-button --> orchestra-icon
   orchestra-checkbox --> orchestra-icon
   style orchestra-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```

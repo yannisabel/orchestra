@@ -21,33 +21,6 @@
               "fieldName": "disabled"
             },
             {
-              "name": "icon",
-              "description": "It allows to render the chosen icon.\n\nThe icon render only if `iconName` and `iconPosition` are defined.",
-              "type": {
-                "text": "\"end\" | \"none\" | \"only\" | \"start\""
-              },
-              "default": "'none'",
-              "fieldName": "icon"
-            },
-            {
-              "name": "icon-library",
-              "description": "The name of the icon library used by the button icons.",
-              "type": {
-                "text": "string"
-              },
-              "default": "'orchestra-icons'",
-              "fieldName": "iconLibrary"
-            },
-            {
-              "name": "icon-name",
-              "description": "The name of the icon library used by the button icon. Defaults to 'orchestra-icons'.\nConsumers can override this when they register another icon library.\n\nThe icon render only if `iconName` and `iconPosition` are defined.",
-              "type": {
-                "text": "string"
-              },
-              "default": "undefined",
-              "fieldName": "iconName"
-            },
-            {
               "name": "size",
               "description": "A string indicating the size variation of the button.",
               "type": {
@@ -55,14 +28,6 @@
               },
               "default": "'medium'",
               "fieldName": "size"
-            },
-            {
-              "name": "text",
-              "description": "This is the text which appear inside the button. It is required.",
-              "type": {
-                "text": "string"
-              },
-              "fieldName": "text"
             },
             {
               "name": "type",
@@ -102,36 +67,6 @@
             },
             {
               "kind": "field",
-              "name": "icon",
-              "description": "It allows to render the chosen icon.\n\nThe icon render only if `iconName` and `iconPosition` are defined.",
-              "type": {
-                "text": "\"end\" | \"none\" | \"only\" | \"start\""
-              },
-              "default": "'none'",
-              "attribute": "icon"
-            },
-            {
-              "kind": "field",
-              "name": "iconLibrary",
-              "description": "The name of the icon library used by the button icons.",
-              "type": {
-                "text": "string"
-              },
-              "default": "'orchestra-icons'",
-              "attribute": "icon-library"
-            },
-            {
-              "kind": "field",
-              "name": "iconName",
-              "description": "The name of the icon library used by the button icon. Defaults to 'orchestra-icons'.\nConsumers can override this when they register another icon library.\n\nThe icon render only if `iconName` and `iconPosition` are defined.",
-              "type": {
-                "text": "string"
-              },
-              "default": "undefined",
-              "attribute": "icon-name"
-            },
-            {
-              "kind": "field",
               "name": "size",
               "description": "A string indicating the size variation of the button.",
               "type": {
@@ -139,16 +74,6 @@
               },
               "default": "'medium'",
               "attribute": "size"
-            },
-            {
-              "kind": "field",
-              "name": "text",
-              "description": "This is the text which appear inside the button. It is required.",
-              "type": {
-                "text": "string"
-              },
-              "readonly": true,
-              "attribute": "text"
             },
             {
               "kind": "field",
@@ -179,18 +104,16 @@
               "attribute": "variant"
             }
           ],
+          "slots": [
+            {
+              "name": "",
+              "description": "Button content, such as a label or an icon."
+            }
+          ],
           "cssParts": [
             {
               "name": "button",
-              "description": "The native button element. Carries `data-variant`, `data-size`, `data-icon` and `data-disabled` state hooks."
-            },
-            {
-              "name": "icon",
-              "description": "The icon rendered at the start or end of the button, or alone when `icon` is `only`."
-            },
-            {
-              "name": "label",
-              "description": "The text wrapper, not rendered for icon-only buttons."
+              "description": "The native button element. Carries `data-variant`, `data-size` and `data-disabled` state hooks."
             }
           ]
         }
@@ -693,6 +616,9 @@
             }
           ],
           "cssParts": [
+            {
+              "name": "icon"
+            },
             {
               "name": "svg",
               "description": "The rendered icon SVG element."

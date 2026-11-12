@@ -1,15 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite'
+import { html } from 'lit'
 import { fn, expect, waitFor } from 'storybook/test'
 import { within } from 'shadow-dom-testing-library'
 
 interface ButtonArgs {
-  text: string
   type?: 'button' | 'reset' | 'submit'
   variant?: 'primary' | 'secondary' | 'tertiary'
   size?: 'small' | 'medium' | 'large'
-  icon?: 'none' | 'start' | 'end' | 'only'
-  iconName?: string
-  iconLibrary?: 'orchestra-icons' | 'custom' | 'core'
   disabled?: boolean
   onClick?: (e: Event) => void
   onOrchestraFocus?: (e: Event) => void
@@ -19,6 +16,15 @@ interface ButtonArgs {
 const meta = {
   component: 'orchestra-button',
   title: 'Components/orchestra-button',
+  render: (args) => html`
+    <orchestra-button
+      .type=${args.type ?? 'button'}
+      .variant=${args.variant ?? 'primary'}
+      .size=${args.size ?? 'medium'}
+      .disabled=${args.disabled ?? false}
+      >Button</orchestra-button
+    >
+  `,
   parameters: {
     test: {
       autoplay: false,
@@ -40,11 +46,6 @@ const meta = {
     },
   ],
   argTypes: {
-    text: {
-      type: { name: 'string', required: true },
-      description:
-        'This is the text which appear inside the button. It is **required**.',
-    },
     type: {
       control: 'select',
       options: ['button', 'reset', 'submit'],
@@ -69,35 +70,6 @@ const meta = {
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'medium' },
-      },
-    },
-    icon: {
-      control: 'select',
-      options: ['none', 'start', 'end', 'only'],
-      description:
-        'It allows to render the chosen icon on the left or on the right.\nThe icon render only if `iconName` and `icon` are defined.',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
-    iconName: {
-      type: { name: 'string' },
-      control: 'text',
-      description:
-        'Icon name to render. Keep this as a string so the name can vary by library.',
-      if: {
-        arg: 'icon',
-        exists: true,
-      },
-    },
-    iconLibrary: {
-      control: 'select',
-      options: ['orchestra-icons', 'custom'],
-      description:
-        'Icon library to use when an icon is selected. Defaults to orchestra-icons.',
-      if: {
-        arg: 'icon',
-        exists: true,
       },
     },
     disabled: {
@@ -125,7 +97,6 @@ type Story = StoryObj<ButtonArgs>
 
 export const Default: Story = {
   args: {
-    text: 'Button',
     disabled: false,
     variant: 'primary',
   },
@@ -144,11 +115,8 @@ export const Default: Story = {
 export const Disabled: Story = {
   tags: ['!dev'],
   args: {
-    text: 'Button',
     disabled: true,
     variant: 'primary',
-    icon: 'start',
-    iconName: 'checked',
   },
   play: async ({ canvasElement, userEvent }) => {
     const onClick = fn()
@@ -165,7 +133,6 @@ export const Disabled: Story = {
 export const KeyboardEnter: Story = {
   tags: ['!dev'],
   args: {
-    text: 'Button',
     disabled: false,
     variant: 'primary',
   },
@@ -187,7 +154,6 @@ export const KeyboardEnter: Story = {
 export const KeyboardSpace: Story = {
   tags: ['!dev'],
   args: {
-    text: 'Button',
     disabled: false,
     variant: 'primary',
   },
@@ -209,7 +175,6 @@ export const KeyboardSpace: Story = {
 export const DisabledAttributes: Story = {
   tags: ['!dev'],
   args: {
-    text: 'Button',
     disabled: true,
     variant: 'primary',
   },
@@ -226,7 +191,6 @@ export const DisabledAttributes: Story = {
 export const SubmitType: Story = {
   tags: ['!dev'],
   args: {
-    text: 'Button',
     type: 'submit',
     disabled: false,
     variant: 'primary',
@@ -239,64 +203,76 @@ export const SubmitType: Story = {
   },
 }
 
-export const EndIcon: Story = {
-  tags: ['!dev'],
+export const WithIcon: Story = {
   args: {
-    text: 'Button',
     disabled: false,
     variant: 'primary',
-    icon: 'end',
-    iconName: 'checked',
+    size: 'medium',
   },
+  render: (args) => html`
+    <orchestra-button
+      size=${args.size}
+      variant=${args.variant}
+      disabled=${args.disabled}
+      type=${args.type}
+    >
+      <orchestra-icon name="checkmark" label="Validation"></orchestra-icon>
+      <span>Button</span>
+    </orchestra-button>
+  `,
   play: async ({ canvasElement }) => {
     const host = canvasElement.querySelector('orchestra-button')
     expect(host).toBeTruthy()
 
-    const icon = host?.shadowRoot?.querySelector('orchestra-icon')
-    const text = host?.shadowRoot?.querySelector('[part="label"]')
+    const icon = host?.querySelector('orchestra-icon')
     expect(icon).toBeTruthy()
-    expect(text).toBeTruthy()
+    await waitFor(() => {
+      const slot = host?.shadowRoot?.querySelector('slot')
+      expect(slot?.assignedElements()).toContain(icon)
+    })
   },
 }
 
 export const IconOnly: Story = {
   tags: ['!dev'],
   args: {
-    text: 'Button',
     disabled: false,
     variant: 'primary',
-    icon: 'only',
-    iconName: 'checked',
   },
+  render: () => html`
+    <orchestra-button>
+      <orchestra-icon name="checked" label="Checked"></orchestra-icon>
+    </orchestra-button>
+  `,
   play: async ({ canvasElement }) => {
     const host = canvasElement.querySelector('orchestra-button')
-    expect(host).toBeTruthy()
+    expect(host?.textContent?.trim()).toBe('')
 
-    const icon = host?.shadowRoot?.querySelector('orchestra-icon')
-    const text = host?.shadowRoot?.querySelector('[part="label"]')
-    const button = host?.shadowRoot?.querySelector('button')
-    expect(icon).toBeTruthy()
-    expect(text).toBeNull()
-    expect(button).toHaveAttribute('aria-label', 'Button')
+    const button = await within(canvasElement).findByShadowRole('button', {
+      name: 'Checked',
+    })
+    expect(button).toBeTruthy()
   },
 }
 
 export const CustomIconLibrary: Story = {
   tags: ['!dev'],
   args: {
-    text: 'Button',
     disabled: false,
     variant: 'primary',
-    icon: 'start',
-    iconName: 'star',
-    iconLibrary: 'custom',
   },
+  render: () => html`
+    <orchestra-button>
+      <orchestra-icon name="star" library="custom"></orchestra-icon>
+      <span>Button</span>
+    </orchestra-button>
+  `,
   play: async ({ canvasElement }) => {
     const host = canvasElement.querySelector('orchestra-button')
     expect(host).toBeTruthy()
 
     await waitFor(() => {
-      const icon = host?.shadowRoot?.querySelector('orchestra-icon') as
+      const icon = host?.querySelector('orchestra-icon') as
         (HTMLElement & { library?: string }) | null
       expect(icon).toBeTruthy()
       expect(icon?.getAttribute('library') ?? icon?.library).toBe('custom')
@@ -308,7 +284,6 @@ export const CustomIconLibrary: Story = {
 export const VariantAndSizeAttributes: Story = {
   tags: ['!dev'],
   args: {
-    text: 'Button',
     disabled: false,
     variant: 'secondary',
     size: 'large',

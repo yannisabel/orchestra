@@ -1,11 +1,7 @@
 :host {
   --icon-color: currentcolor;
   --icon-size: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 0;
-  vertical-align: middle;
+  display: inline-block;
 }
 
 :host [part='svg'] {

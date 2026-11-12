@@ -353,9 +353,7 @@ export class OrchestraCheckbox {
   render() {
     const showIndicator =
       (this.checked ?? false) || (this.indeterminate ?? false)
-    const indicatorName = this.indeterminate
-      ? 'checkbox-indeterminate'
-      : 'checkbox-check'
+    const indicatorName = this.indeterminate ? 'minus' : 'checkmark'
 
     return (
       <Host data-indeterminate={this.indeterminate} data-invalid={this.invalid}>

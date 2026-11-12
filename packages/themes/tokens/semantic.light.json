@@ -872,7 +872,7 @@
             "com.figma.hiddenFromPublishing": false
           },
           "$type": "dimension",
-          "$value": "{scale.x0-5}"
+          "$value": "{scale.x1}"
         }
       },
       "secondary": {

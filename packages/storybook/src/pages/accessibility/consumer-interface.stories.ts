@@ -7,8 +7,8 @@ const meta = {
     section.setAttribute('aria-label', 'Preferences')
     section.innerHTML = `
       <orchestra-checkbox label="Accept privacy policy"></orchestra-checkbox>
-      <orchestra-button text="Save changes"></orchestra-button>
-      <orchestra-button text="Unavailable action" disabled></orchestra-button>
+      <orchestra-button>Save changes</orchestra-button>
+      <orchestra-button disabled>Unavailable action</orchestra-button>
       <orchestra-icon name="checkbox-check" size="24px" label="Completed"></orchestra-icon>
       <orchestra-icon name="checkbox-check" size="24px"></orchestra-icon>
       <p role="status">Not saved</p>

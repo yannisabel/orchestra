@@ -129,6 +129,7 @@ export class OrchestraIcon {
         role={label ? 'img' : undefined}
         aria-label={label || undefined}
         aria-hidden={label ? undefined : 'true'}
+        part="icon"
       ></Host>
     )
   }

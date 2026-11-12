@@ -1,7 +1,3 @@
-export {
-  checkboxCheck,
-  checkboxIndeterminate,
-  checked,
-} from './icons'
+export { checkmark, minus } from './icons'
 
-export const iconNames = ['checkboxCheck', 'checkboxIndeterminate', 'checked'] as const
+export const iconNames = ['checkmark', 'minus'] as const

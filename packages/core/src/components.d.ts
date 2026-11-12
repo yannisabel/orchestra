@@ -15,29 +15,10 @@ export namespace Components {
          */
         "disabled"?: boolean;
         /**
-          * It allows to render the chosen icon.  The icon render only if `iconName` and `iconPosition` are defined.
-          * @default 'none'
-         */
-        "icon"?: 'only' | 'start' | 'end' | 'none';
-        /**
-          * The name of the icon library used by the button icons.
-          * @default 'orchestra-icons'
-         */
-        "iconLibrary"?: string;
-        /**
-          * The name of the icon library used by the button icon. Defaults to 'orchestra-icons'. Consumers can override this when they register another icon library.  The icon render only if `iconName` and `iconPosition` are defined.
-          * @default undefined
-         */
-        "iconName"?: string;
-        /**
           * A string indicating the size variation of the button.
           * @default 'medium'
          */
         "size"?: 'small' | 'medium' | 'large';
-        /**
-          * This is the text which appear inside the button. It is required.
-         */
-        "text": string;
         /**
           * A string indicating the behavior of the button. It relies on `HTMLButtonElement['type']`
           * @default 'button'
@@ -199,21 +180,6 @@ declare namespace LocalJSX {
          */
         "form"?: string;
         /**
-          * It allows to render the chosen icon.  The icon render only if `iconName` and `iconPosition` are defined.
-          * @default 'none'
-         */
-        "icon"?: 'only' | 'start' | 'end' | 'none';
-        /**
-          * The name of the icon library used by the button icons.
-          * @default 'orchestra-icons'
-         */
-        "iconLibrary"?: string;
-        /**
-          * The name of the icon library used by the button icon. Defaults to 'orchestra-icons'. Consumers can override this when they register another icon library.  The icon render only if `iconName` and `iconPosition` are defined.
-          * @default undefined
-         */
-        "iconName"?: string;
-        /**
           * The name of the element, used when submitting an HTML form.
          */
         "name"?: string;
@@ -222,10 +188,6 @@ declare namespace LocalJSX {
           * @default 'medium'
          */
         "size"?: 'small' | 'medium' | 'large';
-        /**
-          * This is the text which appear inside the button. It is required.
-         */
-        "text": string;
         /**
           * A string indicating the behavior of the button. It relies on `HTMLButtonElement['type']`
           * @default 'button'
@@ -333,14 +295,10 @@ declare namespace LocalJSX {
     }
 
     interface OrchestraButtonAttributes {
-        "text": string;
         "type": HTMLButtonElement['type'];
         "variant": 'primary' | 'secondary' | 'tertiary';
         "disabled": boolean;
         "size": 'small' | 'medium' | 'large';
-        "icon": 'only' | 'start' | 'end' | 'none';
-        "iconName": string;
-        "iconLibrary": string;
     }
     interface OrchestraCheckboxAttributes {
         "checked": boolean;
@@ -365,7 +323,7 @@ declare namespace LocalJSX {
     }
 
     interface IntrinsicElements {
-        "orchestra-button": Omit<OrchestraButton, keyof OrchestraButtonAttributes> & { [K in keyof OrchestraButton & keyof OrchestraButtonAttributes]?: OrchestraButton[K] } & { [K in keyof OrchestraButton & keyof OrchestraButtonAttributes as `attr:${K}`]?: OrchestraButtonAttributes[K] } & { [K in keyof OrchestraButton & keyof OrchestraButtonAttributes as `prop:${K}`]?: OrchestraButton[K] } & OneOf<"text", OrchestraButton["text"], OrchestraButtonAttributes["text"]>;
+        "orchestra-button": Omit<OrchestraButton, keyof OrchestraButtonAttributes> & { [K in keyof OrchestraButton & keyof OrchestraButtonAttributes]?: OrchestraButton[K] } & { [K in keyof OrchestraButton & keyof OrchestraButtonAttributes as `attr:${K}`]?: OrchestraButtonAttributes[K] } & { [K in keyof OrchestraButton & keyof OrchestraButtonAttributes as `prop:${K}`]?: OrchestraButton[K] };
         "orchestra-checkbox": Omit<OrchestraCheckbox, keyof OrchestraCheckboxAttributes> & { [K in keyof OrchestraCheckbox & keyof OrchestraCheckboxAttributes]?: OrchestraCheckbox[K] } & { [K in keyof OrchestraCheckbox & keyof OrchestraCheckboxAttributes as `attr:${K}`]?: OrchestraCheckboxAttributes[K] } & { [K in keyof OrchestraCheckbox & keyof OrchestraCheckboxAttributes as `prop:${K}`]?: OrchestraCheckbox[K] };
         "orchestra-icon": Omit<OrchestraIcon, keyof OrchestraIconAttributes> & { [K in keyof OrchestraIcon & keyof OrchestraIconAttributes]?: OrchestraIcon[K] } & { [K in keyof OrchestraIcon & keyof OrchestraIconAttributes as `attr:${K}`]?: OrchestraIconAttributes[K] } & { [K in keyof OrchestraIcon & keyof OrchestraIconAttributes as `prop:${K}`]?: OrchestraIcon[K] } & OneOf<"name", OrchestraIcon["name"], OrchestraIconAttributes["name"]>;
     }

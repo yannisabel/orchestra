@@ -51,6 +51,17 @@ const config: StorybookConfig = {
 
     return mergeConfig(config, {
       plugins: [
+        {
+          // Stencil rewrites core dist on each rebuild; partial HMR re-registers
+          // custom elements and breaks rendering, so force a full reload instead.
+          name: 'orchestra-core-dist-full-reload',
+          handleHotUpdate({ file, server }) {
+            if (/[\\/]core[\\/]dist[\\/]/.test(file)) {
+              server.ws.send({ type: 'full-reload' })
+              return []
+            }
+          },
+        },
         liveReload([
           'www/build/orchestra-design-system.esm.js',
           'www/build/orchestra-design-system.js',
@@ -63,6 +74,11 @@ const config: StorybookConfig = {
         },
       },
       build: {
+        // Stencil's runtime loads lazy chunks via variable import(); Vite's
+        // transform-time map goes stale on each rebuild, so keep them native.
+        dynamicImportVarsOptions: {
+          exclude: [/[\\/]core[\\/]dist[\\/]/],
+        },
         chunkSizeWarningLimit: 1000,
         rollupOptions: {
           output: {
