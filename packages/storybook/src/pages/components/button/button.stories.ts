@@ -130,6 +130,13 @@ export const Disabled: Story = {
   },
 }
 
+// The decorator above blurs the button 100ms after render. Wait past that
+// so the deferred blur cannot land between focusing and the key press.
+const focusAfterDecoratorBlur = async (button: HTMLElement) => {
+  await new Promise((resolve) => setTimeout(resolve, 150))
+  button.focus()
+}
+
 export const KeyboardEnter: Story = {
   tags: ['!dev'],
   args: {
@@ -145,6 +152,7 @@ export const KeyboardEnter: Story = {
     })
     await userEvent.click(button)
     onClick.mockClear()
+    await focusAfterDecoratorBlur(button)
     await userEvent.keyboard('{Enter}')
 
     expect(onClick).toHaveBeenCalledOnce()
@@ -166,6 +174,7 @@ export const KeyboardSpace: Story = {
     })
     await userEvent.click(button)
     onClick.mockClear()
+    await focusAfterDecoratorBlur(button)
     await userEvent.keyboard(' ')
 
     expect(onClick).toHaveBeenCalledOnce()

@@ -71,6 +71,17 @@ Each publishable package maintains its own `CHANGELOG.md` and is updated by rele
 `/branches/{sanitized-branch-name}/`
 
 - For `main`: this workflow intentionally skips main deployment
+- Branch previews strip `.map` files from `storybook-static` before publishing, to keep them out of `gh-pages`
+- `gh-pages` writes share the `storybook-gh-pages` concurrency group
+
+### Branch Preview Pruning
+
+**File**: `.github/workflows/storybook-branch-cleanup.yml` (workflow: "Prune Storybook Branch Previews")
+
+- Trigger: branch `delete` events, daily schedule, and `workflow_dispatch`
+- Removes `branches/{sanitized-branch-name}/` folders whose branch no longer exists on the remote
+- Aborts without changes if the remote branch list is empty
+- Why: GitHub Pages sites must stay under 1 GB; previews are otherwise kept forever (`keep_files: true`) and the `gh-pages` build starts failing with "Page build failed."
 
 ### Main Storybook Deployment (Post-Release)
 
